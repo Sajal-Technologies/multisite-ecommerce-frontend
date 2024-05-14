@@ -1,0 +1,15 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css");
+
+.swiper-button-next {
+  color: white;
+  opacity: 1 !important;
+}
+.swiper-button-prev {
+  color: white;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: white;
+}
