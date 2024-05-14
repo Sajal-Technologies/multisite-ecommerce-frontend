@@ -55,3 +55,9 @@ h1 {
 .input-field input::placeholder {
   color: #5c5c5c;
 }
+
+.track-1{
+  height: 7px;
+  background-color: #ff7f00;
+  border-radius: 5px;
+}
