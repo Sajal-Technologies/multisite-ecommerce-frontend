@@ -1,20 +1,22 @@
-import React from "react";
-import Breadcrump from "./Breadcrump";
-import Sort from "./Sort";
-import Filteration from "./Filteration";
+// import React from "react";
+// import Breadcrump from "./Breadcrump";
+// import Sort from "./Sort";
+// import Filteration from "./Filteration";
+// import CatList from "./Cat-component-list/CatList";
+// import { Routes } from "react-router-dom";
 
-const Categories = () => {
-  return (
-    <>
-      <div className="flex flex-col bg-[#FAFAFA]">
-        <Breadcrump />
-        <Sort />
-        <Filteration />
-      </div>
-    </>
-  );
-};
-export default Categories;
+// const Categories = () => {
+//   return (
+//     <>
+//       <div className="flex flex-col bg-[#FAFAFA]">
+//         <Breadcrump />
+//         <Sort />
+//         <Filteration />
+//       </div>
+//     </>
+//   );
+// };
+// export default Categories;
 
 
 
