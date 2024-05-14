@@ -3,19 +3,22 @@ import Breadcrump from "./Breadcrump";
 import Sort from "./Sort";
 import Filteration from "./Filteration";
 import CatGrid from "./Cat-component-list/CatGrid";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import CatList from "./Cat-component-list/CatList";
+// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const Categroriespage = () => {
   return (
     <div className="flex flex-col bg-[#FAFAFA]">
       <Breadcrump />
       <Sort />
-      <div className="flex bg-red-500 px-[7.5vw] mt-4 gap-4 py-4 pb-16 justify-between">
+      <div className="flex px-[7.5vw] mt-4 gap-4 py-4 pb-16 justify-between">
         <Filteration /> 
-        <Routes>
-          <Route path="/Categories/" element={<CatGrid />} />
-        </Routes>
+        <CatGrid/>
+        {/* <Routes>
+          <Route path="/CatGrid" element={<CatGrid />} />
+        </Routes> */}
       </div>
+        {/* <CatList/> */}
     </div>
   );
 };

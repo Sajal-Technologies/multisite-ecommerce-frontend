@@ -19,7 +19,7 @@ const Sort = () => {
           <Dropdown />
           <div className="flex items-center">
             <div className=" group flex bg-[#DEDEDE] hover:bg-[#FF7F00] hover:text-[white] p-2 rounded-s-md">
-              <Link to="/Categrories"> 
+              <Link to="/CatGrid"> 
               <FiList className="bg-[#DEDEDE] text-[#5C5C5C]  group-hover:bg-[#FF7F00] group-hover:text-white" />
               </Link>
             </div>
