@@ -1,4 +1,7 @@
 import React from "react";
+import Phone from "../images/MainPage/Card/Phone.png"
+import Flipkart from "../images/MainPage/Card/Flipkart.png"
+import Meesho from "../images/MainPage/Card/Meesho.png"
 import { FiTrendingDown } from "react-icons/fi";
 import { FiShoppingBag } from "react-icons/fi";
 
@@ -9,7 +12,7 @@ const Card = () => {
         <div className="imgcontainer w-full h-1/2 flex items-center justify-center bg-[#FAFEFF]">
           <img
             className="w-full h-full object-contain"
-            src="https://s3-alpha-sig.figma.com/img/b2d4/5702/a5ccc585626711b6679efead09481f8a?Expires=1716163200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pNuP6kq-At9mZCgCF2KEPx1mTQTKssZBtV7vN8pQdinzdSH~HztrUmbZRAgaMoMOESPEhM~-Wq-6cM0sTZPF9f8moLq19kbviV3eB82MAHNMtHYTNR9wFm8UJK8-78PithokjrWvS~HtI6~y1YYcyPEu6-4Mvwt7LDKk-f71MDS0wQEsUzQKSBbaa53brq55sN0aqswLuEbgwr4cRKmaWqb~O9o~lu51qweBFKW5YMa8OTgBGzbEu7fGjXWX~CMlIe4Loectkscur5wFoVqZGZaeu6KCKkdYrKxPLM0pN092iUXs9SiVGpixHI9Cr9mEUNYLcTSSOfbaEEzfj4ILhg__"
+            src={Phone}
             alt=""
           />
         </div>
@@ -19,14 +22,14 @@ const Card = () => {
               <div className="h-8 w-24 ">
                 <img
                   className=" h-full w-full object-cover"
-                  src="https://s3-alpha-sig.figma.com/img/c8c5/ccdd/0b581d918195a95f4d3ae006d3cce3d9?Expires=1716163200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Zh3~zFCVk44VNf3sr-5qGf~sxHUUg0iu~FfSnR~dsr2HVH8Y6v2tuhc6PswcdH57B-Fmbkve6f1MplKJGMU1LX5q2ElIo5eWu5B0MZMwyKzRtorkfaYt4GXwulRrJdpULSDDzVDHYcES9AaJb6~vVwDvi28cyIMQK3p64bJqfszRtvd2mjyAo7tVFbGg6udyA-jbCYZJf8lY2hn54TmvHZGhFnHkLZ7pMiV3esUoyi2YBbNGVRB59zPTBqM9AGpiliNZT0fXfBPoNsSk-~cRWnCA2eyr-Y~Q4N3brpcX41aZooYGYIMFLZM1ovpR379K6ZV7Dn~8kld6ZcH78Hcwgw__"
+                  src={Flipkart}
                   alt=""
                 />
               </div>
               <div className="h-8 w-8">
                 <img
                   className="h-full w-full object-cover"
-                  src="https://s3-alpha-sig.figma.com/img/a8fa/2337/b81aa1a9f4f99c91c4e4ec7d00f51a65?Expires=1716163200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=H0PDrdn0lI4wStHNfjNEAXYzGOCHOmHR1j1Vg4PDNbHew11aF7HrhUqrIX29HfhtAl6kQDcRoFd22j9d4o9J9MUjhUva9n4OamNgsYtkzoqv-UyRM5cZvZU5T4hMBKxtDULn9iWY9dECwAuvNV9w3DvQKSy4X2rxcSB3QviGqok2xiVvqD3Pe2wm5L5wraBocn7vG0HPapdte6JjfZJTdwQFfuUNZRHAXwEv1zMPd2cyUZe0qcA9ljRjXiSQahhcReUOOVwTzN1kTIIIfZSD0FMm84XSltB3iOoGco5Ei5TN1hjmz74TtvQnYJfsceCxw9LpaUOszl8iOulwnQojOA__"
+                  src={Meesho}
                   alt=""
                 />
               </div>

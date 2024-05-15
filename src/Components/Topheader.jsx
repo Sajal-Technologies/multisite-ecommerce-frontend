@@ -1,6 +1,7 @@
 import React from "react";
-import Apple from "../images/Apple.svg";
-import Logo from "../images/Logo.svg";
+import Apple from "../images/MainPage/Headerlogos/Apple.svg";
+import Logo from "../images/MainPage/Headerlogos/Logo.svg";
+import FlashDeals from "../images/MainPage/Headerlogos/FlashDeals.gif"
 import { FiGlobe } from "react-icons/fi";
 import { FiUser } from "react-icons/fi";
 import { FiSearch } from "react-icons/fi";
@@ -54,7 +55,7 @@ const Topheader = () => {
             <div className="flex items-center gap-2">
               <img
                 className="w-14 h-6"
-                src="https://s3-alpha-sig.figma.com/img/9407/1dcf/9b17d00744ddb76135cc7a48afa5248e?Expires=1716163200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=RoNxh2pHLRyoOhxbQb6PaAbHcuQHIvYhGB4e1hU9qUvn7F46CGAn~cZAA4ooPRcsQj3WI15PMpJ0oANXt1CWK0IA-lgblP1b8PS-H3LFaBuQiwYLYJmmtSRdfMuOprnSEPJ4DmOHDBa2hvlsvtCM7wdDJB6sR1P0qBZ7gJBWWgmWbyYkbcJ-6iW0k0GMH1UEchTFThWSJWOyWClYn1YXFn0NWWfWYsEF-WgFPC-1ph5mGjYPsofTt5OoRf9NFJuPTtD3dBgA8NwnRVRtiAJkPg8gLSUZaNbNg6EDM~ibZVqj1HulrGBmoBwlG6JILiIHt2xmBfW4QTdcIbNemvKc6g__"
+                src={FlashDeals}
                 alt=""
               />
               <a className="text-2xl" href="">

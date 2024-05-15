@@ -1,18 +1,18 @@
 import React from "react";
-import img from "../../../images/Iphone.png";
-import Amazon from "../../../images/amazon.png";
-import Flipkart from "../../../images/flipkart.png";
-import Meesho from "../../../images/logomeesho.png";
-import Indiamart from "../../../images/indiamart2.png";
+import Iphone from "../../../images/CategoriesPage/CatComponent/CatList/iphone.png";
+import Amazon from "../../../images/CategoriesPage/CatComponent/CatList/amazon.png";
+import Flipkart from "../../../images/CategoriesPage/CatComponent/CatList/flipkart.png";
+import Meesho from "../../../images/CategoriesPage/CatComponent/CatList/meesho.png";
+import Indiamart from "../../../images/CategoriesPage/CatComponent/CatList/indiamart.png";
 import { FiTrendingDown } from "react-icons/fi";
 import { FiShoppingBag } from "react-icons/fi";
 
 const CatList = () => {
   return (
     <>
-      <div className=" h-fit w-[58vw] items-center flex overflow-hidden gap-4 border-[1px] border-[#F2F2F2] rounded-2xl ">
+      <div className=" h-fit w-[58vw] items-center flex overflow-hidden gap-4 py-4 border-[1px] border-[#F2F2F2] rounded-2xl ">
         <div className="imgcontainer flex gap-4 items-center justify-center h-[210px] w-[350px] bg-[#FAFEFF]">
-          <img className="w-full h-full object-contain" src={img} alt="" />
+          <img className="w-full h-full object-contain" src={Iphone} alt="" />
         </div>
         <div className="flex flex-col h-full py-4 w-fit">
           <div className="flex h-full items-center w-full justify-between">

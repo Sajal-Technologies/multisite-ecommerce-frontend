@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { FiChevronUp } from "react-icons/fi";
 import Slider from "react-slider";
-import Flipkart from "../../images/flipkart2.png";
-import Indiamart from "../../images/indiamart2.png";
+import Flipkart from "../../images/CategoriesPage/Filteraion/flipkart.png";
+import Indiamart from "../../images/CategoriesPage/Filteraion/indiamart.png";
+import Amazon from "../../images/CategoriesPage/Filteraion/amazon.png";
+import Meesho from "../../images/CategoriesPage/Filteraion/meesho.png";
 // import Card from "../Card";
 // import CatGrid from "./Cat-component-list/CatGrid";
 // import { Route, Routes } from "react-router-dom";
@@ -106,12 +108,12 @@ const Filteration = () => {
                 {
                   name: "Amazon",
                   count: "56",
-                  img: "https://s3-alpha-sig.figma.com/img/3df7/90d5/08cef7c8e04e1541361150ecd58f1d34?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gSVH1jweGZu~aU75NkpWK4I2kbD66AZ6JsEEmR9HeY5PSSidh~5f2qADRC1BGVXxsnW7pM26cwoYFnn0xkw0Pj9w0zZVYx5nQIexQ2K8Y6SpeDr4CzsWTw0IX58td8rf6248vtwzAiW8jZDY9QQ-WGl~WPEJWZoXMhUrS7C5wyE667XoY9wYkP2nzmdtO9H7K7gRSFRgs~EM-lQ36B8~wyN3gdspuccsvs062ePpT4Y9ZVtGOBYYSKDt-iWNQgQxWUBSOkDELZTUGilRp-HixucrfBzoGE23~XmpTLznlWUE4GPVIBoysTMfcqUFn50ltX~j3~o6D7n52jMliq-muQ__",
+                  img: `${Amazon}`,
                 },
                 {
-                  name: "Meshoo",
+                  name: "Meesho",
                   count: "70",
-                  img: "https://s3-alpha-sig.figma.com/img/a8fa/2337/b81aa1a9f4f99c91c4e4ec7d00f51a65?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OaM2b16UuramRAFgd~2AmNSdXxe6Fy2Ap4-~MrxFhK~EOZLbj63FJSqVu81E6DbQkI4qfNGWBjLTNdjJl0dmwS1dw92OIODUTtMpTAM-qP5g6yLFYkNySZxvNy1s-3PQaFsIjh0LK8zrF6eVKCSDgPU5V971OEiRTKM1brL7KwXGcTLNmuQuNbE5fS7YdWSipXTgNQico-yuazGXyKp4ZRsh1tDxM3TfkbNOU1uC2L7uPKgSUoKOECwb8nfazUYodZkCFIf0mNwjUSHu5cx167rv3sDPJxtz5CMuupZj62kZKDNWKcF0pGW1mZa7H~-h6hKL6KkXML1YbveavNXd2w__",
+                  img: `${Meesho}`,
                 },
                 { name: "Flipkart", count: "52", img: `${Flipkart}` },
                 { name: "Indiamart", count: "37", img: `${Indiamart}` },

@@ -1,5 +1,6 @@
 import React from "react";
-import Logo from "../images/Logo.svg";
+import Logo from "../images/MainPage/FooterLogos/Logo.svg";
+import Flag from "../images/MainPage/FooterLogos/Flag.png"
 import { FiMail } from "react-icons/fi";
 import { FaFacebookF } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
@@ -140,7 +141,7 @@ const Footer = () => {
             <div className="flex items-center gap-1">
               <img
                 className="w-6 h-4"
-                src="https://s3-alpha-sig.figma.com/img/4104/5fb1/972e45d68802086bd84cb513e501f747?Expires=1716163200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jwYaIrTeVaSayueyVNeH27kZVOUPV2nKZJjcuP2pwHbILSfX4LeWJaBZ3t8-Y9ZRQFnF2GfU1ftK3iLzWM9KnF-jdU0eG-Qfzh1r-QliyowpMKkp~sARsvD2CskAC5yudUhPq42ZXUL6JV9xTivW8PUbWIWqL2UFDogBp43bO4UwNeETypZ7NmorK6e0GeIKJRv5Z-3uB40L03Hb2Ju2NY2UCm-EOdr4usbbY4VEc9CuuIpK2XUyDNEym7HXmFZ8ALqw6VVB7lEguduqkSZXInZ6ZMT8k5X83wegv7xn-4qz8Ig9Qp4ts3E3BzEC2MJaGCjIApJo8f7esFPUHbr2Zw__"
+                src={Flag}
                 alt=""
               />
               <p className="">English</p>

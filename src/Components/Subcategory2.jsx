@@ -1,5 +1,6 @@
 import React from "react";
 import Subcatcard2 from "./Subcatcard2";
+import SubCategoryImg from "../images/MainPage/SubCategory2/SubCategory2.jpeg"
 
 const Subcategory2 = () => {
   return (
@@ -18,7 +19,7 @@ const Subcategory2 = () => {
             <div className="overlay absolute w-full h-full bg-black opacity-40"></div>
             <img
               className="w-full h-full object-cover object-center"
-              src="https://s3-alpha-sig.figma.com/img/5778/4980/a5cf52bf468760f43a54f517f66a6421?Expires=1716163200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=DHv-Go6T-~hlMLpuSQzyxh7nj2oHn2S5KCKh0AQoc5u1Dz082TPr9ViV~k7HFZyCADpclj1V7J2zSCzwUXY0fgisSZz-lm5EAOW7ki9a69OyLLVdPo9YtQVPqxq8vGIxQt9gziF-5dGtJqq7T7usaWhcl4LPVTbkhTqi8CbOkx7d25T3wlePHt6Fwz1CCzrcVxJmWXSS1LPqX33Ynn2G9r5kqoM39gYkJwl3WRiZ2HWbc5c1aW0wCfOXJYJHYVVmjjQrLmIt31OXQQ1Mcj~johhyEhFzcTHFLLnv-8FFHxTqSz21WMjXYXA1o3b7z1fx4XE2V8g2o2u-em~OotBDxQ__"
+              src={SubCategoryImg}
               alt=""
             />
             <h1 className="absolute top-0 text-white px-[24px] py-[32px] font-bold text-4xl leading-[43px] z-30">
