@@ -4,6 +4,7 @@ import Flipkart from "../images/MainPage/Card/Flipkart.png"
 import Meesho from "../images/MainPage/Card/Meesho.png"
 import { FiTrendingDown } from "react-icons/fi";
 import { FiShoppingBag } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Card = () => {
   return (
@@ -40,9 +41,9 @@ const Card = () => {
             </div>
           </div>
           <div className="px-4">
-            <p className="text-[19px] leading-none text-[#3D3D3D] font-medium">
+            <Link to="/Product" className="text-[19px] leading-none text-[#3D3D3D] font-medium">
               Buy iPhone 15 Pro Physical Dual Sim 128GB Blue Titanium 5G...
-            </p>
+            </Link>
           </div>
           <div className="flex justify-between items-center">
             <div className="">

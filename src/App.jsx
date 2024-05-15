@@ -4,6 +4,7 @@ import Topheader from "./Components/Topheader";
 import Footer from "./Components/Footer";
 import Main from "./Components/Main";
 import Categroriespage from "./Components/Cat-components/Categroriespage";
+import ProductPage from "./Components/ProductPage/ProductPage";
 
 const App = () => {
   return (
@@ -17,6 +18,9 @@ const App = () => {
           <Routes>
             <Route path="/Categories" element={<Categroriespage />} />
           </Routes>
+          <Routes>
+            <Route path="/Product" element={<ProductPage/>}/>
+            </Routes>
           <Footer />
         </div>
       </Router>
