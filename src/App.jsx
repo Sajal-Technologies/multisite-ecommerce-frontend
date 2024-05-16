@@ -5,6 +5,8 @@ import Footer from "./Components/Footer";
 import Main from "./Components/Main";
 import Categroriespage from "./Components/Cat-components/Categroriespage";
 import ProductPage from "./Components/ProductPage/ProductPage";
+import ProductStyle2 from "./Components/ProductPage/ProductStyle2/ProductStyle2";
+import CartPage from "./Components/CartPage/CartPage";
 
 const App = () => {
   return (
@@ -20,6 +22,12 @@ const App = () => {
           </Routes>
           <Routes>
             <Route path="/Product" element={<ProductPage/>}/>
+            </Routes>
+          <Routes>
+            <Route path="/Product-style2" element={<ProductStyle2/>}/>
+            </Routes>
+          <Routes>
+            <Route path="/Cart" element={<CartPage/>}/>
             </Routes>
           <Footer />
         </div>

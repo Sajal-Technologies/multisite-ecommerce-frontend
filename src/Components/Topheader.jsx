@@ -1,7 +1,7 @@
 import React from "react";
 import Apple from "../images/MainPage/Headerlogos/Apple.svg";
 import Logo from "../images/MainPage/Headerlogos/Logo.svg";
-import FlashDeals from "../images/MainPage/Headerlogos/FlashDeals.gif"
+import FlashDeals from "../images/MainPage/Headerlogos/FlashDeals.gif";
 import { FiGlobe } from "react-icons/fi";
 import { FiUser } from "react-icons/fi";
 import { FiSearch } from "react-icons/fi";
@@ -30,9 +30,11 @@ const Topheader = () => {
         </div>
       </div>
       <div className="logo-search px-12 py-2 flex justify-between items-center border-[1px] bg-[#FCFCFC]">
-        <div className="logo">
-          <img src={Logo} alt="" />
-        </div>
+        <Link to="/">
+          <div className="logo">
+            <img src={Logo} alt="" />
+          </div>
+        </Link>
         <div className="right flex items-center gap-14">
           <div className="search flex items-center relative">
             <FiSearch className="left-3 absolute text-[#5C5C5C] text-[20px]" />
@@ -47,17 +49,13 @@ const Topheader = () => {
           <div className="flex items-center">
             <div className="flex items-center gap-2">
               <FiShoppingCart className="text-[#00A8EB] text-2xl" />
-              <Link className="text-2xl" to="">
+              <Link className="text-2xl" to="/Cart">
                 Cart
               </Link>
             </div>
             <Seperator />
             <div className="flex items-center gap-2">
-              <img
-                className="w-14 h-6"
-                src={FlashDeals}
-                alt=""
-              />
+              <img className="w-14 h-6" src={FlashDeals} alt="" />
               <a className="text-2xl" href="">
                 Flash Deals
               </a>

@@ -18,14 +18,16 @@ const Sort = () => {
           <p className="text-[#121212]">Sort by</p>
           <Dropdown />
           <div className="flex items-center">
+              <Link to="/categories?view=list">
             <div className=" group flex bg-[#DEDEDE] hover:bg-[#FF7F00] hover:text-[white] p-2 rounded-s-md">
-              <Link to="/CatGrid"> 
-              <FiList className="bg-[#DEDEDE] text-[#5C5C5C]  group-hover:bg-[#FF7F00] group-hover:text-white" />
+                <FiList className="bg-[#DEDEDE] text-[#5C5C5C]  group-hover:bg-[#FF7F00] group-hover:text-white" />
+            </div>
               </Link>
-            </div>
-            <div className="group flex bg-[#FF7F00] hover:bg-[#FF7F00] hover:text-[white] p-2 rounded-e-md">
-              <FiGrid className="bg-[#FF7F00] text-white group-hover:bg-[#FF7F00] group-hover:text-white" />
-            </div>
+            <Link to="/categories?view=grid">
+              <div className="group flex bg-[#FF7F00] hover:bg-[#FF7F00] hover:text-[white] p-2 rounded-e-md">
+                <FiGrid className="bg-[#FF7F00] text-white group-hover:bg-[#FF7F00] group-hover:text-white" />
+              </div>
+            </Link>
           </div>
         </div>
       </div>

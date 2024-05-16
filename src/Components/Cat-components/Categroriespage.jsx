@@ -3,50 +3,30 @@ import Breadcrump from "./Breadcrump";
 import Sort from "./Sort";
 import Filteration from "./Filteration";
 import CatGrid from "./Cat-component-list/CatGrid";
-import CatList from "./Cat-component-list/CatList";
+import { useLocation } from "react-router-dom";
+import CatListPage from "./Cat-component-list/CatListPage";
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const Categroriespage = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const viewType = searchParams.get("view");
+
   return (
-    <div className="flex flex-col bg-[#FAFAFA]">
+    <div className="flex flex-col w-full bg-[#FAFAFA]">
       <Breadcrump />
       <Sort />
-      <div className="flex px-[7.5vw] mt-4 gap-4 py-4 pb-16 justify-between">
-        <Filteration /> 
-        <CatGrid/>
-        {/* <Routes>
-          <Route path="/CatGrid" element={<CatGrid />} />
-        </Routes> */}
+      <div className="flex w-full items-center justify-center">
+        <div className="flex w-[85%] mt-4 gap-4 py-4 pb-16 justify-between">
+          <Filteration />
+          {viewType && viewType == "list" ? <CatListPage /> : <CatGrid />}
+        </div>
       </div>
-        {/* <CatList/> */}
     </div>
   );
 };
 
 export default Categroriespage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React from "react";
 // import Breadcrump from "./Breadcrump";
@@ -59,13 +39,13 @@ export default Categroriespage;
 // const Categroriespage = () => {
 //   return (
 //     <>
-    
+
 //       <div className="flex flex-col bg-[#FAFAFA]">
 //         <Breadcrump />
 //         <Sort />
 //         <div className="flex bg-red-500 px-[7.5vw] mt-4 gap-4 py-4 pb-16 justify-between">
-//           <Filteration /> 
-          
+//           <Filteration />
+
 //           {/* <Routes>
 //             <Route path="/CatGrid" element={<CatGrid />} />
 //           </Routes> */}

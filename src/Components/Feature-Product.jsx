@@ -6,7 +6,7 @@ const Fproduct = () => {
   return (
     <>
       <div className="flex flex-col">
-        <div className="flex items-center justify-center mt-[4vw]">
+        <div className="flex mb-8 items-center justify-center mt-[4vw]">
           <div className="w-[85%]">
             <div className="flex justify-between items-center">
               <h1 className="text-[#121212] text-[36px] font-semibold">
