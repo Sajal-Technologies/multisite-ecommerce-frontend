@@ -84,3 +84,18 @@ h1 {
     rgba(255, 255, 255, 0.15) 82.43%
   );
 }
+
+.popupbox {
+  box-shadow: 0px 3.33px 3.33px 0px #00a8eb0a;
+}
+
+.header,
+.footer,
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+
+.signin{
+  background: linear-gradient(116.55deg, #FFFFFF 0%, #EDF0F0 47%, #E9F4F7 100%);
+}

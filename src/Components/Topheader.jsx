@@ -10,7 +10,10 @@ import { FiChevronDown } from "react-icons/fi";
 import Seperator from "./Seperator";
 import { Link } from "react-router-dom";
 
-const Topheader = () => {
+const Topheader = ({toggleCartPopup}) => {
+
+
+
   return (
     <nav>
       <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm text-right items-center justify-between py-3 px-12">
@@ -25,7 +28,7 @@ const Topheader = () => {
           </div>
           <div className="signin flex items-center gap-2">
             <FiUser className="text-lg" />
-            <p>Sign Up/Sign In</p>
+            <Link to="">Sign Up/Sign In</Link>
           </div>
         </div>
       </div>
@@ -56,7 +59,7 @@ const Topheader = () => {
             <Seperator />
             <div className="flex items-center gap-2">
               <img className="w-14 h-6" src={FlashDeals} alt="" />
-              <a className="text-2xl" href="">
+              <a onClick={toggleCartPopup} className="text-2xl" href="">
                 Flash Deals
               </a>
             </div>
