@@ -14,6 +14,9 @@ import ProductStyle2 from "./Components/ProductPage/ProductStyle2/ProductStyle2"
 import CartPage from "./Components/CartPage/CartPage";
 import Cartpopup from "./Components/CartPage/Cartpopup";
 import SignInPage from "./Components/SignIn/SignInPage";
+import SignUpPage from "./Components/SignIn/SignUpPage";
+import ForgotPsw from "./Components/ForgotPassword/ForgotPsw";
+import OTPVerification from "./Components/OTPVerification/OTPVerification";
 
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
@@ -26,7 +29,10 @@ const App = () => {
     setIsCartPopupVisible(false);
   };
 
-  const isSignInPage = location.pathname === "/Signin";
+  const isSignInPage = location.pathname === "/SignIn";
+  const isSignUnPage = location.pathname === "/SignUp";
+  const isForgotPsw = location.pathname === "/ForgotPassword";
+  const isOTPVerification = location.pathname === "/OTPVerification";
 
   return (
     <>
@@ -34,7 +40,7 @@ const App = () => {
         <div
           className={` app ${isCartPopupVisible ? "cart-popup-active" : ""}`}
         >
-          {!isSignInPage && (
+          {!isSignInPage && !isSignUnPage && !isForgotPsw && !isOTPVerification &&(
             <Topheader className="header" toggleCartPopup={toggleCartPopup} />
           )}
           <div className="main-content">
@@ -56,8 +62,17 @@ const App = () => {
             <Routes>
               <Route path="/Signin" element={<SignInPage />} />
             </Routes>
+            <Routes>
+              <Route path="/SignUp" element={<SignUpPage />} />
+            </Routes>
+            <Routes>
+              <Route path="/ForgotPassword" element={<ForgotPsw />} />
+            </Routes>
+            <Routes>
+              <Route path="/OTPVerification" element={<OTPVerification />} />
+            </Routes>
           </div>
-          {!isSignInPage && <Footer className="footer" />}
+          {!isSignInPage && !SignUpPage && !isForgotPsw && !isOTPVerification &&<Footer className="footer" />}
 
           {isCartPopupVisible && (
             <div className="overlay bg-[#00000080] fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50">
