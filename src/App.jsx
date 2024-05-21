@@ -17,6 +17,7 @@ import SignInPage from "./Components/SignIn/SignInPage";
 import SignUpPage from "./Components/SignIn/SignUpPage";
 import ForgotPsw from "./Components/ForgotPassword/ForgotPsw";
 import OTPVerification from "./Components/OTPVerification/OTPVerification";
+import ResetPassword from "./Components/ResetPassword/ResetPassword";
 
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
@@ -33,6 +34,7 @@ const App = () => {
   const isSignUnPage = location.pathname === "/SignUp";
   const isForgotPsw = location.pathname === "/ForgotPassword";
   const isOTPVerification = location.pathname === "/OTPVerification";
+  const isResetPassword = location.pathname === "/ResetPassword";
 
   return (
     <>
@@ -40,9 +42,13 @@ const App = () => {
         <div
           className={` app ${isCartPopupVisible ? "cart-popup-active" : ""}`}
         >
-          {!isSignInPage && !isSignUnPage && !isForgotPsw && !isOTPVerification &&(
-            <Topheader className="header" toggleCartPopup={toggleCartPopup} />
-          )}
+          {!isSignInPage &&
+            !isSignUnPage &&
+            !isForgotPsw &&
+            !isOTPVerification &&
+            !isResetPassword && (
+              <Topheader className="header" toggleCartPopup={toggleCartPopup} />
+            )}
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Main />} />
@@ -71,8 +77,15 @@ const App = () => {
             <Routes>
               <Route path="/OTPVerification" element={<OTPVerification />} />
             </Routes>
+            <Routes>
+              <Route path="/ResetPassword" element={<ResetPassword />} />
+            </Routes>
           </div>
-          {!isSignInPage && !SignUpPage && !isForgotPsw && !isOTPVerification &&<Footer className="footer" />}
+          {!isSignInPage &&
+            !SignUpPage &&
+            !isForgotPsw &&
+            !isOTPVerification &&
+            !isResetPassword && <Footer className="footer" />}
 
           {isCartPopupVisible && (
             <div className="overlay bg-[#00000080] fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50">
@@ -86,9 +99,3 @@ const App = () => {
 };
 
 export default App;
-
-{
-  /* <Routes>
-  <Route path="/categories" element={<Categories />} />
-</Routes>; */
-}

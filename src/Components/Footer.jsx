@@ -120,7 +120,7 @@ const Footer = () => {
                     </span>
                   </span>
                 </button>
-                <button class="appstore-button flex items-center justify-center py-[10px] px-3 border-[2px] border-[#bdbdbd] bg-[#0f0f0f] rounded-2xl gap-[2px] cursor-pointer transition-all @apply shadow-[0px_0px_100px_-30px_rgb(255,255,255)] hover:bg-[#ffffff] hover:border-[2px] hover:border-[#8a8a8a] group">
+                <button class="playstore-button flex items-center justify-center py-[10px] px-3 border-[2px] border-[#bdbdbd] bg-[#0f0f0f] rounded-2xl gap-[2px] cursor-pointer transition-all @apply shadow-[0px_0px_100px_-30px_rgb(255,255,255)] hover:bg-[#ffffff] hover:border-[2px] hover:border-[#8a8a8a] group">
                   <BiLogoPlayStore className="text-white text-[35px] transition-all group-hover:text-black" />
                   <span class="button-text group-hover:text-black flex flex-col items-start justify-center text-white transition-all duration-300 ">
                     <span class="top-text uppercase leading-none text-[7px] btn-font font-semibold">

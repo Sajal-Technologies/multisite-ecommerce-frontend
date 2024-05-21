@@ -96,6 +96,10 @@ h1 {
   z-index: 1;
 }
 
-.signin{
-  background: linear-gradient(116.55deg, #FFFFFF 0%, #EDF0F0 47%, #E9F4F7 100%);
+.signin {
+  background: linear-gradient(116.55deg, #ffffff 0%, #edf0f0 47%, #e9f4f7 100%);
+}
+
+.otp-input.active {
+  border: 1px solid #00a8eb;
 }
