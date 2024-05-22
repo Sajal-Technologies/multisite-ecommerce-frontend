@@ -2,7 +2,7 @@ import React from "react";
 import { FiArrowLeft } from "react-icons/fi";
 import { FiMail } from "react-icons/fi";
 import { FiChevronRight } from "react-icons/fi";
-import mailMessage from "../../images/SigninPage/mailmessage.png";
+import mailMessage from "../../images/SigninPage/mailmessage.png"
 import { Link } from "react-router-dom";
 
 const ForgotPsw = () => {
@@ -34,16 +34,8 @@ const ForgotPsw = () => {
             />
             <FiMail className=" absolute top-[60%] text-lg right-0 mx-4 text-[#7A7A7A]" />
           </div>
-          <Link
-            to="/OTPVerification"
-            className="flex w-full items-center justify-between bg-[#005F85] px-8 py-4 rounded-xl"
-          >
-            <Link
-              to="/OTPVerification"
-              className="text-white text-lg font-semibold"
-            >
-              Send OTP Code
-            </Link>
+          <Link to="/OTPVerification" className="flex w-full items-center justify-between bg-[#005F85] px-8 py-4 rounded-xl">
+            <Link to="/OTPVerification" className="text-white text-lg font-semibold">Send OTP Code</Link>
             <div className="flex">
               <FiChevronRight className="text-2xl text-[#99BFCE]" />
               <FiChevronRight className="text-2xl text-white" />
@@ -52,13 +44,9 @@ const ForgotPsw = () => {
           </Link>
         </div>
         <div className="rightimg">
-          <div className="mailmsg flex ml-[20%] mt-[10%] items-center justify-end w-fit h-full">
-            <img
-              className="h-[480px] w-full object-cover"
-              src={mailMessage}
-              alt=""
-            />
-          </div>
+            <div className="mailmsg flex ml-[20%] mt-[10%] items-center justify-end w-fit h-full">
+                <img className="h-[480px] w-full object-cover" src={mailMessage} alt="" />
+            </div>
         </div>
       </div>
     </>

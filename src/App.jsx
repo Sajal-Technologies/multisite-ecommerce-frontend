@@ -32,6 +32,8 @@ const App = () => {
 
   const isSignInPage = location.pathname === "/SignIn";
   const isSignUnPage = location.pathname === "/SignUp";
+  console.log(isSignUnPage);
+
   const isForgotPsw = location.pathname === "/ForgotPassword";
   const isOTPVerification = location.pathname === "/OTPVerification";
   const isResetPassword = location.pathname === "/ResetPassword";
@@ -85,7 +87,9 @@ const App = () => {
             !SignUpPage &&
             !isForgotPsw &&
             !isOTPVerification &&
-            !isResetPassword && <Footer className="footer" />}
+            !isResetPassword ? <Footer className="footer" /> : ''}
+
+          {/* {!SignUpPage ? <Footer className="footer" /> : ""} */}
 
           {isCartPopupVisible && (
             <div className="overlay bg-[#00000080] fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50">
