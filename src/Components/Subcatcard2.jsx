@@ -7,8 +7,8 @@ const Subcatcard2 = () => {
       <div className="subcatcard2 w-[290px] text-[#262626] h-[110px] bg-white flex justify-between p-4 rounded-xl border-[1px] border-[#DEDEDE]">
         <div className="">
           <p className="text-[19px] font-medium">Smart Phones</p>
-          <p className=" leading-[22px] text-[#5C5C5C]">
-            From <br /> &#8377;3299
+          <p className=" leading-[22px] text-[#7A7A7A]">
+            From <br /> <span className="text-[#3D3D3D] text-xl">&#8377;3299</span>
           </p>
         </div>
         <div className="scale-[1.45] overflow-hidden px-4">

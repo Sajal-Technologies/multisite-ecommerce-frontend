@@ -76,17 +76,17 @@ const OTPVerification = () => {
 
   return (
     <>
-      <div className="main h-screen w-full signin flex justify-between overflow-hidden pl-24 py-[5%]">
-        <div className="left flex flex-col py-8 w-[36%] gap-8  ">
-          <div className="flex gap-2 items-center font-medium text-[#5C5C5C]">
+      <div className="main h-screen w-full signin flex justify-between overflow-hidden pl-24 py-[5%] max-[600px]:flex-col-reverse max-[600px]:h-screen max-[600px]:w-full max-[600px]:justify-between max-[600px]:m-0 max-[600px]:p-0">
+        <div className="left flex flex-col py-8 w-[36%] gap-8 max-[600px]:px-4 max-[600px]:w-full max-[600px]:my-[27vh] max-[600px]:gap-4">
+          <div className="flex gap-2 items-center font-medium text-[#5C5C5C] max-[600px]:hidden">
             <FiArrowLeft className="text-xl" />
             <span className="text-xl">Back</span>
           </div>
           <div className="">
-            <h1 className="text-[#121212] text-3xl font-bold">
+            <h1 className="text-[#121212] text-3xl font-bold max-[600px]:text-2xl">
               Enter 4-Digit OTP Code
             </h1>
-            <p className="text-[#5C5C5C] leading-[21px] pt-3 font-medium">
+            <p className="text-[#5C5C5C] leading-[21px] pt-3 font-medium max-[600px]:font-normal">
               We just sent a verification code to your registered email, please
               check your mail.
             </p>
@@ -97,13 +97,13 @@ const OTPVerification = () => {
               <span className="text-[#005F85]">Resend Code</span>
             </p>
           </div>
-          <div className="otpboxs flex gap-2">
+          <div className="otpboxs flex gap-2 max-[600px]:justify-center">
             {otp.map((data, index) => (
               <input
                 key={index}
                 ref={(el) => (inputRefs.current[index] = el)}
                 type="text"
-                className={`otp-input active:border-[#00A8EB] focus:border-[#00A8EB] focus:outline-none h-20 w-20 text-center text-4xl bg-white border border-[#C9C9C9] rounded-lg ${
+                className={`otp-input active:border-[#00A8EB] focus:border-[#00A8EB] focus:outline-none h-20 w-20 max-[600px]:h-[50px] max-[600px]:w-[50px] max-[600px]:text-xl text-center text-4xl bg-white border border-[#C9C9C9] rounded-lg ${
                   data ? "active" : ""
                 }`}
                 maxLength="1"
@@ -116,31 +116,31 @@ const OTPVerification = () => {
           </div>
           <Link
             to="/ResetPassword"
-            className={`flex w-full items-center btn justify-between bg-[#005F85] px-8 py-4 rounded-xl ${
+            className={`flex w-full items-center btn justify-between bg-[#005F85] px-8 py-4 max-[600px]:py-3 rounded-xl ${
               isOtpComplete ? "bg-[#005F85]" : "bg-gray-300 cursor-not-allowed"
             }`}
           >
             <Link
               to="/ResetPassword"
-              className="text-white text-lg font-semibold"
+              className="text-white text-lg font-semibold max-[600px]:text-base"
             >
               Verify OTP Code
             </Link>
             <Link to="/ResetPassword" className="flex">
               <FiChevronRight
-                className={`text-2xl ${
+                className={`text-2xl max-[600px]:text-xl ${
                   isOtpComplete
                     ? "text-[#99BFCE]"
                     : "text-[#999999] cursor-not-allowed"
                 }`}
               />
               <FiChevronRight
-                className={`text-2xl ${
+                className={`text-2xl max-[600px]:text-xl ${
                   isOtpComplete ? "text-white" : "text-white cursor-not-allowed"
                 }`}
               />
               <FiChevronRight
-                className={`text-2xl ${
+                className={`text-2xl max-[600px]:text-xl ${
                   isOtpComplete
                     ? "text-[#99BFCE]"
                     : "text-[#999999] cursor-not-allowed"
@@ -149,10 +149,10 @@ const OTPVerification = () => {
             </Link>
           </Link>
         </div>
-        <div className="right">
-          <div className="r-img h-screen mt-[-77px] w-full">
+        <div className="right ">
+          <div className="r-img warm-effect h-screen mt-[-77px] w-full max-[600px]:absolute max-[600px]:h-[364px] max-[600px]:m-0 max-[600px]:p-0 max-[600px]:top-[-3%] max-[600px]:mb-6">
             <img
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain max-[600px]:p-[11%] max-[600px]:object-contain"
               src={currentImage}
               alt=""
             />
