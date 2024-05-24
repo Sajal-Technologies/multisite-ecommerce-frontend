@@ -12,9 +12,9 @@ import { Link } from "react-router-dom";
 
 const Topheader = ({ toggleCartPopup }) => {
   return (
-    <nav>
-      <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm text-right items-center justify-between py-3 px-12">
-        <div className="left flex text-center items-center gap-2">
+    <nav className="">
+      <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm text-right items-center justify-between py-3 px-12 max-[600px]:hidden ">
+        <div className="left flex text-center items-center gap-2 ">
           <p>Welcome to worldwide Chak De</p>
           <img src={Apple} alt="" />
         </div>
@@ -32,17 +32,23 @@ const Topheader = ({ toggleCartPopup }) => {
           </div>
         </div>
       </div>
-      <div className="logo-search px-12 py-2 flex justify-between items-center border-[1px] bg-[#FCFCFC]">
+      <div className="logo-search px-12 py-2 flex justify-between items-center border-[1px] bg-[#FCFCFC] max-[600px]:gap-0 max-[600px]:justify-start max-[600px]:items-center max-[600px]:px-4 max-[600px]:py-3 max-[600px]:flex-row max-[600px]:w-screen">
+        <div className="max-[600px]:h-6 max-[600px]:w-6 max-[600px]:flex max-[600px]:flex-col max-[600px]:gap-1 hidden max-[600px]:px-0 max-[600px]:justify-center">
+          <div className="max-[600px]:h-[2.5px] max-[600px]:bg-[#005F85] max-[600px]:w-[18px] max-[600px]:rounded-lg"></div>
+          <div className="max-[600px]:h-[2.5px] max-[600px]:bg-[#005F85] max-[600px]:w-[18px] max-[600px]:rounded-lg"></div>
+          <div className="max-[600px]:h-[2.5px] max-[600px]:bg-[#005F85] max-[600px]:w-[18px] max-[600px]:rounded-lg"></div>
+        </div>
+        <img className="max-[600px]:h-11  max-[600px]:px-4 lg:hidden" src={Logo} alt="" />
         <Link to="/">
           <div className="logo">
             <img src={Logo} alt="" />
           </div>
         </Link>
-        <div className="right flex items-center gap-14">
-          <div className="search flex items-center relative">
-            <FiSearch className="left-3 absolute text-[#5C5C5C] text-[20px]" />
+        <div className="right flex items-center gap-14 pl-[100px]">
+          <div className="search flex items-center relative max-[600px]:left-[-26%]">
+            <FiSearch className="left-3 absolute text-[#5C5C5C] text-xl max-[600px]:left-[-25px]" />
             <input
-              className="bg-[#FAFAFA] border-[1px] border-[#DEDEDE] p-4 pl-10 w-[40vw] rounded-lg"
+              className="bg-[#FAFAFA] border-[1px] border-[#DEDEDE] p-4 pl-10 w-[40vw] max-[600px]:ml-[-35px] rounded-lg max-[600px]:px-2 max-[600px]:py-[10px] max-[600px]:pl-10 max-[600px]:w-[220px] max-[600px]:placeholder:text-xs"
               type="text"
               placeholder="Search essentials, groceries and more..."
               name=""
@@ -50,14 +56,16 @@ const Topheader = ({ toggleCartPopup }) => {
             />
           </div>
           <div className="flex items-center">
-            <div className="flex items-center gap-2">
-              <FiShoppingCart className="text-[#00A8EB] text-2xl" />
-              <Link className="text-2xl" to="/Cart">
+            <div className="flex items-center gap-2 max-[600px]:gap-0 max-[600px]:absolute max-[600px]:right-0 max-[600px]:px-4 ">
+              <FiShoppingCart className="text-[#00A8EB] text-2xl max-[600px]:text-[#005F85]" />
+              <Link className="text-2xl max-[600px]:hidden" to="/Cart">
                 Cart
               </Link>
             </div>
-            <Seperator />
-            <div className="flex items-center gap-2">
+            <div className="max-[600px]:hidden">
+            <Seperator/>
+            </div>
+            <div className="flex items-center gap-2 max-[600px]:hidden">
               <img className="w-14 h-6" src={FlashDeals} alt="" />
               <a onClick={toggleCartPopup} className="text-2xl" href="">
                 Flash Deals
@@ -66,7 +74,7 @@ const Topheader = ({ toggleCartPopup }) => {
           </div>
         </div>
       </div>
-      <div className="mega-menu py-4 px-12 flex items-center justify-center gap-2 bg-[#FCFCFC] border-b-[1px] border-[#F2F2F2]">
+      <div className="mega-menu max-[600px]:hidden py-4 px-12 flex items-center justify-center gap-2 bg-[#FCFCFC] border-b-[1px] border-[#F2F2F2]">
         {[
           "All",
           "Home Appliances",

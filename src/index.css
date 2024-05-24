@@ -109,3 +109,10 @@ h1 {
 .otp-input.active {
   border: 1px solid #00a8eb;
 }
+
+
+@media (max-width:600px) {
+  .cards-container::-webkit-scrollbar{
+    display: none;
+  }
+}

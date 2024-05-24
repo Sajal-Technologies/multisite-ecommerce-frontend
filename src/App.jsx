@@ -84,10 +84,14 @@ const App = () => {
             </Routes>
           </div>
           {!isSignInPage &&
-            !SignUpPage &&
-            !isForgotPsw &&
-            !isOTPVerification &&
-            !isResetPassword ? <Footer className="footer" /> : ''}
+          !SignUpPage &&
+          !isForgotPsw &&
+          !isOTPVerification &&
+          !isResetPassword ? (
+            <Footer className="footer" />
+          ) : (
+            ""
+          )}
 
           {/* {!SignUpPage ? <Footer className="footer" /> : ""} */}
 
