@@ -7,19 +7,19 @@ const Categories = () => {
     <>
       <div className=" ">
         <div className="flex items-center justify-center mt-[4vw]">
-          <div className="w-[85%]">
+          <div className="w-[85%] max-[600px]:w-full px-4">
             <div className="flex justify-between items-center">
-              <h1 className="text-[#121212] text-[36px] font-semibold">
+              <h1 className="text-[#121212] text-[36px] font-semibold max-[600px]:text-[22px]">
                 Categories
               </h1>
-              <div className="flex items-center text-[#7A7A7A] gap-2">
+              <div className="flex items-center text-[#7A7A7A] gap-2 max-[600px]:text-sm">
                 View all
-                <FiArrowRight />
+                <FiArrowRight className="max-[600px]:text-xl"/>
               </div>
             </div>
           </div>
         </div>
-        <div className="w-full flex flex-wrap justify-between gap-4 px-[7.5vw] mt-6">
+        <div className="w-full flex flex-wrap max-[600px]:mt-4 max-[600px]:px-4 max-[600px]:gap-2 justify-between gap-4 px-[7.5vw] mt-6">
           <Catbanner />
           <Catbanner />
           <Catbanner />

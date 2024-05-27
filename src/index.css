@@ -110,9 +110,16 @@ h1 {
   border: 1px solid #00a8eb;
 }
 
+.cards-container::-webkit-scrollbar{
+  display: none;
+}
+
 
 @media (max-width:600px) {
   .cards-container::-webkit-scrollbar{
     display: none;
   }
+  .hideScroll::-webkit-scrollbar{
+    display: none;
+  }   
 }

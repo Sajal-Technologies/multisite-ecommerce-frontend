@@ -14,10 +14,10 @@ const Categroriespage = () => {
 
   return (
     <div className="flex flex-col w-full bg-[#FAFAFA]">
-      <Breadcrump />
+      <Breadcrump/>
       <Sort />
       <div className="flex w-full items-center justify-center">
-        <div className="flex w-[85%] mt-4 gap-4 py-4 pb-16 justify-between">
+        <div className="flex w-[85%] mt-4 gap-4 max-[600px]:w-full px-4 py-4 pb-16 justify-between">
           <Filteration />
           {viewType && viewType == "list" ? <CatListPage /> : <CatGrid />}
         </div>

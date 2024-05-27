@@ -10,10 +10,10 @@ const Dropdown = () => {
   ];
   return (
     <>
-      <Select
+      <Select 
         options={options}
         placeholder="Relevancy"
-        className="w-[230px]"
+        className="w-[230px] max-[600px]:hidden"
         noOptionsMessage={() => "No data found.."}
         styles={{
           placeholder: (baseStyles, state) => ({

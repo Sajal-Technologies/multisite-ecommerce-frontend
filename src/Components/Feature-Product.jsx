@@ -21,7 +21,7 @@ const Fproduct = () => {
           </div>
         </div>
         <div className="flex items-center justify-center w-full">
-          <div className="cards-container max-[600px]:snap-x max-[600px]:flex-row flex justify-between max-[600px]:justify-start max-[600px]:w-full max-[600px]:px-4 w-[85%] gap-4 max-[600px]:overflow-x-auto max-[600px]:whitespace-nowrap">
+          <div className="cards-container max-[600px]:snap-x overflow-auto scroll-smooth max-[600px]:flex-row whitespace-nowrap overflow-x-auto flex justify-start max-[600px]:justify-start max-[600px]:w-full max-[600px]:px-4 w-[85%] gap-4 max-[600px]:overflow-x-auto max-[600px]:whitespace-nowrap">
             <Card />
             <Card />
             <Card />
@@ -30,11 +30,6 @@ const Fproduct = () => {
             <Card />
             <Card />
             <Card />
-            {/* <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card /> */}
           </div>
         </div>
       </div>

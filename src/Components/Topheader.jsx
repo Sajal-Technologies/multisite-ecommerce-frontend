@@ -38,7 +38,7 @@ const Topheader = ({ toggleCartPopup }) => {
           <div className="max-[600px]:h-[2.5px] max-[600px]:bg-[#005F85] max-[600px]:w-[18px] max-[600px]:rounded-lg"></div>
           <div className="max-[600px]:h-[2.5px] max-[600px]:bg-[#005F85] max-[600px]:w-[18px] max-[600px]:rounded-lg"></div>
         </div>
-        <img className="max-[600px]:h-11  max-[600px]:px-4 lg:hidden" src={Logo} alt="" />
+        <img className="max-[600px]:h-11 max-[600px]:px-4 lg:hidden" src={Logo} alt="" />
         <Link to="/">
           <div className="logo">
             <img src={Logo} alt="" />
