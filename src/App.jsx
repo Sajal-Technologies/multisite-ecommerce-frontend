@@ -51,7 +51,7 @@ const App = () => {
             !isResetPassword && (
               <Topheader className="header" toggleCartPopup={toggleCartPopup} />
             )}
-          <div className="main-content">
+          <div className="main-content pt-[200px] max-[600px]:pt-[72px]">
             <Routes>
               <Route path="/" element={<Main />} />
             </Routes>
@@ -93,7 +93,7 @@ const App = () => {
             ""
           )}
 
-          {/* {!SignUpPage ? <Footer className="footer" /> : ""} */}
+          {!SignUpPage ? <Footer className="footer" /> : ""}
 
           {isCartPopupVisible && (
             <div className="overlay bg-[#00000080] fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50">

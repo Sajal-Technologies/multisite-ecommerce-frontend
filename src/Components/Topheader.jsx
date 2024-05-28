@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Apple from "../images/MainPage/Headerlogos/Apple.svg";
 import Logo from "../images/MainPage/Headerlogos/Logo.svg";
 import FlashDeals from "../images/MainPage/Headerlogos/FlashDeals.gif";
@@ -9,10 +9,35 @@ import { FiShoppingCart } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
 import Seperator from "./Seperator";
 import { Link } from "react-router-dom";
+import { MdHeight } from "react-icons/md";
 
 const Topheader = ({ toggleCartPopup }) => {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+  
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop) {
+        // Downscroll
+        setIsVisible(false);
+      } else {
+        // Upscroll
+        setIsVisible(true);
+      }
+      setLastScrollTop(st <= 0 ? 0 : st); // For Mobile or negative scrolling
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop]);
+
   return (
-    <nav className="">
+    <nav className={`transition-transform h-[210px] max-[600px]:h-[72px] duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'} fixed top-0 left-0 right-0 z-50`}>
       <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm text-right items-center justify-between py-3 px-12 max-[600px]:hidden ">
         <div className="left flex text-center items-center gap-2 ">
           <p>Welcome to worldwide Chak De</p>
@@ -38,7 +63,11 @@ const Topheader = ({ toggleCartPopup }) => {
           <div className="max-[600px]:h-[2.5px] max-[600px]:bg-[#005F85] max-[600px]:w-[18px] max-[600px]:rounded-lg"></div>
           <div className="max-[600px]:h-[2.5px] max-[600px]:bg-[#005F85] max-[600px]:w-[18px] max-[600px]:rounded-lg"></div>
         </div>
-        <img className="max-[600px]:h-11 max-[600px]:px-4 lg:hidden" src={Logo} alt="" />
+        <img
+          className="max-[600px]:h-11 max-[600px]:px-4 lg:hidden"
+          src={Logo}
+          alt=""
+        />
         <Link to="/">
           <div className="logo">
             <img src={Logo} alt="" />
@@ -57,13 +86,15 @@ const Topheader = ({ toggleCartPopup }) => {
           </div>
           <div className="flex items-center">
             <div className="flex items-center gap-2 max-[600px]:gap-0 max-[600px]:absolute max-[600px]:right-0 max-[600px]:px-4 ">
-              <FiShoppingCart className="text-[#00A8EB] text-2xl max-[600px]:text-[#005F85]" />
+              <Link to="/Cart">
+                <FiShoppingCart className="text-[#00A8EB] text-2xl max-[600px]:text-[#005F85]" />{" "}
+              </Link>
               <Link className="text-2xl max-[600px]:hidden" to="/Cart">
                 Cart
               </Link>
             </div>
             <div className="max-[600px]:hidden">
-            <Seperator/>
+              <Seperator />
             </div>
             <div className="flex items-center gap-2 max-[600px]:hidden">
               <img className="w-14 h-6" src={FlashDeals} alt="" />

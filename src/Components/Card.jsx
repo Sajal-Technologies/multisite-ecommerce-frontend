@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const Card = () => {
   return (
     <>
-      <div className="card max-[600px]:w-[175px] max-[600px]:h-[274px] max-[600px]:flex-shrink-0 flex-shrink-0 inline-block max-[600px]:inline-block w-[300px] h-[400px] max-[600px]:h-[275px] max-[600px]:w-[192px] rounded-2xl overflow-hidden border-[1px] border-[#F2F2F2]">
+      <div className="card max-[600px]:w-[170px] max-[600px]:h-[274px] max-[600px]:flex-shrink-0 flex-shrink-0 inline-block max-[600px]:inline-block w-[300px] h-[400px] rounded-2xl overflow-hidden border-[1px] border-[#F2F2F2]">
         <Link to="/Product">
           <div className="imgcontainer w-full h-1/2 flex items-center justify-center bg-[#FAFEFF]">
             <img className="w-full h-full object-contain" src={Phone} alt="" />

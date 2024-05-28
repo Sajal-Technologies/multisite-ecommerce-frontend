@@ -6,10 +6,6 @@ import Flipkart from "../../images/CategoriesPage/Filteraion/flipkart.png";
 import Indiamart from "../../images/CategoriesPage/Filteraion/indiamart.png";
 import Amazon from "../../images/CategoriesPage/Filteraion/amazon.png";
 import Meesho from "../../images/CategoriesPage/Filteraion/meesho.png";
-// import Card from "../Card";
-// import CatGrid from "./Cat-component-list/CatGrid";
-// import { Route, Routes } from "react-router-dom";
-
 const MIN = 100;
 const MAX = 12000;
 
@@ -25,7 +21,6 @@ const Filteration = () => {
 
   return (
     <>
-      {/* <div className="flex px-[7.5vw] mt-4 gap-4 py-4 pb-16 justify-between"> */}
       <div className="filteration max-[600px]:hidden h-fit flex flex-col gap-8 items-center justify-center w-[280px] bg-[#FAFAFA] border-[1px] border-[#F2F2F2] py-6 px-4 rounded-2xl">
         <button className="bg-[#B2B2B2] text-nowrap text-white w-full py-3 px-14 rounded-md">
           Apply Changes
