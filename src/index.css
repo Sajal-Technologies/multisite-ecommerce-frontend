@@ -98,28 +98,117 @@ h1 {
 
 .signin {
   background: linear-gradient(116.55deg, #ffffff 0%, #edf0f0 47%, #e9f4f7 100%);
-
 }
 
-.warm-effect{
-  background: linear-gradient(242.86deg, #F7E8DA -0.78%, rgba(246, 232, 218, 0.542464) 4.42%, rgba(246, 232, 218, 0.365287) 9.08%, rgba(218, 221, 223, 0.233916) 22.11%, rgba(218, 220, 221, 0.163882) 26.74%, rgba(217, 219, 220, 0.106764) 34.37%, rgba(255, 255, 255, 0.0740468) 49.83%, rgba(217, 217, 217, 0) 100.71%);
-
+.warm-effect {
+  background: linear-gradient(
+    242.86deg,
+    #f7e8da -0.78%,
+    rgba(246, 232, 218, 0.542464) 4.42%,
+    rgba(246, 232, 218, 0.365287) 9.08%,
+    rgba(218, 221, 223, 0.233916) 22.11%,
+    rgba(218, 220, 221, 0.163882) 26.74%,
+    rgba(217, 219, 220, 0.106764) 34.37%,
+    rgba(255, 255, 255, 0.0740468) 49.83%,
+    rgba(217, 217, 217, 0) 100.71%
+  );
 }
 
 .otp-input.active {
   border: 1px solid #00a8eb;
 }
 
-.cards-container::-webkit-scrollbar{
+.cards-container::-webkit-scrollbar {
   display: none;
 }
 
-
-@media (max-width:600px) {
-  .cards-container::-webkit-scrollbar{
+@media (max-width: 600px) {
+  .cards-container::-webkit-scrollbar {
     display: none;
   }
-  .hideScroll::-webkit-scrollbar{
+  .hideScroll::-webkit-scrollbar {
     display: none;
-  }   
+  }
+  .swiper-button-prev:after {
+    display: none;
+  }
+  .header {
+    transition: transform 0.3s;
+  }
+
+  .header.visible {
+    transform: translateY(0);
+  }
+
+  .header.hidden {
+    transform: translateY(-100%);
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1025px) {
+  .mega-menu::-webkit-scrollbar {
+    display: none;
+  }
+  .mySwiper {
+    width: 90%;
+  }
+
+  .SwiperSlide {
+    height: 30vw !important;
+  }
+
+  .banner1 h3,
+  .bl h3 {
+    margin-top: 1.2vw;
+    font-size: 1rem;
+    line-height: 1.2rem;
+  }
+
+  .banner1 h1,
+  .bl h1 {
+    font-size: 2rem;
+    margin-top: 0.4vw;
+    line-height: 2.4rem;
+    white-space: nowrap;
+  }
+
+  .banner1 h2,
+  .bl h2 {
+    font-size: 1.5rem;
+    margin-top: 0.4vw;
+    margin-bottom: 1vw;
+    line-height: 1.8rem;
+  }
+
+  .br img,
+  .bl img {
+    margin-top: 1vw;
+    transform: scale(1.1);
+  }
+
+  .banner1,
+  .bl {
+    margin-left: -2vw;
+  }
+
+  .br {
+    margin-right: -2vw;
+  }
+
+  .bl .text-2xl {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+
+  .bl .text-xs {
+    font-size: 0.75rem;
+    line-height: 0.875rem;
+  }
+  .scaledown {
+    position: relative;
+    transform: scale(0.6);
+  }
+  .catbanner {
+    width: 350px;
+  }
 }

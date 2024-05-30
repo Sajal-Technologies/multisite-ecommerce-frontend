@@ -51,7 +51,7 @@ const App = () => {
             !isResetPassword && (
               <Topheader className="header" toggleCartPopup={toggleCartPopup} />
             )}
-          <div className="main-content pt-[200px] max-[600px]:pt-[72px]">
+          <div className="main-content bg-[#FAFAFA] pt-[200px] max-[600px]:pt-[70px]">
             <Routes>
               <Route path="/" element={<Main />} />
             </Routes>
