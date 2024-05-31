@@ -32,7 +32,7 @@ const Subcategory2 = () => {
             <Subcatcard2 />
             <Subcatcard2 />
           </div>
-          <div className="imgcontainer max-[600px]:hidden relative right-0 w-[42%] h-full bg-green-300">
+          <div className="imgcontainer max-[600px]:hidden relative right-0 w-[42%] h-full">
             <div className="overlay absolute w-full h-full bg-black opacity-40"></div>
             <img
               className="w-full h-full object-cover object-center"

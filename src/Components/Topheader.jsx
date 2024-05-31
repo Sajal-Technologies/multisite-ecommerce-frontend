@@ -9,7 +9,6 @@ import { FiShoppingCart } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
 import Seperator from "./Seperator";
 import { Link } from "react-router-dom";
-import { MdHeight } from "react-icons/md";
 
 const Topheader = ({ toggleCartPopup }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -20,13 +19,11 @@ const Topheader = ({ toggleCartPopup }) => {
     const handleScroll = () => {
       const st = window.pageYOffset || document.documentElement.scrollTop;
       if (st > lastScrollTop) {
-        // Downscroll
         setIsVisible(false);
       } else {
-        // Upscroll
         setIsVisible(true);
       }
-      setLastScrollTop(st <= 0 ? 0 : st); // For Mobile or negative scrolling
+      setLastScrollTop(st <= 0 ? 0 : st); 
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -37,8 +34,9 @@ const Topheader = ({ toggleCartPopup }) => {
   }, [lastScrollTop]);
 
   return (
-    <nav className={`transition-transform h-[210px] max-[600px]:h-[72px] duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'} fixed top-0 left-0 right-0 z-50`}>
-      <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm text-right items-center justify-between py-3 px-12 max-[600px]:hidden ">
+
+    <nav className={`transition-transform h-[222px] max-[600px]:h-[72px] duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'} fixed top-0 left-0 right-0 z-50`}>
+      <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm text-right items-center justify-between py-3 md:px-4  xl:px-12 max-[600px]:hidden">
         <div className="left flex text-center items-center gap-2 ">
           <p>Welcome to worldwide Chak De</p>
           <img src={Apple} alt="" />
@@ -57,27 +55,27 @@ const Topheader = ({ toggleCartPopup }) => {
           </div>
         </div>
       </div>
-      <div className="logo-search px-12 py-2 flex justify-between items-center border-[1px] bg-[#FCFCFC] max-[600px]:gap-0 max-[600px]:justify-start max-[600px]:items-center max-[600px]:px-4 max-[600px]:py-3 max-[600px]:flex-row max-[600px]:w-screen">
+      <div className="logo-search md:w-full md:px-4 md:ml-0 xl:ml-0 md:border-none xl:px-12 py-0 flex justify-between items-center border-[1px] bg-[#FCFCFC] max-[600px]:gap-0 max-[600px]:justify-start max-[600px]:items-center max-[600px]:px-4 max-[600px]:py-3 max-[600px]:flex-row max-[600px]:w-screen">
         <div className="max-[600px]:h-6 max-[600px]:w-6 max-[600px]:flex max-[600px]:flex-col max-[600px]:gap-1 hidden max-[600px]:px-0 max-[600px]:justify-center">
           <div className="max-[600px]:h-[2.5px] max-[600px]:bg-[#005F85] max-[600px]:w-[18px] max-[600px]:rounded-lg"></div>
           <div className="max-[600px]:h-[2.5px] max-[600px]:bg-[#005F85] max-[600px]:w-[18px] max-[600px]:rounded-lg"></div>
           <div className="max-[600px]:h-[2.5px] max-[600px]:bg-[#005F85] max-[600px]:w-[18px] max-[600px]:rounded-lg"></div>
         </div>
         <img
-          className="max-[600px]:h-11 max-[600px]:px-4 lg:hidden"
+          className="max-[600px]:h-11 md:hidden max-[600px]:px-4 lg:hidden"
           src={Logo}
           alt=""
         />
         <Link to="/">
-          <div className="logo">
-            <img src={Logo} alt="" />
+          <div className="logo md:h-[6vw] md:w-[6vw] xl:flex xl:items-center">
+            <img className="md:h-full md:w-full md:object-cover xl:w-[60px] xl:h-[60px]" src={Logo} alt="" />
           </div>
         </Link>
-        <div className="right flex items-center gap-14 pl-[100px]">
+        <div className="right flex items-center gap-14 pl-[100px] md:ml-[-250px]">
           <div className="search flex items-center relative max-[600px]:left-[-26%]">
             <FiSearch className="left-3 absolute text-[#5C5C5C] text-xl max-[600px]:left-[-25px]" />
             <input
-              className="bg-[#FAFAFA] border-[1px] border-[#DEDEDE] p-4 pl-10 w-[40vw] max-[600px]:ml-[-35px] rounded-lg max-[600px]:px-2 max-[600px]:py-[10px] max-[600px]:pl-10 max-[600px]:w-[220px] max-[600px]:placeholder:text-xs"
+              className="bg-[#FAFAFA] border-[1px] border-[#DEDEDE] p-4 pl-10 md:w-[40vw]  xl:w-[45vw] max-[600px]:ml-[-35px] rounded-lg max-[600px]:px-2 max-[600px]:py-[10px] max-[600px]:pl-10 max-[600px]:w-[220px] max-[600px]:placeholder:text-xs"
               type="text"
               placeholder="Search essentials, groceries and more..."
               name=""
@@ -89,7 +87,7 @@ const Topheader = ({ toggleCartPopup }) => {
               <Link to="/Cart">
                 <FiShoppingCart className="text-[#00A8EB] text-2xl max-[600px]:text-[#005F85]" />{" "}
               </Link>
-              <Link className="text-2xl max-[600px]:hidden" to="/Cart">
+              <Link className="xl:text-2xl max-[600px]:hidden md:text-xl" to="/Cart">
                 Cart
               </Link>
             </div>
@@ -98,14 +96,14 @@ const Topheader = ({ toggleCartPopup }) => {
             </div>
             <div className="flex items-center gap-2 max-[600px]:hidden">
               <img className="w-14 h-6" src={FlashDeals} alt="" />
-              <a onClick={toggleCartPopup} className="text-2xl" href="">
+              <a onClick={toggleCartPopup} className="xl:text-2xl xl:pr-0 md:text-nowrap md:text-xl" href="">
                 Flash Deals
               </a>
             </div>
           </div>
         </div>
       </div>
-      <div className="mega-menu max-[600px]:hidden py-4 px-12 flex items-center justify-center gap-2 bg-[#FCFCFC] border-b-[1px] border-[#F2F2F2]">
+      <div className="mega-menu md:w-full md:flex-nowrap md:justify-start md:px-2 md:overflow-x-scroll md:scrollbar-hide max-[600px]:hidden py-4 lg:px-12 flex items-center justify-center gap-2 bg-[#FCFCFC] border-b-[1px] border-[#F2F2F2]">
         {[
           "All",
           "Home Appliances",

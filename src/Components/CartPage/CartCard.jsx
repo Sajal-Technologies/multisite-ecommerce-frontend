@@ -95,15 +95,15 @@ const CartCard = () => {
             </div>
           </div>
           <div className="px-4 max-[600px]:px-0">
-            <div className="w-full h-12 max-[600px]:h-3 flex items-center justify-between">
-              <div className="h-full w-[25%] max-[600px]:w-[30%] bg-[#F2F2F2] rounded-s-md">
+            <div className="w-full h-12 max-[600px]:h-10 flex items-center justify-between">
+              <div className="h-full w-[25%] max-[600px]:w-[30%] max-[600px]: bg-[#F2F2F2] rounded-s-md">
                 <img
                   className="h-full w-full object-cover"
                   src={Amazon}
                   alt=""
                 />
               </div>
-              <div className="h-full w-[75%] max-[600px]:w-[60%] bg-[#005F85] flex items-center justify-center gap-2 rounded-e-md">
+              <div className="h-full w-[75%] max-[600px]:w-[70%] bg-[#005F85] flex items-center justify-center gap-2 rounded-e-md">
                 <FiShoppingBag className="text-white text-xl" />
                 <p className="text-white text-lg font-semibold max-[600px]:text-sm">
                   Buy Now

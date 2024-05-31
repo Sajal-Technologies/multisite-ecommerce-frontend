@@ -23,7 +23,7 @@ const Subcategory = () => {
           alt=""
         />
       </div>
-      <div className="lg:hidden w-full h-fit py-4 px-4 flex flex-col gap-3">
+      <div className="lg:hidden md:flex-row md:flex-wrap md:px-7 w-full h-fit py-4 xl:px-4 flex xl:flex-col gap-3">
         <Subcatcard />
         <Subcatcard />
         <Subcatcard />
@@ -33,7 +33,7 @@ const Subcategory = () => {
       </div>
       <div className="w-full h-[280px] max-[600px]:hidden flex items-center justify-center mt-[4vw]">
         <div className="bg-[#F2F2F2] max-[600px]:bg-transparent max-[600px]:border-none w-[85%] max-[600px]:h-full max-[600px]:w-full max-[600px]:shadow-none h-full flex overflow-hidden rounded-2xl border-[1px] border-white box">
-          <div className="imgcontainer max-[600px]:hidden w-[42%] relative h-full">
+          <div className="imgcontainer xl:block md:hidden max-[600px]:hidden w-[42%] relative h-full">
             <div className="overlay absolute w-full h-full bg-black opacity-40"></div>
             <img
               className="w-full h-full object-cover object-center"

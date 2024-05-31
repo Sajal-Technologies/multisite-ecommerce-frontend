@@ -4,7 +4,7 @@ import img from "../images/MainPage/SubCategory/SubCatCard/HomeAppliances.png"
 const Subcatcard = () => {
   return (
     <>
-      <div className="subcatcard w-[286px] max-[600px]:w-full max-[600px]:px-4 max-[600px]:h-[108px] text-[#262626] h-[105px] bg-white flex justify-between p-4 rounded-xl border-[1px] border-[#DEDEDE]">
+      <div className="subcatcard md:flex-shrink-0 xl:w-[286px] md:w-[49%] max-[600px]:w-full max-[600px]:px-4 max-[600px]:h-[108px] text-[#262626] h-[105px] bg-white flex justify-between p-4 rounded-xl border-[1px] border-[#DEDEDE]">
         <div className="">
           <p className="text-[19px] font-medium">Oven Toasters</p>
           <p className=" text-[#7A7A7A] max-[600px]:leading-none py-1 leading-none">
