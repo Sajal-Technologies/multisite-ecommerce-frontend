@@ -122,17 +122,9 @@ h1 {
   display: none;
 }
 
-@media (max-width: 600px) {
-  .cards-container::-webkit-scrollbar {
-    display: none;
-  }
-  .hideScroll::-webkit-scrollbar {
-    display: none;
-  }
-  .swiper-button-prev:after {
-    display: none;
-  }
-  .swiper-button-next:after {
+
+@media (max-width:600px) {
+  .cards-container::-webkit-scrollbar{
     display: none;
   }
   .header {
