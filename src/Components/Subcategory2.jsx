@@ -6,7 +6,7 @@ import { FiChevronRight } from "react-icons/fi";
 const Subcategory2 = () => {
   return (
     <>
-      <div className="w-full h-[280px] max-[600px]:h-fit max-[600px]:flex-col flex items-center justify-center mt-[4vw]">
+      <div className="w-full md:hidden xl:flex xl:items-center lg:block h-[280px] max-[600px]:h-fit max-[600px]:flex-col flex items-center justify-center mt-[4vw]">
         <div className="max-[600px]:img-div max-[600px]:relative hidden max-[600px]:block max-[600px]:w-full max-[600px]:h-[152px]">
           <div className="overlay max-[600px]:absolute h-full w-full bg-[#00000066]"></div>
           <img
@@ -23,8 +23,8 @@ const Subcategory2 = () => {
             </button>
           </div>
         </div>
-        <div className="box max-[600px]:mt-4 border-[1px] border-white bg-[#F2F2F2] max-[600px]:w-full w-[85%] h-full flex justify-between overflow-hidden rounded-2xl">
-          <div className="max-[600px]:p-0 max-[600px]:gap-4 max-[600px]:px-4 p-6 flex flex-wrap justify-around">
+        <div className="box max-[600px]:mt-4 border-[1px]  border-white bg-[#F2F2F2] max-[600px]:w-full w-[85%] h-full flex justify-between overflow-hidden rounded-2xl">
+          <div className="max-[600px]:p-0 max-[600px]:gap-3 max-[600px]:px-4 p-6 flex flex-wrap justify-around">
             <Subcatcard2 />
             <Subcatcard2 />
             <Subcatcard2 />
@@ -32,7 +32,7 @@ const Subcategory2 = () => {
             <Subcatcard2 />
             <Subcatcard2 />
           </div>
-          <div className="imgcontainer max-[600px]:hidden relative right-0 w-[42%] h-full">
+          <div className="imgcontainer md:hidden xl:items-center xl:flex max-[600px]:hidden relative right-0 w-[42%] h-full">
             <div className="overlay absolute w-full h-full bg-black opacity-40"></div>
             <img
               className="w-full h-full object-cover object-center"
@@ -47,6 +47,15 @@ const Subcategory2 = () => {
             </button>
           </div>
         </div>
+      </div>
+      <h1 className="md:block hidden lg:hidden xl:hidden max-[600px]:hidden px-7 pt-2 text-2xl font-bold text-[#212121]">Electronics & Gadgets</h1>
+      <div className="hidden w-full xl:hidden px-7 md:flex flex-wrap gap-3 py-4">
+        <Subcatcard2/>
+        <Subcatcard2/>
+        <Subcatcard2/>
+        <Subcatcard2/>
+        <Subcatcard2/>
+        <Subcatcard2/>
       </div>
     </>
   );

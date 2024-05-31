@@ -122,6 +122,10 @@ h1 {
   display: none;
 }
 
+.mega-menu::-webkit-scrollbar{
+  display: none;
+}
+
 
 @media (max-width:600px) {
   .cards-container::-webkit-scrollbar{
@@ -137,6 +141,12 @@ h1 {
 
   .header.hidden {
     transform: translateY(-100%);
+  }
+  .swiper-button-prev:after{
+    display: none;
+  }
+  .swiper-button-next:after{
+    display: none;
   }
 }
 

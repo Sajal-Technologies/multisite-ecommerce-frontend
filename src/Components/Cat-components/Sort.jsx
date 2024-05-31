@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 const Sort = () => {
   return (
     <>
-      <div className=" px-[7.5vw] max-[600px]:px-4 flex mt-10 max-[600px]:mt-5 items-center justify-between">
+      <div className=" xl:px-[7.5vw] md:px-4 max-[600px]:px-4 flex md:mt-6 xl:mt-10 max-[600px]:mt-5 items-center justify-between">
         <div className="flex gap-2 items-center">
-          <h1 className="font-semibold text-2xl text-[#121212] max-[600px]:text-lg">
+          <h1 className="font-semibold md:text-xl xl:text-2xl text-[#121212] max-[600px]:text-lg">
             Category title
           </h1>
           <span className="text-[#5C5C5C] max-[600px]:text-sm">(195 results)</span>
