@@ -8,7 +8,7 @@ import Seperator from "./Seperator";
 const Feature = () => {
   return (
     <>
-      <div className="flex md:hidden xl:block mt-[4vw] max-[600px]:hidden">
+      <div className="flex md:hidden xl:block mt-[4vw] mobile:hidden">
         <div className="flex items-center justify-center">
           <div className="py-6 border-[1px] border-[#00A8EB] w-[85%] rounded-lg px-16 flex items-center justify-between">
             <div className="items flex items-center justify-center gap-4">

@@ -21,7 +21,7 @@ const Filteration = () => {
 
   return (
     <>
-      <div className="filteration max-[600px]:hidden h-fit flex flex-col md:m-0 md:gap-4 xl:gap-8 items-center justify-center w-[280px] bg-[#FAFAFA] border-[1px] border-[#F2F2F2] py-6 px-4 rounded-2xl">
+      <div className="filteration md:w-[280px] mobile:hidden h-fit flex flex-col md:m-0 md:gap-4 xl:gap-8 items-center justify-center w-[280px] bg-[#FAFAFA] border-[1px] border-[#F2F2F2] py-6 px-4 rounded-2xl">
         <button className="bg-[#B2B2B2] text-nowrap text-white w-full py-3 px-14 rounded-md">
           Apply Changes
         </button>

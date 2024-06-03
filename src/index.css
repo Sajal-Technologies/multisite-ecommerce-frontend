@@ -126,6 +126,10 @@ h1 {
   display: none;
 }
 
+.hideScroll::-webkit-scrollbar{
+  display: none;
+}
+
 
 @media (max-width:600px) {
   .cards-container::-webkit-scrollbar{

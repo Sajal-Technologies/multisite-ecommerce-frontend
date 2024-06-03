@@ -4,7 +4,7 @@ import Phones from "../images/MainPage/SubCategory/SubCatCard2/Phones.png"
 const Subcatcard2 = () => {
   return (
     <>
-      <div className="subcatcard2 xl:w-[290px] md:w-[49%] max-[600px]:w-full text-[#262626] h-[110px] bg-white flex justify-between p-4 rounded-xl border-[1px] border-[#DEDEDE]">
+      <div className="subcatcard2 xl:w-[290px] md:w-[49%] mobile:w-full text-[#262626] h-[110px] bg-white flex justify-between p-4 rounded-xl border-[1px] border-[#DEDEDE]">
         <div className="">
           <p className="text-[19px] font-medium">Smart Phones</p>
           <p className=" leading-[22px] text-[#7A7A7A]">

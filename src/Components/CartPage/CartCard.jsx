@@ -10,24 +10,24 @@ import { Link } from "react-router-dom";
 const CartCard = () => {
   return (
     <>
-      <div className="card w-[300px] max-[600px]:flex max-[600px]:w-full h-fit rounded-2xl max-[600px]:rounded-lg overflow-hidden border-[1px] border-[#F2F2F2]">
+      <div className="card w-[300px] tablet:w-[300px] mobile:flex mobile:w-full h-fit rounded-2xl mobile:rounded-lg overflow-hidden border-[1px] border-[#F2F2F2]">
         <Link to="/Product">
-          <div className="imgcontainer w-full h-[210px] max-[600px]:hidden p-2 flex items-center justify-center bg-[#FAFEFF]">
+          <div className="imgcontainer w-full h-[210px] mobile:hidden p-2 flex items-center justify-center bg-[#FAFEFF]">
             <img
-              className="w-full h-full object-contain"
-              src={Cartproduct}
+              className="w-full h-full object-contain p-6"
+              src={Cartproduct} 
               alt=""
             />
           </div>
-          <div className="lg:hidden md:hidden max-[600px]:h-full max-[600px]:block">
-            <div className="imgcontainer max-[600px]:flex max-[600px]:items-center max-[600px]:justify-center max-[600px]:p-5 w-fit h-full max-[600px]:h-full p-2 flex items-center justify-center bg-[#FAFEFF]">
+          <div className="lg:hidden md:hidden mobile:h-full tablet:hidden mobile:block">
+            <div className="imgcontainer mobile:flex mobile:items-center mobile:justify-center mobile:p-5 w-fit h-full mobile:h-full p-2 flex items-center justify-center bg-[#FAFEFF]">
               <img className="w-[108px]" src={Cartproduct} alt="" />
             </div>
           </div>
         </Link>
-        <div className="w-full max-[600px]:w-max py-4 flex flex-col gap-4 max-[600px]:gap-2 max-[600px]:py-3 max-[600px]:px-4">
+        <div className="w-full mobile:w-max py-4 flex flex-col gap-4 mobile:gap-2 mobile:py-3 mobile:px-4">
           <Link to="/Product">
-            <div className="sellers max-[600px]:hidden flex justify-between px-4 ">
+            <div className="sellers mobile:hidden flex justify-between px-4 ">
               <div className="flex items-center gap-2">
                 <div className="h-8">
                   <img
@@ -50,15 +50,15 @@ const CartCard = () => {
               </div>
             </div>
           </Link>
-          <div className="px-4 max-[600px]:px-0">
+          <div className="px-4 mobile:px-0">
             <Link
               to="/Product"
-              className="text-[19px] leading-none text-[#3D3D3D] font-medium max-[600px]:font-semibold max-[600px]:text-sm"
+              className="text-[19px] leading-none text-[#3D3D3D] font-medium mobile:font-semibold mobile:text-sm"
             >
               Buy iPhone 15 Pro Physical Dual Sim 128GB Blue Titanium 5G...
             </Link>
           </div>
-          <div className="sellers lg:hidden max-[600px]:block">
+          <div className="sellers lg:hidden tablet:hidden mobile:block">
             <div className="flex items-center gap-2 my-[-8px]">
               <div className="h-8">
                 <img
@@ -78,34 +78,34 @@ const CartCard = () => {
           </div>
           <div className="flex justify-between items-center">
             <Link to="/Product">
-              <div className="max-[600px]:px-0">
-                <p className="uppercase px-4 text-[#5C5C5C] text-lg max-[600px]:text-xs flex gap-1 max-[600px]:px-0">
+              <div className="mobile:px-0">
+                <p className="uppercase px-4 text-[#5C5C5C] text-lg mobile:text-xs flex gap-1 mobile:px-0">
                   save <span className="line-through">&#8377;12550</span>
                 </p>
-                <p className="px-4 text-[#0B8500] text-2xl font-medium max-[600px]:text-lg max-[600px]:px-0">
+                <p className="px-4 text-[#0B8500] text-2xl font-medium mobile:text-lg mobile:px-0">
                   &#8377;32999
                 </p>
               </div>
             </Link>
-            <div className="flex gap-2 items-center px-3 border border-[#005F85] rounded-3xl py-1 lg:mr-4">
-              <FiShoppingBag className="text-[#005F85] text-xl max-[600px]:text-base" />
-              <p className="text-[#005F85] text-lg max-[600px]:text-sm">
+            <div className="flex gap-2 items-center px-3 border border-[#005F85] rounded-3xl py-1 tablet:mr-4 lg:mr-4">
+              <FiShoppingBag className="text-[#005F85] text-xl mobile:text-base" />
+              <p className="text-[#005F85] text-lg mobile:text-sm">
                 Remove
               </p>
             </div>
           </div>
-          <div className="px-4 max-[600px]:px-0">
-            <div className="w-full h-12 max-[600px]:h-10 flex items-center justify-between">
-              <div className="h-full w-[25%] max-[600px]:w-[30%] max-[600px]: bg-[#F2F2F2] rounded-s-md">
+          <div className="px-4 mobile:px-0">
+            <div className="w-full h-12 mobile:h-10 flex items-center justify-between">
+              <div className="h-full w-[25%] mobile:w-[30%] mobile: bg-[#F2F2F2] rounded-s-md">
                 <img
                   className="h-full w-full object-cover"
                   src={Amazon}
                   alt=""
                 />
               </div>
-              <div className="h-full w-[75%] max-[600px]:w-[70%] bg-[#005F85] flex items-center justify-center gap-2 rounded-e-md">
+              <div className="h-full w-[75%] mobile:w-[70%] bg-[#005F85] flex items-center justify-center gap-2 rounded-e-md">
                 <FiShoppingBag className="text-white text-xl" />
-                <p className="text-white text-lg font-semibold max-[600px]:text-sm">
+                <p className="text-white text-lg font-semibold mobile:text-sm">
                   Buy Now
                 </p>
               </div>

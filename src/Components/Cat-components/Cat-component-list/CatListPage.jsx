@@ -5,7 +5,7 @@ import CatList from "./CatList";
 const CatListPage = () => {
   return (
     <>
-      <div className="max-[600px]:justify-start max-[600px]:mt-[-14px] max-[600px]:px-0 max-[600px]:m-0 max-[600px]:gap-2 gap-4 flex ml-4 pl-8 flex-wrap justify-between w-full">
+      <div className="mobile:justify-start mobile:mt-[-14px] mobile:px-0 mobile:m-0 mobile:gap-2 gap-4 flex xl:pl-8 md:pl-4 flex-wrap w-full md:w-full">
         <CatList />
         <CatList />
         <CatList />

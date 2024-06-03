@@ -103,7 +103,7 @@ import { Link } from "react-router-dom";
 
 const SignInPage = () => {
   return (
-    <div className="flex signin flex-col relative lg:flex-row h-screen overflow-hidden justify-between w-full">
+    <div className="flex signin flex-col relative lg:flex-row h-screen overflow-x-hidden justify-between w-full">
       <div className="flex flex-col mt-[230px] h-fit p-6 md:p-12 lg:p-24 w-full lg:w-[52%] gap-6 lg:m-0">
         <h1 className="text-[#121212] text-2xl md:text-5xl lg:text-6xl font-bold">
           Sign In
@@ -179,9 +179,9 @@ const SignInPage = () => {
           </Link>
         </p>
       </div>
-      <div className="signin-img warm-effect absolute h-[230px] w-full pt-2 lg:w-1/2 lg:h-full lg:right-0 lg:pt-[2%] lg:pr-0 lg:pl-[2%]">
+      <div className="signin-img warm-effect absolute h-[230px] w-full pt-2 lg:w-1/2 lg:h-full lg:right-0 lg:pt-[2%] lg:pr-0 lg:pl-[2%] tablet:h-[30%]">
         <img
-          className="h-full w-full object-contain lg:object-contain pt-[8%] p-[3%] pr-[8%] lg:absolute lg:p-0"
+          className="h-full w-full object-contain lg:object-contain pt-[8%] p-[3%] pr-[8%] tablet:p-0 lg:absolute"
           src={LoginBuilding}
           alt="Login Building"
         />
