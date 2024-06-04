@@ -7,17 +7,17 @@ import { Link } from "react-router-dom";
 const Sort = () => {
   return (
     <>
-      <div className=" xl:px-[7.5vw] md:px-4 max-[600px]:px-4 flex md:mt-6 xl:mt-10 max-[600px]:mt-5 items-center justify-between">
+      <div className=" xl:px-[7.5vw] tablet:px-4 mobile:px-4 mobile:w-full flex tablet:mt-6 xl:mt-10 mobile:mt-5 items-center justify-between">
         <div className="flex gap-2 items-center">
-          <h1 className="font-semibold md:text-xl xl:text-2xl text-[#121212] max-[600px]:text-lg">
+          <h1 className="font-semibold tablet:text-xl xl:text-2xl text-[#121212] mobile:text-lg mobile:text-nowrap">
             Category title
           </h1>
-          <span className="text-[#5C5C5C] max-[600px]:text-sm">(195 results)</span>
+          <span className="text-[#5C5C5C] mobile:text-xs">(195 results)</span>
         </div>
         <div className=" flex items-center gap-2">
-          <p className="text-[#121212] max-[600px]:hidden">Sort by</p>
+          <p className="text-[#121212] mobile:hidden">Sort by</p>
           <Dropdown />
-          <div className="flex items-center">
+          <div className="flex items-center mobile:block mobile:flex">
               <Link to="/categories?view=list">
             <div className=" group flex bg-[#DEDEDE] hover:bg-[#FF7F00] hover:text-[white] p-2 rounded-s-md">
                 <FiList className="bg-[#DEDEDE] text-[#5C5C5C]  group-hover:bg-[#FF7F00] group-hover:text-white" />

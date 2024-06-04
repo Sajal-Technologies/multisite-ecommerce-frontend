@@ -103,85 +103,87 @@ import { Link } from "react-router-dom";
 
 const SignInPage = () => {
   return (
-    <div className="flex signin flex-col relative lg:flex-row h-screen overflow-x-hidden justify-between w-full">
-      <div className="flex flex-col mt-[230px] h-fit p-6 md:p-12 lg:p-24 w-full lg:w-[52%] gap-6 lg:m-0">
-        <h1 className="text-[#121212] text-2xl md:text-5xl lg:text-6xl font-bold">
+    <div className="flex signin flex-col relative xl:flex-row h-screen overflow-x-hidden justify-between w-full overflow-hidden">
+      <div className="flex flex-col tablet:mt-[-5%] mt-[230px] h-fit tablet:z-20 p-6 md:p-12 xl:p-24 w-full xl:w-[52%] gap-6 xl:m-0 tablet:h-screen tablet:pt-[15%] tablet:items-start tablet:px-[10%] tablet:justify-center">
+        <h1 className="text-[#121212] tablet:text-5xl text-2xl md:text-6xl xl:text-6xl font-bold">
           Sign In
         </h1>
-        <div className="flex flex-col lg:flex-row gap-4 items-center justify-center">
-          <div className="bg-white border border-[#EDEDED] w-full py-3 px-9 rounded-[10px]">
-            <div className="flex items-center text-nowrap justify-center gap-2 text-[#3D3D3D] font-semibold lg:text-lg lg:w-full">
-              <FcGoogle className="text-2xl" /> Continue with Google
+        <div className="flex flex-col xl:flex-row gap-4 items-center justify-center tablet:items-start tablet:w-full">
+          <div className="bg-white border border-[#EDEDED] w-full py-3 tablet:py-4 px-9 rounded-[10px] tablet:w-full">
+            <div className="flex items-center text-nowrap justify-center gap-2 text-[#3D3D3D] font-semibold tablet:text-2xl xl:text-lg xl:w-full">
+              <FcGoogle className="text-2xl tablet:text-3xl" /> Continue with Google
             </div>
           </div>
-          <div className="bg-white border border-[#EDEDED] w-full py-3 px-9 rounded-[10px]">
-            <div className="flex items-center text-nowrap justify-center gap-2 text-[#3D3D3D] font-semibold lg:text-lg">
-              <img className="w-6" src={facebook} alt="Facebook" />
+          <div className="bg-white border border-[#EDEDED] w-full py-3 tablet:py-4 px-9 rounded-[10px] tablet:w-full">
+            <div className="flex items-center text-nowrap justify-center gap-2 text-[#3D3D3D] font-semibold xl:text-lg tablet:text-2xl">
+              <img className="w-6 tablet:w-8" src={facebook} alt="Facebook" />
               Continue with Facebook
             </div>
           </div>
         </div>
-        <p className="w-full text-center font-bold text-[#5C5C5C] text-xl">
+        <p className="w-full text-center font-bold text-[#5C5C5C] text-xl tablet:my-2 tablet:w-full tablet:text-3xl">
           or
         </p>
-        <div className="relative mt-[-2%] flex flex-col gap-3">
+        <div className="relative mt-[-2%] flex flex-col gap-3 tablet:gap-4 tablet:mb-4 tablet:w-full">
           <label
-            className="text-[#121212] mb-[-8px] lg:text-lg"
+            className="text-[#121212] mb-[-8px] xl:text-lg tablet:text-3xl"
             htmlFor="email"
           >
             Email
           </label>  
           <input
-            className="p-4 rounded-[10px] border border-[#EDEDED] placeholder:text-[#B2B2B2] bg-[#FAFEFF]"
+            className="p-4 tablet:mt-2 rounded-[10px] border border-[#EDEDED] placeholder:text-[#B2B2B2] bg-[#FAFEFF] tablet:w-full tablet:text-2xl"
             type="email"
             placeholder="Enter your email"
           />
-          <FiMail className="absolute top-[54px] lg:top-[61px] right-4 transform -translate-y-1/2 text-lg text-[#7A7A7A]" />
+          <FiMail className="absolute top-[54px] xl:top-[61px] right-4 transform -translate-y-1/2 text-lg text-[#7A7A7A] tablet:right-5 tablet:top-[83px] tablet:text-[28px]"/>
         </div>
+        <div className="tablet:w-full">
         <label
-          className="text-[#121212]  mt-[-10px] mb-[-18px] lg:text-lg"
+          className="text-[#121212] tablet:mt-0 mt-[-10px] mb-[-18px] xl:text-lg tablet:text-3xl"
           htmlFor="password"
         >
           Password
         </label>
-        <div className="relative">
+        <div className="relative tablet:mt-2">
           <input
-            className="p-4 rounded-[10px] w-full border border-[#EDEDED] placeholder:text-[#B2B2B2] bg-[#FAFEFF]"
+            className="p-4 rounded-[10px] w-full border border-[#EDEDED] placeholder:text-[#B2B2B2] bg-[#FAFEFF] tablet:w-full tablet:text-2xl"
             type="password"
             placeholder="Enter your password"
           />
-          <FiEyeOff className="absolute top-[28px] right-4 transform -translate-y-1/2 text-lg text-[#7A7A7A]" />
+          <FiEyeOff className="absolute top-[28px] right-4 transform -translate-y-1/2 text-lg text-[#7A7A7A] tablet:right-5 tablet:top-8 tablet:text-[28px]" />
         </div>
-        <div className="flex items-center justify-between mt-[-18px] lg:m-0">
-          <div className="flex items-center text-xs gap-2">
-            <input className="h-4 w-4 border-[#F2F2F2] lg:h-[22px] lg:w-[22px]" type="checkbox" />
-            <p className="lg:text-sm">Remember me</p>
+        </div>
+        <div className="flex items-center justify-between mt-[-18px] tablet:mb-4 tablet:mt-[-10px] xl:m-0 tablet:w-full">
+          <div className="flex items-center justify-center text-xs gap-2">
+            <input className="h-4 w-4 tablet:h-6 tablet:w-6 border-[#F2F2F2] xl:h-[22px] xl:w-[22px]" type="checkbox" />
+            <p className="xl:text-sm tablet:text-xl">Remember me</p>
           </div>
           <Link
             to="/ForgotPassword"
-            className="text-[#3D3D3D] text-xs border-b border-[#3D3D3D] lg:text-sm"
+            className="text-[#3D3D3D] text-xs border-b border-[#3D3D3D] xl:text-sm tablet:text-xl"
           >
             Forgot Password?
           </Link>
         </div>
-        <div className="flex items-center mt-[-8px] justify-between bg-[#005F85] py-2 px-8 lg:py-4 rounded-xl lg:mt-4">
-          <p className="text-white lg:text-lg font-semibold">Sign In</p>
+        <div className="flex items-center tablet:w-full mt-[-8px] tablet:mt-0 justify-between bg-[#005F85] tablet:py-4 py-2 px-8 xl:py-4 rounded-xl xl:mt-4">
+          <p className="text-white xl:text-lg font-semibold tablet:text-[26px]">Sign In</p>
           <div className="flex">
-            <FiChevronRight className="text-xl lg:text-2xl text-[#99BFCE]" />
-            <FiChevronRight className="text-xl lg:text-2xl text-white" />
-            <FiChevronRight className="text-xl lg:text-2xl text-[#99BFCE]" />
+            <FiChevronRight className="text-xl tablet:text-3xl xl:text-2xl text-[#99BFCE]" />
+            <FiChevronRight className="text-xl tablet:text-3xl xl:text-2xl text-white" />
+            <FiChevronRight className="text-xl tablet:text-3xl xl:text-2xl text-[#99BFCE]" />
           </div>
         </div>
-        <p className="text-[#121212] mt-[-12px] flex justify-center gap-1 lg:text-xl lg:justify-start font-medium lg:mt-0">
+        <p className="text-[#121212] tablet:text-2xl mt-[-12px] flex justify-center gap-1 xl:text-xl xl:justify-start font-medium xl:mt-0 tablet:w-fit">
           Don't have an account? 
           <Link to="/SignUp" className="text-[#005F85]">
             Sign Up
           </Link>
         </p>
       </div>
-      <div className="signin-img warm-effect absolute h-[230px] w-full pt-2 lg:w-1/2 lg:h-full lg:right-0 lg:pt-[2%] lg:pr-0 lg:pl-[2%] tablet:h-[30%]">
+      <div className="signin-img warm-effect tablet:hidden absolute h-[230px] w-full pt-2 xl:w-1/2 xl:h-full xl:right-[-4%] xl:bottom-[-4%] xl:pt-[2%] xl:pr-0 xl:pl-[2%] tablet:h-[50%] tablet:absolute tablet:right-[-14%] tablet:bottom-[-3%]">
         <img
-          className="h-full w-full object-contain lg:object-contain pt-[8%] p-[3%] pr-[8%] tablet:p-0 lg:absolute"
+          className="h-full w-full object-contain xl:object-contain pt-[8%] p-[3%] pr-[8%] tablet:p-0 xl:absolute"
           src={LoginBuilding}
           alt="Login Building"
         />

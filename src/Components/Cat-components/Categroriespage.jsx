@@ -16,7 +16,7 @@ const Categroriespage = () => {
       <Breadcrump />
       <Sort />
       <div className="flex w-full items-center justify-center">
-        <div className="flex xl:w-[85%] md:w-full mt-4 md:mt-0 xl:gap-0 md:gap-4 mobile:w-full px-4 py-4">
+        <div className="flex xl:w-[85%] md:w-full mt-4 md:mt-0 xl:gap-0 md:gap-4 mobile:w-full px-4 xl:px-0 xl:justify-between py-4">
           <Filteration />
           {viewType && viewType == "list" ? <CatListPage /> : <CatGrid />}
         </div>
