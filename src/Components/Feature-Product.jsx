@@ -21,7 +21,7 @@ const Fproduct = () => {
           </div>
         </div>
         <div className="flex items-center justify-center w-full">
-          <div className="cards-container mobile:snap-x overflow-auto scroll-smooth mobile:flex-row whitespace-nowrap overflow-x-auto flex justify-start mobile:justify-start mobile:w-full mobile:px-4 xl:w-[85%] md:w-full md:px-4 gap-4 mobile:overflow-x-auto mobile:whitespace-nowrap">
+          <div className="cards-container snap-x mobile:snap-x overflow-auto scroll-smooth mobile:flex-row whitespace-nowrap overflow-x-auto flex justify-start mobile:justify-start mobile:w-full mobile:px-4 xl:w-[85%] md:w-full md:px-4 gap-4 mobile:overflow-x-auto mobile:whitespace-nowrap">
             <Card />
             <Card />
             <Card />

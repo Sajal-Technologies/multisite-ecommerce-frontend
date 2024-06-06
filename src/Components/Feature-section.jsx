@@ -61,6 +61,38 @@ const Feature = () => {
           </div>
         </div>
       </div>
+      <div className="mobile:block my-8 tablet:hidden xl:hidden lg:hidden hidden w-full">
+        <div className="flex flex-col items-center gap-2 px-4">
+          <div className="flex items-start gap-1 border-[1px] rounded-lg p-3 border-[#00A8EB] w-full">
+            <FiPackage className="text-[#005F85] text-xl"/>
+            <div className="">
+              <p className="text-[#3D3D3D] text-sm font-semibold uppercase">Different products</p>
+              <p className="text-[#5C5C5C] text-xs">Compare prices and shop Smarter</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-1 border-[1px] rounded-lg p-3 border-[#00A8EB] w-full">
+            <FiShoppingBag className="text-[#005F85] text-xl"/>
+            <div className="">
+              <p className="text-[#3D3D3D] text-sm font-semibold uppercase">Cart Preferences</p>
+              <p className="text-[#5C5C5C] text-xs">Save your items to your cart!</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-1 border-[1px] rounded-lg p-3 border-[#00A8EB] w-full">
+            <FiZap className="text-[#005F85] text-xl"/>
+            <div className="">
+              <p className="text-[#3D3D3D] text-sm font-semibold uppercase">Catch best deals</p>
+              <p className="text-[#5C5C5C] text-xs">Grab your lovely hottest offers</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-1 border-[1px] rounded-lg p-3 border-[#00A8EB] w-full">
+            <FiRadio className="text-[#005F85] text-xl"/>
+            <div className="">
+              <p className="text-[#3D3D3D] text-sm font-semibold uppercase">Hosting websites</p>
+              <p className="text-[#5C5C5C] text-xs">Find your items via multiple stores</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

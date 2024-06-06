@@ -16,6 +16,7 @@ const Main = () => {
           <Categories/>
           <Subcategory/>
           <Subcategory2/>
+          
         </div>
     </>
   );

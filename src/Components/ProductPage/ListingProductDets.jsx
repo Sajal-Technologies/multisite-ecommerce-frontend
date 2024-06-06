@@ -69,7 +69,7 @@ const ListingProductDets = () => {
                 />
               </div>
             </div>
-            <div className=" h-full  mobile:w-full tablet:w-full tablet:mt-8 mobile:mt-8 flex flex-col gap-8">
+            <div className=" h-full pl-4  mobile:w-full tablet:w-full tablet:mt-8 mobile:mt-8 flex flex-col gap-8">
               <div className="w-full h-[50px] flex items-center justify-between bg-white border rounded-lg border-[#DEDEDE]">
                 <div className="flex items-center">
                   <div className="imgcontainer flex items-center tablet:w-full mobile:w-full justify-center h-[50px] m-2 w-10">
@@ -154,9 +154,9 @@ const ListingProductDets = () => {
               </div>
             </div>
           </div>
-          <div className="h-full w-full px-10 py-10 flex gap-6 justify-between mobile:flex-col tablet:flex-col tablet:mt-[30vh] tablet:w-[100%] tablet:p-0 tablet:pr-0 tablet:py-0 mobile:mt-[41vh] mobile:w-[100%] mobile:p-0 mobile:pr-0 mobile:py-0">
+          <div className="h-full w-full px-0 pr-4 py-10 flex gap-6 justify-between mobile:flex-col tablet:flex-col tablet:mt-[30vh] tablet:w-[100%] tablet:p-0 tablet:pr-0 tablet:py-0 mobile:mt-[41vh] mobile:w-[100%] mobile:p-0 mobile:pr-0 mobile:py-0">
             <div className="px-4 tablet:px-8">
-            <div className="w-[845px] h-[425px] border overflow-hidden border-[#DEDEDE] rounded-xl mobile:w-full tablet:w-full tablet:h-fit mobile:h-fit">
+            <div className="w-[850px] h-[425px] border overflow-hidden border-[#DEDEDE] rounded-xl mobile:w-full tablet:w-full tablet:h-fit mobile:h-fit">
               <div className="h-12 w-full flex border-b border-[#C9C9C9] items-center px-10 gap-12">
                 <p className="text-[#005F85] font-medium tablet:text-nowrap mobile:text-nowrap">Title here</p>
                 <p className="text-[#999999] mobile:font-medium mobile:text-nowrap tablet:text-nowrap tablet:font-medium">Title here</p>
