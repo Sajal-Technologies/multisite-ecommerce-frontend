@@ -98,7 +98,7 @@ const App = () => {
           ""
         )}
 
-        {/* <Footer className="footer" /> */}
+        <Footer className="footer" />
 
         {/* {!SignUpPage ? <Footer className="footer" /> : ""} */}
 

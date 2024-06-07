@@ -12,8 +12,8 @@ import { FiChevronUp } from "react-icons/fi";
 const Footer = () => {
   return (
     <>
-      <div className="bg-white w-full flex flex-col items-center justify-center mobile:w-full overflow-x-hidden">
-        <div className="h-full w-[85%] mt-10 mobile:w-full px-4 m-0">
+      <div className="bg-white w-full flex flex-col items-center justify-center mobile:w-full overflow-x-hidden tablet:w-full">
+        <div className="h-full w-[85%] mt-10 mobile:w-full px-4 m-0 tablet:w-full tablet:px-6">
           <div className="bg-[#005F85] rounded-lg flex mobile:flex-col relative overflow-hidden">
             <div className="newsletter flex gap-[2px] flex-col mobile:items-start mobile:justify-start mobile:p-4 justify-center px-8 relative mobile:h-[160px] h-[100px] w-[51%] bg-gradient-to-br from-[#00A8EB] to-[#0B9FDA]">
               <h1 className="text-white font-semibold text-2xl mobile:text-xl mobile:leading-6 z-50">
@@ -54,7 +54,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="flex mobile:flex-col justify-between mobile:mt-8 mt-[2vw]">
+          <div className="flex mobile:flex-col tablet:mt-6 justify-between mobile:mt-8 mt-[2vw]">
             <div className="w-[25%] mobile:w-full">
               <img className="mb-2" src={Logo} alt="" />
               <p className="text-[#52525B] mobile:w-full">
@@ -118,7 +118,7 @@ const Footer = () => {
                 </button>
               </div>
             </div>
-            <div className="mobile:flex mobile:mt-4 mobile:gap-[70px] flex gap-[150px]">
+            <div className="mobile:flex mobile:mt-4 mobile:gap-[70px] flex gap-[150px] tablet:gap-[50px]">
               <div className="">
                 <h1 className="text-[#005F85] font-semibold text-lg">
                   Top Categories
@@ -200,8 +200,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="w-full h-[45px] bg-[#F2F2F2] mt-8 flex items-center justify-center mobile:justify-between mobile:w-full">
-          <div className="w-[85%] h-full text-[#3D3D3D] text-sm flex items-center justify-between mobile:w-full mobile:justify-between mobile:px-4">
+        <div className="w-full h-[45px] bg-[#F2F2F2] mt-8 flex items-center justify-center mobile:justify-between mobile:w-full tablet:w-full tablet:justify-between ">
+          <div className="w-[85%] h-full text-[#3D3D3D] text-sm flex items-center justify-between mobile:w-full mobile:justify-between mobile:px-4 tablet:w-full px-6">
             <p className="mobile:text-sm">© 2024 Saad Mahfouz. All rights reserved.</p>
             <div className="flex items-center gap-1">
               <img className="w-6 h-4" src={Flag} alt="" />
