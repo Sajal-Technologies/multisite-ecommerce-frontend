@@ -1,4 +1,3 @@
-import React from "react";
 import Productimg from "../../images/ProductPage/Product.png";
 import img2 from "../../images/ProductPage/img2.png";
 import img3 from "../../images/ProductPage/img3.png";
@@ -8,7 +7,6 @@ import indiamart from "../../images/ProductPage/indiamart.png";
 import { FiChevronDown } from "react-icons/fi";
 import { FiShoppingBag } from "react-icons/fi";
 import { FiCheck } from "react-icons/fi";
-import Item from "../../images/ProductPage/item.png";
 import { Link } from "react-router-dom";
 import ProductItem from "./ProductItem/ProductItem.jsx";
 
@@ -27,7 +25,10 @@ const ListingProductDets = () => {
                     { img: `${img3}` },
                     { img: `${img4}` },
                   ].map((item, index) => (
-                    <div className="h-full w-full tablet:flex tablet:items-center tablet:justify-center">
+                    <div
+                      key={index}
+                      className="h-full w-full tablet:flex tablet:items-center tablet:justify-center"
+                    >
                       <div
                         className={`h-[70px] mobile:hidden tablet:hidden w-5/6 border-[1px] border-[#C9C9C9] hover:border-2 hover:border-[#005F85] rounded-lg ${
                           index === 0 ? "border-[2px] border-[#005F85]" : ""
@@ -123,7 +124,9 @@ const ListingProductDets = () => {
               <div className="w-full lg:h-[90px] tablet:h-[15vw] flex">
                 <div className="w-1/2 h-full flex mobile:px-4 tablet:px-4 items-center justify-center bg-[#FAFEFF] border border-[#DEDEDE] rounded-s-md">
                   <div className="flex h-full flex-col lg:py-3 mobile:py-0 tablet:py-0 tablet:flex-col tablet:text-center tablet:items-center tablet:justify-center tablet:w-1/2 mobile:flex-col mobile:text-center mobile:items-center mobile:justify-center mobile:w-1/2">
-                    <p className="text-[#5C5C5C] text-sm tablet:text-nowrap mobile:text-nowrap">Lowest Price</p>
+                    <p className="text-[#5C5C5C] text-sm tablet:text-nowrap mobile:text-nowrap">
+                      Lowest Price
+                    </p>
                     <p className="text-[#0B8500] text-2xl mobile:text-[19px] tablet:text-[19px] font-medium">
                       ₹42999
                     </p>
@@ -138,7 +141,9 @@ const ListingProductDets = () => {
                 </div>
                 <div className="w-1/2 h-full flex items-center justify-center bg-[#FAFEFF] border border-[#DEDEDE] rounded-e-md">
                   <div className="">
-                    <p className="text-[#5C5C5C] text-sm tablet:text-nowrap mobile:text-nowrap">Highest Price</p>
+                    <p className="text-[#5C5C5C] text-sm tablet:text-nowrap mobile:text-nowrap">
+                      Highest Price
+                    </p>
                     <p className="text-[#ED0303] text-2xl mobile:text-[19px] tablet:text-[19px] font-medium">
                       ₹62999
                     </p>
@@ -156,47 +161,53 @@ const ListingProductDets = () => {
           </div>
           <div className="h-full w-full px-0 pr-4 py-10 flex gap-6 justify-between mobile:flex-col tablet:flex-col tablet:mt-[30vh] tablet:w-[100%] tablet:p-0 tablet:pr-0 tablet:py-0 mobile:mt-[41vh] mobile:w-[100%] mobile:p-0 mobile:pr-0 mobile:py-0">
             <div className="px-4 tablet:px-8">
-            <div className="w-[850px] h-[425px] border overflow-hidden border-[#DEDEDE] rounded-xl mobile:w-full tablet:w-full tablet:h-fit mobile:h-fit">
-              <div className="h-12 w-full flex border-b border-[#C9C9C9] items-center px-10 gap-12">
-                <p className="text-[#005F85] font-medium tablet:text-nowrap mobile:text-nowrap">Title here</p>
-                <p className="text-[#999999] mobile:font-medium mobile:text-nowrap tablet:text-nowrap tablet:font-medium">Title here</p>
-                <p className="text-[#999999] mobile:font-medium mobile:text-nowrap tablet:text-nowrap tablet:font-medium">Title here</p>
-                <p className="text-[#999999] mobile:hidden">Title here</p>
-              </div>
-              <div className="p-4">
-                <p className="text-[#5C5C5C] text-lg mobile:text-base tablet:text-base">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet,
-                  consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                  ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  Quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                  ea commodo consequat. Duis aute irure dolor in reprehenderit
-                  in voluptate velit esse cillum dolore eu fugiat nulla
-                  pariatur.
-                </p>
-                <div className="flex flex-col gap-1 mt-2">
-                  <p className="text-[#505050] flex items-center gap-2">
-                    <FiCheck /> Some great feature name here
+              <div className="w-[850px] h-[425px] border overflow-hidden border-[#DEDEDE] rounded-xl mobile:w-full tablet:w-full tablet:h-fit mobile:h-fit">
+                <div className="h-12 w-full flex border-b border-[#C9C9C9] items-center px-10 gap-12">
+                  <p className="text-[#005F85] font-medium tablet:text-nowrap mobile:text-nowrap">
+                    Title here
                   </p>
-                  <p className="text-[#505050] flex items-center gap-2">
-                    <FiCheck />
-                    Lorem ipsum dolor sit amet, consectetur
+                  <p className="text-[#999999] mobile:font-medium mobile:text-nowrap tablet:text-nowrap tablet:font-medium">
+                    Title here
                   </p>
-                  <p className="text-[#505050] flex items-center gap-2">
-                    <FiCheck />
-                    Duis aute irure dolor in reprehenderit
+                  <p className="text-[#999999] mobile:font-medium mobile:text-nowrap tablet:text-nowrap tablet:font-medium">
+                    Title here
                   </p>
-                  <p className="text-[#505050] flex items-center gap-2">
-                    <FiCheck />
-                    Some great feature name here
+                  <p className="text-[#999999] mobile:hidden">Title here</p>
+                </div>
+                <div className="p-4">
+                  <p className="text-[#5C5C5C] text-lg mobile:text-base tablet:text-base">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum
+                    dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                    ad minim veniam, Quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                    dolor in reprehenderit in voluptate velit esse cillum dolore
+                    eu fugiat nulla pariatur.
                   </p>
+                  <div className="flex flex-col gap-1 mt-2">
+                    <p className="text-[#505050] flex items-center gap-2">
+                      <FiCheck /> Some great feature name here
+                    </p>
+                    <p className="text-[#505050] flex items-center gap-2">
+                      <FiCheck />
+                      Lorem ipsum dolor sit amet, consectetur
+                    </p>
+                    <p className="text-[#505050] flex items-center gap-2">
+                      <FiCheck />
+                      Duis aute irure dolor in reprehenderit
+                    </p>
+                    <p className="text-[#505050] flex items-center gap-2">
+                      <FiCheck />
+                      Some great feature name here
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
             <div className="h-fit mobile:pl-4 tablet:pl-4 tablet:w-full tablet:border-none pb-5 w-[300px] border border-[#DEDEDE] mobile:w-full mobile:border-none rounded-xl">
               <div className="tablet:p-4">

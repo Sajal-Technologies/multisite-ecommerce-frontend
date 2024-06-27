@@ -1,4 +1,3 @@
-import React from "react";
 import Cartproduct from "../../images/CartPage/Cartproduct.png";
 import Flipkart from "../../images/CartPage/Flipkart.png";
 import Meesho from "../../images/CartPage/Meesho.png";
@@ -15,7 +14,7 @@ const CartCard = () => {
           <div className="imgcontainer w-full h-[210px] mobile:hidden p-2 flex items-center justify-center bg-[#FAFEFF]">
             <img
               className="w-full h-full object-contain p-6"
-              src={Cartproduct} 
+              src={Cartproduct}
               alt=""
             />
           </div>
@@ -89,9 +88,7 @@ const CartCard = () => {
             </Link>
             <div className="flex gap-2 items-center px-3 border border-[#005F85] rounded-3xl py-1 tablet:mr-4 lg:mr-4">
               <FiShoppingBag className="text-[#005F85] text-xl mobile:text-base" />
-              <p className="text-[#005F85] text-lg mobile:text-sm">
-                Remove
-              </p>
+              <p className="text-[#005F85] text-lg mobile:text-sm">Remove</p>
             </div>
           </div>
           <div className="px-4 mobile:px-0">

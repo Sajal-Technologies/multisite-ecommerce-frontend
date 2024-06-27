@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FiArrowLeft } from "react-icons/fi";
 import { FiChevronRight } from "react-icons/fi";
 import mailMessage from "../../images/SigninPage/mailmessage.png";

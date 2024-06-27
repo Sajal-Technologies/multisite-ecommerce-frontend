@@ -1,4 +1,3 @@
-import React from "react";
 import Iphone from "../../../images/CategoriesPage/CatComponent/CatList/iphone.png";
 import Amazon from "../../../images/CategoriesPage/CatComponent/CatList/amazon.png";
 import Flipkart from "../../../images/CategoriesPage/CatComponent/CatList/flipkart.png";
@@ -23,7 +22,8 @@ const CatList = () => {
         </Link>
         <div className=" lg:hidden tablet:hidden mobile:block flex flex-col pr-2 h-full py-4">
           <p className="text-sm text-[#3D3D3D] font-semibold">
-            Buy iPhone 15 Pro Physical Dual Sim 128GB Blue Titanium 5G Without Fa...
+            Buy iPhone 15 Pro Physical Dual Sim 128GB Blue Titanium 5G Without
+            Fa...
           </p>
           <div className="flex items-center py-3 w-full justify-between">
             <div className="flex gap-3">
@@ -41,9 +41,7 @@ const CatList = () => {
                 <p className="text-[#5C5C5C] text-xs">
                   SAVE <span className="line-through">&#8377;125550</span>
                 </p>
-                <p className="text-[#0B8500] text-lg">
-                  &#8377;32999
-                </p>
+                <p className="text-[#0B8500] text-lg">&#8377;32999</p>
               </div>
             </Link>
             <div className="h-8 w-8 flex absolute right-0 bottom-0 mb-5 mr-4  items-center cursor-pointer justify-center rounded-full bg-[#f7fdff] border-[1px] border-[#caf4ff]">

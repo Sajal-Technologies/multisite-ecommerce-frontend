@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mukta:wght@200;300;400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,12 +9,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Mukta", sans-serif;
 }
 html,
 body {
   height: 100%;
   width: 100%;
+  box-sizing: border-box;
+  font-family: "Mukta", sans-serif;
 }
 
 .btn-font {
@@ -122,17 +124,16 @@ h1 {
   display: none;
 }
 
-.mega-menu::-webkit-scrollbar{
+.mega-menu::-webkit-scrollbar {
   display: none;
 }
 
-.hideScroll::-webkit-scrollbar{
+.hideScroll::-webkit-scrollbar {
   display: none;
 }
 
-
-@media (max-width:600px) {
-  .cards-container::-webkit-scrollbar{
+@media (max-width: 600px) {
+  .cards-container::-webkit-scrollbar {
     display: none;
   }
   .header {
@@ -146,10 +147,10 @@ h1 {
   .header.hidden {
     transform: translateY(-100%);
   }
-  .swiper-button-prev:after{
+  .swiper-button-prev:after {
     display: none;
   }
-  .swiper-button-next:after{
+  .swiper-button-next:after {
     display: none;
   }
 }

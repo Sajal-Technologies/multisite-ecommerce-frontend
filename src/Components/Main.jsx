@@ -1,4 +1,3 @@
-import React from "react";
 import Banner from "./Banner";
 import Feature from "./Feature-section";
 import Fproduct from "./Feature-Product";
@@ -8,17 +7,14 @@ import Subcategory2 from "./Subcategory2";
 
 const Main = () => {
   return (
-    <>
-        <div className="bg-[#FAFAFA] pb-16">
-          <Banner/>
-          <Feature/>
-          <Fproduct/>
-          <Categories/>
-          <Subcategory/>
-          <Subcategory2/>
-          
-        </div>
-    </>
+    <div className="bg-[#FAFAFA] pb-16 pt-[200px] mobile:pt-[70px]">
+      <Banner />
+      <Feature />
+      <Fproduct />
+      <Categories />
+      <Subcategory />
+      <Subcategory2 />
+    </div>
   );
 };
 

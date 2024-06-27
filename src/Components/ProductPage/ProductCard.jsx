@@ -1,4 +1,4 @@
-import React from "react";
+
 import ProductImg from "../../images/ProductPage/Productimg.png";
 import Amazon from "../../images/ProductPage/amazon.png";
 import Flipkart from "../../images/ProductPage/flipkart.png";

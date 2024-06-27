@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FiArrowLeft } from "react-icons/fi";
 import { FiChevronRight } from "react-icons/fi";
 import otpVerification from "../../images/OTPVerification/otpVerification.png";
@@ -95,7 +95,7 @@ const OTPVerification = () => {
           </div>
           <div className="">
             <p className="text-[#121212] tablet:text-2xl font-medium">
-              Didn't receive code?
+              Didn&appos;t receive code?
               <span className="text-[#005F85]">Resend Code</span>
             </p>
           </div>

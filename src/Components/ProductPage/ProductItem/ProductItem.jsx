@@ -1,5 +1,4 @@
-import React from "react";
-import productItemImg from "../../../images/ProductPage/item.png"
+import productItemImg from "../../../images/ProductPage/item.png";
 
 const ProductItem = () => {
   return (

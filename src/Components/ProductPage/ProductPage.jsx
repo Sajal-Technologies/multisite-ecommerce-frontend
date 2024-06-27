@@ -1,4 +1,3 @@
-import React from "react";
 import Breadcrump from "../Cat-components/Breadcrump";
 import ListingProductDets from "./ListingProductDets";
 import SimilerProducts from "./SimilerProducts";
@@ -6,9 +5,11 @@ import SimilerProducts from "./SimilerProducts";
 const ProductPage = () => {
   return (
     <>
-      <Breadcrump />
-      <ListingProductDets/>
-      <SimilerProducts/>
+      <div className="pt-[200px] mobile:pt-[70px]">
+        <Breadcrump />
+        <ListingProductDets />
+        <SimilerProducts />
+      </div>
     </>
   );
 };

@@ -1,18 +1,14 @@
-import React from "react";
 import ListingProductDets from "../ListingProductDets";
-
 import RelatedProduct from "./RelatedProduct";
 import SimilerProduct from "./SimilarProduct";
 
 const ProductStyle2 = () => {
   return (
-    <>
-      <div className="main">
-        <ListingProductDets />
-        <RelatedProduct/>
-        <SimilerProduct/>
-      </div>
-    </>
+    <div className="main pt-[200px] mobile:pt-[70px]">
+      <ListingProductDets />
+      <RelatedProduct />
+      <SimilerProduct />
+    </div>
   );
 };
 

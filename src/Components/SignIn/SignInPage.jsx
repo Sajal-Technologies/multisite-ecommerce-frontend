@@ -92,14 +92,13 @@
 
 // export default SignInPage;
 
-import React from "react";
-import { FcGoogle } from "react-icons/fc";
-import facebook from "../../images/SigninPage/facebook.png";
 import { FiMail } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import { FiChevronRight } from "react-icons/fi";
 import LoginBuilding from "../../images/SigninPage/LoginBuilding.png";
 import { Link } from "react-router-dom";
+import GoogleSignIn from "./Components/GoogleSignIn";
+import FacebookSignIn from "./Components/FacebookSignIn";
 
 const SignInPage = () => {
   return (
@@ -108,18 +107,9 @@ const SignInPage = () => {
         <h1 className="text-[#121212] tablet:text-5xl text-2xl md:text-6xl xl:text-6xl font-bold">
           Sign In
         </h1>
-        <div className="flex flex-col xl:flex-row gap-4 items-center justify-center tablet:items-start tablet:w-full">
-          <div className="bg-white border border-[#EDEDED] w-full py-3 tablet:py-4 px-9 rounded-[10px] tablet:w-full">
-            <div className="flex items-center text-nowrap justify-center gap-2 text-[#3D3D3D] font-semibold tablet:text-2xl xl:text-lg xl:w-full">
-              <FcGoogle className="text-2xl tablet:text-3xl" /> Continue with Google
-            </div>
-          </div>
-          <div className="bg-white border border-[#EDEDED] w-full py-3 tablet:py-4 px-9 rounded-[10px] tablet:w-full">
-            <div className="flex items-center text-nowrap justify-center gap-2 text-[#3D3D3D] font-semibold xl:text-lg tablet:text-2xl">
-              <img className="w-6 tablet:w-8" src={facebook} alt="Facebook" />
-              Continue with Facebook
-            </div>
-          </div>
+        <div className="flex gap-4 items-center flex-col xl:flex-row tablet:w-full">
+          <GoogleSignIn />
+          <FacebookSignIn />
         </div>
         <p className="w-full text-center font-bold text-[#5C5C5C] text-xl tablet:my-2 tablet:w-full tablet:text-3xl">
           or
@@ -130,33 +120,36 @@ const SignInPage = () => {
             htmlFor="email"
           >
             Email
-          </label>  
+          </label>
           <input
             className="p-4 tablet:mt-2 rounded-[10px] border border-[#EDEDED] placeholder:text-[#B2B2B2] bg-[#FAFEFF] tablet:w-full tablet:text-2xl"
             type="email"
             placeholder="Enter your email"
           />
-          <FiMail className="absolute top-[54px] xl:top-[61px] right-4 transform -translate-y-1/2 text-lg text-[#7A7A7A] tablet:right-5 tablet:top-[83px] tablet:text-[28px]"/>
+          <FiMail className="absolute top-[54px] xl:top-[61px] right-4 transform -translate-y-1/2 text-lg text-[#7A7A7A] tablet:right-5 tablet:top-[83px] tablet:text-[28px]" />
         </div>
         <div className="tablet:w-full">
-        <label
-          className="text-[#121212] tablet:mt-0 mt-[-10px] mb-[-18px] xl:text-lg tablet:text-3xl"
-          htmlFor="password"
-        >
-          Password
-        </label>
-        <div className="relative tablet:mt-2">
-          <input
-            className="p-4 rounded-[10px] w-full border border-[#EDEDED] placeholder:text-[#B2B2B2] bg-[#FAFEFF] tablet:w-full tablet:text-2xl"
-            type="password"
-            placeholder="Enter your password"
-          />
-          <FiEyeOff className="absolute top-[28px] right-4 transform -translate-y-1/2 text-lg text-[#7A7A7A] tablet:right-5 tablet:top-8 tablet:text-[28px]" />
-        </div>
+          <label
+            className="text-[#121212] tablet:mt-0 mt-[-10px] mb-[-18px] xl:text-lg tablet:text-3xl"
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <div className="relative tablet:mt-2">
+            <input
+              className="p-4 rounded-[10px] w-full border border-[#EDEDED] placeholder:text-[#B2B2B2] bg-[#FAFEFF] tablet:w-full tablet:text-2xl"
+              type="password"
+              placeholder="Enter your password"
+            />
+            <FiEyeOff className="absolute top-[28px] right-4 transform -translate-y-1/2 text-lg text-[#7A7A7A] tablet:right-5 tablet:top-8 tablet:text-[28px]" />
+          </div>
         </div>
         <div className="flex items-center justify-between mt-[-18px] tablet:mb-4 tablet:mt-[-10px] xl:m-0 tablet:w-full">
           <div className="flex items-center justify-center text-xs gap-2">
-            <input className="h-4 w-4 tablet:h-6 tablet:w-6 border-[#F2F2F2] xl:h-[22px] xl:w-[22px]" type="checkbox" />
+            <input
+              className="h-4 w-4 tablet:h-6 tablet:w-6 border-[#F2F2F2] xl:h-[22px] xl:w-[22px]"
+              type="checkbox"
+            />
             <p className="xl:text-sm tablet:text-xl">Remember me</p>
           </div>
           <Link
@@ -167,7 +160,9 @@ const SignInPage = () => {
           </Link>
         </div>
         <div className="flex items-center tablet:w-full mt-[-8px] tablet:mt-0 justify-between bg-[#005F85] tablet:py-4 py-2 px-8 xl:py-4 rounded-xl xl:mt-4">
-          <p className="text-white xl:text-lg font-semibold tablet:text-[26px]">Sign In</p>
+          <p className="text-white xl:text-lg font-semibold tablet:text-[26px]">
+            Sign In
+          </p>
           <div className="flex">
             <FiChevronRight className="text-xl tablet:text-3xl xl:text-2xl text-[#99BFCE]" />
             <FiChevronRight className="text-xl tablet:text-3xl xl:text-2xl text-white" />
@@ -175,7 +170,7 @@ const SignInPage = () => {
           </div>
         </div>
         <p className="text-[#121212] tablet:text-2xl mt-[-12px] flex justify-center gap-1 xl:text-xl xl:justify-start font-medium xl:mt-0 tablet:w-fit">
-          Don't have an account? 
+          Don&apos;t have an account?
           <Link to="/SignUp" className="text-[#005F85]">
             Sign Up
           </Link>

@@ -1,4 +1,3 @@
-import React from "react";
 import Select from "react-select";
 
 const Dropdown = () => {
@@ -10,17 +9,17 @@ const Dropdown = () => {
   ];
   return (
     <>
-      <Select 
+      <Select
         options={options}
         placeholder="Relevancy"
         className="w-[230px] mobile:hidden"
         noOptionsMessage={() => "No data found.."}
         styles={{
-          placeholder: (baseStyles, state) => ({
+          placeholder: (baseStyles) => ({
             ...baseStyles,
             color: "#005F85",
             opacity: 1,
-            fontWeight: 500
+            fontWeight: 500,
           }),
           clearIndicator: (baseStyles) => ({
             ...baseStyles,
@@ -28,12 +27,12 @@ const Dropdown = () => {
           }),
           control: (baseStyles) => ({
             ...baseStyles,
-            borderColor: "#DEDEDE !important"
+            borderColor: "#DEDEDE !important",
           }),
-          Dropdown:(baseStyles)=>({
+          Dropdown: (baseStyles) => ({
             ...baseStyles,
-            color: "#005F85 !important"
-          })
+            color: "#005F85 !important",
+          }),
         }}
       />
     </>

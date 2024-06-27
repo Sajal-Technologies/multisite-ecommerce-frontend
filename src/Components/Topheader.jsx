@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Apple from "../images/MainPage/Headerlogos/Apple.svg";
 import Logo from "../images/MainPage/Headerlogos/Logo.svg";
 import FlashDeals from "../images/MainPage/Headerlogos/FlashDeals.gif";
@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 const Topheader = ({ toggleCartPopup }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +22,7 @@ const Topheader = ({ toggleCartPopup }) => {
       } else {
         setIsVisible(true);
       }
-      setLastScrollTop(st <= 0 ? 0 : st); 
+      setLastScrollTop(st <= 0 ? 0 : st);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -34,8 +33,11 @@ const Topheader = ({ toggleCartPopup }) => {
   }, [lastScrollTop]);
 
   return (
-
-    <nav className={`transition-transform h-[222px] mobile:h-[72px] duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'} fixed top-0 left-0 right-0 z-50`}>
+    <nav
+      className={`transition-transform h-[222px] mobile:h-[72px] duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      } fixed top-0 left-0 right-0 z-50`}
+    >
       <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm text-right items-center justify-between py-3 md:px-4  xl:px-12 mobile:hidden">
         <div className="left flex text-center items-center gap-2 ">
           <p>Welcome to worldwide Chak De</p>
@@ -68,7 +70,11 @@ const Topheader = ({ toggleCartPopup }) => {
         />
         <Link to="/">
           <div className="logo md:h-[6vw] md:w-[6vw] xl:flex xl:items-center">
-            <img className="md:h-full md:w-full md:object-cover xl:w-[60px] xl:h-[60px]" src={Logo} alt="" />
+            <img
+              className="md:h-full md:w-full md:object-cover xl:w-[60px] xl:h-[60px]"
+              src={Logo}
+              alt=""
+            />
           </div>
         </Link>
         <div className="right flex items-center gap-14 pl-[100px] md:ml-[-250px]">
@@ -96,7 +102,11 @@ const Topheader = ({ toggleCartPopup }) => {
             </div>
             <div className="flex items-center gap-2 mobile:hidden">
               <img className="w-14 h-6" src={FlashDeals} alt="" />
-              <a onClick={toggleCartPopup} className="xl:text-2xl xl:pr-0 md:text-nowrap md:text-xl" href="">
+              <a
+                onClick={toggleCartPopup}
+                className="xl:text-2xl xl:pr-0 md:text-nowrap md:text-xl"
+                href=""
+              >
                 Flash Deals
               </a>
             </div>

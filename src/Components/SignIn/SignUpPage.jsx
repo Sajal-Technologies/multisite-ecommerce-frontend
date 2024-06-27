@@ -104,24 +104,11 @@
 
 // export default SignUpPage;
 
-
-
-
-
-
-
-
-
-
-
-
-
-import React from "react";
-import { FcGoogle } from "react-icons/fc";
-import facebook from "../../images/SigninPage/facebook.png";
-import { FiMail, FiEyeOff, FiChevronRight, FiUser } from "react-icons/fi";
+import { FiMail, FiEyeOff, FiChevronRight } from "react-icons/fi";
 import SignUpBuilding from "../../images/SigninPage/SignupBuilding.png";
 import { Link } from "react-router-dom";
+import GoogleSignIn from "./Components/GoogleSignIn";
+import FacebookSignIn from "./Components/FacebookSignIn";
 
 const SignUpPage = () => {
   return (
@@ -131,20 +118,17 @@ const SignUpPage = () => {
           Sign Up
         </h1>
         <div className="flex gap-4 items-center flex-col xl:flex-row tablet:w-full">
-          <div className="bg-white border justify-center border-[#EDEDED] tablet:text-2xl w-full xl:w-1/2 py-3 tablet:py-4 px-4 rounded-[10px] flex items-center gap-2 text-[#3D3D3D] font-semibold xl:text-lg">
-            <FcGoogle className="text-xl xl:text-2xl tablet:text-3xl" />
-            Continue with Google
-          </div>
-          <div className="bg-white border justify-center border-[#EDEDED] tablet:text-2xl w-full xl:w-1/2 py-3 tablet:py-4 px-4 rounded-[10px] flex items-center gap-2 text-[#3D3D3D] font-semibold xl:text-lg">
-            <img className="w-5 tablet:w-7 xl:w-6" src={facebook} alt="Facebook" />
-            Continue with Facebook
-          </div>
+          <GoogleSignIn />
+          <FacebookSignIn />
         </div>
         <p className="w-full text-center font-bold tablet:my-6 text-[#5C5C5C] text-xl tablet:text-3xl mt-2 xl:my-4">
           or
         </p>
         <div className=" relative flex mt-[-2%] flex-col gap-3 xl:gap-4 tablet:w-full tablet:gap-4 tablet:mb-4">
-          <label className="text-[#121212] tablet:text-3xl mb-[-8px] relative" htmlFor="email">
+          <label
+            className="text-[#121212] tablet:text-3xl mb-[-8px] relative"
+            htmlFor="email"
+          >
             Email
           </label>
           <input
@@ -153,7 +137,10 @@ const SignUpPage = () => {
             placeholder="Enter your email"
           />
           <FiMail className="absolute top-[46px] xl:top-[51px] right-4 text-lg text-[#7A7A7A] tablet:text-[28px] tablet:top-[62px]" />
-          <label className="text-[#121212] mb-[-8px] tablet:text-3xl tablet:mt-4" htmlFor="password">
+          <label
+            className="text-[#121212] mb-[-8px] tablet:text-3xl tablet:mt-4"
+            htmlFor="password"
+          >
             Password
           </label>
           <div className="relative">
@@ -170,12 +157,15 @@ const SignUpPage = () => {
               type="checkbox"
             />
             <p className="text-[12px] xl:text-sm tablet:text-xl">
-              I've read and agree with the terms of service and privacy policy.
+              I&apos;ve read and agree with the terms of service and privacy
+              policy.
             </p>
           </div>
         </div>
         <div className="flex items-center tablet:py-5 tablet:mt-0 tablet:w-full py-2 px-8 mt-3 xl:mt-6 justify-between bg-[#005F85] xl:px-8 xl:py-4 rounded-xl">
-          <p className="text-white text-lg tablet:text-[26px] font-semibold">Sign Up</p>
+          <p className="text-white text-lg tablet:text-[26px] font-semibold">
+            Sign Up
+          </p>
           <div className="flex">
             <FiChevronRight className="text-2xl tablet:text-3xl text-[#99BFCE]" />
             <FiChevronRight className="text-2xl tablet:text-3xl text-white" />

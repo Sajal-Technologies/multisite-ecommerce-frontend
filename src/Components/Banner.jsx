@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -20,7 +20,10 @@ import Furniture from "../images/MainPage/BannerImages/Furniture.png";
 import HeadPhone from "../images/MainPage/BannerImages/Headphone.png";
 
 const Banner = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  // const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+
+  //We should Provide Callback to Use State hook if we want to initialise the state with calculated value
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 600);
 
   useEffect(() => {
     const handleResize = () => {
@@ -94,7 +97,11 @@ const Banner = () => {
               </div>
               <div className="br mr-[3vw] mobile:mr-[-7vw]">
                 <div className="w-full flex h-full">
-                  <img src={Watch} className="mt-[.8vw] scale-[.85] mobile:mt-[5vw] mobile:scale-[1]" alt="" />
+                  <img
+                    src={Watch}
+                    className="mt-[.8vw] scale-[.85] mobile:mt-[5vw] mobile:scale-[1]"
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
@@ -114,9 +121,13 @@ const Banner = () => {
                 <Button />
               </div>
               <div className="br mr-[3vw] mobile:mr-[-13vw] scaledown">
-                <img className="mt-[1.5vw] mobile:scale-[.65] mobile:mt-[-2vw] " src={Homeappliances} alt="" />
+                <img
+                  className="mt-[1.5vw] mobile:scale-[.65] mobile:mt-[-2vw] "
+                  src={Homeappliances}
+                  alt=""
+                />
               </div>
-            </div>  
+            </div>
           </SwiperSlide>
           <SwiperSlide className="h-[25vw] mobile:h-[36vw] w-[100%] flex items-center justify-center bg-[#E6425E] rounded-2xl mobile:rounded-none">
             <div className="h-[90%] w-[80%] flex justify-between">

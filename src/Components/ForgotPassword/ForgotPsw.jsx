@@ -1,4 +1,3 @@
-import React from "react";
 import { FiArrowLeft } from "react-icons/fi";
 import { FiMail } from "react-icons/fi";
 import { FiChevronRight } from "react-icons/fi";
@@ -23,8 +22,8 @@ const ForgotPsw = () => {
               Reset your password
             </h1>
             <p className="text-[#5C5C5C] leading-[21px] tablet:text-2xl pt-3 font-medium ">
-              Don't worry, it happens to the best of us, We will send an OTP via
-              your registered email.
+              Don&apos;t worry, it happens to the best of us, We will send an
+              OTP via your registered email.
             </p>
           </div>
           <div className="inputs relative flex flex-col gap-2 tablet:w-full">

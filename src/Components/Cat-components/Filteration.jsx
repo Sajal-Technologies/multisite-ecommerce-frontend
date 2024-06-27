@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { FiChevronUp } from "react-icons/fi";
 import Slider from "react-slider";
@@ -38,7 +37,10 @@ const Filteration = () => {
             { name: "Smartphones", count: "67" },
             { name: "Modern Tech", count: "132" },
           ].map((item, index) => (
-            <div className="flex items-center my-4 justify-between ">
+            <div
+              className="flex items-center my-4 justify-between "
+              key={index}
+            >
               <p className="text-[#5C5C5C] text-lg">{item.name}</p>
               <p className="text-[#5C5C5C] text-lg">{item.count}</p>
             </div>
@@ -72,7 +74,6 @@ const Filteration = () => {
                       value={values[0]}
                       className="w-[65%] ml-2"
                       type="number"
-                      thumbColor="transparent"
                       placeholder="0"
                       onChange={(event) => handleChange(0, event)}
                     />
@@ -112,8 +113,11 @@ const Filteration = () => {
                 },
                 { name: "Flipkart", count: "52", img: `${Flipkart}` },
                 { name: "Indiamart", count: "37", img: `${Indiamart}` },
-              ].map((item, index, array) => (
-                <div className="flex w-full items-center gap-4 justify-between ">
+              ].map((item, index) => (
+                <div
+                  className="flex w-full items-center gap-4 justify-between "
+                  key={index}
+                >
                   <div className=" flex items-center gap-2">
                     <input
                       type="checkbox"
@@ -145,7 +149,10 @@ const Filteration = () => {
                 { name: "Realme", count: "26" },
                 { name: "Google Pixel", count: "10" },
               ].map((item, index) => (
-                <div className="flex w-full items-center gap-4 justify-between ">
+                <div
+                  className="flex w-full items-center gap-4 justify-between "
+                  key={index}
+                >
                   <div className=" flex items-center gap-2">
                     <input
                       type="checkbox"
