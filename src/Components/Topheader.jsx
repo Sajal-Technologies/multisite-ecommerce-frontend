@@ -133,7 +133,7 @@ const Topheader = ({ toggleCartPopup }) => {
                 : "hover:bg-[#005F85] hover:text-white"
             }`}
             style={{ backgroundColor: index === 0 ? "#17617f" : "" }}
-            to="/Categories"
+            to="/Categories?view=grid"
           >
             {item} <FiChevronDown />
           </Link>
