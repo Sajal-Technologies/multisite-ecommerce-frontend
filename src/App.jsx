@@ -14,6 +14,7 @@ import ForgotPsw from "./Components/ForgotPassword/ForgotPsw";
 import OTPVerification from "./Components/OTPVerification/OTPVerification";
 import ResetPassword from "./Components/ResetPassword/ResetPassword";
 import ScrollToTop from "./Components/Utils/ScrollToTop";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
@@ -50,11 +51,25 @@ const App = () => {
         <Route path="/Product" element={<ProductPage />} />
         <Route path="/Product-style2" element={<ProductStyle2 />} />
         <Route path="/Cart" element={<CartPage />} />
-        <Route path="/Signin" element={<SignInPage />} />
+        <Route path="/SignIn" element={<SignInPage />} />
         <Route path="/SignUp" element={<SignUpPage />} />
+        <Route
+          path="/OTPVerification"
+          element={
+            <ProtectedRoute>
+              <OTPVerification />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/ForgotPassword" element={<ForgotPsw />} />
-        <Route path="/OTPVerification" element={<OTPVerification />} />
-        <Route path="/ResetPassword" element={<ResetPassword />} />
+        <Route
+          path="/ResetPassword"
+          element={
+            <ProtectedRoute>
+              <ResetPassword />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
 
       {/*  Render Topheader only if the current path is not a credential page  */}
@@ -76,5 +91,3 @@ export default App;
   /* <div className={` app ${isCartPopupVisible ? "cart-popup-active" : ""}`}>
 </div> */
 }
-
-// </div>;

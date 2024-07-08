@@ -1,5 +1,4 @@
 const Subcatcard = ({ img, productName, price }) => {
-  console.log(img, productName, price);
   return (
     <>
       <div className="subcatcard md:flex-shrink-0 mobile:flex-shrink-0 xl:w-[286px] md:w-[49%] mobile:w-full mobile:px-4 mobile:h-[108px] text-[#262626] h-[105px] bg-white flex justify-between p-4 rounded-xl border-[1px] border-[#DEDEDE]">

@@ -4,12 +4,31 @@ import { FiChevronRight } from "react-icons/fi";
 import otpVerification from "../../images/OTPVerification/otpVerification.png";
 import otpVerifying from "../../images/OTPVerification/otpVerifying.png";
 import otpVerified from "../../images/OTPVerification/otpVerified.png";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../Contexts/AuthContext";
+import ResendOTP from "../ResendOTP/ResendOTP";
 
 const OTPVerification = () => {
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const [currentImage, setCurrentImage] = useState(otpVerification);
   const inputRefs = useRef([]);
+  const { verification, user, error, setError } = useAuth();
+  const [otpResendMessage, setOtpResendMessage] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      if (error && typeof error === "string") setError(null);
+      if (otpResendMessage) setOtpResendMessage(null);
+    }, 5000);
+
+    return () => clearTimeout(timeOut);
+  }, [setError, error, otpResendMessage]);
+
+  const handleSubmit = function () {
+    console.log(otp.join(""));
+    verification(user?.email, otp.join(""));
+  };
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -78,27 +97,32 @@ const OTPVerification = () => {
     <>
       <div className="main h-screen w-full signin flex justify-between overflow-hidden pl-20 py-[5%] mobile:flex-col-reverse mobile:h-screen tablet:p-0 tablet:m-0 mobile:w-full mobile:justify-between mobile:m-0 mobile:p-0">
         <div className="left flex flex-col py-8 w-[60%] gap-8 mobile:px-4 mobile:w-full mobile:my-[27vh] mobile:gap-4 tablet:h-screen tablet:w-full px-[10%] tablet:items-start tablet:justify-center">
-          <Link to="/ForgotPassword">
-            <div className="flex gap-2 items-center font-medium text-[#5C5C5C] mobile:hidden">
-              <FiArrowLeft className="text-xl tablet:text-3xl" />
-              <span className="text-xl tablet:text-3xl">Back</span>
-            </div>
-          </Link>
+          <span
+            className="flex gap-2 items-center font-medium text-[#5C5C5C] mobile:hidden cursor-pointer"
+            onClick={() => {
+              setError(null);
+              navigate(-1);
+            }}
+          >
+            <FiArrowLeft className="text-xl tablet:text-3xl " />
+            <span className="text-xl tablet:text-3xl">Back</span>
+          </span>
+
           <div className="">
             <h1 className="text-[#121212] text-3xl tablet:text-4xl font-bold mobile:text-2xl">
-              Enter 4-Digit OTP Code
+              Enter 6-Digit OTP Code
             </h1>
-            <p className="text-[#5C5C5C] leading-[21px] tablet:text-2xl pt-3 font-medium mobile:font-normal">
-              We just sent a verification code to your registered email, please
-              check your mail.
+            <p
+              className={` ${
+                otpResendMessage ? "text-green-600" : "text-[#5C5C5C]"
+              } leading-[21px] tablet:text-2xl pt-3 font-medium mobile:font-normal`}
+            >
+              {otpResendMessage
+                ? `${otpResendMessage}`
+                : "We just sent a verification code to your registered email, please check your mail."}
             </p>
           </div>
-          <div className="">
-            <p className="text-[#121212] tablet:text-2xl font-medium">
-              Didn&appos;t receive code?
-              <span className="text-[#005F85]">Resend Code</span>
-            </p>
-          </div>
+          <ResendOTP setOtpResendMessage={setOtpResendMessage} />
           <div className="otpboxs flex gap-2 tablet:justify-between tablet:items-center tablet:w-full mobile:justify-center">
             {otp.map((data, index) => (
               <input
@@ -116,19 +140,21 @@ const OTPVerification = () => {
               />
             ))}
           </div>
-          <Link
-            to="/ResetPassword"
+          {error && typeof error === "string" && (
+            <p className="text-red-600 font-bold text-center text-lg xl:-mb-4">
+              {error}
+            </p>
+          )}
+          <button
             className={`flex w-full items-center btn justify-between bg-[#005F85] px-8 tablet:py-5 py-4 mobile:py-3 rounded-xl ${
               isOtpComplete ? "bg-[#005F85]" : "bg-gray-300 cursor-not-allowed"
             }`}
+            onClick={handleSubmit}
           >
-            <Link
-              to="/ResetPassword"
-              className="text-white text-nowrap text-lg tablet:text-2xl font-semibold mobile:text-base"
-            >
+            <div className="text-white text-nowrap text-lg tablet:text-2xl font-semibold mobile:text-base">
               Verify OTP Code
-            </Link>
-            <Link to="/ResetPassword" className="flex">
+            </div>
+            <div className="flex">
               <FiChevronRight
                 className={`text-2xl tablet:text-3xl mobile:text-xl ${
                   isOtpComplete
@@ -148,8 +174,8 @@ const OTPVerification = () => {
                     : "text-[#999999] cursor-not-allowed"
                 }`}
               />
-            </Link>
-          </Link>
+            </div>
+          </button>
         </div>
         <div className="right tablet:hidden">
           <div className="r-img warm-effect h-screen mt-[-77px] w-full mobile:absolute mobile:h-[364px] mobile:m-0 mobile:p-0 mobile:top-[-3%] mobile:mb-6">

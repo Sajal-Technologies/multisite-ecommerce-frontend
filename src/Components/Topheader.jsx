@@ -9,10 +9,12 @@ import { FiShoppingCart } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
 import Seperator from "./Seperator";
 import { Link } from "react-router-dom";
+import { useAuth } from "../Contexts/AuthContext";
 
 const Topheader = ({ toggleCartPopup }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+  const { user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,10 +52,14 @@ const Topheader = ({ toggleCartPopup }) => {
           </div>
           <div className="signin flex items-center gap-2">
             <FiUser className="text-lg" />
-            <div className="">
-              <Link to="/SignUp">Sign Up/</Link>
-              <Link to="/SignIn">Sign In</Link>
-            </div>
+            {user && user?.["user name"] ? (
+              <p>{user?.["user name"]}</p>
+            ) : (
+              <div className="">
+                <Link to="/SignUp">Sign Up/</Link>
+                <Link to="/SignIn">Sign In</Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
