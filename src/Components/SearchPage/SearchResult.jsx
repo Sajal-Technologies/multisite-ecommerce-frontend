@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import Breadcrump from "./Breadcrump";
-import Sort from "./Sort";
-import Filteration from "./Filteration";
-import CatGrid from "./Cat-component-list/CatGrid";
-import CatListPage from "./Cat-component-list/CatListPage";
+
+import Breadcrump from "../Cat-components/Breadcrump";
+import Sort from "../Cat-components/Sort";
+import Filteration from "../Cat-components/Filteration";
+
 import pageInfo from "../../images/FilterCapsule/page-info.svg";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
+import ListView from "../ProductView/ListView";
+import GridView from "../ProductView/GridView";
 
-const Categroriespage = () => {
-  // const location = useLocation();
-  // const searchParams = new URLSearchParams(location.search);
-  // we can use useSearchParams() hooks to get the query parameters from the URL instead of using location.search and URLSearchParams
+function SearchResult() {
   const [searchParams] = useSearchParams();
   const viewType = searchParams.get("view");
 
@@ -57,12 +56,12 @@ const Categroriespage = () => {
       <div className="flex w-full items-center justify-center">
         <div className="flex xl:w-[85%] md:w-full mt-4 md:mt-0 xl:gap-0 md:gap-4 mobile:w-full px-4 xl:px-0 xl:justify-between py-4">
           <Filteration />
-          {viewType === "list" && <CatListPage />}
-          {viewType === "grid" && <CatGrid />}
+          {viewType === "list" && <ListView />}
+          {viewType === "grid" && <GridView />}
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default Categroriespage;
+export default SearchResult;

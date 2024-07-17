@@ -10,11 +10,14 @@ import { FiChevronDown } from "react-icons/fi";
 import Seperator from "./Seperator";
 import { Link } from "react-router-dom";
 import { useAuth } from "../Contexts/AuthContext";
+import { useProduct } from "../Contexts/ProductContext";
 
 const Topheader = ({ toggleCartPopup }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [search, setSearch] = useState("");
   const { user } = useAuth();
+  const { getProduct } = useProduct();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +36,13 @@ const Topheader = ({ toggleCartPopup }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollTop]);
+
+  const handleSeaerchSubmit = (e) => {
+    e.preventDefault();
+    if (search) {
+      getProduct(search);
+    }
+  };
 
   return (
     <nav
@@ -75,25 +85,27 @@ const Topheader = ({ toggleCartPopup }) => {
           alt=""
         />
         <Link to="/">
-          <div className="logo md:h-[6vw] md:w-[6vw] xl:flex xl:items-center">
+          <div className="logo md:h-[6vw] md:w-[6vw] hidden md:block xl:flex xl:items-center">
             <img
-              className="md:h-full md:w-full md:object-cover xl:w-[60px] xl:h-[60px]"
+              className="md:h-full md:w-full md:object-cover  xl:w-[60px] xl:h-[60px]"
               src={Logo}
               alt=""
             />
           </div>
         </Link>
         <div className="right flex items-center gap-14 pl-[100px] md:ml-[-250px]">
-          <div className="search flex items-center relative mobile:left-[-26%]">
+          <form
+            className="search flex items-center relative mobile:left-[-26%]"
+            onSubmit={handleSeaerchSubmit}
+          >
             <FiSearch className="left-3 absolute text-[#5C5C5C] text-xl mobile:left-[-25px]" />
             <input
               className="bg-[#FAFAFA] border-[1px] border-[#DEDEDE] p-4 pl-10 md:w-[40vw]  xl:w-[45vw] mobile:ml-[-35px] rounded-lg mobile:px-2 mobile:py-[10px] mobile:pl-10 mobile:w-[220px] mobile:placeholder:text-xs"
               type="text"
               placeholder="Search essentials, groceries and more..."
-              name=""
-              id=""
+              onChange={(e) => setSearch(e.target.value)}
             />
-          </div>
+          </form>
           <div className="flex items-center">
             <div className="flex items-center gap-2 mobile:gap-0 mobile:absolute mobile:right-0 mobile:px-4 ">
               <Link to="/Cart">

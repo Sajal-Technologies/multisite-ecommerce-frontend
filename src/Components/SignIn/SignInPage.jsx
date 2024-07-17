@@ -10,6 +10,7 @@ import Loader from "../Loader";
 const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [validation, setValidation] = useState({
     email: false,
@@ -17,11 +18,11 @@ const SignInPage = () => {
   });
   const { login, isLoading, error, setError } = useAuth();
 
+  // Clear error after 5 seconds
   useEffect(() => {
     const timeOut = setTimeout(() => {
       if (error && typeof error === "string") setError(null);
     }, 5000);
-
     return () => clearTimeout(timeOut);
   }, [setError, error]);
 
@@ -39,7 +40,7 @@ const SignInPage = () => {
     setValidation(updatedValidation);
 
     if (!updatedValidation.email && !updatedValidation.password) {
-      login(email, password);
+      login(email, password, rememberMe);
     }
   }
 
@@ -137,13 +138,16 @@ const SignInPage = () => {
             )}
           </div>
         </div>
+
         <div className="flex items-center justify-between mt-[-18px] tablet:mb-4 tablet:mt-[-10px] xl:m-0 tablet:w-full">
           <div className="flex items-center justify-center text-xs gap-2">
             <input
               className="h-4 w-4 tablet:h-6 tablet:w-6 border-[#F2F2F2] xl:h-[22px] xl:w-[22px]"
               type="checkbox"
+              value={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
             />
-            <p className="xl:text-sm tablet:text-xl">Remember me</p>
+            <label className="xl:text-sm tablet:text-xl">Remember me</label>
           </div>
           <Link
             to="/ForgotPassword"

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Topheader from "./Components/Topheader";
 import Footer from "./Components/Footer";
@@ -15,10 +15,22 @@ import OTPVerification from "./Components/OTPVerification/OTPVerification";
 import ResetPassword from "./Components/ResetPassword/ResetPassword";
 import ScrollToTop from "./Components/Utils/ScrollToTop";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
+import { useAuth } from "./Contexts/AuthContext";
+import useLocalStorage from "./hooks/useLocalStorage";
+import SearchResult from "./Components/SearchPage/SearchResult";
 
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
   const { pathname } = useLocation();
+  const { setUser } = useAuth();
+  const { getUser } = useLocalStorage();
+
+  useEffect(() => {
+    const storedUser = getUser("user");
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, [setUser]);
 
   const toggleCartPopup = () => {
     setIsCartPopupVisible(!isCartPopupVisible);
@@ -48,6 +60,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/Categories" element={<Categroriespage />} />
+        <Route path="/search" element={<SearchResult />} />
         <Route path="/Product" element={<ProductPage />} />
         <Route path="/Product-style2" element={<ProductStyle2 />} />
         <Route path="/Cart" element={<CartPage />} />

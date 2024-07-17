@@ -18,8 +18,8 @@ const RelatedProduct = () => {
           </div>
         </div>
       </div>
-      <div className="flex w-[85%] justify-between tablet:w-full tablet:px-8 tablet:gap-4 tablet:overflow-x-auto tablet:scroll-smooth tablet:snap-x mobile:w-full mobile:px-4 mobile:gap-2 mobile:overflow-x-auto mobile:scroll-smooth mobile:snap-x hideScroll">
-        {Array.from({ length: 6 }).map((_, i) => (
+      <div className="flex w-[85%] justify-between tablet:w-full tablet:px-8 tablet:gap-4 gap-8 tablet:overflow-x-auto tablet:scroll-smooth tablet:snap-x mobile:w-full mobile:px-4 mobile:gap-2 mobile:overflow-x-auto mobile:scroll-smooth mobile:snap-x hideScroll">
+        {Array.from({ length: 4 }).map((_, i) => (
           <Card key={i} />
         ))}
       </div>

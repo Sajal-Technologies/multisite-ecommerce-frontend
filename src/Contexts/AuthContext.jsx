@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { authFetch } from "../Axios Instance/authAxios";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const AuthContext = createContext();
 
@@ -20,9 +21,10 @@ function AuthProvider({ children }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { addUser } = useLocalStorage();
 
-  // Perform login logic here
-  const login = async function (email, password) {
+  // Performed login logic here
+  const login = async function (email, password, rememberMe) {
     // Perform logic here
     try {
       setError(null);
@@ -32,10 +34,13 @@ function AuthProvider({ children }) {
         password,
       });
       setUser(response.data);
-      console.log(response.data);
+
       if (response.data.verified === false) {
         navigate("/OTPVerification");
         resendOTP(response.data.email);
+      } else if (rememberMe && response.data?.token) {
+        addUser("user", response.data);
+        navigate("/");
       } else navigate("/");
     } catch (error) {
       handleAuthError(error, setError);
@@ -44,10 +49,8 @@ function AuthProvider({ children }) {
     }
   };
 
-  // Perform Register logic here
-
+  // Performed Register logic here
   const signUp = async function (email, password, name) {
-    // Perform logic here
     try {
       setError(null);
       setIsLoading(true);
@@ -56,7 +59,6 @@ function AuthProvider({ children }) {
         password,
         name,
       });
-      console.log(response.data);
       setUser(response.data);
       navigate("/OTPVerification");
     } catch (error) {
@@ -67,8 +69,8 @@ function AuthProvider({ children }) {
     }
   };
 
+  //Verification Logic
   const verification = async function (email, otp) {
-    // Perform logic here
     try {
       setError(null);
       setIsLoading(true);
@@ -77,9 +79,8 @@ function AuthProvider({ children }) {
         email,
         verification_code: otp,
       });
-      console.log(response.data);
       setUser(response.data);
-      navigate("/SignIn");
+      navigate("/");
     } catch (error) {
       console.log(error.response);
       handleAuthError(error, setError);
@@ -88,12 +89,12 @@ function AuthProvider({ children }) {
     }
   };
 
+  //Resend OTP Logic
   const resendOTP = async function (
     email = user?.email,
     setOtpResendMessage = null,
     setSeconds = null
   ) {
-    // Perform logic here
     try {
       setError(null);
       setIsLoading(true);
@@ -151,7 +152,6 @@ function AuthProvider({ children }) {
         setMessage(response.data.Message);
       }
     } catch (error) {
-      console.log(error.response);
       handleAuthError(error, setError);
     } finally {
       setIsLoading(false);
@@ -165,6 +165,7 @@ function AuthProvider({ children }) {
         error,
         setError,
         isLoading,
+        setUser,
         login,
         signUp,
         verification,
