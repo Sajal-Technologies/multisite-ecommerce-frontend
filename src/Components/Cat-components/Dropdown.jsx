@@ -1,15 +1,12 @@
 import Select from "react-select";
 import { useProduct } from "../../Contexts/ProductContext";
-import { useSearchParams } from "react-router-dom";
 
 const Dropdown = () => {
-  const { getProduct } = useProduct();
-  const [queryString] = useSearchParams();
-  const searchQuery = queryString.get("q");
+  const { getProduct, bodyData } = useProduct();
 
   const handleSort = (e) => {
-    if (searchQuery) {
-      getProduct(searchQuery, e.value);
+    if (bodyData.product_name) {
+      getProduct({ ...bodyData, sort_by: e.value });
     }
   };
 

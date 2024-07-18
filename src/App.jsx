@@ -18,12 +18,15 @@ import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import { useAuth } from "./Contexts/AuthContext";
 import useLocalStorage from "./hooks/useLocalStorage";
 import SearchResult from "./Components/SearchPage/SearchResult";
+import Loader from "./Components/Loader";
+import { useProduct } from "./Contexts/ProductContext";
 
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
   const { pathname } = useLocation();
   const { setUser } = useAuth();
   const { getUser } = useLocalStorage();
+  const { isLoading: isProductLoading } = useProduct();
 
   useEffect(() => {
     const storedUser = getUser("user");
@@ -56,6 +59,12 @@ const App = () => {
 
       {/*  Render Topheader only if the current path is not a credential page  */}
       {!isCredencialPage && <Topheader toggleCartPopup={toggleCartPopup} />}
+
+      {isProductLoading && (
+        <div className=" w-screen h-screen fixed top-0 right-0 left-0 z-30 grid place-items-center bg-[rgba(0,0,0,0.3)]">
+          <Loader type="lg" />
+        </div>
+      )}
 
       <Routes>
         <Route path="/" element={<Main />} />

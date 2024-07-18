@@ -1,14 +1,17 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import productFetch from "../Axios Instance/productAxios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
 const ProductContext = createContext();
 
+let controller;
+
 const initialState = {
   searchProducts: [],
   isLoading: false,
   error: "",
+  view: "grid",
 };
 
 function reducer(state, action) {
@@ -27,41 +30,42 @@ function reducer(state, action) {
         isLoading: false,
         error: action.payload,
       };
+    case "view/set":
+      return { ...state, view: action.payload };
     default:
       throw new Error("Invalid action");
   }
 }
 
 function ProductProvider({ children }) {
-  const [{ searchProducts, isLoading, error }, dispatch] = useReducer(
+  const [{ searchProducts, isLoading, error, view }, dispatch] = useReducer(
     reducer,
     initialState
   );
+  const [bodyData, setBodyData] = useState({});
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  async function getProduct(productName, sortby = "relevance") {
+  async function getProduct(data = bodyData.product_name) {
+    controller = new AbortController();
     dispatch({ type: "loading", payload: true });
+    console.log(data);
     try {
-      const response = await productFetch.post(
-        "/oxy-search-product/",
-        {
-          product_name: productName,
-          sort_by: sortby,
+      const response = await productFetch.post("/oxy-search-product/", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token.access}`,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user?.token.access}`,
-          },
-        }
-      );
+        signal: controller.signal,
+      });
       console.log(response.data["Product_data"]);
+      console.log(data);
+      setBodyData(data);
       dispatch({
         type: "product/loaded",
         payload: response.data["Product_data"],
       });
-      navigate("/search?q=" + productName + "&view=grid");
+      navigate("/search?q=" + data.product_name);
     } catch (error) {
       console.log(error);
       dispatch({
@@ -71,9 +75,28 @@ function ProductProvider({ children }) {
     }
   }
 
+  function setView(str) {
+    dispatch({ type: "view/set", payload: str });
+  }
+
+  function cancelRequest() {
+    if (controller) {
+      controller.abort();
+    }
+  }
+
   return (
     <ProductContext.Provider
-      value={{ searchProducts, getProduct, isLoading, error }}
+      value={{
+        searchProducts,
+        bodyData,
+        getProduct,
+        isLoading,
+        error,
+        setView,
+        view,
+        cancelRequest,
+      }}
     >
       {children}
     </ProductContext.Provider>

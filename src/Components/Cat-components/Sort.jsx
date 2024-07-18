@@ -1,9 +1,11 @@
 import Dropdown from "./Dropdown";
 import { FiList } from "react-icons/fi";
 import { FiGrid } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { useProduct } from "../../Contexts/ProductContext";
 
 const Sort = () => {
+  const { searchProducts, setView } = useProduct();
+
   return (
     <>
       <div className=" xl:px-[7.5vw] tablet:px-4 mobile:px-4 mobile:w-full flex tablet:mt-6 xl:mt-10 mobile:mt-5 items-center justify-between">
@@ -11,22 +13,27 @@ const Sort = () => {
           <h1 className="font-semibold tablet:text-xl xl:text-2xl text-[#121212] mobile:text-lg mobile:text-nowrap">
             Category title
           </h1>
-          <span className="text-[#5C5C5C] mobile:text-xs">(195 results)</span>
+          <span className="text-[#5C5C5C] mobile:text-xs">
+            ({searchProducts.length} results)
+          </span>
         </div>
         <div className=" flex items-center gap-2">
           <p className="text-[#121212] mobile:hidden">Sort by</p>
           <Dropdown />
           <div className="flex items-center mobile:flex">
-            <Link to="?view=list">
-              <div className=" group flex bg-[#DEDEDE] hover:bg-[#FF7F00] hover:text-[white] p-2 rounded-s-md">
-                <FiList className="bg-[#DEDEDE] text-[#5C5C5C]  group-hover:bg-[#FF7F00] group-hover:text-white" />
-              </div>
-            </Link>
-            <Link to="?view=grid">
-              <div className="group flex bg-[#FF7F00] hover:bg-[#FF7F00] hover:text-[white] p-2 rounded-e-md">
-                <FiGrid className="bg-[#FF7F00] text-white group-hover:bg-[#FF7F00] group-hover:text-white" />
-              </div>
-            </Link>
+            <button
+              className=" group flex bg-[#DEDEDE] hover:bg-[#FF7F00] hover:text-[white] p-2 rounded-s-md"
+              onClick={() => setView("list")}
+            >
+              <FiList className="bg-[#DEDEDE] text-[#5C5C5C]  group-hover:bg-[#FF7F00] group-hover:text-white" />
+            </button>
+
+            <button
+              className="group flex bg-[#FF7F00] hover:bg-[#FF7F00] hover:text-[white] p-2 rounded-e-md"
+              onClick={() => setView("grid")}
+            >
+              <FiGrid className="bg-[#FF7F00] text-white group-hover:bg-[#FF7F00] group-hover:text-white" />
+            </button>
           </div>
         </div>
       </div>

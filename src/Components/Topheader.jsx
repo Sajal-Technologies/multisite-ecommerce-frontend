@@ -17,7 +17,7 @@ const Topheader = ({ toggleCartPopup }) => {
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [search, setSearch] = useState("");
   const { user } = useAuth();
-  const { getProduct } = useProduct();
+  const { getProduct, cancelRequest } = useProduct();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,9 +39,11 @@ const Topheader = ({ toggleCartPopup }) => {
 
   const handleSeaerchSubmit = (e) => {
     e.preventDefault();
-    if (search) {
-      getProduct(search);
-    }
+    if (search === "") return;
+    cancelRequest();
+    getProduct({
+      product_name: search,
+    });
   };
 
   return (
