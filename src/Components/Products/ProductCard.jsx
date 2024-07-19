@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FiTrendingDown } from "react-icons/fi";
+// import { FiTrendingDown } from "react-icons/fi";
 import { FiShoppingBag } from "react-icons/fi";
 
 function ProductCard({ product }) {
@@ -30,10 +30,10 @@ function ProductCard({ product }) {
                 />
               </div> */}
             </div>
-            <div className="flex items-center gap-2 justify-center bg-[#F2F2F2] rounded-md px-2 mobile:hidden">
+            {/* <div className="flex items-center gap-2 justify-center bg-[#F2F2F2] rounded-md px-2 mobile:hidden">
               <p className="text-[#0B8500] text-lg font-medium">-11%</p>
               <FiTrendingDown className="text-[#0B8500]" />
-            </div>
+            </div> */}
           </div>
         </Link>
         <div className="px-4">

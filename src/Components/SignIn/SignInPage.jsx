@@ -6,6 +6,7 @@ import GoogleSignIn from "./Components/GoogleSignIn";
 import FacebookSignIn from "./Components/FacebookSignIn";
 import LoginBuilding from "../../images/SigninPage/LoginBuilding.png";
 import Loader from "../Loader";
+import { useProduct } from "../../Contexts/ProductContext";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
@@ -17,14 +18,16 @@ const SignInPage = () => {
     password: false,
   });
   const { login, isLoading, error, setError } = useAuth();
+  const { error: searchError, setSearchError } = useProduct();
 
   // Clear error after 5 seconds
   useEffect(() => {
     const timeOut = setTimeout(() => {
       if (error && typeof error === "string") setError(null);
+      if (searchError) setSearchError(null);
     }, 5000);
     return () => clearTimeout(timeOut);
-  }, [setError, error]);
+  }, [setError, error, searchError, setSearchError]);
 
   // Toggle password visibility
   const toggleShowPassword = () => {
@@ -47,6 +50,11 @@ const SignInPage = () => {
   return (
     <div className="flex signin flex-col relative xl:flex-row h-screen overflow-x-hidden justify-between w-full overflow-hidden">
       <div className="flex flex-col tablet:mt-[-5%] mt-[230px] h-fit tablet:z-20 p-6 md:p-12 xl:px-24 xl:py-12 w-full xl:w-[52%] gap-6 xl:m-0 tablet:h-screen tablet:pt-[15%] tablet:items-start tablet:px-[10%] tablet:justify-center">
+        {searchError && (
+          <p className="text-red-600 font-bold text-xl text-center">
+            {searchError}
+          </p>
+        )}
         <h1 className="text-[#121212] tablet:text-5xl text-2xl md:text-6xl xl:text-6xl font-bold">
           Sign In
         </h1>

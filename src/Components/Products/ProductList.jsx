@@ -2,7 +2,7 @@ import Amazon from "../../images/CategoriesPage/CatComponent/CatList/amazon.png"
 import Flipkart from "../../images/CategoriesPage/CatComponent/CatList/flipkart.png";
 import Meesho from "../../images/CategoriesPage/CatComponent/CatList/meesho.png";
 import Indiamart from "../../images/CategoriesPage/CatComponent/CatList/indiamart.png";
-import { FiTrendingDown } from "react-icons/fi";
+// import { FiTrendingDown } from "react-icons/fi";
 import { FiShoppingBag } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
@@ -79,10 +79,10 @@ function ProductList({ product }) {
                 />
               </div>
             </div>
-            <div className="flex items-center gap-6 justify-center bg-[#F2F2F2] py-1 rounded-md px-2 xl:mr-4 tablet:mr-2">
+            {/* <div className="flex items-center gap-6 justify-center bg-[#F2F2F2] py-1 rounded-md px-2 xl:mr-4 tablet:mr-2">
               <p className="text-[#0B8500] text-lg font-medium">-11%</p>
               <FiTrendingDown className="text-[#0B8500]" />
-            </div>
+            </div> */}
           </div>
         </Link>
         <Link to="/Product">

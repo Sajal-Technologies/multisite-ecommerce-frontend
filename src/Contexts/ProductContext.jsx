@@ -10,7 +10,7 @@ let controller;
 const initialState = {
   searchProducts: [],
   isLoading: false,
-  error: "",
+  error: null,
   view: "grid",
 };
 
@@ -20,18 +20,43 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: action.payload,
+        error: null,
       };
     case "product/loaded":
       return { ...state, searchProducts: action.payload, isLoading: false };
 
     case "rejected":
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload,
-      };
+      if (action.payload.response) {
+        if (action.payload.response.status === 401) {
+          return {
+            ...state,
+            isLoading: false,
+            error: "Please login First!",
+          };
+        } else {
+          return {
+            ...state,
+            isLoading: false,
+            error: action.payload.response.data.Message,
+          };
+        }
+      } else if (action.payload.request) {
+        return {
+          ...state,
+          isLoading: false,
+          error: action.payload?.message,
+        };
+      } else {
+        return {
+          ...state,
+          isLoading: false,
+          error: action.payload?.message,
+        };
+      }
     case "view/set":
       return { ...state, view: action.payload };
+    case "searchError/set":
+      return { ...state, error: action.payload };
     default:
       throw new Error("Invalid action");
   }
@@ -49,7 +74,6 @@ function ProductProvider({ children }) {
   async function getProduct(data = bodyData.product_name) {
     controller = new AbortController();
     dispatch({ type: "loading", payload: true });
-    console.log(data);
     try {
       const response = await productFetch.post("/oxy-search-product/", data, {
         headers: {
@@ -58,8 +82,6 @@ function ProductProvider({ children }) {
         },
         signal: controller.signal,
       });
-      console.log(response.data["Product_data"]);
-      console.log(data);
       setBodyData(data);
       dispatch({
         type: "product/loaded",
@@ -67,11 +89,13 @@ function ProductProvider({ children }) {
       });
       navigate("/search?q=" + data.product_name);
     } catch (error) {
-      console.log(error);
       dispatch({
         type: "rejected",
-        payload: error.response.data.message,
+        payload: error,
       });
+
+      if (error?.response?.status === 401) navigate("/SignIn");
+      navigate("/search?q=" + data.product_name);
     }
   }
 
@@ -85,6 +109,10 @@ function ProductProvider({ children }) {
     }
   }
 
+  function setSearchError(err) {
+    dispatch({ type: "searchError/set", payload: err });
+  }
+
   return (
     <ProductContext.Provider
       value={{
@@ -96,6 +124,7 @@ function ProductProvider({ children }) {
         setView,
         view,
         cancelRequest,
+        setSearchError,
       }}
     >
       {children}

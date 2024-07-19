@@ -106,6 +106,8 @@ const Topheader = ({ toggleCartPopup }) => {
               type="text"
               placeholder="Search essentials, groceries and more..."
               onChange={(e) => setSearch(e.target.value)}
+              onBlur={() => setSearch("")}
+              value={search}
             />
           </form>
           <div className="flex items-center">

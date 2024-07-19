@@ -1,10 +1,25 @@
+import { useSearchParams } from "react-router-dom";
 import { useProduct } from "../../Contexts/ProductContext";
 import ProductList from "../Products/ProductList";
 
 function ListView() {
-  const { searchProducts } = useProduct();
+  const { searchProducts, error } = useProduct();
+  const [queryString] = useSearchParams();
+  const searchQuery = queryString.get("q");
 
-  if (searchProducts.length === 0) {
+  if (error) {
+    return (
+      <div className="flex justify-center items-center w-full h-[50vh]">
+        <h1 className="text-[#5C5C5C] font-semibold text-2xl">
+          {error === "Unable to fetch the Product data: 'results'"
+            ? error.replace("results", searchQuery)
+            : error}
+        </h1>
+      </div>
+    );
+  }
+
+  if (!error && searchProducts.length === 0) {
     return (
       <div className="flex justify-center items-center w-full h-[50vh]">
         <h1 className="text-[#5C5C5C] font-semibold text-2xl">

@@ -6,7 +6,6 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const AuthContext = createContext();
 
 const handleAuthError = (error, setError) => {
-  console.log(error);
   if (error?.response?.data?.errors) {
     setError(error.response.data.errors);
   } else if (error.response?.data?.Message) {
