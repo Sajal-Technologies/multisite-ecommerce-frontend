@@ -26,7 +26,6 @@ const OTPVerification = () => {
   }, [setError, error, otpResendMessage]);
 
   const handleSubmit = function () {
-    console.log(otp.join(""));
     verification(user?.email, otp.join(""));
   };
 

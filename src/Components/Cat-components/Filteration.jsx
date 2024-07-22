@@ -11,7 +11,7 @@ const MAX = 12000;
 
 const Filteration = () => {
   const [values, setValues] = useState([MIN, MAX]);
-  const { bodyData, getProduct, cancelRequest } = useProduct();
+  const { bodyData, getSearchProduct, cancelRequest } = useProduct();
 
   useEffect(() => {
     if (values[0] === MIN && values[1] === MAX) return;
@@ -20,7 +20,7 @@ const Filteration = () => {
     cancelRequest();
 
     const Timeout = setTimeout(() => {
-      getProduct({ ...bodyData, ppr_min: values[0], ppr_max: values[1] });
+      getSearchProduct({ ...bodyData, ppr_min: values[0], ppr_max: values[1] });
     }, 2000);
 
     return () => clearTimeout(Timeout);

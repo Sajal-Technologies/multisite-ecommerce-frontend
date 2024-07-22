@@ -17,7 +17,7 @@ const Topheader = ({ toggleCartPopup }) => {
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [search, setSearch] = useState("");
   const { user } = useAuth();
-  const { getProduct, cancelRequest } = useProduct();
+  const { getSearchProduct, cancelRequest } = useProduct();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,7 +41,7 @@ const Topheader = ({ toggleCartPopup }) => {
     e.preventDefault();
     if (search === "") return;
     cancelRequest();
-    getProduct({
+    getSearchProduct({
       product_name: search,
     });
   };
@@ -106,7 +106,6 @@ const Topheader = ({ toggleCartPopup }) => {
               type="text"
               placeholder="Search essentials, groceries and more..."
               onChange={(e) => setSearch(e.target.value)}
-              onBlur={() => setSearch("")}
               value={search}
             />
           </form>

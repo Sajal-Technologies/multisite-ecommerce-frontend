@@ -78,6 +78,7 @@ function AuthProvider({ children }) {
         email,
         verification_code: otp,
       });
+      console.log(response.data);
       setUser(response.data);
       navigate("/");
     } catch (error) {

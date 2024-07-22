@@ -2,11 +2,11 @@ import Select from "react-select";
 import { useProduct } from "../../Contexts/ProductContext";
 
 const Dropdown = () => {
-  const { getProduct, bodyData } = useProduct();
+  const { getSearchProduct, bodyData } = useProduct();
 
   const handleSort = (e) => {
     if (bodyData.product_name) {
-      getProduct({ ...bodyData, sort_by: e.value });
+      getSearchProduct({ ...bodyData, sort_by: e.value });
     }
   };
 

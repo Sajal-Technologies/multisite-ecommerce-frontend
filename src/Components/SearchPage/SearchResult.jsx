@@ -5,9 +5,19 @@ import Filteration from "../Cat-components/Filteration";
 import ListView from "../ProductView/ListView";
 import GridView from "../ProductView/GridView";
 import { useProduct } from "../../Contexts/ProductContext";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 function SearchResult() {
-  const { view } = useProduct();
+  const { view, bodyData, getSearchProduct } = useProduct();
+  const [searchQuery] = useSearchParams();
+  const query = searchQuery.get("q");
+
+  useEffect(() => {
+    if (bodyData !== null) return;
+    if (!query) return;
+    getSearchProduct({ product_name: query });
+  }, []);
 
   return (
     <div className="flex flex-col w-full bg-[#FAFAFA] pt-[200px] mobile:pt-[70px]">

@@ -3,7 +3,7 @@ import { useProduct } from "../../Contexts/ProductContext";
 import ProductCard from "../Products/ProductCard";
 
 function GridView() {
-  const { searchProducts, error } = useProduct();
+  const { searchProducts, error, isLoading: searchLoading } = useProduct();
   const [queryString] = useSearchParams();
   const searchQuery = queryString.get("q");
 
@@ -19,7 +19,7 @@ function GridView() {
     );
   }
 
-  if (!error && searchProducts.length === 0) {
+  if (!error && !searchLoading && searchProducts.length === 0) {
     return (
       <div className="flex justify-center items-center w-full h-[50vh]">
         <h1 className="text-[#5C5C5C] font-semibold text-2xl">

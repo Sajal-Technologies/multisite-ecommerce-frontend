@@ -103,7 +103,7 @@ function ProductList({ product }) {
               </p>
             </div>
           </Link>
-          <div className="h-12 w-12 mx-4 flex items-center cursor-pointer justify-center rounded-full bg-[#f7fdff] border-[1px] border-[#caf4ff]">
+          <div className="h-12 w-12 mx-4 flex items-center cursor-pointer justify-center rounded-full ml-auto bg-[#f7fdff] border-[1px] border-[#caf4ff]">
             <FiShoppingBag className="text-[#005F85] text-[24px] cursor-pointer" />
           </div>
         </div>

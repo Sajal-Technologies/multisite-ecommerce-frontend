@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { FiShoppingBag } from "react-icons/fi";
 
 function ProductCard({ product }) {
-  const { price, thumbnail, title, merchant } = product;
+  const { price, thumbnail, title, merchant, product_id } = product;
+
   return (
     <div className="card mobile:w-[170px] md:ml-0 md:w-[230px] md:h-[380px] md:m-0 mobile:h-[274px] mobile:flex-shrink-0 flex-shrink-0 inline-block mobile:inline-block xl:w-[300px] h-[400px] rounded-2xl overflow-hidden border-[1px] border-[#F2F2F2]">
-      <Link to="/Product">
+      <Link to={`/product/${product_id}`}>
         <div className="imgcontainer w-full h-1/2 flex items-center justify-center bg-[#FAFEFF]">
           <img
             loading="lazy"
@@ -17,7 +18,7 @@ function ProductCard({ product }) {
         </div>
       </Link>
       <div className="w-full h-1/2 py-4 flex flex-col gap-4 mobile:gap-1">
-        <Link to="/Product">
+        <Link to={`/product/${product_id}`}>
           <div className="sellers flex justify-between px-4 ">
             <div className="flex items-center gap-2">
               <p>{merchant.name}</p>
@@ -38,14 +39,14 @@ function ProductCard({ product }) {
         </Link>
         <div className="px-4">
           <Link
-            to="/Product"
+            to={`/product/${product_id}`}
             className="text-[19px] text-[#3D3D3D] mobile:font-semibold mobile:text-sm font-medium overflow-hidden break-words line-clamp-2 leading-tight"
           >
             {title}
           </Link>
         </div>
         <div className="flex justify-between items-center">
-          <Link to="/Product">
+          <Link to={`/product/${product_id}`}>
             <div className="">
               <p className="uppercase px-4 text-[#5C5C5C] text-lg mobile:text-xs">
                 save <span className="line-through">&#8377;12550</span>

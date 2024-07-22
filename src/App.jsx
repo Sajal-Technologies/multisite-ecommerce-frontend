@@ -20,6 +20,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import SearchResult from "./Components/SearchPage/SearchResult";
 import Loader from "./Components/Loader";
 import { useProduct } from "./Contexts/ProductContext";
+import { ProductDetailsProvider } from "./Contexts/ProductDetails";
 
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
@@ -70,7 +71,14 @@ const App = () => {
         <Route path="/" element={<Main />} />
         <Route path="/Categories" element={<Categroriespage />} />
         <Route path="/search" element={<SearchResult />} />
-        <Route path="/Product" element={<ProductPage />} />
+        <Route
+          path="/Product/:id"
+          element={
+            <ProductDetailsProvider>
+              <ProductPage />
+            </ProductDetailsProvider>
+          }
+        />
         <Route path="/Product-style2" element={<ProductStyle2 />} />
         <Route path="/Cart" element={<CartPage />} />
         <Route path="/SignIn" element={<SignInPage />} />

@@ -27,19 +27,11 @@ function reducer(state, action) {
 
     case "rejected":
       if (action.payload.response) {
-        if (action.payload.response.status === 401) {
-          return {
-            ...state,
-            isLoading: false,
-            error: "Please login First!",
-          };
-        } else {
-          return {
-            ...state,
-            isLoading: false,
-            error: action.payload.response.data.Message,
-          };
-        }
+        return {
+          ...state,
+          isLoading: false,
+          error: action.payload.response.data.Message,
+        };
       } else if (action.payload.request) {
         return {
           ...state,
@@ -67,18 +59,17 @@ function ProductProvider({ children }) {
     reducer,
     initialState
   );
-  const [bodyData, setBodyData] = useState({});
+  const [bodyData, setBodyData] = useState(null);
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  async function getProduct(data = bodyData.product_name) {
+  async function getSearchProduct(data = bodyData.product_name) {
     controller = new AbortController();
     dispatch({ type: "loading", payload: true });
     try {
       const response = await productFetch.post("/oxy-search-product/", data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user?.token.access}`,
         },
         signal: controller.signal,
       });
@@ -93,9 +84,6 @@ function ProductProvider({ children }) {
         type: "rejected",
         payload: error,
       });
-
-      if (error?.response?.status === 401) navigate("/SignIn");
-      navigate("/search?q=" + data.product_name);
     }
   }
 
@@ -118,13 +106,14 @@ function ProductProvider({ children }) {
       value={{
         searchProducts,
         bodyData,
-        getProduct,
+        getSearchProduct,
         isLoading,
         error,
         setView,
         view,
         cancelRequest,
         setSearchError,
+        user,
       }}
     >
       {children}
