@@ -24,7 +24,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="w-[45%] mobile:hidden flex h-full items-center justify-center absolute right-0">
-            <div className="w-[85%] relative px-4 flex items-center justify-between h-[50px] bg-white rounded-lg">
+            <div className="w-full relative px-4 mr-4 flex items-center justify-between h-[50px] bg-white rounded-lg">
               <FiMail className="text-[#005F85] absolute top-[29.3%] text-xl" />
               <input
                 className="ml-8 placeholder:text-[#005F85] text-[#005F85] w-[70%]"
@@ -46,12 +46,13 @@ const Footer = () => {
                 className="placeholder:text-[#005F85] ml-9"
                 placeholder="Enter your email"
               />
-              <button className="bg-[#FF7F00] px-4 py-[7px] rounded-md text-white">
+              <button className="bg-[#FF7F00] px-4 py-[7px] ml-auto pr-2 rounded-md text-white">
                 Submit
               </button>
             </div>
           </div>
         </div>
+
         <div className="flex mobile:flex-col tablet:mt-6 justify-between mobile:mt-8 mt-[2vw]">
           <div className="w-[25%] mobile:w-full">
             <img className="mb-2" src={Logo} alt="" />

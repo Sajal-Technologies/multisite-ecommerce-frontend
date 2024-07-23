@@ -63,8 +63,12 @@ function ProductDetailsProvider({ children }) {
           product_id: id,
         });
         console.log(response.data.Product_detail);
-        dispatch({ type: "productDetails/loaded", payload: response.data });
+        dispatch({
+          type: "productDetails/loaded",
+          payload: response.data.Product_detail,
+        });
       } catch (error) {
+        console.log(error);
         dispatch({ type: "rejected", payload: error });
       }
     }

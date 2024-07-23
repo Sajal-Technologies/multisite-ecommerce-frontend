@@ -1,6 +1,6 @@
 import Breadcrump from "../Cat-components/Breadcrump";
 import CartCard from "./CartCard";
-import Cartpopup from "./Cartpopup";
+// import Cartpopup from "./Cartpopup";
 
 const CartPage = () => {
   return (

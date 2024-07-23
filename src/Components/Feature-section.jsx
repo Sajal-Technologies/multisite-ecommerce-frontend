@@ -8,9 +8,9 @@ const Feature = () => {
   return (
     <>
       {/* Large Screen */}
-      <div className="flex md:hidden xl:block mt-[4vw] mobile:hidden">
-        <div className="flex items-center justify-center">
-          <div className="py-6 border-[1px] border-[#00A8EB] w-[85%] rounded-lg px-16 flex items-center justify-between">
+      <div className="block mt-[4vw] mobile:hidden">
+        <div className="w-full xl:w-[85%] mx-auto">
+          <div className="py-6 border-[1px] border-[#00A8EB] mx-7 xl:mx-0 rounded-lg px-2  flex items-center justify-around">
             <div className="items flex items-center justify-center gap-4">
               <FiPackage className="text-[#005F85] text-3xl" />
               <div className="">
