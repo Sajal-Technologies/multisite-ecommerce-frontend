@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
+import AddToCart from "../AddToCart";
 // import { FiTrendingDown } from "react-icons/fi";
-import { FiShoppingBag } from "react-icons/fi";
 
 function ProductCard({ product }) {
   const { price, thumbnail, title, merchant, product_id } = product;
@@ -56,9 +56,7 @@ function ProductCard({ product }) {
               </p>
             </div>
           </Link>
-          <div className="h-12 w-12 mobile:h-9 mobile:w-9 mx-4 flex items-center justify-center rounded-full bg-[#f7fdff] border-[1px] border-[#caf4ff]">
-            <FiShoppingBag className="text-[#005F85] text-[24px] mobile:text-xl" />
-          </div>
+          <AddToCart id={product_id} />
         </div>
       </div>
     </div>

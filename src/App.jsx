@@ -20,7 +20,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import SearchResult from "./Components/SearchPage/SearchResult";
 import Loader from "./Components/Loader";
 import { useProduct } from "./Contexts/ProductContext";
-import { ProductDetailsProvider } from "./Contexts/ProductDetails";
+import { ProductDetailsProvider } from "./Contexts/ProductDetailsContext";
 
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);

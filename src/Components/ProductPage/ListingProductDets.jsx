@@ -9,7 +9,7 @@ import { FiShoppingBag } from "react-icons/fi";
 import { FiCheck } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import ProductItem from "./ProductItem/ProductItem.jsx";
-import { useProductDetails } from "../../Contexts/ProductDetails.jsx";
+import { useProductDetails } from "../../Contexts/ProductDetailsContext.jsx";
 
 const ListingProductDets = () => {
   const { productDetails } = useProductDetails();
