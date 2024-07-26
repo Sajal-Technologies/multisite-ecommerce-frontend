@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { authFetch } from "../Axios Instance/authAxios";
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -20,7 +20,14 @@ function AuthProvider({ children }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { addUser } = useLocalStorage();
+  const { addUser, getUser } = useLocalStorage();
+
+  useEffect(() => {
+    const storedUser = getUser("user");
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []);
 
   // Performed login logic here
   const login = async function (email, password, rememberMe) {
@@ -165,7 +172,6 @@ function AuthProvider({ children }) {
         error,
         setError,
         isLoading,
-        setUser,
         login,
         signUp,
         verification,

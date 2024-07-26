@@ -1,7 +1,6 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import productFetch from "../Axios Instance/productAxios";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
 
 const ProductContext = createContext();
 
@@ -61,9 +60,9 @@ function ProductProvider({ children }) {
   );
   const [bodyData, setBodyData] = useState(null);
   const navigate = useNavigate();
-  const { user } = useAuth();
 
   async function getSearchProduct(data = bodyData.product_name) {
+    navigate("/search?q=" + data.product_name);
     controller = new AbortController();
     dispatch({ type: "loading", payload: true });
     try {
@@ -78,7 +77,6 @@ function ProductProvider({ children }) {
         type: "product/loaded",
         payload: response.data["Product_data"],
       });
-      navigate("/search?q=" + data.product_name);
     } catch (error) {
       dispatch({
         type: "rejected",
@@ -113,7 +111,6 @@ function ProductProvider({ children }) {
         view,
         cancelRequest,
         setSearchError,
-        user,
       }}
     >
       {children}

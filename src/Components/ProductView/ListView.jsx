@@ -1,9 +1,7 @@
 import { useSearchParams } from "react-router-dom";
-import { useProduct } from "../../Contexts/ProductContext";
 import ProductList from "../Products/ProductList";
 
-function ListView() {
-  const { searchProducts, error, isLoading: searchLoading } = useProduct();
+function ListView({ searchProducts, error, searchLoading }) {
   const [queryString] = useSearchParams();
   const searchQuery = queryString.get("q");
 

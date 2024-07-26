@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import Breadcrump from "../Cat-components/Breadcrump";
-import CartCard from "./CartCard";
-import { useCart } from "../../Contexts/CartContext";
-import { useAuth } from "../../Contexts/AuthContext";
+import Breadcrump from "../Components/Cat-components/Breadcrump";
+import CartCard from "../Components/CartPage/CartCard";
+import { useCart } from "../Contexts/CartContext";
+import { useAuth } from "../Contexts/AuthContext";
 import { Link } from "react-router-dom";
-import Loader from "../Loader";
+import Loader from "../Components/Loader";
 // import Cartpopup from "./Cartpopup";
 
 const CartPage = () => {
@@ -49,7 +49,7 @@ const CartPage = () => {
             )}
 
             {cartItems.length !== 0 && (
-              <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] justify-items-center mobile:grid-cols-1 mobile:justify-items-stretch gap-4 mobile:w-full">
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] justify-items-center mobile:grid-cols-1 mobile:justify-items-stretch gap-4 mobile:gap-4 mobile:w-full">
                 {cartItems.map((item, i) => (
                   <CartCard key={i} item={item} />
                 ))}

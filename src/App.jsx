@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Topheader from "./Components/Topheader";
 import Footer from "./Components/Footer";
@@ -6,7 +6,7 @@ import Main from "./Components/Main";
 import Categroriespage from "./Components/Cat-components/Categroriespage";
 import ProductPage from "./Components/ProductPage/ProductPage";
 import ProductStyle2 from "./Components/ProductPage/ProductStyle2/ProductStyle2";
-import CartPage from "./Components/CartPage/CartPage";
+import CartPage from "./pages/CartPage";
 import Cartpopup from "./Components/CartPage/Cartpopup";
 import SignInPage from "./Components/SignIn/SignInPage";
 import SignUpPage from "./Components/SignIn/SignUpPage";
@@ -15,26 +15,13 @@ import OTPVerification from "./Components/OTPVerification/OTPVerification";
 import ResetPassword from "./Components/ResetPassword/ResetPassword";
 import ScrollToTop from "./Components/Utils/ScrollToTop";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
-import { useAuth } from "./Contexts/AuthContext";
-import useLocalStorage from "./hooks/useLocalStorage";
-import SearchResult from "./Components/SearchPage/SearchResult";
-import Loader from "./Components/Loader";
-import { useProduct } from "./Contexts/ProductContext";
+import SearchResult from "./pages/SearchResult";
 import { ProductDetailsProvider } from "./Contexts/ProductDetailsContext";
+import PageNotFound from "./pages/PageNotFound";
 
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
   const { pathname } = useLocation();
-  const { setUser } = useAuth();
-  const { getUser } = useLocalStorage();
-  const { isLoading: isProductLoading } = useProduct();
-
-  useEffect(() => {
-    const storedUser = getUser("user");
-    if (storedUser) {
-      setUser(storedUser);
-    }
-  }, [setUser]);
 
   const toggleCartPopup = () => {
     setIsCartPopupVisible(!isCartPopupVisible);
@@ -60,12 +47,6 @@ const App = () => {
 
       {/*  Render Topheader only if the current path is not a credential page  */}
       {!isCredencialPage && <Topheader toggleCartPopup={toggleCartPopup} />}
-
-      {isProductLoading && (
-        <div className=" w-screen h-screen fixed top-0 right-0 left-0 z-30 grid place-items-center bg-[rgba(0,0,0,0.3)]">
-          <Loader type="lg" />
-        </div>
-      )}
 
       <Routes>
         <Route path="/" element={<Main />} />
@@ -100,6 +81,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
 
       {/*  Render Topheader only if the current path is not a credential page  */}

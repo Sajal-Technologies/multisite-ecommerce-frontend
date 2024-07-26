@@ -1,8 +1,8 @@
 import { FiMail, FiEyeOff, FiChevronRight, FiEye } from "react-icons/fi";
 import SignUpBuilding from "../../images/SigninPage/SignupBuilding.png";
 import { Link } from "react-router-dom";
-import GoogleSignIn from "./Components/GoogleSignIn";
-import FacebookSignIn from "./Components/FacebookSignIn";
+// import GoogleSignIn from "./Components/GoogleSignIn";
+// import FacebookSignIn from "./Components/FacebookSignIn";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../Contexts/AuthContext";
 import Loader from "../Loader";
@@ -90,13 +90,13 @@ const SignUpPage = () => {
           <FiMail className="absolute top-[54px] xl:top-[61px] right-4 transform -translate-y-1/2 text-lg text-[#7A7A7A] tablet:right-5 tablet:top-[83px] tablet:text-[28px]" />
         </div>
         {validation.email && (
-          <p className="text-red-600 font-bold -mt-6 tablet:-mt-10  xl:pl-2 min-[1279px]:-mt-4">
+          <p className="text-red-600 font-bold -mt-5 tablet:-mt-10 mobile:-mt-6   xl:pl-2 min-[1279px]:-mt-4">
             This is requied field*
           </p>
         )}
 
         {error?.email && (
-          <p className="text-red-600 font-bold -mt-6 tablet:-mt-10  xl:pl-2 min-[1279px]:-mt-4">
+          <p className="text-red-600 font-bold -mt-5 tablet:-mt-10 mobile:-mt-6   xl:pl-2 min-[1279px]:-mt-4">
             {error.email[0]}
           </p>
         )}
@@ -135,13 +135,13 @@ const SignUpPage = () => {
               />
             )}
             {validation.password && (
-              <p className="text-red-600 font-bold xl:pl-2 xl:mt-2">
+              <p className="text-red-600 font-bold xl:pl-2 lg:mt-1">
                 This is requied field*
               </p>
             )}
 
             {error?.password && (
-              <p className="text-red-600 font-bold xl:pl-2 xl:mt-2">
+              <p className="text-red-600 font-bold xl:pl-2 lg:mt-1">
                 {error.password[0]}
               </p>
             )}

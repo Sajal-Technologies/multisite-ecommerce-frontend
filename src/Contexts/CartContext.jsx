@@ -74,7 +74,6 @@ function CartProvider({ children }) {
           Authorization: `Bearer ${user.token.access}`,
         },
       });
-      console.log(response.data);
       dispatch({
         type: "cartItems/loaded",
         payload: response.data.cart_data,
@@ -90,7 +89,7 @@ function CartProvider({ children }) {
     try {
       const response = await productFetch.post("/add-to-cart/", data, {
         headers: {
-          Authorization: `Bearer ${user.token.access}`,
+          Authorization: `Bearer ${user?.token.access}`,
         },
       });
       console.log(response.data);
@@ -124,6 +123,25 @@ function CartProvider({ children }) {
     }
   }
 
+  //update Cart Items
+  async function updateCartItem(data) {
+    try {
+      const response = await productFetch.post(`/update-car/`, data, {
+        headers: {
+          Authorization: `Bearer ${user.token.access}`,
+        },
+      });
+      dispatch({
+        type: "item/updated",
+        payload: response.data.Message,
+      });
+      getCartItems();
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "rejected", payload: error.message });
+    }
+  }
+
   function setMessage(message) {
     dispatch({ type: "message/cleared", payload: message });
   }
@@ -137,6 +155,7 @@ function CartProvider({ children }) {
         getCartItems,
         addToCart,
         deleteCartItem,
+        updateCartItem,
         setMessage,
       }}
     >

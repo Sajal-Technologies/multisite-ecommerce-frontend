@@ -6,7 +6,7 @@ function ProductCard({ product }) {
   const { price, thumbnail, title, merchant, product_id } = product;
 
   return (
-    <div className="card mobile:w-[170px] md:ml-0 md:w-[230px] md:h-[380px] md:m-0 mobile:h-[274px] mobile:flex-shrink-0 flex-shrink-0 inline-block mobile:inline-block xl:w-[300px] h-[400px] rounded-2xl overflow-hidden border-[1px] border-[#F2F2F2]">
+    <div className="card   md:ml-0 mobile:basis-[230px] md:h-[380px] md:m-0 mobile:h-[274px] mobile:flex-shrink-0 flex-shrink-0 inline-block mobile:inline-block flex-1 xl:basis-[280px] lg:basis-[256px] tablet:basis-[230px] h-[400px] rounded-2xl overflow-hidden border-[1px] border-[#F2F2F2]">
       <Link to={`/product/${product_id}`}>
         <div className="imgcontainer w-full h-1/2 flex items-center justify-center bg-[#FAFEFF]">
           <img
@@ -21,7 +21,7 @@ function ProductCard({ product }) {
         <Link to={`/product/${product_id}`}>
           <div className="sellers flex justify-between px-4 ">
             <div className="flex items-center gap-2">
-              <p>{merchant.name}</p>
+              <p className="line-clamp-1 break-words">{merchant.name}</p>
 
               {/* <div className="h-8">
                 <img
@@ -40,7 +40,7 @@ function ProductCard({ product }) {
         <div className="px-4">
           <Link
             to={`/product/${product_id}`}
-            className="text-[19px] text-[#3D3D3D] mobile:font-semibold mobile:text-sm font-medium overflow-hidden break-words line-clamp-2 leading-tight"
+            className="text-[19px] text-[#3D3D3D] mobile:font-semibold mobile:text-sm font-medium break-words line-clamp-2 leading-tight"
           >
             {title}
           </Link>

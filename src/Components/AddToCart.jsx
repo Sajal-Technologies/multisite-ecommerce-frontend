@@ -1,12 +1,17 @@
 import { FiShoppingBag } from "react-icons/fi";
 import { useCart } from "../Contexts/CartContext";
 import { useState } from "react";
+import { useAuth } from "../Contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function AddToCart({ id }) {
   const { addToCart } = useCart();
   const [isLoading, setIsLoading] = useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const handleClick = async () => {
+    if (!user) navigate("/SignIn");
     setIsLoading(true);
     await addToCart({ product_id: id, quantity: 1 });
     setIsLoading(false);

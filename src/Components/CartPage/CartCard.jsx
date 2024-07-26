@@ -34,7 +34,7 @@ const CartCard = ({ item }) => {
           </div>
         </div>
       </Link>
-      <div className="w-full mobile:w-max py-4 flex flex-col gap-4 mobile:gap-2 mobile:py-3 mobile:px-4">
+      <div className="w-full mobile:w-full py-4 flex flex-col gap-4 mobile:gap-2 mobile:py-3 mobile:px-4">
         <Link to={`/Product/${product_id}`}>
           <div className="sellers mobile:hidden flex justify-between px-4 ">
             <div className="flex items-center gap-2">
