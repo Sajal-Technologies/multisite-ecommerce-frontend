@@ -4,7 +4,7 @@ import SimilerProduct from "./SimilarProduct";
 
 const ProductStyle2 = () => {
   return (
-    <div className="main pt-[200px] mobile:pt-[70px]">
+    <div className="main pt-[130px] mobile:pt-[70px]">
       <ListingProductDets />
       <RelatedProduct />
       <SimilerProduct />

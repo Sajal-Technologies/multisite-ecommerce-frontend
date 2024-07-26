@@ -33,7 +33,7 @@ const Categroriespage = () => {
   }, [lastScrollTop]);
 
   return (
-    <div className="flex flex-col w-full bg-[#FAFAFA] pt-[200px] mobile:pt-[70px]">
+    <div className="flex flex-col w-full bg-[#FAFAFA] pt-[130px] mobile:pt-[60px]">
       <div
         className={` hidden mobile:fixed mobile:top-[72%] z-30 mobile:w-full mobile:flex mobile:items-center mobile:justify-center overflow-hidden`}
       >

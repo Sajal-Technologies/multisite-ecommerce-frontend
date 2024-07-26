@@ -52,7 +52,7 @@ const Topheader = ({ toggleCartPopup }) => {
         isVisible ? "translate-y-0" : "-translate-y-full"
       } fixed top-0 left-0 right-0 z-50`}
     >
-      <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm text-right items-center justify-between py-3 md:px-4  xl:px-12 mobile:hidden">
+      <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm px-2 text-right items-center justify-between py-1 md:px-4  xl:px-12 mobile:hidden">
         <div className="left flex text-center items-center gap-2 ">
           <p>Welcome to worldwide Chak De</p>
           <img src={Apple} alt="" />
@@ -75,21 +75,21 @@ const Topheader = ({ toggleCartPopup }) => {
           </div>
         </div>
       </div>
-      <div className="logo-search md:w-full md:px-4 md:ml-0 xl:ml-0 md:border-none xl:px-12 py-0 flex justify-between items-center border-[1px] bg-[#FCFCFC] mobile:gap-0 mobile:justify-start mobile:items-center mobile:px-4 mobile:py-3 mobile:flex-row mobile:w-screen">
+      <div className="logo-search md:w-full md:px-4 md:ml-0 xl:ml-0 md:border-none px-2 xl:px-12 py-0 flex justify-between items-center border-[1px] bg-[#FCFCFC] mobile:gap-0 mobile:justify-start mobile:items-center mobile:px-4 mobile:py-3 mobile:flex-row mobile:w-screen">
         <div className="mobile:h-6 mobile:w-6 mobile:flex mobile:flex-col mobile:gap-1 hidden mobile:px-0 mobile:justify-center">
           <div className="mobile:h-[2.5px] mobile:bg-[#005F85] mobile:w-[18px] mobile:rounded-lg"></div>
           <div className="mobile:h-[2.5px] mobile:bg-[#005F85] mobile:w-[18px] mobile:rounded-lg"></div>
           <div className="mobile:h-[2.5px] mobile:bg-[#005F85] mobile:w-[18px] mobile:rounded-lg"></div>
         </div>
         <img
-          className="mobile:h-11 md:hidden mobile:px-4 lg:hidden"
+          className="mobile:h-11 md:hidden mobile:px-4 lg:hidden "
           src={Logo}
           alt=""
         />
         <Link to="/">
-          <div className="logo md:h-[6vw] md:w-[6vw] hidden md:block xl:flex xl:items-center">
+          <div className="logo hidden md:block xl:flex xl:items-center pl-5">
             <img
-              className="md:h-full md:w-full md:object-cover  xl:w-[60px] xl:h-[60px]"
+              className="md:h-full md:w-full md:object-cover h-[30%] py-1"
               src={Logo}
               alt=""
             />
@@ -102,7 +102,7 @@ const Topheader = ({ toggleCartPopup }) => {
           >
             <FiSearch className="left-3 absolute text-[#5C5C5C] text-xl mobile:left-[-25px]" />
             <input
-              className="bg-[#FAFAFA] border-[1px] border-[#DEDEDE] p-4 pl-10 md:w-[40vw]  xl:w-[45vw] mobile:ml-[-35px] rounded-lg mobile:px-2 mobile:py-[10px] mobile:pl-10 mobile:w-[220px] mobile:placeholder:text-xs"
+              className="bg-[#FAFAFA] border-[1px] border-[#DEDEDE] px-4 py-2 pl-10 md:w-[40vw]  xl:w-[45vw] mobile:ml-[-35px] rounded-lg mobile:px-2 mobile:py-[10px] mobile:pl-10 mobile:w-[220px] mobile:placeholder:text-xs"
               type="text"
               placeholder="Search essentials, groceries and more..."
               onChange={(e) => setSearch(e.target.value)}
@@ -134,7 +134,7 @@ const Topheader = ({ toggleCartPopup }) => {
           </div>
         </div>
       </div>
-      <div className="mega-menu md:w-full md:flex-nowrap md:justify-start md:px-2 md:overflow-x-scroll md:scrollbar-hide mobile:hidden py-4 lg:px-12 flex items-center justify-center gap-2 bg-[#FCFCFC] border-b-[1px] border-[#F2F2F2]">
+      <div className="mega-menu md:w-full md:flex-nowrap overflow-x-scroll scrollbar-hide mobile:hidden py-2 px-2  flex items-center justify-start gap-2 bg-[#FCFCFC] border-b-[1px] border-[#F2F2F2]">
         {[
           "All",
           "Home Appliances",
@@ -147,7 +147,7 @@ const Topheader = ({ toggleCartPopup }) => {
         ].map((item, index) => (
           <Link
             key={index}
-            className={`mx-2 flex items-center whitespace-nowrap gap-2 text-lg text-[#005F85] font-[500] bg-[#F3F9FB] px-[19px] py-3 rounded-full transition duration-200 
+            className={`mx-2 flex items-center whitespace-nowrap gap-2 tablet:text-base text-lg text-[#005F85] font-[500] bg-[#F3F9FB] px-3 py-2 rounded-full transition duration-200 
             ${
               index === 0
                 ? "bg-[#17617f] text-white"

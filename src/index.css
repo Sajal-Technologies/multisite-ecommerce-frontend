@@ -12,8 +12,6 @@
 }
 html,
 body {
-  height: 100%;
-  width: 100%;
   box-sizing: border-box;
   font-family: "Mukta", sans-serif;
 }
@@ -121,6 +119,10 @@ h1 {
 }
 
 .cards-container::-webkit-scrollbar {
+  display: none;
+}
+
+.mini-image-container::-webkit-scrollbar {
   display: none;
 }
 

@@ -24,8 +24,6 @@ function SearchResult() {
   const [searchQuery] = useSearchParams();
   const query = searchQuery.get("q");
 
-  console.log(bodyData);
-
   useEffect(() => {
     if (bodyData !== null) return;
     if (!query) return;
@@ -47,7 +45,7 @@ function SearchResult() {
   }, [lastScrollTop]);
 
   return (
-    <div className="flex flex-col w-full bg-[#FAFAFA] pt-[200px] mobile:pt-[70px]">
+    <div className="flex flex-col w-full bg-[#FAFAFA] pt-[130px] mobile:pt-[70px]">
       {searchLoading && (
         <div className=" w-screen h-screen fixed top-0 right-0 left-0 z-30 grid place-items-center bg-[rgba(0,0,0,0.1)]">
           <Loader type="lg" />

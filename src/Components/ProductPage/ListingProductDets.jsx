@@ -5,14 +5,22 @@
 import amazon from "../../images/ProductPage/amazon.png";
 import indiamart from "../../images/ProductPage/indiamart.png";
 import { FiChevronDown } from "react-icons/fi";
-import { FiShoppingBag } from "react-icons/fi";
-import { FiCheck } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ProductItem from "./ProductItem/ProductItem.jsx";
 import { useProductDetails } from "../../Contexts/ProductDetailsContext.jsx";
+import { useState } from "react";
+import AddToCart from "../AddToCart.jsx";
+import { FaStar } from "react-icons/fa";
 
 const ListingProductDets = () => {
   const { productDetails } = useProductDetails();
+  const [image, setImage] = useState(0);
+  const { id } = useParams();
+
+  const userLocale = navigator.language || "en-US";
+  const reviewsCount = new Intl.NumberFormat(userLocale).format(
+    productDetails.reviews?.reviews_count || 0
+  );
 
   return (
     <div className="main w-full flex justify-center items-center">
@@ -20,11 +28,12 @@ const ListingProductDets = () => {
         <div className="w-full flex flex-row mobile:flex-col tablet:flex-col items-center justify-between  mobile:p-0 p-10 sm:px-4 mobile:px-4 tablet:px-8">
           <div className="flex h-full tablet:w-full w-1/2 mobile:w-[100%] mobile:flex-col-reverse tablet:flex-col-reverse tablet-h-fit tablet:items-center mobile:h-fit mobile:items-center lg:h-[400px]">
             <div className="h-full flex items-center justify-center w-1/6 bg-white mobile:w-full tablet:w-full">
-              <div className="flex flex-col mobile:flex-row tablet:flex-row gap-2 justify-between items-center tablet:w-full mobile:w-full">
+              <div className="mini-image-container flex flex-col mobile:flex-row tablet:flex-row gap-2  items-center tablet:w-full mobile:w-full overflow-scroll h-full">
                 {productDetails.images?.["full_size"].map((item, index) => (
                   <div
                     key={index}
-                    className="h-full w-full tablet:flex tablet:items-center tablet:justify-center"
+                    onClick={() => setImage(index)}
+                    className="w-full tablet:flex tablet:items-center tablet:justify-center"
                   >
                     <div
                       className={`h-[70px] mobile:hidden tablet:hidden w-5/6 border-[1px] border-[#C9C9C9] hover:border-2 hover:border-[#005F85] rounded-lg ${
@@ -55,19 +64,22 @@ const ListingProductDets = () => {
             <div className="hidden tablet:block mobile:block h-[200px] w-full mb-[40px]">
               <img
                 className="h-full w-full object-contain"
-                src={productDetails.images?.full_size[0]}
+                src={productDetails.images?.full_size[image]}
                 alt=""
               />
             </div>
             <div className="h-full w-5/6 bg-white tablet:hidden mobile:hidden">
               <img
                 className="h-full w-full object-contain"
-                src={productDetails.images?.full_size[0]}
+                src={productDetails.images?.full_size[image]}
                 alt=""
               />
             </div>
           </div>
           <div className=" h-full pl-4 w-full  mobile:w-full tablet:w-full tablet:mt-8 mobile:mt-8 flex flex-col gap-8">
+            {/* <select className="w-full px-8 py-3 border rounded-lg border-[#DEDEDE]">
+              <option value="">{productDetails?.name}</option>
+            </select> */}
             <div className="w-full h-[50px] flex items-center justify-between bg-white border rounded-lg border-[#DEDEDE]">
               <div className="flex items-center">
                 <div className="imgcontainer flex items-center tablet:w-full mobile:w-full justify-center h-[50px] m-2 w-10">
@@ -85,15 +97,31 @@ const ListingProductDets = () => {
             </div>
             <div>
               {/* No data in API */}
-              <p className="text-lg text-[#005F85] font-semibold tablet:mb-1 mobile:mb-1">
+              {/* <p className="text-lg text-[#005F85] font-semibold tablet:mb-1 mobile:mb-1">
                 Brand: SAMSUNG
-              </p>
+              </p> */}
               <Link
                 to="/Product-style2"
                 className="text-[#121212] font-medium text-2xl tablet:text-xl tablet:leading-none mobile:text-xl mobile:leading-none"
               >
                 {productDetails.title}
               </Link>
+              <br />
+              {productDetails.reviews?.reviews_count > 0 && (
+                <div className="text-sm font-medium flex gap-2 mt-1">
+                  <span className="flex items-center gap-1 px-1 rounded-sm bg-green-600 text-white font-bold">
+                    {productDetails.reviews?.rating_stars}
+                    <FaStar className="-mt-1" />
+                  </span>
+                  <span className="text-gray-400 text-base font-bold ">
+                    {reviewsCount} Reviews
+                  </span>
+                </div>
+              )}
+              <p className="text-[#5C5C5C] mt-2">
+                {productDetails.description?.split(" ").slice(0, 30).join(" ") +
+                  "..."}
+              </p>
             </div>
             <div className=" flex items-center justify-between mobile:mt-[-12px] tablet:mt-[-12px]">
               <div className="">
@@ -114,10 +142,7 @@ const ListingProductDets = () => {
                     alt=""
                   />
                 </div>
-                <button className="bg-[#005F85] mobile:text-base tablet:text-base font-semibold text-lg text-white py-2 px-4 flex items-center justify-center rounded-e-md gap-2">
-                  <FiShoppingBag className="text-xl" />
-                  Buy Now
-                </button>
+                <AddToCart type="large" id={id} />
               </div>
             </div>
             <div className="w-full lg:h-[90px] tablet:h-[90px] mobile:h-[60px] mobile:mb-4 flex">
@@ -163,7 +188,7 @@ const ListingProductDets = () => {
         </div>
         <div className="h-full w-full px-0 pr-4 py-10 flex gap-6 justify-between mobile:flex-col tablet:flex-col  tablet:w-[100%] tablet:p-0 tablet:pr-0 tablet:py-0  mobile:w-[100%] mobile:p-0 mobile:pr-0 mobile:py-0">
           <div className="px-4 tablet:px-8">
-            <div className="lg:max-w-[850px] h-[425px] border overflow-hidden border-[#DEDEDE] rounded-xl mobile:w-full tablet:w-full tablet:h-fit mobile:h-fit">
+            <div className="w-full h-[425px] border overflow-hidden border-[#DEDEDE] rounded-xl mobile:w-full tablet:w-full tablet:h-fit mobile:h-fit">
               <div className="h-12 w-full flex border-b border-[#C9C9C9] items-center px-10 gap-12">
                 <p className="text-[#005F85] font-medium tablet:text-nowrap mobile:text-nowrap">
                   Description
@@ -174,45 +199,29 @@ const ListingProductDets = () => {
                 <p className="text-[#999999] mobile:font-medium mobile:text-nowrap tablet:text-nowrap tablet:font-medium">
                   Specifications
                 </p>
-                <p className="text-[#999999] mobile:hidden">Title here</p>
+                <p className="text-[#999999] mobile:hidden">Reviews</p>
               </div>
               <div className="p-4">
                 <p className="text-[#5C5C5C] text-lg mobile:text-base tablet:text-base">
                   {productDetails.description}
                 </p>
-                <div className="flex flex-col gap-1 mt-2">
-                  <p className="text-[#505050] flex items-center gap-2">
-                    <FiCheck /> Some great feature name here
-                  </p>
-                  <p className="text-[#505050] flex items-center gap-2">
-                    <FiCheck />
-                    Lorem ipsum dolor sit amet, consectetur
-                  </p>
-                  <p className="text-[#505050] flex items-center gap-2">
-                    <FiCheck />
-                    Duis aute irure dolor in reprehenderit
-                  </p>
-                  <p className="text-[#505050] flex items-center gap-2">
-                    <FiCheck />
-                    Some great feature name here
-                  </p>
+              </div>
+            </div>
+          </div>
+          {productDetails?.related_items?.[0] && (
+            <div className="h-fit mobile:pl-4 tablet:pl-4 tablet:w-full tablet:border-none pb-5 w-[300px] border border-[#DEDEDE] mobile:w-full mobile:border-none rounded-xl">
+              <div className="tablet:p-4">
+                <p className="text-[#1C1C1C] text-lg tablet:text-2xl pl-2 font-medium xl:p-4 mobile:font-semibold tablet:font-semibold mobile:p-0">
+                  {productDetails?.related_items?.[0].title}
+                </p>
+                <div className="flex mobile:snap-x tablet:snap-x hideScroll tablet:scroll-smooth mobile:scroll-smooth flex-col gap-5 tablet:mt-4 tablet:flex-row mobile:mt-4 mobile:flex-row mobile:flex-nowrap mobile:overflow-x-auto tablet:flex-nowrap tablet:overflow-x-auto">
+                  {productDetails?.related_items?.[0].items.map((item, i) => (
+                    <ProductItem key={i} item={item} />
+                  ))}
                 </div>
               </div>
             </div>
-          </div>
-          <div className="h-fit mobile:pl-4 tablet:pl-4 tablet:w-full tablet:border-none pb-5 w-[300px] border border-[#DEDEDE] mobile:w-full mobile:border-none rounded-xl">
-            <div className="tablet:p-4">
-              <p className="text-[#1C1C1C] text-lg tablet:text-2xl font-medium xl:p-4 mobile:font-semibold tablet:font-semibold mobile:p-0">
-                You may like
-              </p>
-              <div className="flex mobile:snap-x tablet:snap-x hideScroll tablet:scroll-smooth mobile:scroll-smooth flex-col gap-5 tablet:mt-4 tablet:flex-row mobile:mt-4 mobile:flex-row mobile:flex-nowrap mobile:overflow-x-auto tablet:flex-nowrap tablet:overflow-x-auto">
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
