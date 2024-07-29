@@ -1,7 +1,7 @@
 import { FiArrowRight } from "react-icons/fi";
 import Card from "./Card";
 
-const Fproduct = () => {
+const Fproduct = ({ Category }) => {
   return (
     <section className="flex flex-col">
       <div className="flex mb-8 items-center justify-center mt-[4vw] mobile:mb-4">
@@ -10,7 +10,7 @@ const Fproduct = () => {
             <h1 className="text-[#121212] xl:text-[36px] font-semibold mobile:text-xl md:text-3xl">
               <span className="mobile:hidden">Grab the best</span>{" "}
               <span className="mobile:uppercase">d</span>eals on
-              <span className="text-[#0083B8]"> Electronics</span>
+              <span className="text-[#0083B8]"> {Category}</span>
             </h1>
             <div className="flex items-center text-[#7A7A7A] gap-2 mobile:text-sm">
               View all

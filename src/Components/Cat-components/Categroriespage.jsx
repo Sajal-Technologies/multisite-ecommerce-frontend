@@ -9,9 +9,6 @@ import pageInfo from "../../images/FilterCapsule/page-info.svg";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 
 const Categroriespage = () => {
-  // const location = useLocation();
-  // const searchParams = new URLSearchParams(location.search);
-  // we can use useSearchParams() hooks to get the query parameters from the URL instead of using location.search and URLSearchParams
   const [searchParams] = useSearchParams();
   const viewType = searchParams.get("view");
 
@@ -33,7 +30,7 @@ const Categroriespage = () => {
   }, [lastScrollTop]);
 
   return (
-    <div className="flex flex-col w-full bg-[#FAFAFA] pt-[130px] mobile:pt-[60px]">
+    <div className="flex flex-col w-full bg-[#FAFAFA] pt-[60px] mobile:pt-[60px]">
       <div
         className={` hidden mobile:fixed mobile:top-[72%] z-30 mobile:w-full mobile:flex mobile:items-center mobile:justify-center overflow-hidden`}
       >

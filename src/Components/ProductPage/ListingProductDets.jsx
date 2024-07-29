@@ -8,7 +8,7 @@ import indiamart from "../../images/ProductPage/indiamart.png";
 import { Link, useParams } from "react-router-dom";
 import ProductItem from "./ProductItem/ProductItem.jsx";
 import { useProductDetails } from "../../Contexts/ProductDetailsContext.jsx";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AddToCart from "../AddToCart.jsx";
 import { FaStar } from "react-icons/fa";
 
@@ -18,11 +18,22 @@ const ListingProductDets = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [seller, setSeller] = useState();
   const [activeTab, setActiveTab] = useState("description");
+  const details = useRef();
 
   const userLocale = navigator.language || "en-US";
   const reviewsCount = new Intl.NumberFormat(userLocale).format(
     productDetails.reviews?.reviews_count || 0
   );
+
+  function scrollIntoView() {
+    const cordinates = details.current.getBoundingClientRect();
+
+    window.scrollTo({
+      left: cordinates.left + window.scrollX,
+      top: cordinates.top + window.scrollY,
+      behavior: "smooth",
+    });
+  }
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -63,7 +74,7 @@ const ListingProductDets = () => {
               {productDetails.reviews.top_review?.title}
             </h3>
             <blockquote className="mb-4 text-base">
-              "{productDetails.reviews.top_review?.text}"
+              &quot;{productDetails.reviews.top_review?.text}&quot;
             </blockquote>
             <div className="text-sm flex flex-col gap-1">
               <p>
@@ -95,7 +106,7 @@ const ListingProductDets = () => {
                   <div
                     key={index}
                     onClick={() => setSelectedImageIndex(index)}
-                    className="w-full tablet:flex tablet:items-center tablet:justify-center"
+                    className="w-full tablet:flex  tablet:items-center tablet:justify-center"
                   >
                     <div
                       className={`h-[70px] mobile:hidden tablet:hidden w-5/6 border-[1px] border-[#C9C9C9] hover:border-2 hover:border-[#005F85] rounded-lg ${
@@ -174,8 +185,16 @@ const ListingProductDets = () => {
                 </div>
               )}
               <p className="text-[#5C5C5C] mt-2">
-                {productDetails.description?.split(" ").slice(0, 30).join(" ") +
-                  "..."}
+                {productDetails?.description
+                  ?.split(" ")
+                  .slice(0, 30)
+                  .join(" ") + "... "}
+                <button
+                  onClick={scrollIntoView}
+                  className="text-[#005F85] font-medium hover:underline"
+                >
+                  Know more
+                </button>
               </p>
             </div>
             <div className=" flex items-center justify-between mobile:mt-[-12px] tablet:mt-[-12px]">
@@ -245,7 +264,7 @@ const ListingProductDets = () => {
           </div>
         </div>
 
-        <div className="w-full h-full flex gap-8 p-4 text-lg">
+        <div className="w-full h-full flex  gap-8 p-4 text-lg" ref={details}>
           <div className="basis-full border border-[#DEDEDE] rounded-xl p-2">
             <div className="flex gap-8 px-4 py-2 border-b border-[#DEDEDE] ">
               <button
@@ -299,10 +318,10 @@ const ListingProductDets = () => {
 
           {productDetails?.related_items?.[0] && (
             <div className="border border-[#DEDEDE] rounded-xl h-[415px] p-2 basis-[25%] flex-shrink-0 ">
-              <h3 className="mb-2 text-[#1C1C1C] text-lg">
+              <h3 className="mb-2 text-[#1C1C1C] text-lg md:text-2xl">
                 {productDetails?.related_items?.[0].title}
               </h3>
-              <div className="flex flex-col gap-6 h-[4150px] py-1 overflow-y-auto hideScroll">
+              <div className="flex flex-col  gap-4 h-[4150px] py-1 overflow-y-auto hideScroll">
                 {productDetails?.related_items?.[0].items.map((item, i) => {
                   return <ProductItem key={i} item={item} />;
                 })}
@@ -317,46 +336,48 @@ const ListingProductDets = () => {
               <div className="h-12 w-full flex border-b border-[#C9C9C9] items-center px-10 gap-12">
                 <button
                   className={` mobile:font-medium mobile:text-nowrap tablet:text-nowrap tablet:font-medium ${
-                    tabOpen === "description"
+                    activeTab === "description"
                       ? "text-[#005F85]"
                       : "text-[#999999]"
                   }`}
-                  onClick={() => setTabOpen("description")}
+                  onClick={() => setActiveTab("description")}
                 >
                   Description
                 </button>
                 <button
                   className={` mobile:font-medium mobile:text-nowrap tablet:text-nowrap tablet:font-medium ${
-                    tabOpen === "highlights"
+                    activeTab === "highlights"
                       ? "text-[#005F85]"
                       : "text-[#999999]"
                   }`}
-                  onClick={() => setTabOpen("highlights")}
+                  onClick={() => setActiveTab("highlights")}
                 >
                   Highlights
                 </button>
                 <button
                   className={` mobile:font-medium mobile:text-nowrap tablet:text-nowrap tablet:font-medium ${
-                    tabOpen === "specifications"
+                    activeTab === "specifications"
                       ? "text-[#005F85]"
                       : "text-[#999999]"
                   }`}
-                  onClick={() => setTabOpen("specifications")}
+                  onClick={() => setActiveTab("specifications")}
                 >
                   Specifications
                 </button>
                 <button
                   className={` mobile:font-medium mobile:text-nowrap tablet:text-nowrap tablet:font-medium ${
-                    tabOpen === "reviews" ? "text-[#005F85]" : "text-[#999999]"
+                    activeTab === "reviews"
+                      ? "text-[#005F85]"
+                      : "text-[#999999]"
                   }`}
-                  onClick={() => setTabOpen("reviews")}
+                  onClick={() => setActiveTab("reviews")}
                 >
                   Reviews
                 </button>
               </div>
               <div className="p-4">
                 <p className="text-[#5C5C5C] text-lg mobile:text-base tablet:text-base">
-                  {tabOpen}
+                  km k
                 </p>
               </div>
             </div>

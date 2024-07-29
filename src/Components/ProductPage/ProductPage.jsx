@@ -7,7 +7,7 @@ import SimilerProducts from "./SimilerProducts";
 const ProductPage = () => {
   const { isLoading, error } = useProductDetails();
   return (
-    <div className="pt-[130px] mobile:pt-[70px]">
+    <div className="pt-[60px] mobile:pt-[70px]">
       <Breadcrump />
       {isLoading && (
         <div className="h-[50svh] grid place-items-center">

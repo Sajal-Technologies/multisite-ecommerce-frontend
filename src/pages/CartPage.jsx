@@ -27,7 +27,7 @@ const CartPage = () => {
   }
 
   return (
-    <div className="pt-[130px] mobile:pt-[70px]">
+    <div className="pt-[60px] mobile:pt-[70px]">
       <Breadcrump />
       <div className="w-full flex flex-col items-center h-fit mt-10 mb-[72px] bg-[#FAFAFA]">
         {isCartLoading && <Loader type="lg" />}

@@ -41,7 +41,7 @@ const Card = () => {
         <div className="px-4">
           <Link
             to="/Product"
-            className="text-[19px] leading-none text-[#3D3D3D] mobile:font-semibold mobile:text-sm font-medium mobile: text-nowrap "
+            className="text-[19px] leading-tight text-[#3D3D3D] mobile:font-semibold whitespace-normal mobile:text-sm font-medium line-clamp-2 break-words "
           >
             Buy iPhone 15 Pro Physical Dual Sim 128GB Blue Titanium 5G...
           </Link>

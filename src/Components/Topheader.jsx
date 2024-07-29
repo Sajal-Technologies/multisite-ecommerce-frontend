@@ -6,7 +6,7 @@ import { FiGlobe } from "react-icons/fi";
 import { FiUser } from "react-icons/fi";
 import { FiSearch } from "react-icons/fi";
 import { FiShoppingCart } from "react-icons/fi";
-import { FiChevronDown } from "react-icons/fi";
+
 import Seperator from "./Seperator";
 import { Link } from "react-router-dom";
 import { useAuth } from "../Contexts/AuthContext";
@@ -133,32 +133,6 @@ const Topheader = ({ toggleCartPopup }) => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="mega-menu md:w-full md:flex-nowrap overflow-x-scroll scrollbar-hide mobile:hidden py-2 px-2  flex items-center justify-start gap-2 bg-[#FCFCFC] border-b-[1px] border-[#F2F2F2]">
-        {[
-          "All",
-          "Home Appliances",
-          "Groceries",
-          "Gaming Gears",
-          "Electronics",
-          "Accessories",
-          "Fashion",
-          "Beauty & Cosmetics",
-        ].map((item, index) => (
-          <Link
-            key={index}
-            className={`mx-2 flex items-center whitespace-nowrap gap-2 tablet:text-base text-lg text-[#005F85] font-[500] bg-[#F3F9FB] px-3 py-2 rounded-full transition duration-200 
-            ${
-              index === 0
-                ? "bg-[#17617f] text-white"
-                : "hover:bg-[#005F85] hover:text-white"
-            }`}
-            style={{ backgroundColor: index === 0 ? "#17617f" : "" }}
-            to="/Categories?view=grid"
-          >
-            {item} <FiChevronDown />
-          </Link>
-        ))}
       </div>
     </nav>
   );
