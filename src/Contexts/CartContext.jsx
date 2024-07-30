@@ -30,11 +30,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         message: action.payload,
+        isCartLoading: false,
       };
     case "item/deleted":
       return {
         ...state,
         message: action.payload,
+        isCartLoading: false,
       };
     case "item/updated":
       return {
@@ -86,6 +88,7 @@ function CartProvider({ children }) {
 
   //Add to Cart
   async function addToCart(data) {
+    dispatch({ type: "loading", payload: true });
     try {
       const response = await productFetch.post("/add-to-cart/", data, {
         headers: {
@@ -106,6 +109,7 @@ function CartProvider({ children }) {
 
   // Delete Cart Items
   async function deleteCartItem(data) {
+    dispatch({ type: "loading", payload: true });
     try {
       const response = await productFetch.post(`/delete-from-cart/`, data, {
         headers: {
@@ -125,6 +129,7 @@ function CartProvider({ children }) {
 
   //update Cart Items
   async function updateCartItem(data) {
+    dispatch({ type: "loading", payload: true });
     try {
       const response = await productFetch.post(`/update-car/`, data, {
         headers: {

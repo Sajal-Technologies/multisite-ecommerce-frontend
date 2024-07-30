@@ -48,7 +48,7 @@ const Topheader = ({ toggleCartPopup }) => {
 
   return (
     <nav
-      className={`transition-transform h-[222px] mobile:h-[72px] duration-300 ${
+      className={`transition-transform mobile:h-[72px] duration-300 ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       } fixed top-0 left-0 right-0 z-50`}
     >

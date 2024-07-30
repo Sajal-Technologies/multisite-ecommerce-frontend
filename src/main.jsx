@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./Contexts/AuthContext.jsx";
 import { ProductProvider } from "./Contexts/ProductContext.jsx";
 import { CartProvider } from "./Contexts/CartContext.jsx";
+import { SaveForLaterProvider } from "./Contexts/SaveForLaterContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <AuthProvider>
         <ProductProvider>
           <CartProvider>
-            <App />
+            <SaveForLaterProvider>
+              <App />
+            </SaveForLaterProvider>
           </CartProvider>
         </ProductProvider>
       </AuthProvider>

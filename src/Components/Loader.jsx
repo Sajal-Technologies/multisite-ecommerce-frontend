@@ -1,9 +1,9 @@
-function Loader({ type = "sm" }) {
+function Loader({ type = "md" }) {
   if (type === "sm") {
     return (
       <div className="flex justify-center items-center">
         <div
-          className={`w-8 h-8 inline-block border-4 border-t-4 border-t-[#3498db] border-[#f3f3f3] rounded-full animate-spin`}
+          className={`w-6 h-6 inline-block border-4 border-t-4 border-t-[#3498db] border-[#f3f3f3] rounded-full animate-spin`}
         ></div>
       </div>
     );
@@ -13,7 +13,7 @@ function Loader({ type = "sm" }) {
     return (
       <div className="flex justify-center items-center">
         <div
-          className={`w-10 h-10 inline-block border-4 border-t-4 border-t-[#3498db] border-[#f3f3f3] rounded-full animate-spin`}
+          className={`w-8 h-8 inline-block border-4 border-t-4 border-t-[#3498db] border-[#f3f3f3] rounded-full animate-spin`}
         ></div>
       </div>
     );

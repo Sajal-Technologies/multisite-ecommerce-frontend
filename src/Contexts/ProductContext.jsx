@@ -48,6 +48,8 @@ function reducer(state, action) {
       return { ...state, view: action.payload };
     case "searchError/set":
       return { ...state, error: action.payload };
+    case "abort/set":
+      return { ...state, isLoading: false, searchProducts: [] };
     default:
       throw new Error("Invalid action");
   }
@@ -91,7 +93,8 @@ function ProductProvider({ children }) {
 
   function cancelRequest() {
     if (controller) {
-      controller.abort();
+      controller = controller.abort();
+      dispatch({ type: "abort/set" });
     }
   }
 
