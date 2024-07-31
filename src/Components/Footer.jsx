@@ -1,6 +1,5 @@
 import Logo from "../images/MainPage/FooterLogos/Logo.svg";
 import Flag from "../images/MainPage/FooterLogos/Flag.png";
-import { FiMail } from "react-icons/fi";
 import { FaFacebookF } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
 import { FiTwitter } from "react-icons/fi";
@@ -11,48 +10,7 @@ import { FiChevronUp } from "react-icons/fi";
 const Footer = () => {
   return (
     <footer className="bg-white w-full flex flex-col items-center justify-center mobile:w-full overflow-x-hidden tablet:w-full">
-      <div className="h-full w-[85%] mt-10 mobile:w-full px-4 m-0 tablet:w-full tablet:px-6">
-        <div className="bg-[#005F85] rounded-lg flex mobile:flex-col relative overflow-hidden">
-          <div className="newsletter flex gap-[2px] flex-col mobile:items-start mobile:justify-start mobile:p-4 justify-center px-8 relative mobile:h-[160px] h-[100px] w-[51%] bg-gradient-to-br from-[#00A8EB] to-[#0B9FDA]">
-            <h1 className="text-white font-semibold text-2xl mobile:text-xl mobile:leading-6 z-50">
-              Newsletter
-            </h1>
-            <p className="text-white mobile:text-nowrap mobile:leading-5 z-50">
-              Get daily news on upcoming offers from many{" "}
-              <br className="hidden mobile:block" /> suppliers all over the
-              world.
-            </p>
-          </div>
-          <div className="w-[45%] mobile:hidden flex h-full items-center justify-center absolute right-0">
-            <div className="w-full relative px-4 mr-4 flex items-center justify-between h-[50px] bg-white rounded-lg">
-              <FiMail className="text-[#005F85] absolute top-[29.3%] text-xl" />
-              <input
-                className="ml-8 placeholder:text-[#005F85] text-[#005F85] w-[70%]"
-                type="text"
-                placeholder="Enter your email"
-                name=""
-                id=""
-              />
-              <button className="bg-[#FF7F00] px-4 py-2 rounded-md text-white text-sm">
-                Submit
-              </button>
-            </div>
-          </div>
-          <div className="px-4 w-full absolute bottom-[10px] hidden mobile:block">
-            <div className="w-full bg-white flex items-center py-2 px-4 relative rounded-lg">
-              <FiMail className="text-[#005F85] absolute text-xl" />
-              <input
-                type="text"
-                className="placeholder:text-[#005F85] ml-9"
-                placeholder="Enter your email"
-              />
-              <button className="bg-[#FF7F00] px-4 py-[7px] ml-auto pr-2 rounded-md text-white">
-                Submit
-              </button>
-            </div>
-          </div>
-        </div>
-
+      <div className="h-full w-[85%] mt-6 mobile:w-full px-4 m-0 tablet:w-full tablet:px-6">
         <div className="flex mobile:flex-col tablet:mt-6 justify-between mobile:mt-8 mt-[2vw]">
           <div className="w-[25%] mobile:w-full">
             <img className="mb-2" src={Logo} alt="" />

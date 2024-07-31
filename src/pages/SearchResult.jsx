@@ -27,7 +27,7 @@ function SearchResult() {
   useEffect(() => {
     if (bodyData !== null) return;
     if (!query) return;
-    getSearchProduct({ product_name: query });
+    getSearchProduct({ product_name: decodeURIComponent(query) });
   }, []);
 
   useEffect(() => {

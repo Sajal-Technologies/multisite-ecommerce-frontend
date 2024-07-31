@@ -1,13 +1,17 @@
-import amazon from "../../images/ProductPage/amazon.png";
-import flipkart from "../../images/ProductPage/flipkart.png";
-import meesho from "../../images/ProductPage/meesho.png";
-import indiamart from "../../images/ProductPage/indiamart.png";
+import amazon from "../images/ProductPage/amazon.png";
+import flipkart from "../images/ProductPage/flipkart.png";
+import meesho from "../images/ProductPage/meesho.png";
+import indiamart from "../images/ProductPage/indiamart.png";
 
 function DynamicLogo({ sellerName }) {
   switch (sellerName) {
     case "Amazon.in":
       return (
-        <img src={amazon} alt="amazon" className="w-full block object-cover" />
+        <img
+          src={amazon}
+          alt="amazon"
+          className="w-[100px] block object-cover"
+        />
       );
     case "Flipkart":
       return (
@@ -34,7 +38,7 @@ function DynamicLogo({ sellerName }) {
         />
       );
     default:
-      return <p>{sellerName}</p>;
+      return <p className="text-[#005F85] uppercase font-bold">{sellerName}</p>;
   }
 }
 

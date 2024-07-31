@@ -21,7 +21,9 @@ function ProductCard({ product }) {
         <Link to={`/product/${product_id}`}>
           <div className="sellers flex justify-between px-4 ">
             <div className="flex items-center gap-2">
-              <p className="line-clamp-1 break-words">{merchant.name}</p>
+              <p className="line-clamp-1 break-words text-sm font-bold uppercase tracking-wider text-[#005F85]">
+                {merchant.name}
+              </p>
 
               {/* <div className="h-8">
                 <img
@@ -48,15 +50,17 @@ function ProductCard({ product }) {
         <div className="flex justify-between items-center">
           <Link to={`/product/${product_id}`}>
             <div className="">
-              <p className="uppercase px-4 text-[#5C5C5C] text-lg mobile:text-xs">
+              {/* <p className="uppercase px-4 text-[#5C5C5C] text-lg mobile:text-xs">
                 save <span className="line-through">&#8377;12550</span>
-              </p>
+              </p> */}
               <p className="px-4 text-[#0B8500] text-2xl font-medium mobile:text-base">
                 &#8377;{price}
               </p>
             </div>
           </Link>
-          <AddToCart id={product_id} />
+          <div className="mx-4 rounded-full border-[1px] border-[#005F85]">
+            <AddToCart id={product_id} />
+          </div>
         </div>
       </div>
     </div>

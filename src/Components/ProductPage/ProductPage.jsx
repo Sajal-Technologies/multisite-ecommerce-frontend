@@ -7,17 +7,22 @@ import ListingProductDets from "./ListingProductDets";
 import { useAuth } from "../../Contexts/AuthContext";
 
 const ProductPage = () => {
-  const { isLoading, error } = useProductDetails();
+  const { isLoading, error, productDetails } = useProductDetails();
   const { getSavedItems } = useSaveForLater();
   const { user } = useAuth();
 
   useEffect(() => {
+    if (productDetails.title) document.title = productDetails.title;
     if (!user) return;
     getSavedItems();
-  }, [user]);
+
+    return () => {
+      document.title = "The Shopping AI";
+    };
+  }, [user, productDetails]);
 
   return (
-    <div className="pt-[60px] mobile:pt-[70px] mb-8">
+    <div className="pt-[60px] mobile:pt-[70px] mb-12">
       <Breadcrump />
       {isLoading && (
         <div className="h-[50svh] grid place-items-center">

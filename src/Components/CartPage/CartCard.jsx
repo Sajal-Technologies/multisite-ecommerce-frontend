@@ -2,20 +2,27 @@ import { useState } from "react";
 import { useCart } from "../../Contexts/CartContext";
 import Flipkart from "../../images/CartPage/Flipkart.png";
 import Meesho from "../../images/CartPage/Meesho.png";
-import Amazon from "../../images/CartPage/amazon.png";
 import { FiTrendingDown } from "react-icons/fi";
 import { FiShoppingBag } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import Loader from "../Loader";
+import SaveForLater from "../SaveForLater";
 
 const CartCard = ({ item }) => {
   const { product_name, product_image, price, product_id, id } = item;
   const { deleteCartItem } = useCart();
   const [isLoading, setIsLoading] = useState(false);
+  const [setError] = useState(null);
 
   async function handleRemove(id) {
     setIsLoading(true);
-    await deleteCartItem({ cart_id: id });
-    setIsLoading(false);
+    try {
+      await deleteCartItem({ cart_id: id });
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -102,20 +109,26 @@ const CartCard = ({ item }) => {
             onClick={() => handleRemove(id)}
             disabled={isLoading}
           >
-            <FiShoppingBag className=" text-xl mobile:text-base" />
-            <span className=" text-lg mobile:text-sm">Remove</span>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <FiShoppingBag className=" text-xl mobile:text-base" />
+            )}
+            <span className=" text-lg mobile:text-sm">
+              {isLoading ? "Removing..." : "Remove"}
+            </span>
           </button>
         </div>
         <div className="px-4 mobile:px-0">
           <div className="w-full h-12 mobile:h-10 flex items-center justify-between">
-            <div className="h-full w-[25%] mobile:w-[30%] mobile: bg-[#F2F2F2] rounded-s-md">
-              <img className="h-full w-full object-cover" src={Amazon} alt="" />
-            </div>
-            <div className="h-full w-[75%] mobile:w-[70%] bg-[#005F85] flex items-center justify-center gap-2 rounded-e-md">
+            <div className="h-full w-[75%] mobile:w-[70%] bg-[#005F85] flex items-center justify-center gap-2 rounded-md">
               <FiShoppingBag className="text-white text-xl" />
               <p className="text-white text-lg font-semibold mobile:text-sm">
                 Buy Now
               </p>
+            </div>
+            <div className="border border-[#005F85] rounded-full">
+              <SaveForLater id={product_id} />
             </div>
           </div>
         </div>

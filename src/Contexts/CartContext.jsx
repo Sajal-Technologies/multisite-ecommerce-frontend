@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import { useAuth } from "./AuthContext";
 import productFetch from "../Axios Instance/productAxios";
+import { useNavigate } from "react-router-dom";
 
 const CartContext = createContext();
 
@@ -26,29 +27,7 @@ const reducer = (state, action) => {
         cartItems: action.payload,
         isCartLoading: false,
       };
-    case "item/added":
-      return {
-        ...state,
-        message: action.payload,
-        isCartLoading: false,
-      };
-    case "item/deleted":
-      return {
-        ...state,
-        message: action.payload,
-        isCartLoading: false,
-      };
-    case "item/updated":
-      return {
-        ...state,
-        message: action.payload,
-        isCartLoading: false,
-      };
-    case "message/cleared":
-      return {
-        ...state,
-        message: null,
-      };
+
     case "rejected":
       return {
         ...state,
@@ -66,6 +45,7 @@ function CartProvider({ children }) {
     reducer,
     initialState
   );
+  const navigate = useNavigate();
 
   // Get Cart Items
   async function getCartItems() {
@@ -88,62 +68,47 @@ function CartProvider({ children }) {
 
   //Add to Cart
   async function addToCart(data) {
-    dispatch({ type: "loading", payload: true });
     try {
-      const response = await productFetch.post("/add-to-cart/", data, {
+      await productFetch.post("/add-to-cart/", data, {
         headers: {
           Authorization: `Bearer ${user?.token.access}`,
         },
       });
-      console.log(response.data);
-      dispatch({
-        type: "item/added",
-        payload: response.data.Message,
-      });
+
+      navigate("/Cart");
       getCartItems();
     } catch (error) {
       console.log(error);
-      dispatch({ type: "rejected", payload: error.message });
     }
   }
 
   // Delete Cart Items
   async function deleteCartItem(data) {
-    dispatch({ type: "loading", payload: true });
     try {
-      const response = await productFetch.post(`/delete-from-cart/`, data, {
+      await productFetch.post(`/delete-from-cart/`, data, {
         headers: {
           Authorization: `Bearer ${user.token.access}`,
         },
       });
-      dispatch({
-        type: "item/deleted",
-        payload: response.data.Message,
-      });
+
       getCartItems();
     } catch (error) {
       console.log(error);
-      dispatch({ type: "rejected", payload: error.message });
     }
   }
 
   //update Cart Items
   async function updateCartItem(data) {
-    dispatch({ type: "loading", payload: true });
     try {
-      const response = await productFetch.post(`/update-car/`, data, {
+      await productFetch.post(`/update-car/`, data, {
         headers: {
           Authorization: `Bearer ${user.token.access}`,
         },
       });
-      dispatch({
-        type: "item/updated",
-        payload: response.data.Message,
-      });
+
       getCartItems();
     } catch (error) {
       console.log(error);
-      dispatch({ type: "rejected", payload: error.message });
     }
   }
 

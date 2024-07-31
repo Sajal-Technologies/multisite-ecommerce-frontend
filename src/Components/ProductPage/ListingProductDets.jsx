@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 // import ProductItem from "./ProductItem/ProductItem.jsx";
 import { useProductDetails } from "../../Contexts/ProductDetailsContext.jsx";
 import Separator from "../Seperator.jsx";
-import DynamicLogo from "./DynamicLogo.jsx";
+import DynamicLogo from "../DynamicLogo.jsx";
 import { useRef, useState } from "react";
 import AddToCart from "../AddToCart.jsx";
 import { FaRocket, FaStar } from "react-icons/fa";
@@ -163,7 +163,7 @@ const ListingProductDets = () => {
               <h3 className="text-sm  font-bold uppercase tracking-wider">
                 Seller :
               </h3>
-              <p className="text-sm  font-bold uppercase tracking-wider">
+              <p className="text-sm font-bold uppercase tracking-wider">
                 {productDetails?.pricing?.online?.[0]?.seller}
               </p>
             </div>
@@ -221,7 +221,10 @@ const ListingProductDets = () => {
                 Buy Now
               </a>
               <AddToCart type="large" id={id} />
-              <SaveForLater id={id} />
+
+              <div className="border border-[#005F85] rounded-full">
+                <SaveForLater id={id} />
+              </div>
             </div>
 
             {productDetails.pricing?.online.length > 1 && (
@@ -230,7 +233,7 @@ const ListingProductDets = () => {
                   <p className="text-[#5C5C5C] text-center text-lg font-bold ">
                     Lowest Price
                   </p>
-                  <div className=" flex justify-center h-[50px] items-center gap-4">
+                  <div className=" flex justify-center h-[50px] items-center mobile:flex-col mobile:h-[70px] mobile:gap-1 gap-4">
                     <p className="text-[#0B8500] text-2xl mobile:text-[19px] tablet:text-[19px] font-medium">
                       {productDetails.pricing?.online?.[0].currency}{" "}
                       {lowestPrice?.price}
@@ -246,7 +249,7 @@ const ListingProductDets = () => {
                   <p className="text-[#5C5C5C]  text-center text-lg font-bold ">
                     Highest Price
                   </p>
-                  <div className=" flex justify-center h-[50px] items-center gap-4">
+                  <div className=" flex justify-center mobile:flex-col mobile:h-[70px] h-[50px] items-center mobile:gap-1 gap-4">
                     <p className="text-[#ED0303] text-2xl mobile:text-[19px] tablet:text-[19px] font-medium">
                       {productDetails.pricing?.online?.[0].currency}{" "}
                       {highestPrice?.price}
@@ -346,19 +349,37 @@ const ListingProductDets = () => {
             .map((item, i) => {
               if (item.seller) {
                 return (
-                  <Link to={item["seller_link"]} key={i} target="_blank">
-                    <div className="w-full rounded-xl bg-white @apply shadow-[3px_3px_12px_0px_#00000008]  flex gap-8 items-center py-2 px-4">
-                      <h3 className="text-xl font-bold uppercase text-blue-500 hover:underline">
-                        {item.seller}
-                      </h3>
+                  <div
+                    className="w-full rounded-xl  bg-white @apply shadow-[3px_3px_12px_0px_#00000008] mobile:px-2 mobile:py-1 py-2 px-4"
+                    key={i}
+                  >
+                    <div className="  flex gap-2 items-center  mb-2 border-b border-[#DEDEDE]">
+                      <Link to={item["seller_link"]} target="_blank">
+                        <h3 className="text-xl font-bold uppercase text-blue-500 hover:underline">
+                          {item.seller}
+                        </h3>
+                      </Link>
 
-                      <p className="ml-auto text-[#5C5C5C]">{item.details}</p>
-                      <div className="text-xl font-bold">
+                      <div className="text-xl font-bold ml-auto">
                         {item.currency}
                         {item.price}
                       </div>
+                      <SaveForLater id={id} type="large" />
                     </div>
-                  </Link>
+                    <div className="w-full flex justify-between items-center gap-2 mobile:gap-1">
+                      <p className="mr-auto text-[#5C5C5C] mobile:line-clamp-2">
+                        {item.details}
+                      </p>
+                      <Link
+                        to={item["seller_link"]}
+                        target="_blank"
+                        className="text-white font-bold border lg:text-lg tablet:text-base mobile:text-sm whitespace-nowrap border-[#005F85]  rounded-full bg-[#005F85] py-2 px-4 hover:bg-white hover:text-[#005F85]"
+                      >
+                        Shop Now
+                      </Link>
+                      <AddToCart id={id} type="large" />
+                    </div>
+                  </div>
                 );
               }
             })}

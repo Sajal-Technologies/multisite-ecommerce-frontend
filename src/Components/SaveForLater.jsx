@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import Loader from "./Loader";
 
 function SaveForLater({ id }) {
-  const { addToSaveForLater, deleteSavedItem, savedItems, isSaveLoading } =
-    useSaveForLater();
+  const { addToSaveForLater, deleteSavedItem, savedItems } = useSaveForLater();
+  const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
   const [isSaved, setIsSaved] = useState(false);
@@ -14,28 +14,34 @@ function SaveForLater({ id }) {
   useEffect(() => {
     setIsSaved(savedItems?.some((item) => item.product_id === id));
   }, [savedItems, id]);
-  function handleSaveForLater() {
+  async function handleSaveForLater() {
     if (!user) {
       navigate("/SignIn");
       return;
     }
-
-    !isSaved
-      ? addToSaveForLater({ product_id: id }, setIsSaved)
-      : deleteSavedItem({ product_id: id }, setIsSaved);
+    try {
+      setIsLoading(true);
+      !isSaved
+        ? await addToSaveForLater({ product_id: id }, setIsSaved)
+        : await deleteSavedItem({ product_id: id }, setIsSaved);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
   return (
     <button
-      className={`bg-[#FAFEFF] border border-[#005F85] p-2 relative group ${
-        isSaveLoading
+      className={`w-10 h-10 flex items-center justify-center relative group ${
+        isLoading
           ? "cursor-not-allowed opacity-50"
           : "cursor-pointer opacity-100"
       }`}
       onClick={handleSaveForLater}
-      disabled={isSaveLoading}
+      disabled={isLoading}
     >
-      {isSaveLoading && <Loader type="sm" />}
-      {!isSaveLoading && (
+      {isLoading && <Loader type="sm" />}
+      {!isLoading && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill={isSaved ? "#005F85" : "none"}

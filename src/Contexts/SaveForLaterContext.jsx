@@ -26,29 +26,7 @@ const reducer = (state, action) => {
         savedItems: action.payload,
         isSaveLoading: false,
       };
-    case "item/added":
-      return {
-        ...state,
-        saveMessage: action.payload,
-        isSaveLoading: false,
-      };
-    case "item/moved":
-      return {
-        ...state,
-        saveMessage: action.payload,
-        isSaveLoading: false,
-      };
-    case "item/deleted":
-      return {
-        ...state,
-        saveMessage: action.payload,
-        isSaveLoading: false,
-      };
-    case "message/cleared":
-      return {
-        ...state,
-        saveMessage: null,
-      };
+
     case "rejected":
       return {
         ...state,
@@ -87,67 +65,46 @@ function SaveForLaterProvider({ children }) {
 
   //Add to Cart
   async function addToSaveForLater(data, setIsSaved) {
-    dispatch({ type: "loading", payload: true });
     try {
-      const response = await productFetch.post("/add-to-saveforlater/", data, {
+      await productFetch.post("/add-to-saveforlater/", data, {
         headers: {
           Authorization: `Bearer ${user?.token?.access}`,
         },
-      });
-      dispatch({
-        type: "item/added",
-        payload: response.data.Message,
       });
       setIsSaved(true);
       getSavedItems();
     } catch (error) {
       console.log(error);
-      dispatch({ type: "rejected", payload: error.message });
     }
   }
 
   // Delete Cart Items
   async function deleteSavedItem(data, setIsSaved) {
-    dispatch({ type: "loading", payload: true });
     try {
-      const response = await productFetch.post(
-        `/delete-from-saveforlater/`,
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${user?.token?.access}`,
-          },
-        }
-      );
-      dispatch({
-        type: "item/deleted",
-        payload: response.data.Message,
+      await productFetch.post(`/delete-from-saveforlater/`, data, {
+        headers: {
+          Authorization: `Bearer ${user?.token?.access}`,
+        },
       });
+
       setIsSaved(false);
       getSavedItems();
     } catch (error) {
       console.log(error);
-      dispatch({ type: "rejected", payload: error.message });
     }
   }
 
   // Move To Cart
   async function moveToCart(data) {
-    dispatch({ type: "loading", payload: true });
     try {
-      const response = await productFetch.post(`/move-to-cart/`, data, {
+      await productFetch.post(`/move-to-cart/`, data, {
         headers: {
           Authorization: `Bearer ${user.token.access}`,
         },
       });
-      dispatch({
-        type: "item/moved",
-        payload: response.data.Message,
-      });
       getSavedItems();
     } catch (error) {
       console.log(error);
-      dispatch({ type: "rejected", payload: error.message });
     }
   }
 
