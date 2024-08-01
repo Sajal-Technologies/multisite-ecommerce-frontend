@@ -15,7 +15,7 @@ const Categories = () => {
           View All <FiArrowRight className="mobile:text-xl" />
         </span>
       </div>
-      <div className=" grid  tablet:grid-cols-4 lg:grid-cols-4 grid-rows-[1fr_1fr_1fr] md:grid-cols-3 tablet:gap-2  lg:gap-4 *:rounded-3xl">
+      <div className=" grid  tablet:grid-cols-4 lg:grid-cols-4 grid-rows-[repeat(3,1fr)] mobile:grid-rows-[repeat(6,1fr)] md:grid-cols-3 mobile:gap-2 tablet:gap-2  lg:gap-4 *:rounded-3xl">
         <div className=" group relative overflow-hidden">
           <picture className="w-full h-full -z-10">
             <img
@@ -29,7 +29,7 @@ const Categories = () => {
             className="absolute top-0 left-0 right-0 bottom-0 z-10 p-4"
           >
             <div className="cursor-pointer w-full h-full">
-              <h3 className="lg:text-xl xl:text-2xl tablet:text-base  font-bold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1.1]  w-[60%]">
+              <h3 className="lg:text-xl xl:text-2xl tablet:text-base mobile:text-lg mobile:leading-[1.1]  font-bold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1.1]  w-[60%]">
                 Immerse Yourself in Every Story.
                 {/* Book */}
               </h3>
@@ -50,7 +50,7 @@ const Categories = () => {
             className="absolute top-0 left-0 right-0 bottom-0 z-10 p-4"
           >
             <div className="cursor-pointer w-full h-full">
-              <h3 className="lg:text-xl xl:text-2xl tablet:text-xl  font-bold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1.1]   tablet:w-full lg:w-[80%]">
+              <h3 className="lg:text-xl xl:text-2xl tablet:text-xl mobile:text-lg mobile:leading-[1.1]   font-bold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1.1]   tablet:w-full lg:w-[80%]">
                 Play, Imagine, Explore.
                 {/* Toy and Games */}
               </h3>
@@ -71,16 +71,13 @@ const Categories = () => {
             className="absolute top-0 left-0 right-0 bottom-0 z-10 p-4"
           >
             <div className="cursor-pointer w-full h-full flex flex-col tablet:justify-between tablet:py-4">
-              <h3 className="lg:text-xl xl:text-2xl tablet:text-xl  font-bold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1] mb-3">
+              <h3 className="lg:text-xl xl:text-2xl tablet:text-xl mobile:text-lg mobile:leading-[1.1]  font-bold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1] mb-3">
                 Connect Smarter, Live Better
               </h3>
-              <p className="lg:text-base tablet:text-sm lg:leading-tight tablet:leading-[1]   text-[#5C5C5C]">
+              <p className="lg:text-base tablet:text-sm lg:leading-tight tablet:leading-[1] mobile:hidden tablet:block  text-[#5C5C5C]">
                 latest smartphones with advanced features and sleek designs.
               </p>
             </div>
-            {/* <button className="text-white  bg-[#005F85] px-4 py-2 rounded-full text-base font-semibold absolute bottom-16 right-3">
-            Shop Now
-          </button> */}
           </a>
         </div>
 
@@ -97,7 +94,7 @@ const Categories = () => {
             className="absolute top-0 left-0 right-0 bottom-0 z-10 p-4"
           >
             <div className="cursor-pointer w-full h-full">
-              <h3 className="lg:text-xl xl:text-2xl tablet:text-base  font-bold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1.1]  w-[80%]">
+              <h3 className="lg:text-xl xl:text-2xl tablet:text-base mobile:text-lg mobile:leading-[1.1]   font-bold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1.1]  w-[80%]">
                 Elevate Your Performance.
                 {/* Sport */}
               </h3>
@@ -105,7 +102,7 @@ const Categories = () => {
           </a>
         </div>
 
-        <div className=" group row-span-2 col-span-2 relative overflow-hidden">
+        <div className=" group row-span-2 col-span-2 mobile:row-start-1 relative overflow-hidden">
           <picture className="w-full h-full">
             <img
               src={bag}
@@ -118,10 +115,10 @@ const Categories = () => {
             className="absolute top-0 left-0 right-0 bottom-0 z-10 px-4 py-8"
           >
             <div className="cursor-pointer w-full">
-              <h3 className="xl:text-5xl lg:text-4xl tablet:text-2xl font-extrabold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1.1] lg:mb-4 tablet:mb-2">
+              <h3 className="xl:text-5xl lg:text-4xl tablet:text-2xl mobile:text-xl mobile:leading-[1.1] mobile:mb-2  font-extrabold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1.1] lg:mb-4 tablet:mb-2">
                 Elevate Your Style <br /> with Modern <br /> Trends
               </h3>
-              <p className="xl:text-xl lg:text-base tablet:text-sm font-semibold xl:leading-snug lg:leading-tight tracking-wider lg:mb-5 tablet:mb-3 xl:mb-6 text-[#5C5C5C] lg:w-[50%] tablet:w-[80%] ">
+              <p className="xl:text-xl lg:text-base tablet:text-sm font-semibold xl:leading-snug mobile:mb-2 lg:leading-tight tracking-wider lg:mb-5 tablet:mb-3 xl:mb-6 text-[#5C5C5C] lg:w-[50%] tablet:w-[80%] ">
                 Discover stylish clothing and accessories that define your look.
               </p>
               <button className="text-white  bg-[#005F85] px-4 py-2 rounded-full text-base font-semibold">
@@ -144,7 +141,7 @@ const Categories = () => {
             className="absolute top-0 left-0 right-0 bottom-0 z-10 p-4"
           >
             <div className="cursor-pointer w-full h-full">
-              <h3 className="lg:text-xl xl:text-2xl tablet:text-base  font-bold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1.1]  w-[80%]">
+              <h3 className="lg:text-xl xl:text-2xl tablet:text-base mobile:text-lg mobile:leading-[1.1]   font-bold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1.1]  w-[80%]">
                 Radiate Wellness and Beauty
                 {/* Health and Beauty */}
               </h3>

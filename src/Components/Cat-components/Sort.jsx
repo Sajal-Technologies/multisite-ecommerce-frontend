@@ -1,10 +1,10 @@
 import Dropdown from "./Dropdown";
 import { FiList } from "react-icons/fi";
 import { FiGrid } from "react-icons/fi";
-import { useProduct } from "../../Contexts/ProductContext";
+import { useSearch } from "../../Contexts/SearchContext";
 
 const Sort = () => {
-  const { searchProducts, setView } = useProduct();
+  const { searchProducts, setView } = useSearch();
 
   return (
     <>

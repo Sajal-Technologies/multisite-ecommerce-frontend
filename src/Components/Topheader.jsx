@@ -6,18 +6,17 @@ import { FiGlobe } from "react-icons/fi";
 import { FiUser } from "react-icons/fi";
 import { FiSearch } from "react-icons/fi";
 import { FiShoppingCart } from "react-icons/fi";
-
 import Seperator from "./Seperator";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Contexts/AuthContext";
-import { useProduct } from "../Contexts/ProductContext";
+import { useSearch } from "../Contexts/SearchContext";
 
 const Topheader = ({ toggleCartPopup }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [search, setSearch] = useState("");
   const { user } = useAuth();
-  const { getSearchProduct, cancelRequest } = useProduct();
+  const { setQuery, getSearchProduct, cancelRequest } = useSearch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,13 +36,17 @@ const Topheader = ({ toggleCartPopup }) => {
     };
   }, [lastScrollTop]);
 
-  const handleSeaerchSubmit = (e) => {
+  const handleSearchSubmit = (e) => {
     e.preventDefault();
-    if (search === "") return;
+    const formData = new FormData(e.target);
+    const query = formData.get("search").trim();
+    setQuery(query);
+
+    if (query === "") return;
+    navigate(`/Search?q=${query}`);
+
     cancelRequest();
-    getSearchProduct({
-      product_name: search,
-    });
+    getSearchProduct({ product_name: query });
   };
 
   return (
@@ -98,15 +101,14 @@ const Topheader = ({ toggleCartPopup }) => {
         <div className="right flex items-center gap-14 pl-[100px] md:ml-[-250px]">
           <form
             className="search flex items-center relative mobile:left-[-26%]"
-            onSubmit={handleSeaerchSubmit}
+            onSubmit={handleSearchSubmit}
           >
             <FiSearch className="left-3 absolute text-[#5C5C5C] text-xl mobile:left-[-25px]" />
             <input
               className="bg-[#FAFAFA] border-[1px] border-[#DEDEDE] px-4 py-2 pl-10 md:w-[40vw]  xl:w-[45vw] mobile:ml-[-35px] rounded-lg mobile:px-2 mobile:py-[10px] mobile:pl-10 mobile:w-[220px] mobile:placeholder:text-xs"
               type="text"
               placeholder="Search essentials, groceries and more..."
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
+              name="search"
             />
           </form>
           <div className="flex items-center">

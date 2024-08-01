@@ -11,7 +11,9 @@ const CategoryList = () => {
     {
       title: "All",
       link: "/Categories",
-      icon: <MdViewList className="text-[#005F85] text-3xl row-span-2" />,
+      icon: (
+        <MdViewList className="text-[#005F85] text-3xl row-span-2 tablet:row-span-1" />
+      ),
       description: "Explore our entire collection.",
     },
     {
@@ -64,7 +66,7 @@ const CategoryList = () => {
           return (
             <Link
               key={i}
-              className={` grid grid-cols-[auto_1fr] items-center gap-x-4 whitespace-nowrap text-[#005F85] font-medium relative px-6 py-4 transition duration-200 after:w-[1px] after:block after:h-[24px] after:bg-[#D9D9D9] after:absolute after:top- after:translate-y-0 after:right-[-3%] last-of-type:after:hidden
+              className={` grid lg:grid-cols-[auto_1fr] tablet:grid-cols-[1fr] tablet:justify-items-center mobile:justify-items-center  items-center gap-x-4 whitespace-nowrap text-[#005F85] font-medium mobile:text-sm mobile:px-3 mobile:py-2 relative px-6 py-4 transition duration-200 after:w-[1px] after:block after:h-[24px] after:bg-[#D9D9D9] after:absolute after:top- after:translate-y-0 after:right-[-3%] last-of-type:after:hidden
            `}
               to={item.link}
             >
@@ -72,7 +74,9 @@ const CategoryList = () => {
               <h5 className="uppercase font-semibold text-[#3D3D3D] leading-none">
                 {item.title}
               </h5>
-              <p className="text-sm text-[#5C5C5C]">{item.description}</p>
+              <p className="text-sm text-[#5C5C5C] mobile:hidden block">
+                {item.description}
+              </p>
             </Link>
           );
         })}

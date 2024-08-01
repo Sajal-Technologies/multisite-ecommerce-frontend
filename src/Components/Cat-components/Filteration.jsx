@@ -5,23 +5,21 @@ import Flipkart from "../../images/CategoriesPage/Filteraion/flipkart.png";
 import Indiamart from "../../images/CategoriesPage/Filteraion/indiamart.png";
 import Amazon from "../../images/CategoriesPage/Filteraion/amazon.png";
 import Meesho from "../../images/CategoriesPage/Filteraion/meesho.png";
-import { useProduct } from "../../Contexts/ProductContext";
+import { useSearch } from "../../Contexts/SearchContext";
 const MIN = 0;
 const MAX = 12000;
 
 const Filteration = () => {
   const [values, setValues] = useState([MIN, MAX]);
-  const { bodyData, getSearchProduct, cancelRequest } = useProduct();
+  const { bodyData, getSearchProduct } = useSearch();
 
   useEffect(() => {
     if (values[0] === MIN && values[1] === MAX) return;
     if (!bodyData.product_name) return;
 
-    cancelRequest();
-
     const Timeout = setTimeout(() => {
       getSearchProduct({ ...bodyData, ppr_min: values[0], ppr_max: values[1] });
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(Timeout);
   }, [values]);

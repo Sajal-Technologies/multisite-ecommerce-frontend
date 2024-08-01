@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useProductDetails } from "../../Contexts/ProductDetailsContext";
 import { useSaveForLater } from "../../Contexts/SaveForLaterContext";
 import Breadcrump from "../Cat-components/Breadcrump";
-import Loader from "../Loader";
 import ListingProductDets from "./ListingProductDets";
 import { useAuth } from "../../Contexts/AuthContext";
+import MultiStageLoader from "../MultiStageLoader";
 
 const ProductPage = () => {
   const { isLoading, error, productDetails } = useProductDetails();
@@ -26,7 +26,7 @@ const ProductPage = () => {
       <Breadcrump />
       {isLoading && (
         <div className="h-[50svh] grid place-items-center">
-          <Loader type="lg" />
+          <MultiStageLoader />
         </div>
       )}
       {error && (

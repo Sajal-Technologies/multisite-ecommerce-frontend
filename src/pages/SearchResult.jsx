@@ -3,31 +3,29 @@ import Sort from "../Components/Cat-components/Sort";
 import Filteration from "../Components/Cat-components/Filteration";
 import ListView from "../Components/ProductView/ListView";
 import GridView from "../Components/ProductView/GridView";
-import { useProduct } from "../Contexts/ProductContext";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import pageInfo from "../images/FilterCapsule/page-info.svg";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import Loader from "../Components/Loader";
+import { useSearch } from "../Contexts/SearchContext";
 
 function SearchResult() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const {
     view,
-    bodyData,
+    query,
     getSearchProduct,
     searchProducts,
     error,
     isLoading: searchLoading,
-  } = useProduct();
+  } = useSearch();
   const [searchQuery] = useSearchParams();
-  const query = searchQuery.get("q");
+  const queryParmas = searchQuery.get("q");
 
   useEffect(() => {
-    if (bodyData !== null) return;
-    if (!query) return;
-    getSearchProduct({ product_name: decodeURIComponent(query) });
+    if (query || !queryParmas) return;
+    getSearchProduct({ product_name: queryParmas });
   }, []);
 
   useEffect(() => {
@@ -46,11 +44,6 @@ function SearchResult() {
 
   return (
     <div className="flex flex-col w-full bg-[#FAFAFA] pt-[60px] mobile:pt-[70px]">
-      {searchLoading && (
-        <div className=" w-screen h-screen fixed top-0 right-0 left-0 z-30 grid place-items-center bg-[rgba(0,0,0,0.1)]">
-          <Loader type="lg" />
-        </div>
-      )}
       <div
         className={` hidden mobile:fixed mobile:top-[72%] z-30 mobile:w-full mobile:flex mobile:items-center mobile:justify-center overflow-hidden`}
       >

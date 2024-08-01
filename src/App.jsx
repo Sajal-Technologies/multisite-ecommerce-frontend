@@ -18,6 +18,7 @@ import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import SearchResult from "./pages/SearchResult";
 import { ProductDetailsProvider } from "./Contexts/ProductDetailsContext";
 import PageNotFound from "./pages/PageNotFound";
+import SaveForLaterPage from "./pages/SaveForLaterPage";
 
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
@@ -51,7 +52,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/Categories" element={<Categroriespage />} />
-        <Route path="/search" element={<SearchResult />} />
+        <Route path="/Search" element={<SearchResult />} />
+        <Route path="/SaveForLater" element={<SaveForLaterPage />} />
         <Route
           path="/Product/:id"
           element={

@@ -1,8 +1,8 @@
 import Select from "react-select";
-import { useProduct } from "../../Contexts/ProductContext";
+import { useSearch } from "../../Contexts/SearchContext";
 
 const Dropdown = () => {
-  const { getSearchProduct, bodyData } = useProduct();
+  const { getSearchProduct, bodyData } = useSearch();
 
   const handleSort = (e) => {
     if (bodyData.product_name) {

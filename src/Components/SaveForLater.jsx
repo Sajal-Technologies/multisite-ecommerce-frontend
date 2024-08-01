@@ -7,6 +7,7 @@ import Loader from "./Loader";
 function SaveForLater({ id }) {
   const { addToSaveForLater, deleteSavedItem, savedItems } = useSaveForLater();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { user } = useAuth();
   const navigate = useNavigate();
   const [isSaved, setIsSaved] = useState(false);
@@ -25,11 +26,12 @@ function SaveForLater({ id }) {
         ? await addToSaveForLater({ product_id: id }, setIsSaved)
         : await deleteSavedItem({ product_id: id }, setIsSaved);
     } catch (error) {
-      console.log(error);
+      setError(error);
     } finally {
       setIsLoading(false);
     }
   }
+
   return (
     <button
       className={`w-10 h-10 flex items-center justify-center relative group ${

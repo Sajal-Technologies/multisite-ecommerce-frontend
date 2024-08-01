@@ -8,7 +8,6 @@ const initialState = {
   savedItems: [],
   isSaveLoading: false,
   saveError: null,
-  saveMessage: null,
 };
 
 const reducer = (state, action) => {
@@ -52,7 +51,6 @@ function SaveForLaterProvider({ children }) {
           Authorization: `Bearer ${user?.token?.access}`,
         },
       });
-      console.log(response.data);
       dispatch({
         type: "SavedItems/loaded",
         payload: response.data.savelater_data,
@@ -74,7 +72,7 @@ function SaveForLaterProvider({ children }) {
       setIsSaved(true);
       getSavedItems();
     } catch (error) {
-      console.log(error);
+      throw error.message;
     }
   }
 
@@ -90,7 +88,7 @@ function SaveForLaterProvider({ children }) {
       setIsSaved(false);
       getSavedItems();
     } catch (error) {
-      console.log(error);
+      throw error.message;
     }
   }
 
@@ -108,10 +106,6 @@ function SaveForLaterProvider({ children }) {
     }
   }
 
-  function setMessage(message) {
-    dispatch({ type: "message/cleared", payload: message });
-  }
-
   return (
     <SaveForLaterContext.Provider
       value={{
@@ -119,7 +113,6 @@ function SaveForLaterProvider({ children }) {
         isSaveLoading,
         saveError,
         saveMessage,
-        setMessage,
         getSavedItems,
         addToSaveForLater,
         deleteSavedItem,

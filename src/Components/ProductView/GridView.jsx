@@ -1,14 +1,23 @@
 import { useSearchParams } from "react-router-dom";
 import ProductCard from "../Products/ProductCard";
+import MultiStageLoader from "../MultiStageLoader";
 
 function GridView({ searchProducts, error, searchLoading }) {
   const [queryString] = useSearchParams();
   const searchQuery = queryString.get("q");
 
-  if (error) {
+  if (searchLoading) {
     return (
-      <div className="flex justify-center items-center w-full h-[50vh]">
-        <h1 className="text-[#5C5C5C] font-semibold text-2xl">
+      <div className="flex justify-center items-center w-full h-[80vh]">
+        <MultiStageLoader />
+      </div>
+    );
+  }
+
+  if (error && !searchLoading) {
+    return (
+      <div className="flex justify-center items-center w-full h-[80vh]">
+        <h1 className="text-gray-400 font-semibold text-2xl">
           {error === "Unable to fetch the Product data: 'results'"
             ? error.replace("results", searchQuery)
             : error}
@@ -19,8 +28,8 @@ function GridView({ searchProducts, error, searchLoading }) {
 
   if (!error && !searchLoading && searchProducts.length === 0) {
     return (
-      <div className="flex justify-center items-center w-full h-[50vh]">
-        <h1 className="text-[#5C5C5C] font-semibold text-2xl">
+      <div className="flex justify-center items-center w-full h-[80vh]">
+        <h1 className="text-gray-400 font-bold text-2xl">
           No Products Found :(
         </h1>
       </div>
