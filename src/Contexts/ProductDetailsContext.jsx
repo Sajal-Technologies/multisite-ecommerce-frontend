@@ -24,25 +24,14 @@ function reducer(state, action) {
         productDetails: action.payload,
       };
     case "rejected":
-      if (action.payload.response) {
-        return {
-          ...state,
-          isLoading: false,
-          error: action.payload.response.data.Message,
-        };
-      } else if (action.payload.request) {
-        return {
-          ...state,
-          isLoading: false,
-          error: action.payload?.message,
-        };
-      } else {
-        return {
-          ...state,
-          isLoading: false,
-          error: action.payload?.message,
-        };
-      }
+      return {
+        ...state,
+        isLoading: false,
+        error:
+          action.payload?.response?.data?.Message ||
+          action.payload?.message ||
+          "An unexpected error occurred",
+      };
     default:
       throw new Error("Invalid action");
   }

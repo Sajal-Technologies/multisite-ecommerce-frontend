@@ -3,14 +3,17 @@ import Sort from "../Components/Cat-components/Sort";
 import Filteration from "../Components/Cat-components/Filteration";
 import ListView from "../Components/ProductView/ListView";
 import GridView from "../Components/ProductView/GridView";
-import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import pageInfo from "../images/FilterCapsule/page-info.svg";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { useSearch } from "../Contexts/SearchContext";
+import useURL from "../hooks/useURL";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function SearchResult() {
   const [isVisible, setIsVisible] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(7);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const {
     view,
@@ -20,12 +23,13 @@ function SearchResult() {
     error,
     isLoading: searchLoading,
   } = useSearch();
-  const [searchQuery] = useSearchParams();
-  const queryParmas = searchQuery.get("q");
+  const queries = useURL();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    if (query || !queryParmas) return;
-    getSearchProduct({ product_name: queryParmas });
+    if (query || !queries.product_name) return;
+    getSearchProduct(queries);
   }, []);
 
   useEffect(() => {
@@ -41,6 +45,44 @@ function SearchResult() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollTop]);
+
+  useEffect(() => {
+    if (
+      currentPage > 1 &&
+      currentPage < totalPages &&
+      searchProducts.length === 0
+    ) {
+      setTotalPages(currentPage);
+    }
+
+    if (currentPage === totalPages && searchProducts.length > 0) {
+      setTotalPages(totalPages + 1);
+    }
+  }, [currentPage, totalPages, searchProducts]);
+
+  const handlePageChange = (pageNumber) => {
+    const newParams = new URLSearchParams(location.search);
+    newParams.has("page")
+      ? newParams.set("page", pageNumber)
+      : newParams.append("page", pageNumber);
+
+    navigate(`/Search?${newParams.toString()}`);
+    getSearchProduct({ ...queries, page_number: pageNumber });
+    setCurrentPage(pageNumber);
+    window.scrollTo(0, 0);
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      handlePageChange(currentPage - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      handlePageChange(currentPage + 1);
+    }
+  };
 
   return (
     <div className="flex flex-col w-full bg-[#FAFAFA] pt-[60px] mobile:pt-[70px]">
@@ -72,6 +114,11 @@ function SearchResult() {
               searchProducts={searchProducts}
               error={error}
               searchLoading={searchLoading}
+              handlePrevious={handlePrevious}
+              currentPage={currentPage}
+              handleNext={handleNext}
+              handlePageChange={handlePageChange}
+              totalPages={totalPages}
             />
           )}
           {view === "list" && (
@@ -79,6 +126,11 @@ function SearchResult() {
               searchProducts={searchProducts}
               error={error}
               searchLoading={searchLoading}
+              handlePrevious={handlePrevious}
+              currentPage={currentPage}
+              handleNext={handleNext}
+              handlePageChange={handlePageChange}
+              totalPages={totalPages}
             />
           )}
         </div>

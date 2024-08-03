@@ -6,19 +6,35 @@ import Indiamart from "../../images/CategoriesPage/Filteraion/indiamart.png";
 import Amazon from "../../images/CategoriesPage/Filteraion/amazon.png";
 import Meesho from "../../images/CategoriesPage/Filteraion/meesho.png";
 import { useSearch } from "../../Contexts/SearchContext";
+import useURL from "../../hooks/useURL";
+import { useLocation, useNavigate } from "react-router-dom";
 const MIN = 0;
 const MAX = 12000;
 
 const Filteration = () => {
   const [values, setValues] = useState([MIN, MAX]);
-  const { bodyData, getSearchProduct } = useSearch();
+  const { getSearchProduct } = useSearch();
+  const queries = useURL();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (values[0] === MIN && values[1] === MAX) return;
-    if (!bodyData.product_name) return;
+    if (!queries.product_name) return;
 
     const Timeout = setTimeout(() => {
-      getSearchProduct({ ...bodyData, ppr_min: values[0], ppr_max: values[1] });
+      const newParams = new URLSearchParams(location.search);
+      newParams.has("ppr_min")
+        ? newParams.set("ppr_min", values[0])
+        : newParams.append("ppr_min", values[0]);
+
+      newParams.has("ppr_max")
+        ? newParams.set("ppr_max", values[1])
+        : newParams.append("ppr_max", values[1]);
+
+      navigate(`/Search?${newParams.toString()}`);
+
+      getSearchProduct({ ...queries, ppr_min: values[0], ppr_max: values[1] });
     }, 1000);
 
     return () => clearTimeout(Timeout);

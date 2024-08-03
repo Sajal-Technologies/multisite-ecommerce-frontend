@@ -22,25 +22,14 @@ function reducer(state, action) {
       return { ...state, searchProducts: action.payload, isLoading: false };
 
     case "rejected":
-      if (action.payload.response) {
-        return {
-          ...state,
-          isLoading: false,
-          error: action.payload.response.data.Message,
-        };
-      } else if (action.payload.request) {
-        return {
-          ...state,
-          isLoading: false,
-          error: action.payload?.message,
-        };
-      } else {
-        return {
-          ...state,
-          isLoading: false,
-          error: action.payload?.message,
-        };
-      }
+      return {
+        ...state,
+        isLoading: false,
+        error:
+          action.payload?.response?.data?.Message ||
+          action.payload?.response?.statusText ||
+          "An unexpected error occurred",
+      };
     case "query/set":
       return { ...state, query: action.payload };
     case "view/set":
@@ -57,10 +46,9 @@ function reducer(state, action) {
 function SearchProvider({ children }) {
   const [{ searchProducts, isLoading, error, view, query }, dispatch] =
     useReducer(reducer, initialState);
-  const [bodyData, setBodyData] = useState(null);
   const [controller, setController] = useState(null);
 
-  async function getSearchProduct(data = bodyData.product_name) {
+  async function getSearchProduct(data) {
     const newController = new AbortController();
     setController(newController);
 
@@ -77,13 +65,13 @@ function SearchProvider({ children }) {
           signal: newController.signal,
         }
       );
-      setBodyData(data);
-      console.log(response.data);
+      console.log(data);
       dispatch({
         type: "product/loaded",
         payload: response.data["Product_data"],
       });
     } catch (error) {
+      console.log(error);
       if (error.name === "CanceledError") {
         dispatch({ type: "abort/set" });
       } else {
@@ -117,7 +105,6 @@ function SearchProvider({ children }) {
     <SearchContext.Provider
       value={{
         searchProducts,
-        bodyData,
         getSearchProduct,
         isLoading,
         error,
@@ -137,7 +124,7 @@ function SearchProvider({ children }) {
 function useSearch() {
   const context = useContext(SearchContext);
   if (context === undefined) {
-    throw new Error("useProduct must be used within a ProductProvider");
+    throw new Error("useSearch must be used within a SearchProvider");
   }
   return context;
 }

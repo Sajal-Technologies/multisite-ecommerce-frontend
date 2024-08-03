@@ -1,13 +1,22 @@
 import Select from "react-select";
 import { useSearch } from "../../Contexts/SearchContext";
+import { useLocation, useNavigate } from "react-router-dom";
+import useURL from "../../hooks/useURL";
 
 const Dropdown = () => {
-  const { getSearchProduct, bodyData } = useSearch();
+  const { getSearchProduct } = useSearch();
+  const navigate = useNavigate();
+  const queries = useURL();
+  const location = useLocation();
 
   const handleSort = (e) => {
-    if (bodyData.product_name) {
-      getSearchProduct({ ...bodyData, sort_by: e.value });
-    }
+    const newParams = new URLSearchParams(location.search);
+    newParams.has("sortby")
+      ? newParams.set("sortby", e.value)
+      : newParams.append("sortby", e.value);
+
+    navigate(`/Search?${newParams.toString()}`);
+    getSearchProduct({ ...queries, sort_by: e.value });
   };
 
   const options = [
@@ -20,7 +29,11 @@ const Dropdown = () => {
   return (
     <Select
       options={options}
-      defaultValue={options[0]}
+      defaultValue={
+        options[
+          options.findIndex((option) => option.value === queries.sort_by)
+        ] || options[0]
+      }
       placeholder="Relevancy"
       className="w-[230px] mobile:hidden"
       noOptionsMessage={() => "No data found.."}
