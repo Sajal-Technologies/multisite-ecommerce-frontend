@@ -1,23 +1,14 @@
 import Select from "react-select";
 import { useSearch } from "../../Contexts/SearchContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import useURL from "../../hooks/useURL";
+import { useEffect, useState } from "react";
 
 const Dropdown = () => {
   const { getSearchProduct } = useSearch();
-  const navigate = useNavigate();
-  const queries = useURL();
+  const [queries, setURLQuery] = useURL();
+  const [defaultValue, setDefaultValue] = useState();
   const location = useLocation();
-
-  const handleSort = (e) => {
-    const newParams = new URLSearchParams(location.search);
-    newParams.has("sortby")
-      ? newParams.set("sortby", e.value)
-      : newParams.append("sortby", e.value);
-
-    navigate(`/Search?${newParams.toString()}`);
-    getSearchProduct({ ...queries, sort_by: e.value });
-  };
 
   const options = [
     { value: "relevance", label: "Relevance" },
@@ -26,14 +17,27 @@ const Dropdown = () => {
     { value: "rating", label: "Rating" },
   ];
 
+  const handleSort = (e) => {
+    const newParams = new URLSearchParams(location.search);
+    newParams.has("sortby")
+      ? newParams.set("sortby", e.value)
+      : newParams.append("sortby", e.value);
+
+    setURLQuery(newParams);
+    getSearchProduct({ ...queries, sort_by: e.value });
+  };
+
+  useEffect(() => {
+    const value = new URLSearchParams(location.search).get("sortby");
+    setDefaultValue(
+      options.find((option) => option.value === value) || options[0]
+    );
+  }, [location.search]);
+
   return (
     <Select
       options={options}
-      defaultValue={
-        options[
-          options.findIndex((option) => option.value === queries.sort_by)
-        ] || options[0]
-      }
+      value={defaultValue}
       placeholder="Relevancy"
       className="w-[230px] mobile:hidden"
       noOptionsMessage={() => "No data found.."}

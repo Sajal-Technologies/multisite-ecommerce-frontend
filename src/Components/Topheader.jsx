@@ -98,7 +98,7 @@ const Topheader = ({ toggleCartPopup }) => {
             />
           </div>
         </Link>
-        <div className="right flex items-center gap-14 pl-[100px] mobile:pl-[60px] md:ml-[-250px]">
+        <div className="right flex items-center gap-14 pl-[100px] mobile:pl-[30px] md:ml-[-250px]">
           <form
             className="search flex items-center relative"
             onSubmit={handleSearchSubmit}

@@ -5,6 +5,7 @@ import { useCart } from "../Contexts/CartContext";
 import { useAuth } from "../Contexts/AuthContext";
 import { Link } from "react-router-dom";
 import Loader from "../Components/Loader";
+import emptyCart from "../images/CartPage/emptyCart.png";
 // import Cartpopup from "./Cartpopup";
 
 const CartPage = () => {
@@ -43,8 +44,23 @@ const CartPage = () => {
               </span>
             </div>
             {!isCartLoading && cartItems.length <= 0 && (
-              <div className="text-center">
-                You don&apos;t have Items in your Cart. Please add items
+              <div className="flex items-center justify-center h-[60vh]">
+                <div className="text-center">
+                  <div className="flex justify-center">
+                    <img
+                      src={emptyCart}
+                      alt="empty-cart"
+                      className="w-[20%] block"
+                    />
+                  </div>
+                  <h2 className="text-xl font-semibold text-gray-700">
+                    Your cart is empty
+                  </h2>
+                  <p className="text-gray-500 mt-2">
+                    It looks like you don&apos;t have any items in your cart.
+                    Start adding some!
+                  </p>
+                </div>
               </div>
             )}
 

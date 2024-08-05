@@ -37,7 +37,7 @@ function ListView({
   }
 
   return (
-    <div className="w-full">
+    <div className="basis-full">
       {!error && !searchLoading && searchProducts.length === 0 ? (
         <div className="flex justify-center mt-[15rem] w-full h-[100vh]">
           <h1 className="text-gray-400 font-bold text-2xl">
@@ -45,7 +45,7 @@ function ListView({
           </h1>
         </div>
       ) : (
-        <div className="mobile:justify-start mobile:mt-[-14px] mobile:px-0 mobile:m-0 mobile:gap-2 gap-4 flex xl:pl-8 tablet:pl-4 flex-wrap w-full tablet:w-full">
+        <div className="mobile:justify-start mobile:mt-[-14px] mobile:px-0 mobile:m-0 mobile:gap-2 gap-4 flex  flex-wrap w-full">
           {searchProducts.map((product, i) => (
             <ProductList key={i} product={product} />
           ))}

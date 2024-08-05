@@ -7,16 +7,21 @@ import Amazon from "../../images/CategoriesPage/Filteraion/amazon.png";
 import Meesho from "../../images/CategoriesPage/Filteraion/meesho.png";
 import { useSearch } from "../../Contexts/SearchContext";
 import useURL from "../../hooks/useURL";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const MIN = 0;
-const MAX = 12000;
+const MAX = 120000;
 
 const Filteration = () => {
   const [values, setValues] = useState([MIN, MAX]);
   const { getSearchProduct } = useSearch();
-  const queries = useURL();
-  const navigate = useNavigate();
+  const [queries, setURLQuery] = useURL();
   const location = useLocation();
+
+  useEffect(() => {
+    const min = new URLSearchParams(location.search).get("ppr_min");
+    const max = new URLSearchParams(location.search).get("ppr_max");
+    setValues([min || MIN, max || MAX]);
+  }, [location.search]);
 
   useEffect(() => {
     if (values[0] === MIN && values[1] === MAX) return;
@@ -32,8 +37,7 @@ const Filteration = () => {
         ? newParams.set("ppr_max", values[1])
         : newParams.append("ppr_max", values[1]);
 
-      navigate(`/Search?${newParams.toString()}`);
-
+      setURLQuery(newParams);
       getSearchProduct({ ...queries, ppr_min: values[0], ppr_max: values[1] });
     }, 1000);
 
@@ -89,7 +93,7 @@ const Filteration = () => {
             <div className="flex h-[85px] w-full ">
               <div className="w-full ">
                 <p className=" w-full mb-4 text-[#121212]">Min</p>
-                <span className="border-[1px] text-lg text-[#5C5C5C] input-field border-[#DEDEDE] bg-white py-[10px] px-2 rounded-md">
+                <span className="border-[1px] text-base text-[#5C5C5C] input-field border-[#DEDEDE] bg-white py-[10px] px-2 rounded-md">
                   &#8377;
                   <input
                     value={values[0]}
@@ -102,7 +106,7 @@ const Filteration = () => {
               </div>
               <div className="w-fit">
                 <p className="mb-4 text-[#121212]">Max</p>
-                <span className="border-[1px] text-lg text-[#5C5C5C] input-field border-[#DEDEDE] bg-white py-[10px] px-2 rounded-md">
+                <span className="border-[1px] text-base text-[#5C5C5C] input-field border-[#DEDEDE] bg-white py-[10px] px-2 rounded-md">
                   &#8377;
                   <input
                     value={values[1]}

@@ -28,6 +28,7 @@ function reducer(state, action) {
         error:
           action.payload?.response?.data?.Message ||
           action.payload?.response?.statusText ||
+          action.payload?.message ||
           "An unexpected error occurred",
       };
     case "query/set":

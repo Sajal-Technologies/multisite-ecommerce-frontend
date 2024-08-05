@@ -8,11 +8,11 @@ import pageInfo from "../images/FilterCapsule/page-info.svg";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { useSearch } from "../Contexts/SearchContext";
 import useURL from "../hooks/useURL";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function SearchResult() {
   const [isVisible, setIsVisible] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState();
   const [totalPages, setTotalPages] = useState(7);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const {
@@ -23,9 +23,13 @@ function SearchResult() {
     error,
     isLoading: searchLoading,
   } = useSearch();
-  const queries = useURL();
-  const navigate = useNavigate();
+  const [queries, setURLQuery] = useURL();
   const location = useLocation();
+
+  useEffect(() => {
+    const page = parseInt(new URLSearchParams(location.search).get("page"));
+    setCurrentPage(page || 1);
+  }, [location.search]);
 
   useEffect(() => {
     if (query || !queries.product_name) return;
@@ -66,7 +70,7 @@ function SearchResult() {
       ? newParams.set("page", pageNumber)
       : newParams.append("page", pageNumber);
 
-    navigate(`/Search?${newParams.toString()}`);
+    setURLQuery(newParams);
     getSearchProduct({ ...queries, page_number: pageNumber });
     setCurrentPage(pageNumber);
     window.scrollTo(0, 0);
@@ -106,8 +110,8 @@ function SearchResult() {
       </div>
       <Breadcrump />
       <Sort />
-      <div className="flex w-full items-center justify-center ">
-        <div className="flex xl:w-[85%] md:w-full mt-4 md:mt-0 xl:gap-0 md:gap-4 mobile:w-full px-4 xl:px-0 xl:justify-between py-4">
+      <div className="flex w-full items-center justify-start ">
+        <div className="flex xl:w-[85%] mx-auto md:w-full mt-4 md:mt-0 xl:gap-0 tablet:gap-4 md:gap-4 mobile:w-full px-4 xl:px-0 xl:justify-between tablet:justify-between py-4">
           <Filteration />
           {view === "grid" && (
             <GridView
