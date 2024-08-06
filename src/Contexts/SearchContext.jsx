@@ -5,6 +5,7 @@ const SearchContext = createContext();
 const initialState = {
   query: "",
   searchProducts: [],
+  filters: [],
   isLoading: false,
   error: null,
   view: "grid",
@@ -19,7 +20,12 @@ function reducer(state, action) {
         error: null,
       };
     case "product/loaded":
-      return { ...state, searchProducts: action.payload, isLoading: false };
+      return {
+        ...state,
+        searchProducts: action.payload["Product_data"],
+        filters: action.payload.filters,
+        isLoading: false,
+      };
 
     case "rejected":
       return {
@@ -45,7 +51,7 @@ function reducer(state, action) {
 }
 
 function SearchProvider({ children }) {
-  const [{ searchProducts, isLoading, error, view, query }, dispatch] =
+  const [{ searchProducts, isLoading, error, view, query, filters }, dispatch] =
     useReducer(reducer, initialState);
   const [controller, setController] = useState(null);
 
@@ -66,10 +72,10 @@ function SearchProvider({ children }) {
           signal: newController.signal,
         }
       );
-      console.log(data);
+      console.log(response.data);
       dispatch({
         type: "product/loaded",
-        payload: response.data["Product_data"],
+        payload: response.data,
       });
     } catch (error) {
       console.log(error);
@@ -110,6 +116,7 @@ function SearchProvider({ children }) {
         isLoading,
         error,
         setView,
+        filters,
         query,
         setQuery,
         cancelRequest,

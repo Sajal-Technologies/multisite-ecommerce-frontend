@@ -1,6 +1,5 @@
 import { useSearchParams } from "react-router-dom";
 import ProductList from "../Products/ProductList";
-import MultiStageLoader from "../MultiStageLoader";
 import Pagination from "../Pagination/Pagination";
 
 function ListView({
@@ -15,14 +14,6 @@ function ListView({
 }) {
   const [queryString] = useSearchParams();
   const searchQuery = queryString.get("q");
-
-  if (searchLoading) {
-    return (
-      <div className="flex justify-center items-center w-full h-[50vh]">
-        <MultiStageLoader />
-      </div>
-    );
-  }
 
   if (error && !searchLoading) {
     return (
@@ -39,10 +30,13 @@ function ListView({
   return (
     <div className="basis-full">
       {!error && !searchLoading && searchProducts.length === 0 ? (
-        <div className="flex justify-center mt-[15rem] w-full h-[100vh]">
-          <h1 className="text-gray-400 font-bold text-2xl">
-            No Products Found :(
+        <div className="flex items-center flex-col mt-[15rem] w-full h-[100vh]">
+          <h1 className="text-gray-400 font-bold text-2xl mb-1">
+            Sorry, no result found!
           </h1>
+          <p className="text-gray-400 text-lg">
+            Please check the spelling or try searching for something else
+          </p>
         </div>
       ) : (
         <div className="mobile:justify-start mobile:mt-[-14px] mobile:px-0 mobile:m-0 mobile:gap-2 gap-4 flex  flex-wrap w-full">

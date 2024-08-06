@@ -1,6 +1,6 @@
 import Breadcrump from "../Components/Cat-components/Breadcrump";
 import Sort from "../Components/Cat-components/Sort";
-import Filteration from "../Components/Cat-components/Filteration";
+import Filteration from "../Components/Filter/Filteration";
 import ListView from "../Components/ProductView/ListView";
 import GridView from "../Components/ProductView/GridView";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { useSearch } from "../Contexts/SearchContext";
 import useURL from "../hooks/useURL";
 import { useLocation } from "react-router-dom";
+import MultiStageLoader from "../Components/MultiStageLoader";
 
 function SearchResult() {
   const [isVisible, setIsVisible] = useState(true);
@@ -88,6 +89,14 @@ function SearchResult() {
     }
   };
 
+  if (searchLoading) {
+    return (
+      <div className="flex justify-center items-center w-full h-screen">
+        <MultiStageLoader />
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col w-full bg-[#FAFAFA] pt-[60px] mobile:pt-[70px]">
       <div
@@ -110,8 +119,8 @@ function SearchResult() {
       </div>
       <Breadcrump />
       <Sort />
-      <div className="flex w-full items-center justify-start ">
-        <div className="flex xl:w-[85%] mx-auto md:w-full mt-4 md:mt-0 xl:gap-0 tablet:gap-4 md:gap-4 mobile:w-full px-4 xl:px-0 xl:justify-between tablet:justify-between py-4">
+      <div className=" w-full my-4  ">
+        <div className="grid mobile:grid-cols-1 grid-cols-[280px_1fr] xl:w-[85%] mx-auto gap-4">
           <Filteration />
           {view === "grid" && (
             <GridView

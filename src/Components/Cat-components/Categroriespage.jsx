@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Breadcrump from "./Breadcrump";
 import Sort from "./Sort";
-import Filteration from "./Filteration";
+import Filteration from "../Filter/Filteration";
 import CatGrid from "./Cat-component-list/CatGrid";
 import CatListPage from "./Cat-component-list/CatListPage";
 import pageInfo from "../../images/FilterCapsule/page-info.svg";
