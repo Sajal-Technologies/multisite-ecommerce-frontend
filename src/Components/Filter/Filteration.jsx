@@ -109,7 +109,7 @@ const Filteration = () => {
       </section>
       <div>
         {filters.map((listItem, i) => {
-          if (Object.keys(listItem)[0] === "Price") return null;
+          if (listItem.title === "Price") return null;
           return <FilterList key={i} data={listItem} />;
         })}
       </div>

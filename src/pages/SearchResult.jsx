@@ -89,6 +89,18 @@ function SearchResult() {
     }
   };
 
+  if (error && !searchLoading) {
+    return (
+      <div className="flex justify-center items-center w-full h-[80vh]">
+        <h1 className="text-gray-400 font-semibold text-2xl">
+          {error === "Unable to fetch the Product data: 'results'"
+            ? error.replace("results", queries.product_name)
+            : error}
+        </h1>
+      </div>
+    );
+  }
+
   if (searchLoading) {
     return (
       <div className="flex justify-center items-center w-full h-screen">

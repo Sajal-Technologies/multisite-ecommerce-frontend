@@ -11,7 +11,7 @@ function FilterList({ data }) {
         onClick={() => setIsOpen(!isOpen)}
       >
         <h3 className="font-semibold text-[#121212] text-sm uppercase">
-          {[...Object.keys(data)]}
+          {data.title}
         </h3>
         {isOpen ? (
           <FiChevronUp className="text-[#005F85] text-lg" />
@@ -22,36 +22,20 @@ function FilterList({ data }) {
       {isOpen && (
         <div className="pt-2 px-3">
           <ul className="flex flex-col gap-[1px]">
-            <li>
-              <label className="flex items-center gap-2 text-lg font-normal">
-                <input
-                  type="checkbox"
-                  value=""
-                  name=""
-                  className="w-4 h-4"
-                  // checked={true}
-                />
-                Flipkart
-              </label>
-            </li>
-            <li>
-              <label className="flex items-center gap-2 text-lg font-normal">
-                <input type="checkbox" value="" className="w-4 h-4" />
-                IndiaMart
-              </label>
-            </li>
-            <li>
-              <label className="flex items-center gap-2 text-lg font-normal">
-                <input type="checkbox" value="" className="w-4 h-4" />
-                Amazon
-              </label>
-            </li>
-            <li>
-              <label className="flex items-center gap-2 text-lg font-normal">
-                <input type="checkbox" value="" className="w-4 h-4" />
-                Meesho
-              </label>
-            </li>
+            {Object.keys(data?.Value).map((item, i) => (
+              <li key={i}>
+                <label className="flex items-center gap-2 text-lg font-normal">
+                  <input
+                    type="checkbox"
+                    value={data.Value[item]}
+                    name={item}
+                    className="w-4 h-4"
+                    // checked={true}
+                  />
+                  {item}
+                </label>
+              </li>
+            ))}
           </ul>
         </div>
       )}

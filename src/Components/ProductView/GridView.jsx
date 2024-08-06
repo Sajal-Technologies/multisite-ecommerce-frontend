@@ -1,4 +1,3 @@
-import { useSearchParams } from "react-router-dom";
 import ProductCard from "../Products/ProductCard";
 import Pagination from "../Pagination/Pagination";
 
@@ -12,21 +11,6 @@ function GridView({
   currentPage,
   totalPages,
 }) {
-  const [queryString] = useSearchParams();
-  const searchQuery = queryString.get("q");
-
-  if (error && !searchLoading) {
-    return (
-      <div className="flex justify-center items-center w-full h-[80vh]">
-        <h1 className="text-gray-400 font-semibold text-2xl">
-          {error === "Unable to fetch the Product data: 'results'"
-            ? error.replace("results", searchQuery)
-            : error}
-        </h1>
-      </div>
-    );
-  }
-
   return (
     <div className="w-full mobile:mt-4">
       {!error && !searchLoading && searchProducts.length === 0 ? (
