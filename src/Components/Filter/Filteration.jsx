@@ -10,7 +10,9 @@ const MAX = 120000;
 
 const Filteration = () => {
   const [values, setValues] = useState([MIN, MAX]);
-  const { getSearchProduct, filters } = useSearch();
+  const [isClearVisible, setIsClearVisible] = useState(false);
+  const { getSearchProduct, filters, clearFilters, selectedFilters } =
+    useSearch();
   const [queries, setURLQuery] = useURL();
   const location = useLocation();
 
@@ -22,16 +24,15 @@ const Filteration = () => {
   }, [location.search]);
 
   useEffect(() => {
-    if (
-      values[0] ===
-        (parseInt(new URLSearchParams(location.search).get("ppr_min"), 10) ||
-          MIN) &&
-      values[1] ===
-        (parseInt(new URLSearchParams(location.search).get("ppr_max"), 10) ||
-          MAX)
-    )
-      return;
-    if (!queries.product_name) return;
+    setIsClearVisible(values[0] !== MIN || values[1] !== MAX);
+    const minParam =
+      parseInt(new URLSearchParams(location.search).get("ppr_min"), 10) || MIN;
+    const maxParam =
+      parseInt(new URLSearchParams(location.search).get("ppr_max"), 10) || MAX;
+
+    const shouldProceed = minParam !== values[0] || maxParam !== values[1];
+
+    if (!shouldProceed || !queries.product_name) return;
 
     const Timeout = setTimeout(() => {
       const newParams = new URLSearchParams(location.search);
@@ -56,23 +57,52 @@ const Filteration = () => {
       i === index ? parseInt(event.target.value, 10) : value
     );
     setValues(newValues);
+    setIsClearVisible(true);
   };
+
+  function handleClearPrice() {
+    setValues([MIN, MAX]);
+  }
+
+  function applyFilters() {
+    const newParams = new URLSearchParams(location.search);
+
+    if (selectedFilters.length !== 0) {
+      newParams.has("filters")
+        ? newParams.set("filters", selectedFilters.join("."))
+        : newParams.append("filters", selectedFilters.join("."));
+    } else newParams.delete("filters");
+
+    setURLQuery(newParams);
+    getSearchProduct({ ...queries, filters_all: selectedFilters.join(",") });
+  }
 
   return (
     <div className="filteration mobile:hidden block w-full bg-[#FAFAFA] border-[1px] border-[#F2F2F2] py-2 rounded-2xl self-start">
-      <div className="py-2 px-3">
-        <h2 className="font-bold text-[#121212] text-lg  uppercase ">
-          Filters
-        </h2>
-      </div>
-      <section className=" border-b-[1px] py-4 px-3 border-b-[#DEDEDE]">
-        <h3 className="font-semibold text-[#121212] text-sm uppercase mb-2">
-          Prices
-        </h3>
+      <h2 className="font-bold text-[#121212] text-lg  uppercase px-3">
+        Filters
+      </h2>
+      <section className=" border-b-[1px] py-4 px-3 border-b-[#DEDEDE] mb-2">
+        <div className="flex justify-between items-center">
+          <h3 className="font-semibold text-[#121212] text-sm uppercase mb-2">
+            Prices
+          </h3>
+          {isClearVisible && (
+            <button
+              className="text-sm text-[#005F85] uppercase font-bold self-start"
+              onClick={handleClearPrice}
+            >
+              Clear
+            </button>
+          )}
+        </div>
         <div>
           <Slider
             className={"slider w-full h-[6px] rounded bg-[#F2F2F2] mb-4"}
-            onChange={setValues}
+            onChange={(value) => {
+              setValues(value);
+              setIsClearVisible(true);
+            }}
             value={values}
             min={MIN}
             max={MAX}
@@ -83,7 +113,7 @@ const Filteration = () => {
               <input
                 type="number"
                 value={values[0]}
-                className="w-full p-2 pl-5 border-[1px] border-[#DEDEDE] text-lg rounded-md text-[#5C5C5C]"
+                className="w-full p-2 pl-5 border-[1px] shadow-sm border-[#DEDEDE] text-lg rounded-md text-[#5C5C5C]"
                 placeholder="0"
                 onChange={(event) => handleChange(0, event)}
               />
@@ -96,7 +126,7 @@ const Filteration = () => {
               <input
                 type="number"
                 value={values[1]}
-                className="w-full p-2 pl-5 border-[1px] border-[#DEDEDE] text-lg rounded-md text-[#5C5C5C]"
+                className="w-full p-2 pl-5 border-[1px] shadow-sm border-[#DEDEDE] text-lg rounded-md text-[#5C5C5C]"
                 placeholder="120000"
                 onChange={(event) => handleChange(1, event)}
               />
@@ -107,12 +137,36 @@ const Filteration = () => {
           </div>
         </div>
       </section>
+      <button
+        className="bg-[#ff7f00] text-nowrap shadow-md font-bold text-white w-full py-2 my-2 rounded-md"
+        onClick={applyFilters}
+      >
+        Apply Changes
+      </button>
+      <div className=" text-end">
+        {selectedFilters.length !== 0 && (
+          <button
+            className="text-sm text-[#005F85] py-4 px-3 uppercase font-bold"
+            onClick={clearFilters}
+          >
+            Clear All
+          </button>
+        )}
+      </div>
       <div>
         {filters.map((listItem, i) => {
           if (listItem.title === "Price") return null;
           return <FilterList key={i} data={listItem} />;
         })}
       </div>
+      {selectedFilters.length !== 0 && (
+        <button
+          className="bg-[#ff7f00] text-nowrap shadow-md font-bold text-white w-full py-2 my-2 rounded-md"
+          onClick={applyFilters}
+        >
+          Apply Changes
+        </button>
+      )}
     </div>
   );
 };

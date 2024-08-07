@@ -1,11 +1,13 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import productFetch from "../Axios Instance/productAxios";
+import useURL from "../hooks/useURL";
 const SearchContext = createContext();
 
 const initialState = {
   query: "",
   searchProducts: [],
   filters: [],
+  selectedFilters: [],
   isLoading: false,
   error: null,
   view: "grid",
@@ -43,17 +45,40 @@ function reducer(state, action) {
       return { ...state, view: action.payload };
     case "searchError/set":
       return { ...state, error: action.payload };
+
     case "abort/set":
       return { ...state, searchProducts: [] };
+    case "selectedFilters/set":
+      if (Array.isArray(action.payload))
+        return {
+          ...state,
+          selectedFilters: [...state.selectedFilters, ...action.payload],
+        };
+      return {
+        ...state,
+        selectedFilters: [...state.selectedFilters, action.payload],
+      };
+    case "selectedFilters/remove":
+      return {
+        ...state,
+        selectedFilters: state.selectedFilters.filter(
+          (item) => item !== action.payload
+        ),
+      };
+    case "filters/clear":
+      return { ...state, selectedFilters: [] };
     default:
       throw new Error("Invalid action");
   }
 }
 
 function SearchProvider({ children }) {
-  const [{ searchProducts, isLoading, error, view, query, filters }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { searchProducts, isLoading, error, view, query, filters, selectedFilters },
+    dispatch,
+  ] = useReducer(reducer, initialState);
   const [controller, setController] = useState(null);
+  const [queries, setURLQuery] = useURL();
 
   async function getSearchProduct(data) {
     const newController = new AbortController();
@@ -72,7 +97,7 @@ function SearchProvider({ children }) {
           signal: newController.signal,
         }
       );
-      console.log(response.data);
+      console.log(data);
       dispatch({
         type: "product/loaded",
         payload: response.data,
@@ -108,20 +133,51 @@ function SearchProvider({ children }) {
       setController(null);
     }
   }
+
+  //Filters
+
+  function setFilters(filters) {
+    filters &&
+      dispatch({
+        type: "selectedFilters/set",
+        payload: filters.split("."),
+      });
+  }
+
+  function filterChange(e) {
+    const { value, checked } = e.target;
+    checked
+      ? dispatch({ type: "selectedFilters/set", payload: value })
+      : dispatch({ type: "selectedFilters/remove", payload: value });
+  }
+
+  function clearFilters() {
+    const newParams = new URLSearchParams(location.search);
+    newParams.delete("filters");
+
+    setURLQuery(newParams);
+    getSearchProduct({ ...queries, filters_all: selectedFilters.join(",") });
+    dispatch({ type: "filters/clear", payload: [] });
+  }
+
   return (
     <SearchContext.Provider
       value={{
-        searchProducts,
-        getSearchProduct,
         isLoading,
         error,
         setView,
         filters,
         query,
         setQuery,
-        cancelRequest,
         view,
         setSearchError,
+        selectedFilters,
+        searchProducts,
+        getSearchProduct,
+        cancelRequest,
+        filterChange,
+        clearFilters,
+        setFilters,
       }}
     >
       {children}

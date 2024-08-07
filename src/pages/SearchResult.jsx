@@ -22,6 +22,8 @@ function SearchResult() {
     getSearchProduct,
     searchProducts,
     error,
+    setQuery,
+    setFilters,
     isLoading: searchLoading,
   } = useSearch();
   const [queries, setURLQuery] = useURL();
@@ -35,6 +37,8 @@ function SearchResult() {
   useEffect(() => {
     if (query || !queries.product_name) return;
     getSearchProduct(queries);
+    setQuery(queries.product_name);
+    setFilters(queries.filters_all);
   }, []);
 
   useEffect(() => {
@@ -136,9 +140,9 @@ function SearchResult() {
           <Filteration />
           {view === "grid" && (
             <GridView
-              searchProducts={searchProducts}
+              products={searchProducts}
               error={error}
-              searchLoading={searchLoading}
+              loading={searchLoading}
               handlePrevious={handlePrevious}
               currentPage={currentPage}
               handleNext={handleNext}
@@ -148,9 +152,9 @@ function SearchResult() {
           )}
           {view === "list" && (
             <ListView
-              searchProducts={searchProducts}
+              products={searchProducts}
               error={error}
-              searchLoading={searchLoading}
+              loading={searchLoading}
               handlePrevious={handlePrevious}
               currentPage={currentPage}
               handleNext={handleNext}

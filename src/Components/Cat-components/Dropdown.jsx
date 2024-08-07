@@ -2,7 +2,7 @@ import Select from "react-select";
 import { useSearch } from "../../Contexts/SearchContext";
 import { useLocation } from "react-router-dom";
 import useURL from "../../hooks/useURL";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const Dropdown = () => {
   const { getSearchProduct } = useSearch();
@@ -10,12 +10,14 @@ const Dropdown = () => {
   const [defaultValue, setDefaultValue] = useState();
   const location = useLocation();
 
-  const options = [
-    { value: "relevance", label: "Relevance" },
-    { value: "low_to_high", label: "Low to High" },
-    { value: "high_to_low", label: "High to Low" },
-    { value: "rating", label: "Rating" },
-  ];
+  const options = useMemo(() => {
+    return [
+      { value: "relevance", label: "Relevance" },
+      { value: "low_to_high", label: "Low to High" },
+      { value: "high_to_low", label: "High to Low" },
+      { value: "rating", label: "Rating" },
+    ];
+  }, []);
 
   const handleSort = (e) => {
     const newParams = new URLSearchParams(location.search);
@@ -32,7 +34,7 @@ const Dropdown = () => {
     setDefaultValue(
       options.find((option) => option.value === value) || options[0]
     );
-  }, [location.search]);
+  }, [location.search, options]);
 
   return (
     <Select
