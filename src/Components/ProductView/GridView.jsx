@@ -1,9 +1,16 @@
 import ProductCard from "../Products/ProductCard";
 import Pagination from "../Pagination/Pagination";
 
-function GridView({ products, error, loading, currentPage, totalPages }) {
+function GridView({
+  products,
+  error,
+  loading,
+  currentPage,
+  totalPages,
+  fetchCallback,
+}) {
   return (
-    <div className="w-full mobile:mt-4">
+    <div className="w-full mobile:mt-4 flex flex-col justify-between">
       {!error && !loading && products.length === 0 ? (
         <div className="flex items-center flex-col mt-[15rem] w-full h-[40vh]">
           <h1 className="text-gray-400 font-bold text-2xl mb-1">
@@ -22,7 +29,11 @@ function GridView({ products, error, loading, currentPage, totalPages }) {
           </div>
         </>
       )}
-      <Pagination currentPage={currentPage} totalPages={totalPages} />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        fetchCallback={fetchCallback}
+      />
     </div>
   );
 }

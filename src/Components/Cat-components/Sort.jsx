@@ -1,11 +1,8 @@
 import Dropdown from "./Dropdown";
 import { FiList } from "react-icons/fi";
 import { FiGrid } from "react-icons/fi";
-import { useSearch } from "../../Contexts/SearchContext";
 
-const Sort = () => {
-  const { searchProducts, setView } = useSearch();
-
+const Sort = ({ setView, product, setURLQuery }) => {
   return (
     <>
       <div className=" xl:px-[7.5vw] tablet:px-4 mobile:px-4 mobile:w-full flex tablet:mt-6 xl:mt-10 mobile:mt-5 items-center justify-between">
@@ -14,12 +11,12 @@ const Sort = () => {
             Category title
           </h1>
           <span className="text-[#5C5C5C] mobile:text-xs">
-            ({searchProducts.length} results)
+            ({product.length} results)
           </span>
         </div>
         <div className=" flex items-center gap-2">
           <p className="text-[#121212] mobile:hidden">Sort by</p>
-          <Dropdown />
+          <Dropdown setURLQuery={setURLQuery} />
           <div className="flex items-center mobile:flex">
             <button
               className=" group flex bg-[#DEDEDE] hover:bg-[#FF7F00] hover:text-[white] p-2 rounded-s-md"

@@ -1,10 +1,8 @@
 import Select from "react-select";
 import { useLocation } from "react-router-dom";
-import useURL from "../../hooks/useURL";
 import { useEffect, useMemo, useState } from "react";
 
-const Dropdown = () => {
-  const [queries, setURLQuery] = useURL();
+const Dropdown = ({ setURLQuery }) => {
   const [defaultValue, setDefaultValue] = useState();
   const location = useLocation();
 

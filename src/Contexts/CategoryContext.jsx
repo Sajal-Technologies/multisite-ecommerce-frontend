@@ -1,17 +1,10 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useCallback, useContext, useReducer } from "react";
 import productFetch from "../Axios Instance/productAxios";
 import useURL from "../hooks/useURL";
-const SearchContext = createContext();
+const CategoryContext = createContext();
 
 const initialState = {
-  query: "",
-  searchProducts: [],
+  CategoryProducts: [],
   filters: [],
   selectedFilters: [],
   isLoading: false,
@@ -45,15 +38,10 @@ function reducer(state, action) {
         isLoading: false,
         error: formateError(action.payload),
       };
-    case "query/set":
-      return { ...state, query: action.payload };
     case "view/set":
       return { ...state, view: action.payload };
-    case "searchError/set":
+    case "error/set":
       return { ...state, error: action.payload };
-
-    case "abort/set":
-      return { ...state, searchProducts: [] };
     case "selectedFilters/set":
       if (Array.isArray(action.payload)) {
         return {
@@ -89,29 +77,26 @@ function formateError(error) {
   );
 }
 
-function SearchProvider({ children }) {
+function CategoryProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [controller, setController] = useState(null);
   const [queries, setURLQuery] = useURL();
 
   const { selectedFilters } = state;
 
   // Fetch Functions
-  const getSearchProduct = useCallback(async function getSearchProduct(data) {
-    const newController = new AbortController();
-    setController(newController);
-
+  const getCategoryProduct = useCallback(async function getCategoryProduct(
+    data
+  ) {
     dispatch({ type: "loading", payload: true });
 
     try {
       const response = await productFetch.post(
-        "/oxy-page-search-product/",
+        "oxy-category-page-search",
         data,
         {
           headers: {
             "Content-Type": "application/json",
           },
-          signal: newController.signal,
         }
       );
       console.log(data);
@@ -121,16 +106,14 @@ function SearchProvider({ children }) {
       });
     } catch (error) {
       console.log(error);
-      if (error.name === "CanceledError") {
-        dispatch({ type: "abort/set" });
-      } else {
-        dispatch({
-          type: "rejected",
-          payload: error,
-        });
-      }
+
+      dispatch({
+        type: "rejected",
+        payload: error,
+      });
     }
-  }, []);
+  },
+  []);
 
   const getFilters = useCallback(async (product_name) => {
     const response = await productFetch.post(
@@ -153,20 +136,8 @@ function SearchProvider({ children }) {
     dispatch({ type: "view/set", payload: str });
   }
 
-  function setSearchError(err) {
-    dispatch({ type: "searchError/set", payload: err });
-  }
-
-  function setQuery(str) {
-    dispatch({ type: "query/set", payload: str });
-  }
-
-  //Cancel Request
-  function cancelRequest() {
-    if (controller) {
-      controller.abort();
-      setController(null);
-    }
+  function setCategoryError(err) {
+    dispatch({ type: "error/set", payload: err });
   }
 
   //Filters Handler
@@ -194,15 +165,13 @@ function SearchProvider({ children }) {
   }
 
   return (
-    <SearchContext.Provider
+    <CategoryContext.Provider
       value={{
         ...state,
         setView,
-        setQuery,
-        setSearchError,
+        getCategoryProduct,
+        setCategoryError,
         selectedFilters,
-        getSearchProduct,
-        cancelRequest,
         filterChange,
         clearFilters,
         setFilters,
@@ -210,16 +179,16 @@ function SearchProvider({ children }) {
       }}
     >
       {children}
-    </SearchContext.Provider>
+    </CategoryContext.Provider>
   );
 }
 
-function useSearch() {
-  const context = useContext(SearchContext);
+function useCategory() {
+  const context = useContext(CategoryContext);
   if (context === undefined) {
-    throw new Error("useSearch must be used within a SearchProvider");
+    throw new Error("usecategory must be used within a CategoryProvider");
   }
   return context;
 }
 
-export { useSearch, SearchProvider };
+export { useCategory, CategoryProvider };

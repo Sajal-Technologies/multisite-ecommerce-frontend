@@ -23,7 +23,7 @@ function useURL() {
       ppr_min,
       ppr_max,
       page_number,
-      filters_all: filters && filters.split(".").join(","),
+      filter_all: filters && filters.split(".").join(","),
     };
   }, [product_name, sort_by, ppr_min, ppr_max, page_number, filters]);
 

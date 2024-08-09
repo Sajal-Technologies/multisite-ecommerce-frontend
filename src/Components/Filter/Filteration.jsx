@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import Slider from "react-slider";
-import { useSearch } from "../../Contexts/SearchContext";
-import useURL from "../../hooks/useURL";
 import { useLocation } from "react-router-dom";
 import FilterList from "./FilterList";
 import { TfiReload } from "react-icons/tfi";
@@ -9,11 +7,17 @@ import { TfiReload } from "react-icons/tfi";
 const MIN = 0;
 const MAX = 120000;
 
-const Filteration = () => {
+const Filteration = ({
+  filters,
+  selectedFilters,
+  clearFilters,
+  getFilters,
+  queries,
+  setURLQuery,
+}) => {
   const [values, setValues] = useState([MIN, MAX]);
   const [isClearVisible, setIsClearVisible] = useState(false);
-  const { filters, clearFilters, selectedFilters, getFilters } = useSearch();
-  const [queries, setURLQuery] = useURL();
+
   const location = useLocation();
   const reloadIcon = useRef();
 

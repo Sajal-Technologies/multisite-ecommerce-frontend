@@ -12,25 +12,23 @@ import { useLocation } from "react-router-dom";
 import MultiStageLoader from "../Components/MultiStageLoader";
 import usePagination from "../hooks/usePagination";
 
-function SearchResult() {
+function Categories() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const { currentPage, setCurrentPage, updatePagination, totalPages } =
     usePagination();
   const {
     view,
-    getSearchProduct,
-    searchProducts,
-    cancelRequest,
+    getCategoryProduct,
+    categoryProducts,
     getFilters,
     error,
-    setQuery,
-    setView,
-    setFilters,
-    selectedFilters,
     filters,
+    selectedFilters,
+    setFilters,
     clearFilters,
-    isLoading: searchLoading,
+    setView,
+    isLoading: CategoryLoading,
   } = useSearch();
   const [queries, setURLQuery] = useURL();
   const location = useLocation();
@@ -42,15 +40,17 @@ function SearchResult() {
 
   useEffect(() => {
     if (!queries.product_name) return;
-    cancelRequest();
-    getSearchProduct(queries);
-    setQuery(queries.product_name);
+    getCategoryProduct(queries);
     setFilters(queries.filters_all?.split(","));
-  }, [queries, getSearchProduct]);
+  }, [queries, getCategoryProduct]);
 
   useEffect(() => {
     getFilters(queries.product_name);
   }, [queries.product_name, getFilters]);
+
+  useEffect(() => {
+    clearFilters();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,10 +67,10 @@ function SearchResult() {
   }, [lastScrollTop]);
 
   useEffect(() => {
-    updatePagination(currentPage, totalPages, searchProducts.length);
-  }, [updatePagination, searchProducts.length, currentPage, totalPages]);
+    updatePagination(currentPage, totalPages, categoryProducts.length);
+  }, [updatePagination, categoryProducts.length, currentPage, totalPages]);
 
-  if (error && !searchLoading) {
+  if (error && !CategoryLoading) {
     return (
       <div className="flex justify-center items-center w-full h-[80vh]">
         <h1 className="text-gray-400 font-semibold text-2xl">
@@ -82,14 +82,13 @@ function SearchResult() {
     );
   }
 
-  if (searchLoading) {
+  if (CategoryLoading) {
     return (
       <div className="flex justify-center items-center w-full h-screen">
         <MultiStageLoader />
       </div>
     );
   }
-
   return (
     <div className="flex flex-col w-full bg-[#FAFAFA] pt-[60px] mobile:pt-[70px]">
       <div
@@ -113,7 +112,7 @@ function SearchResult() {
       <Breadcrump />
       <Sort
         setView={setView}
-        product={getSearchProduct}
+        product={getCategoryProduct}
         setURLQuery={setURLQuery}
       />
       <div className=" w-full my-4  ">
@@ -128,23 +127,22 @@ function SearchResult() {
           />
           {view === "grid" && (
             <GridView
-              products={searchProducts}
+              products={categoryProducts}
               error={error}
-              loading={searchLoading}
+              loading={CategoryLoading}
               currentPage={currentPage}
-              s
               totalPages={totalPages}
-              fetchCallback={getSearchProduct}
+              fetchCallback={getCategoryProduct}
             />
           )}
           {view === "list" && (
             <ListView
-              products={searchProducts}
+              products={categoryProducts}
               error={error}
-              loading={searchLoading}
+              loading={CategoryLoading}
               currentPage={currentPage}
               totalPages={totalPages}
-              fetchCallback={getSearchProduct}
+              fetchCallback={getCategoryProduct}
             />
           )}
         </div>
@@ -153,4 +151,4 @@ function SearchResult() {
   );
 }
 
-export default SearchResult;
+export default Categories;
