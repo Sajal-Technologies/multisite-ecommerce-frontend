@@ -1,10 +1,10 @@
-function Pagination({
-  handlePageChange,
-  handleNext,
-  handlePrevious,
-  currentPage,
-  totalPages,
-}) {
+import { useSearch } from "../../Contexts/SearchContext";
+import usePagination from "../../hooks/usePagination";
+
+function Pagination({ currentPage, totalPages }) {
+  const { handlePageChange, handleNext, handlePrevious } = usePagination();
+  const { getSearchProduct } = useSearch();
+
   return (
     <div className="w-full flex justify-center  items-center  gap-4 my-5">
       <button
@@ -14,7 +14,7 @@ function Pagination({
             ? "cursor-not-allowed text-gray-400 hover:bg-none"
             : "text-[#005F85] cursor-pointer hover:bg-gray-300"
         }`}
-        onClick={handlePrevious}
+        onClick={() => handlePrevious(currentPage, getSearchProduct)}
         disabled={currentPage === 1}
       >
         &laquo;
@@ -28,7 +28,7 @@ function Pagination({
                   ? "bg-[#005F85] hover:bg-[#005F85] text-white shadow-lg"
                   : "bg-white hover:bg-gray-300"
               }`}
-              onClick={() => handlePageChange(i + 1)}
+              onClick={() => handlePageChange(i + 1, getSearchProduct)}
             >
               {i + 1}
             </button>
@@ -53,7 +53,7 @@ function Pagination({
             ? "cursor-not-allowed text-gray-400 hover:bg-none"
             : "text-[#005F85] cursor-pointer hover:bg-gray-300"
         }`}
-        onClick={handleNext}
+        onClick={() => handleNext(currentPage, totalPages, getSearchProduct)}
       >
         &raquo;
       </button>

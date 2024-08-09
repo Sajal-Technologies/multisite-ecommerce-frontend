@@ -1,16 +1,7 @@
 import ProductCard from "../Products/ProductCard";
 import Pagination from "../Pagination/Pagination";
 
-function GridView({
-  products,
-  error,
-  handlePageChange,
-  loading,
-  handleNext,
-  handlePrevious,
-  currentPage,
-  totalPages,
-}) {
+function GridView({ products, error, loading, currentPage, totalPages }) {
   return (
     <div className="w-full mobile:mt-4">
       {!error && !loading && products.length === 0 ? (
@@ -29,15 +20,9 @@ function GridView({
               <ProductCard key={i} product={product} />
             ))}
           </div>
-          <Pagination
-            handlePageChange={handlePageChange}
-            handleNext={handleNext}
-            handlePrevious={handlePrevious}
-            currentPage={currentPage}
-            totalPages={totalPages}
-          />
         </>
       )}
+      <Pagination currentPage={currentPage} totalPages={totalPages} />
     </div>
   );
 }

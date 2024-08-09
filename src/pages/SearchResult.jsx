@@ -10,36 +10,43 @@ import { useSearch } from "../Contexts/SearchContext";
 import useURL from "../hooks/useURL";
 import { useLocation } from "react-router-dom";
 import MultiStageLoader from "../Components/MultiStageLoader";
+import usePagination from "../hooks/usePagination";
 
 function SearchResult() {
   const [isVisible, setIsVisible] = useState(true);
-  const [currentPage, setCurrentPage] = useState();
-  const [totalPages, setTotalPages] = useState(7);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+  const { currentPage, setCurrentPage, updatePagination, totalPages } =
+    usePagination();
   const {
     view,
-    query,
     getSearchProduct,
     searchProducts,
+    cancelRequest,
+    getFilters,
     error,
     setQuery,
     setFilters,
     isLoading: searchLoading,
   } = useSearch();
-  const [queries, setURLQuery] = useURL();
+  const [queries] = useURL();
   const location = useLocation();
 
   useEffect(() => {
     const page = parseInt(new URLSearchParams(location.search).get("page"));
     setCurrentPage(page || 1);
-  }, [location.search]);
+  }, [location.search, setCurrentPage]);
 
   useEffect(() => {
-    if (query || !queries.product_name) return;
+    if (!queries.product_name) return;
+    cancelRequest();
     getSearchProduct(queries);
     setQuery(queries.product_name);
-    setFilters(queries.filters_all);
-  }, []);
+    setFilters(queries.filters_all?.split(","));
+  }, [queries, getSearchProduct]);
+
+  useEffect(() => {
+    getFilters(queries.product_name);
+  }, [queries.product_name, getFilters]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,42 +63,8 @@ function SearchResult() {
   }, [lastScrollTop]);
 
   useEffect(() => {
-    if (
-      currentPage > 1 &&
-      currentPage < totalPages &&
-      searchProducts.length === 0
-    ) {
-      setTotalPages(currentPage);
-    }
-
-    if (currentPage === totalPages && searchProducts.length > 0) {
-      setTotalPages(totalPages + 1);
-    }
-  }, [currentPage, totalPages, searchProducts]);
-
-  const handlePageChange = (pageNumber) => {
-    const newParams = new URLSearchParams(location.search);
-    newParams.has("page")
-      ? newParams.set("page", pageNumber)
-      : newParams.append("page", pageNumber);
-
-    setURLQuery(newParams);
-    getSearchProduct({ ...queries, page_number: pageNumber });
-    setCurrentPage(pageNumber);
-    window.scrollTo(0, 0);
-  };
-
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      handlePageChange(currentPage - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      handlePageChange(currentPage + 1);
-    }
-  };
+    updatePagination(currentPage, totalPages, searchProducts.length);
+  }, [updatePagination, searchProducts.length, currentPage, totalPages]);
 
   if (error && !searchLoading) {
     return (
@@ -143,10 +116,7 @@ function SearchResult() {
               products={searchProducts}
               error={error}
               loading={searchLoading}
-              handlePrevious={handlePrevious}
               currentPage={currentPage}
-              handleNext={handleNext}
-              handlePageChange={handlePageChange}
               totalPages={totalPages}
             />
           )}
@@ -155,10 +125,7 @@ function SearchResult() {
               products={searchProducts}
               error={error}
               loading={searchLoading}
-              handlePrevious={handlePrevious}
               currentPage={currentPage}
-              handleNext={handleNext}
-              handlePageChange={handlePageChange}
               totalPages={totalPages}
             />
           )}

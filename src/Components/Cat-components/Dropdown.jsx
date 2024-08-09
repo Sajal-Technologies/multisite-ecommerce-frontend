@@ -1,11 +1,9 @@
 import Select from "react-select";
-import { useSearch } from "../../Contexts/SearchContext";
 import { useLocation } from "react-router-dom";
 import useURL from "../../hooks/useURL";
 import { useEffect, useMemo, useState } from "react";
 
 const Dropdown = () => {
-  const { getSearchProduct } = useSearch();
   const [queries, setURLQuery] = useURL();
   const [defaultValue, setDefaultValue] = useState();
   const location = useLocation();
@@ -26,7 +24,6 @@ const Dropdown = () => {
       : newParams.append("sortby", e.value);
 
     setURLQuery(newParams);
-    getSearchProduct({ ...queries, sort_by: e.value });
   };
 
   useEffect(() => {

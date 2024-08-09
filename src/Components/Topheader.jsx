@@ -15,7 +15,7 @@ const Topheader = ({ toggleCartPopup }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const { user } = useAuth();
-  const { setQuery, getSearchProduct, cancelRequest } = useSearch();
+  const { setQuery, clearFilters } = useSearch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,10 +43,8 @@ const Topheader = ({ toggleCartPopup }) => {
     setQuery(query);
 
     if (query === "") return;
+    clearFilters();
     navigate(`/Search?q=${query}`);
-
-    cancelRequest();
-    getSearchProduct({ product_name: query, page_number: 1 });
   };
 
   return (

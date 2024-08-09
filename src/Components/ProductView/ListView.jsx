@@ -1,16 +1,7 @@
 import ProductList from "../Products/ProductList";
 import Pagination from "../Pagination/Pagination";
 
-function ListView({
-  products,
-  error,
-  loading,
-  handlePageChange,
-  handleNext,
-  handlePrevious,
-  currentPage,
-  totalPages,
-}) {
+function ListView({ products, error, loading, currentPage, totalPages }) {
   return (
     <div className="basis-full">
       {!error && !loading && products.length === 0 ? (
@@ -29,13 +20,7 @@ function ListView({
               <ProductList key={i} product={product} />
             ))}
           </div>
-          <Pagination
-            handlePageChange={handlePageChange}
-            handleNext={handleNext}
-            handlePrevious={handlePrevious}
-            currentPage={currentPage}
-            totalPages={totalPages}
-          />
+          <Pagination currentPage={currentPage} totalPages={totalPages} />
         </>
       )}
     </div>

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Slider from "react-slider";
 import { useSearch } from "../../Contexts/SearchContext";
 import useURL from "../../hooks/useURL";
 import { useLocation } from "react-router-dom";
 import FilterList from "./FilterList";
+import { TfiReload } from "react-icons/tfi";
 
 const MIN = 0;
 const MAX = 120000;
@@ -11,10 +12,10 @@ const MAX = 120000;
 const Filteration = () => {
   const [values, setValues] = useState([MIN, MAX]);
   const [isClearVisible, setIsClearVisible] = useState(false);
-  const { getSearchProduct, filters, clearFilters, selectedFilters } =
-    useSearch();
+  const { filters, clearFilters, selectedFilters, getFilters } = useSearch();
   const [queries, setURLQuery] = useURL();
   const location = useLocation();
+  const reloadIcon = useRef();
 
   useEffect(() => {
     const min = new URLSearchParams(location.search).get("ppr_min");
@@ -45,10 +46,8 @@ const Filteration = () => {
         : newParams.append("ppr_max", values[1]);
 
       setURLQuery(newParams);
-      getSearchProduct({ ...queries, ppr_min: values[0], ppr_max: values[1] });
       window.scrollTo(0, 0);
     }, 1000);
-
     return () => clearTimeout(Timeout);
   }, [values]);
 
@@ -61,6 +60,10 @@ const Filteration = () => {
   };
 
   function handleClearPrice() {
+    const newParams = new URLSearchParams(location.search);
+    newParams.delete("ppr_min");
+    newParams.delete("ppr_max");
+    setURLQuery(newParams);
     setValues([MIN, MAX]);
   }
 
@@ -74,7 +77,7 @@ const Filteration = () => {
     } else newParams.delete("filters");
 
     setURLQuery(newParams);
-    getSearchProduct({ ...queries, filters_all: selectedFilters.join(",") });
+    window.scrollTo(0, 0);
   }
 
   return (
@@ -137,34 +140,51 @@ const Filteration = () => {
           </div>
         </div>
       </section>
-      <button
-        className="bg-[#ff7f00] text-nowrap shadow-md font-bold text-white w-full py-2 my-2 rounded-md"
-        onClick={applyFilters}
-      >
-        Apply Changes
-      </button>
-      <div className=" text-end">
-        {selectedFilters.length !== 0 && (
+      {filters.length !== 0 ? (
+        <>
           <button
-            className="text-sm text-[#005F85] py-4 px-3 uppercase font-bold"
-            onClick={clearFilters}
+            className="bg-[#ff7f00] text-nowrap shadow-md font-bold text-white w-full py-2 my-2 rounded-md"
+            onClick={applyFilters}
           >
-            Clear All
+            Apply Changes
           </button>
-        )}
-      </div>
-      <div>
-        {filters.map((listItem, i) => {
-          if (listItem.title === "Price") return null;
-          return <FilterList key={i} data={listItem} />;
-        })}
-      </div>
-      {selectedFilters.length !== 0 && (
+          <div className=" text-end">
+            {selectedFilters.length !== 0 && (
+              <button
+                className="text-sm text-[#005F85] py-4 px-3 uppercase font-bold"
+                onClick={clearFilters}
+              >
+                Clear All
+              </button>
+            )}
+          </div>
+          <div>
+            {filters?.map((listItem, i) => {
+              if (listItem.title === "Price") return null;
+              return <FilterList key={i} data={listItem} />;
+            })}
+          </div>
+          {selectedFilters.length !== 0 && (
+            <button
+              className="bg-[#ff7f00] text-nowrap shadow-md font-bold text-white w-full py-2 my-2 rounded-md"
+              onClick={applyFilters}
+            >
+              Apply Changes
+            </button>
+          )}
+        </>
+      ) : (
         <button
-          className="bg-[#ff7f00] text-nowrap shadow-md font-bold text-white w-full py-2 my-2 rounded-md"
-          onClick={applyFilters}
+          className="text-nowrap shadow-md font-bold  w-full py-2 my-2 flex items-center justify-center gap-2 rounded-md"
+          onClick={() => {
+            reloadIcon.current.classList.add("animate-spin");
+            getFilters(queries.product_name);
+          }}
         >
-          Apply Changes
+          <span className="" ref={reloadIcon}>
+            <TfiReload strokeWidth={1} />
+          </span>
+          Reload Filters
         </button>
       )}
     </div>

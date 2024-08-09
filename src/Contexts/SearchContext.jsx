@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useReducer,
+  useState,
+} from "react";
 import productFetch from "../Axios Instance/productAxios";
 import useURL from "../hooks/useURL";
 const SearchContext = createContext();
@@ -25,19 +31,19 @@ function reducer(state, action) {
       return {
         ...state,
         searchProducts: action.payload["Product_data"],
-        filters: action.payload.filters,
         isLoading: false,
+      };
+    case "filters/loaded":
+      return {
+        ...state,
+        filters: action.payload,
       };
 
     case "rejected":
       return {
         ...state,
         isLoading: false,
-        error:
-          action.payload?.response?.data?.Message ||
-          action.payload?.response?.statusText ||
-          action.payload?.message ||
-          "An unexpected error occurred",
+        error: formateError(action.payload),
       };
     case "query/set":
       return { ...state, query: action.payload };
@@ -49,15 +55,26 @@ function reducer(state, action) {
     case "abort/set":
       return { ...state, searchProducts: [] };
     case "selectedFilters/set":
-      if (Array.isArray(action.payload))
+      if (Array.isArray(action.payload)) {
         return {
           ...state,
-          selectedFilters: [...state.selectedFilters, ...action.payload],
+          selectedFilters: action.payload,
         };
-      return {
-        ...state,
-        selectedFilters: [...state.selectedFilters, action.payload],
-      };
+      } else {
+        return {
+          ...state,
+          selectedFilters: [...state.selectedFilters, action.payload],
+        };
+      }
+    // return {
+    //   ...state,
+    //   selectedFilters: [
+    //     ...state.selectedFilters,
+    //     ...(Array.isArray(action.payload)
+    //       ? action.payload
+    //       : [action.payload]),
+    //   ],
+    // };
     case "selectedFilters/remove":
       return {
         ...state,
@@ -72,15 +89,24 @@ function reducer(state, action) {
   }
 }
 
+function formateError(error) {
+  return (
+    error?.response?.data?.Message ||
+    error?.response?.statusText ||
+    error?.message ||
+    "An unexpected error occurred"
+  );
+}
+
 function SearchProvider({ children }) {
-  const [
-    { searchProducts, isLoading, error, view, query, filters, selectedFilters },
-    dispatch,
-  ] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const [controller, setController] = useState(null);
   const [queries, setURLQuery] = useURL();
 
-  async function getSearchProduct(data) {
+  const { selectedFilters } = state;
+
+  // Fetch Functions
+  const getSearchProduct = useCallback(async function getSearchProduct(data) {
     const newController = new AbortController();
     setController(newController);
 
@@ -113,8 +139,25 @@ function SearchProvider({ children }) {
         });
       }
     }
-  }
+  }, []);
 
+  const getFilters = useCallback(async (product_name) => {
+    const response = await productFetch.post(
+      "/get-filter/",
+      { product_name, page_number: 1 },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    dispatch({
+      type: "filters/loaded",
+      payload: response.data.filters,
+    });
+  }, []);
+
+  // Setter Functions
   function setView(str) {
     dispatch({ type: "view/set", payload: str });
   }
@@ -127,6 +170,7 @@ function SearchProvider({ children }) {
     dispatch({ type: "query/set", payload: str });
   }
 
+  //Cancel Request
   function cancelRequest() {
     if (controller) {
       controller.abort();
@@ -134,13 +178,12 @@ function SearchProvider({ children }) {
     }
   }
 
-  //Filters
-
+  //Filters Handler
   function setFilters(filters) {
     filters &&
       dispatch({
         type: "selectedFilters/set",
-        payload: filters.split("."),
+        payload: filters,
       });
   }
 
@@ -156,28 +199,23 @@ function SearchProvider({ children }) {
     newParams.delete("filters");
 
     setURLQuery(newParams);
-    getSearchProduct({ ...queries, filters_all: selectedFilters.join(",") });
     dispatch({ type: "filters/clear", payload: [] });
   }
 
   return (
     <SearchContext.Provider
       value={{
-        isLoading,
-        error,
+        ...state,
         setView,
-        filters,
-        query,
         setQuery,
-        view,
         setSearchError,
         selectedFilters,
-        searchProducts,
         getSearchProduct,
         cancelRequest,
         filterChange,
         clearFilters,
         setFilters,
+        getFilters,
       }}
     >
       {children}

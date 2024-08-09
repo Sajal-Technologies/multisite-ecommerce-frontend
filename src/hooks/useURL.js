@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 function useURL() {
@@ -13,19 +14,20 @@ function useURL() {
   const ppr_min = parseInt(decodeOrDefault("ppr_min"), 10) || 0;
   const ppr_max = parseInt(decodeOrDefault("ppr_max"), 10) || 120000;
   const page_number = parseInt(decodeOrDefault("page"), 10) || 1;
-  const filters_all = urlQuery.get("filters") || "";
+  const filters = urlQuery.get("filters");
 
-  return [
-    {
+  const queries = useMemo(() => {
+    return {
       product_name,
       sort_by,
-      page_number,
       ppr_min,
       ppr_max,
-      filters_all,
-    },
-    setURLQuery,
-  ];
+      page_number,
+      filters_all: filters && filters.split(".").join(","),
+    };
+  }, [product_name, sort_by, ppr_min, ppr_max, page_number, filters]);
+
+  return [queries, setURLQuery];
 }
 
 export default useURL;
