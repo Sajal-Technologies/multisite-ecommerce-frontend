@@ -18,6 +18,7 @@ import Watch from "../images/MainPage/BannerImages/Watch.png";
 import Tv from "../images/MainPage/BannerImages/Tv.png";
 import Furniture from "../images/MainPage/BannerImages/Furniture.png";
 import HeadPhone from "../images/MainPage/BannerImages/Headphone.png";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   // const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
@@ -70,7 +71,9 @@ const Banner = () => {
                 <h2 className="font-bold mt-[-.8vw] mb-[1.8vw] md:text-[28px] uppercase text-white xl:text-[32px] mobile:text-xl">
                   UP to 60% OFF
                 </h2>
-                <Button />
+                <Link to="Categories/mobiles">
+                  <Button />
+                </Link>
               </div>
               <div className="br mr-[4vw] w-[30%] mobile:mr-[-5vw]">
                 <img

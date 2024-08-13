@@ -11,6 +11,7 @@ const Filteration = ({
   filters,
   selectedFilters,
   clearFilters,
+  filterChange,
   getFilters,
   queries,
   setURLQuery,
@@ -49,6 +50,8 @@ const Filteration = ({
         ? newParams.set("ppr_max", values[1])
         : newParams.append("ppr_max", values[1]);
 
+      newParams.has("page") && newParams.set("page", 1);
+
       setURLQuery(newParams);
       window.scrollTo(0, 0);
     }, 1000);
@@ -76,8 +79,10 @@ const Filteration = ({
 
     if (selectedFilters.length !== 0) {
       newParams.has("filters")
-        ? newParams.set("filters", selectedFilters.join("."))
-        : newParams.append("filters", selectedFilters.join("."));
+        ? newParams.set("filters", selectedFilters.join("|"))
+        : newParams.append("filters", selectedFilters.join("|"));
+
+      newParams.has("page") && newParams.set("page", 1);
     } else newParams.delete("filters");
 
     setURLQuery(newParams);
@@ -165,7 +170,14 @@ const Filteration = ({
           <div>
             {filters?.map((listItem, i) => {
               if (listItem.title === "Price") return null;
-              return <FilterList key={i} data={listItem} />;
+              return (
+                <FilterList
+                  key={i}
+                  data={listItem}
+                  selectedFilters={selectedFilters}
+                  filterChange={filterChange}
+                />
+              );
             })}
           </div>
           {selectedFilters.length !== 0 && (

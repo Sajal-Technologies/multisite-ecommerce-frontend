@@ -4,7 +4,7 @@ import { useSaveForLater } from "../Contexts/SaveForLaterContext";
 import { useEffect, useState } from "react";
 import Loader from "./Loader";
 
-function SaveForLater({ id }) {
+function SaveForLater({ id, sellerLink }) {
   const { addToSaveForLater, deleteSavedItem, savedItems } = useSaveForLater();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -13,18 +13,24 @@ function SaveForLater({ id }) {
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
-    setIsSaved(savedItems?.some((item) => item.product_id === id));
-  }, [savedItems, id]);
+    setIsSaved(
+      savedItems?.some(
+        (item) => item.product_id === id || item.seller_link === sellerLink
+      )
+    );
+  }, [savedItems, id, sellerLink]);
+
   async function handleSaveForLater() {
     if (!user) {
       navigate("/SignIn");
       return;
     }
     try {
+      const data = id ? { product_id: id } : { seller_link: sellerLink };
       setIsLoading(true);
       !isSaved
-        ? await addToSaveForLater({ product_id: id }, setIsSaved)
-        : await deleteSavedItem({ product_id: id }, setIsSaved);
+        ? await addToSaveForLater(data, setIsSaved)
+        : await deleteSavedItem(data, setIsSaved);
     } catch (error) {
       setError(error);
     } finally {

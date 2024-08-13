@@ -168,12 +168,9 @@ const ListingProductDets = () => {
               </p>
             </div>
             <div className="mb-4">
-              <Link
-                to="/Product-style2"
-                className="text-[#121212] font-bold text-3xl tablet:text-2xl tablet:leading-none mobile:text-xl mobile:leading-none line-clamp-2 break-words mb-4"
-              >
+              <h1 className="text-[#121212] font-bold text-3xl tablet:text-2xl tablet:leading-none mobile:text-xl mobile:leading-none line-clamp-2 break-words mb-4">
                 {productDetails?.title}
-              </Link>
+              </h1>
               {productDetails.reviews?.reviews_count > 0 && (
                 <div className="text-sm font-medium flex gap-1 items-center mb-4 mt-1">
                   <span
@@ -364,7 +361,10 @@ const ListingProductDets = () => {
                         {item.currency}
                         {item.price}
                       </div>
-                      <SaveForLater id={id} type="large" />
+                      <SaveForLater
+                        sellerLink={item.seller_link}
+                        type="large"
+                      />
                     </div>
                     <div className="w-full flex justify-between items-center gap-2 mobile:gap-1">
                       <p className="mr-auto text-[#5C5C5C] mobile:line-clamp-2">
@@ -377,7 +377,7 @@ const ListingProductDets = () => {
                       >
                         Shop Now
                       </Link>
-                      <AddToCart id={id} type="large" />
+                      <AddToCart sellerLink={item.seller_link} type="large" />
                     </div>
                   </div>
                 );

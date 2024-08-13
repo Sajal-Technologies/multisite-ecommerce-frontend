@@ -1,5 +1,3 @@
-import { FiArrowRight } from "react-icons/fi";
-// import Catbanner from "./Catbanner";
 import smartphone from "../images/MainPage/Category/SmartPhone.jpg";
 import cloth from "../images/MainPage/Category/T-shirt.jpg";
 import bag from "../images/MainPage/Category/Bag.jpg";
@@ -11,9 +9,6 @@ const Categories = () => {
     <div className="w-[85%] mt-12  mx-auto">
       <div className="flex justify-between">
         <h2 className="text-3xl font-bold mb-8">Categories</h2>
-        <span className="flex items-center  gap-2 pr-5 text-[#121212] ">
-          View All <FiArrowRight className="mobile:text-xl" />
-        </span>
       </div>
       <div className=" grid  tablet:grid-cols-4 lg:grid-cols-4 grid-rows-[repeat(3,1fr)] mobile:grid-rows-[repeat(6,1fr)] md:grid-cols-3 mobile:gap-2 tablet:gap-2  lg:gap-4 *:rounded-3xl">
         <div className=" group relative overflow-hidden">

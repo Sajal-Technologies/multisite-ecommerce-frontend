@@ -3,9 +3,8 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Topheader from "./Components/Topheader";
 import Footer from "./Components/Footer";
 import Main from "./Components/Main";
-import Categroriespage from "./Components/Cat-components/Categroriespage";
 import ProductPage from "./Components/ProductPage/ProductPage";
-import ProductStyle2 from "./Components/ProductPage/ProductStyle2/ProductStyle2";
+// import ProductStyle2 from "./Components/ProductPage/ProductStyle2/ProductStyle2";
 import CartPage from "./pages/CartPage";
 import Cartpopup from "./Components/CartPage/Cartpopup";
 import SignInPage from "./Components/SignIn/SignInPage";
@@ -19,6 +18,7 @@ import SearchResult from "./pages/SearchResult";
 import { ProductDetailsProvider } from "./Contexts/ProductDetailsContext";
 import PageNotFound from "./pages/PageNotFound";
 import SaveForLaterPage from "./pages/SaveForLaterPage";
+import Categories from "./pages/Categories";
 
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
@@ -51,7 +51,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/Categories" element={<Categroriespage />} />
+        <Route path="/Categories/:product" element={<Categories />} />
         <Route path="/Search" element={<SearchResult />} />
         <Route path="/SaveForLater" element={<SaveForLaterPage />} />
         <Route
@@ -62,7 +62,7 @@ const App = () => {
             </ProductDetailsProvider>
           }
         />
-        <Route path="/Product-style2" element={<ProductStyle2 />} />
+        {/* <Route path="/Product-style2" element={<ProductStyle2 />} /> */}
         <Route path="/Cart" element={<CartPage />} />
         <Route path="/SignIn" element={<SignInPage />} />
         <Route path="/SignUp" element={<SignUpPage />} />

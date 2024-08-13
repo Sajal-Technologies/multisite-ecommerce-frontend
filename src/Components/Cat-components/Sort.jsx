@@ -2,16 +2,16 @@ import Dropdown from "./Dropdown";
 import { FiList } from "react-icons/fi";
 import { FiGrid } from "react-icons/fi";
 
-const Sort = ({ setView, product, setURLQuery }) => {
+const Sort = ({ title, setView, product, setURLQuery }) => {
   return (
     <>
       <div className=" xl:px-[7.5vw] tablet:px-4 mobile:px-4 mobile:w-full flex tablet:mt-6 xl:mt-10 mobile:mt-5 items-center justify-between">
         <div className="flex gap-2 items-center">
-          <h1 className="font-semibold tablet:text-xl xl:text-2xl text-[#121212] mobile:text-lg mobile:text-nowrap">
-            Category title
+          <h1 className="font-semibold tablet:text-xl xl:text-2xl text-[#121212] mobile:text-lg mobile:text-nowrap capitalize">
+            {title}
           </h1>
           <span className="text-[#5C5C5C] mobile:text-xs">
-            ({product.length} results)
+            ({product?.length || 0} results)
           </span>
         </div>
         <div className=" flex items-center gap-2">

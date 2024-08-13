@@ -4,7 +4,7 @@ import useURL from "../hooks/useURL";
 const CategoryContext = createContext();
 
 const initialState = {
-  CategoryProducts: [],
+  categoryProducts: [],
   filters: [],
   selectedFilters: [],
   isLoading: false,
@@ -23,7 +23,7 @@ function reducer(state, action) {
     case "product/loaded":
       return {
         ...state,
-        searchProducts: action.payload["Product_data"],
+        categoryProducts: action.payload["Product_data"],
         isLoading: false,
       };
     case "filters/loaded":
@@ -91,7 +91,7 @@ function CategoryProvider({ children }) {
 
     try {
       const response = await productFetch.post(
-        "oxy-category-page-search",
+        "oxy-category-page-search/",
         data,
         {
           headers: {
@@ -99,7 +99,7 @@ function CategoryProvider({ children }) {
           },
         }
       );
-      console.log(data);
+      console.log(response.data);
       dispatch({
         type: "product/loaded",
         payload: response.data,

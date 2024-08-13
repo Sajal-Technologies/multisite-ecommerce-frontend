@@ -11,7 +11,7 @@ const Subcategory = () => {
         <div className="text-white z-40 absolute px-6 pt-8">
           <h1 className="font-bold text-2xl mb-4">Home Appliances</h1>
           <button className="text-[#005F85] bg-white px-4 py-2 rounded-md text-base font-semibold flex items-center gap-2">
-            Shop Now
+            Explore Now
             <div className="flex">
               <FiChevronRight className="text-[#52CDFF]" />
               <FiChevronRight className="ml-[-10px] text-[#00A8EB]" />
@@ -50,7 +50,7 @@ const Subcategory = () => {
               Home Appliances
             </h1>
             <button className=" absolute z-40 bottom-[35%] ml-[24px] bg-white px-4 py-2 rounded-md text-lg font-semibold text-[#005F85] hover:bg-[#005F85] hover:text-white transition-all duration-200">
-              Shop Now
+              Explore Now
             </button>
           </div>
           <div className=" p-6 mobile:px-4 flex flex-wrap gap-6  justify-around">

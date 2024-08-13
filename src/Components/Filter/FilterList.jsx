@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { useSearch } from "../../Contexts/SearchContext";
 
-function FilterList({ data }) {
+function FilterList({ data, selectedFilters, filterChange }) {
   const [isOpen, setIsOpen] = useState(false);
-  const { selectedFilters, filterChange } = useSearch();
 
   return (
     <section className="filter-category w-full border-b-[1px] py-4 px-3 border-b-[#DEDEDE] cursor-pointer">

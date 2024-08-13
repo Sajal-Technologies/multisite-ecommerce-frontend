@@ -1,15 +1,16 @@
 import { useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 function useURL() {
   const [urlQuery, setURLQuery] = useSearchParams();
+  const { product } = useParams();
 
   function decodeOrDefault(param) {
     const value = urlQuery.get(param);
     return value ? decodeURIComponent(value) : "";
   }
 
-  const product_name = decodeOrDefault("q");
+  const query = decodeOrDefault("q");
   const sort_by = decodeOrDefault("sortby") || "relevance";
   const ppr_min = parseInt(decodeOrDefault("ppr_min"), 10) || 0;
   const ppr_max = parseInt(decodeOrDefault("ppr_max"), 10) || 120000;
@@ -18,14 +19,14 @@ function useURL() {
 
   const queries = useMemo(() => {
     return {
-      product_name,
+      product_name: product || query,
       sort_by,
       ppr_min,
       ppr_max,
       page_number,
-      filter_all: filters && filters.split(".").join(","),
+      filter_all: filters && filters.split("|").join(","),
     };
-  }, [product_name, sort_by, ppr_min, ppr_max, page_number, filters]);
+  }, [sort_by, ppr_min, ppr_max, page_number, filters, product, query]);
 
   return [queries, setURLQuery];
 }

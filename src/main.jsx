@@ -7,17 +7,20 @@ import { AuthProvider } from "./Contexts/AuthContext.jsx";
 import { CartProvider } from "./Contexts/CartContext.jsx";
 import { SaveForLaterProvider } from "./Contexts/SaveForLaterContext.jsx";
 import { SearchProvider } from "./Contexts/SearchContext.jsx";
+import { CategoryProvider } from "./Contexts/CategoryContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
         <SearchProvider>
-          <CartProvider>
-            <SaveForLaterProvider>
-              <App />
-            </SaveForLaterProvider>
-          </CartProvider>
+          <CategoryProvider>
+            <CartProvider>
+              <SaveForLaterProvider>
+                <App />
+              </SaveForLaterProvider>
+            </CartProvider>
+          </CategoryProvider>
         </SearchProvider>
       </AuthProvider>
     </BrowserRouter>

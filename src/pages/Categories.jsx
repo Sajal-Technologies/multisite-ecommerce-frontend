@@ -6,11 +6,11 @@ import GridView from "../Components/ProductView/GridView";
 import { useEffect, useState } from "react";
 import pageInfo from "../images/FilterCapsule/page-info.svg";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import { useSearch } from "../Contexts/SearchContext";
 import useURL from "../hooks/useURL";
 import { useLocation } from "react-router-dom";
 import MultiStageLoader from "../Components/MultiStageLoader";
 import usePagination from "../hooks/usePagination";
+import { useCategory } from "../Contexts/CategoryContext";
 
 function Categories() {
   const [isVisible, setIsVisible] = useState(true);
@@ -24,12 +24,13 @@ function Categories() {
     getFilters,
     error,
     filters,
+    filterChange,
     selectedFilters,
     setFilters,
     clearFilters,
     setView,
     isLoading: CategoryLoading,
-  } = useSearch();
+  } = useCategory();
   const [queries, setURLQuery] = useURL();
   const location = useLocation();
 
@@ -41,16 +42,12 @@ function Categories() {
   useEffect(() => {
     if (!queries.product_name) return;
     getCategoryProduct(queries);
-    setFilters(queries.filters_all?.split(","));
+    setFilters(queries.filter_all?.split(","));
   }, [queries, getCategoryProduct]);
 
   useEffect(() => {
     getFilters(queries.product_name);
   }, [queries.product_name, getFilters]);
-
-  useEffect(() => {
-    clearFilters();
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,8 +64,8 @@ function Categories() {
   }, [lastScrollTop]);
 
   useEffect(() => {
-    updatePagination(currentPage, totalPages, categoryProducts.length);
-  }, [updatePagination, categoryProducts.length, currentPage, totalPages]);
+    updatePagination(currentPage, totalPages, categoryProducts?.length);
+  }, [updatePagination, categoryProducts?.length, currentPage, totalPages]);
 
   if (error && !CategoryLoading) {
     return (
@@ -111,8 +108,9 @@ function Categories() {
       </div>
       <Breadcrump />
       <Sort
+        title={queries.product_name}
         setView={setView}
-        product={getCategoryProduct}
+        product={categoryProducts}
         setURLQuery={setURLQuery}
       />
       <div className=" w-full my-4  ">
@@ -124,6 +122,7 @@ function Categories() {
             getFilters={getFilters}
             queries={queries}
             setURLQuery={setURLQuery}
+            filterChange={filterChange}
           />
           {view === "grid" && (
             <GridView

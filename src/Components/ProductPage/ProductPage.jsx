@@ -20,7 +20,7 @@ const ProductPage = () => {
       document.title = "The Shopping AI";
     };
   }, [user, productDetails]);
-
+  [];
   return (
     <div className="pt-[60px] mobile:pt-[70px] mb-12">
       <Breadcrump />

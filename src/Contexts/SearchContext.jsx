@@ -114,7 +114,7 @@ function SearchProvider({ children }) {
           signal: newController.signal,
         }
       );
-      console.log(data);
+      console.log(response.data);
       dispatch({
         type: "product/loaded",
         payload: response.data,

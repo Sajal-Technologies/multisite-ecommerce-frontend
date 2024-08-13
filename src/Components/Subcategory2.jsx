@@ -19,7 +19,7 @@ const Subcategory2 = () => {
           </button>
         </div>
         <img
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover "
           src={SubCategoryImg}
           alt=""
         />
@@ -38,7 +38,7 @@ const Subcategory2 = () => {
 
       <div className="w-full xl:w-full h-[280px] sm:hidden mobile:hidden flex xl:items-center xl:flex items-center justify-center mt-[4vw]">
         <div className="bg-[#F2F2F2] mobile:bg-transparent mobile:border-none w-[85%] mobile:h-full mobile:w-full mobile:shadow-none h-full flex overflow-hidden rounded-2xl border-[1px] border-white box">
-          <div className="imgcontainer xl:block md:hidden mobile:hidden w-[42%] relative h-full">
+          <div className="imgcontainer xl:block md:hidden mobile:hidden w-[42%] relative h-full order-2">
             <div className="overlay absolute w-full h-full bg-black opacity-40"></div>
             <img
               className="w-full h-full object-cover object-center"

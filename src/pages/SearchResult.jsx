@@ -28,6 +28,7 @@ function SearchResult() {
     setView,
     setFilters,
     selectedFilters,
+    filterChange,
     filters,
     clearFilters,
     isLoading: searchLoading,
@@ -45,7 +46,7 @@ function SearchResult() {
     cancelRequest();
     getSearchProduct(queries);
     setQuery(queries.product_name);
-    setFilters(queries.filters_all?.split(","));
+    setFilters(queries.filter_all?.split(","));
   }, [queries, getSearchProduct]);
 
   useEffect(() => {
@@ -74,8 +75,8 @@ function SearchResult() {
     return (
       <div className="flex justify-center items-center w-full h-[80vh]">
         <h1 className="text-gray-400 font-semibold text-2xl">
-          {error === "Unable to fetch the Product data: 'results'"
-            ? error.replace("results", queries.product_name)
+          {error === "Unable to fetch the Product data:  'url'"
+            ? error.replace("url", queries.product_name)
             : error}
         </h1>
       </div>
@@ -112,8 +113,9 @@ function SearchResult() {
       </div>
       <Breadcrump />
       <Sort
+        title={queries.product_name}
         setView={setView}
-        product={getSearchProduct}
+        product={searchProducts}
         setURLQuery={setURLQuery}
       />
       <div className=" w-full my-4  ">
@@ -125,6 +127,7 @@ function SearchResult() {
             getFilters={getFilters}
             queries={queries}
             setURLQuery={setURLQuery}
+            filterChange={filterChange}
           />
           {view === "grid" && (
             <GridView
