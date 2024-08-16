@@ -50,13 +50,11 @@ const Filteration = ({
         ? newParams.set("ppr_max", values[1])
         : newParams.append("ppr_max", values[1]);
 
-      newParams.has("page") && newParams.set("page", 1);
-
       setURLQuery(newParams);
       window.scrollTo(0, 0);
     }, 1000);
     return () => clearTimeout(Timeout);
-  }, [values]);
+  }, [values, location.search, queries.product_name, setURLQuery]);
 
   const handleChange = (index, event) => {
     const newValues = values.map((value, i) =>

@@ -20,7 +20,7 @@ function AuthProvider({ children }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { addUser, getUser } = useLocalStorage();
+  const { addUser, getUser, removeUser } = useLocalStorage();
 
   useEffect(() => {
     const storedUser = getUser("user");
@@ -165,6 +165,12 @@ function AuthProvider({ children }) {
     }
   };
 
+  const handleLogout = () => {
+    setUser(null);
+    removeUser("user");
+    navigate("/");
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -178,6 +184,7 @@ function AuthProvider({ children }) {
         resendOTP,
         forgotPassword,
         resetPassword,
+        handleLogout,
       }}
     >
       {children}

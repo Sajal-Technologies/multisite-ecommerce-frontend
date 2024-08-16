@@ -21,8 +21,6 @@ const Dropdown = ({ setURLQuery }) => {
       ? newParams.set("sortby", e.value)
       : newParams.append("sortby", e.value);
 
-    newParams.has("page") && newParams.set("page", 1);
-
     setURLQuery(newParams);
   };
 

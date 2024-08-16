@@ -51,7 +51,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/Categories/:product" element={<Categories />} />
+        <Route path="/:product" element={<Categories />} />
         <Route path="/Search" element={<SearchResult />} />
         <Route path="/SaveForLater" element={<SaveForLaterPage />} />
         <Route

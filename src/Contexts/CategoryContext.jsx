@@ -1,4 +1,10 @@
-import { createContext, useCallback, useContext, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useReducer,
+  useRef,
+} from "react";
 import productFetch from "../Axios Instance/productAxios";
 import useURL from "../hooks/useURL";
 const CategoryContext = createContext();
@@ -23,8 +29,16 @@ function reducer(state, action) {
     case "product/loaded":
       return {
         ...state,
-        categoryProducts: action.payload["Product_data"],
+        categoryProducts: [
+          ...state.categoryProducts,
+          ...action.payload["Product_data"],
+        ],
         isLoading: false,
+      };
+    case "product/reset":
+      return {
+        ...state,
+        categoryProducts: [],
       };
     case "filters/loaded":
       return {
@@ -36,24 +50,21 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
-        error: formateError(action.payload),
+        error: formatError(action.payload),
       };
     case "view/set":
       return { ...state, view: action.payload };
     case "error/set":
       return { ...state, error: action.payload };
+    case "abort/set":
+      return { ...state, searchProducts: [] };
     case "selectedFilters/set":
-      if (Array.isArray(action.payload)) {
-        return {
-          ...state,
-          selectedFilters: action.payload,
-        };
-      } else {
-        return {
-          ...state,
-          selectedFilters: [...state.selectedFilters, action.payload],
-        };
-      }
+      return {
+        ...state,
+        selectedFilters: Array.isArray(action.payload)
+          ? action.payload
+          : [...state.selectedFilters, action.payload],
+      };
     case "selectedFilters/remove":
       return {
         ...state,
@@ -68,7 +79,7 @@ function reducer(state, action) {
   }
 }
 
-function formateError(error) {
+function formatError(error) {
   return (
     error?.response?.data?.Message ||
     error?.response?.statusText ||
@@ -80,6 +91,7 @@ function formateError(error) {
 function CategoryProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [queries, setURLQuery] = useURL();
+  const controllerRef = useRef(null);
 
   const { selectedFilters } = state;
 
@@ -87,6 +99,13 @@ function CategoryProvider({ children }) {
   const getCategoryProduct = useCallback(async function getCategoryProduct(
     data
   ) {
+    if (controllerRef.current) {
+      controllerRef.current.abort();
+      controllerRef.current = null;
+    }
+
+    controllerRef.current = new AbortController();
+
     dispatch({ type: "loading", payload: true });
 
     try {
@@ -97,23 +116,52 @@ function CategoryProvider({ children }) {
           headers: {
             "Content-Type": "application/json",
           },
+          signal: controllerRef.current.signal,
         }
       );
+      console.log(data);
       console.log(response.data);
       dispatch({
         type: "product/loaded",
         payload: response.data,
       });
     } catch (error) {
-      console.log(error);
-
-      dispatch({
-        type: "rejected",
-        payload: error,
-      });
+      if (error.name === "CanceledError") {
+        dispatch({ type: "abort/set" });
+      } else {
+        dispatch({
+          type: "rejected",
+          payload: error,
+        });
+      }
     }
   },
   []);
+
+  const fetchMore = useCallback(async function fetchMore(data) {
+    if (controllerRef.current) {
+      controllerRef.current.abort();
+      controllerRef.current = null;
+    }
+
+    controllerRef.current = new AbortController();
+
+    const response = await productFetch.post(
+      "/oxy-page-search-product/",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        signal: controllerRef.current.signal,
+      }
+    );
+
+    dispatch({
+      type: "product/loaded",
+      payload: response.data,
+    });
+  }, []);
 
   const getFilters = useCallback(async (product_name) => {
     const response = await productFetch.post(
@@ -140,14 +188,18 @@ function CategoryProvider({ children }) {
     dispatch({ type: "error/set", payload: err });
   }
 
+  const resetProduct = useCallback(function resetProduct() {
+    dispatch({ type: "product/reset" });
+  }, []);
+
   //Filters Handler
-  function setFilters(filters) {
+  const setFilters = useCallback(function setFilters(filters) {
     filters &&
       dispatch({
         type: "selectedFilters/set",
         payload: filters,
       });
-  }
+  }, []);
 
   function filterChange(e) {
     const { value, checked } = e.target;
@@ -156,13 +208,13 @@ function CategoryProvider({ children }) {
       : dispatch({ type: "selectedFilters/remove", payload: value });
   }
 
-  function clearFilters() {
+  const clearFilters = useCallback(() => {
     const newParams = new URLSearchParams(location.search);
     newParams.delete("filters");
 
     setURLQuery(newParams);
-    dispatch({ type: "filters/clear", payload: [] });
-  }
+    dispatch({ type: "filters/clear" });
+  }, [setURLQuery]);
 
   return (
     <CategoryContext.Provider
@@ -176,6 +228,8 @@ function CategoryProvider({ children }) {
         clearFilters,
         setFilters,
         getFilters,
+        fetchMore,
+        resetProduct,
       }}
     >
       {children}

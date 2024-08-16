@@ -2,6 +2,7 @@ import Subcatcard from "./Subcatcard";
 import SubCategoryImg from "../images/MainPage/SubCategory2/SubCategory.jpeg";
 import { FiChevronRight } from "react-icons/fi";
 import OvenToaster from "../images/MainPage/SubCategory/SubCatCard/HomeAppliances.png";
+import { Link } from "react-router-dom";
 
 const Subcategory = () => {
   return (
@@ -10,13 +11,16 @@ const Subcategory = () => {
         <div className="overlay absolute h-full w-full bg-black opacity-40 "></div>
         <div className="text-white z-40 absolute px-6 pt-8">
           <h1 className="font-bold text-2xl mb-4">Home Appliances</h1>
-          <button className="text-[#005F85] bg-white px-4 py-2 rounded-md text-base font-semibold flex items-center gap-2">
+          <Link
+            to="/Home Appliances"
+            className="text-[#005F85] bg-white px-4 py-2 rounded-md text-base font-semibold flex items-center gap-2"
+          >
             Explore Now
             <div className="flex">
               <FiChevronRight className="text-[#52CDFF]" />
               <FiChevronRight className="ml-[-10px] text-[#00A8EB]" />
             </div>
-          </button>
+          </Link>
         </div>
         <img
           className="h-full w-full object-cover"
@@ -49,9 +53,12 @@ const Subcategory = () => {
             <h1 className="absolute top-0 text-white px-[24px] py-[32px] font-bold text-4xl leading-[43px] z-30">
               Home Appliances
             </h1>
-            <button className=" absolute z-40 bottom-[35%] ml-[24px] bg-white px-4 py-2 rounded-md text-lg font-semibold text-[#005F85] hover:bg-[#005F85] hover:text-white transition-all duration-200">
+            <Link
+              to="/Home Appliances"
+              className=" absolute z-40 bottom-[35%] ml-[24px] bg-white px-4 py-2 rounded-md text-lg font-semibold text-[#005F85] hover:bg-[#005F85] hover:text-white transition-all duration-200"
+            >
               Explore Now
-            </button>
+            </Link>
           </div>
           <div className=" p-6 mobile:px-4 flex flex-wrap gap-6  justify-around">
             {Array.from({ length: 6 }).map((_, i) => (

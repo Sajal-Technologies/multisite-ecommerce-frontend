@@ -3,6 +3,7 @@ import cloth from "../images/MainPage/Category/T-shirt.jpg";
 import bag from "../images/MainPage/Category/Bag.jpg";
 import health from "../images/MainPage/Category/Health and Beauty.jpg";
 import games from "../images/MainPage/Category/Gaming.jpg";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   return (
@@ -11,7 +12,7 @@ const Categories = () => {
         <h2 className="text-3xl font-bold mb-8">Categories</h2>
       </div>
       <div className=" grid  tablet:grid-cols-4 lg:grid-cols-4 grid-rows-[repeat(3,1fr)] mobile:grid-rows-[repeat(6,1fr)] md:grid-cols-3 mobile:gap-2 tablet:gap-2  lg:gap-4 *:rounded-3xl">
-        <div className=" group relative overflow-hidden">
+        <Link to="/Book" className=" group relative overflow-hidden">
           <picture className="w-full h-full -z-10">
             <img
               src={cloth}
@@ -30,9 +31,9 @@ const Categories = () => {
               </h3>
             </div>
           </a>
-        </div>
+        </Link>
 
-        <div className=" group relative overflow-hidden">
+        <Link to="/Toys & Games" className=" group relative overflow-hidden">
           <picture className="w-full h-full">
             <img
               src={games}
@@ -51,9 +52,12 @@ const Categories = () => {
               </h3>
             </div>
           </a>
-        </div>
+        </Link>
 
-        <div className=" group row-span-3 relative overflow-hidden">
+        <Link
+          to="/Smartphones"
+          className=" group row-span-3 relative overflow-hidden"
+        >
           <picture className="w-full h-full">
             <img
               src={smartphone}
@@ -74,9 +78,12 @@ const Categories = () => {
               </p>
             </div>
           </a>
-        </div>
+        </Link>
 
-        <div className=" group relative row-span-2 overflow-hidden">
+        <Link
+          to="/Sporting Goods"
+          className=" group relative row-span-2 overflow-hidden"
+        >
           <picture className="w-full h-full">
             <img
               src={bag}
@@ -95,9 +102,12 @@ const Categories = () => {
               </h3>
             </div>
           </a>
-        </div>
+        </Link>
 
-        <div className=" group row-span-2 col-span-2 mobile:row-start-1 relative overflow-hidden">
+        <Link
+          to="/Fashion"
+          className=" group row-span-2 col-span-2 mobile:row-start-1 relative overflow-hidden"
+        >
           <picture className="w-full h-full">
             <img
               src={bag}
@@ -116,14 +126,20 @@ const Categories = () => {
               <p className="xl:text-xl lg:text-base tablet:text-sm font-semibold xl:leading-snug mobile:mb-2 lg:leading-tight tracking-wider lg:mb-5 tablet:mb-3 xl:mb-6 text-[#5C5C5C] lg:w-[50%] tablet:w-[80%] ">
                 Discover stylish clothing and accessories that define your look.
               </p>
-              <button className="text-white  bg-[#005F85] px-4 py-2 rounded-full text-base font-semibold">
+              <Link
+                to="Fashion"
+                className="text-white  bg-[#005F85] px-4 py-2 rounded-full text-base font-semibold"
+              >
                 Explore More
-              </button>
+              </Link>
             </div>
           </a>
-        </div>
+        </Link>
 
-        <div className=" group relative overflow-hidden">
+        <Link
+          to="/Health and Beauty"
+          className=" group relative overflow-hidden"
+        >
           <picture className="w-full h-full">
             <img
               src={health}
@@ -142,7 +158,7 @@ const Categories = () => {
               </h3>
             </div>
           </a>
-        </div>
+        </Link>
       </div>
     </div>
   );

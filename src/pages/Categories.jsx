@@ -7,43 +7,36 @@ import { useEffect, useState } from "react";
 import pageInfo from "../images/FilterCapsule/page-info.svg";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import useURL from "../hooks/useURL";
-import { useLocation } from "react-router-dom";
 import MultiStageLoader from "../Components/MultiStageLoader";
-import usePagination from "../hooks/usePagination";
 import { useCategory } from "../Contexts/CategoryContext";
 
 function Categories() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  const { currentPage, setCurrentPage, updatePagination, totalPages } =
-    usePagination();
   const {
     view,
     getCategoryProduct,
     categoryProducts,
+    resetProduct,
     getFilters,
     error,
-    filters,
-    filterChange,
-    selectedFilters,
-    setFilters,
-    clearFilters,
+    fetchMore,
     setView,
-    isLoading: CategoryLoading,
+    setFilters,
+    selectedFilters,
+    filterChange,
+    filters,
+    clearFilters,
+    isLoading: productLoading,
   } = useCategory();
   const [queries, setURLQuery] = useURL();
-  const location = useLocation();
-
-  useEffect(() => {
-    const page = parseInt(new URLSearchParams(location.search).get("page"));
-    setCurrentPage(page || 1);
-  }, [location.search, setCurrentPage]);
 
   useEffect(() => {
     if (!queries.product_name) return;
+    resetProduct();
     getCategoryProduct(queries);
     setFilters(queries.filter_all?.split(","));
-  }, [queries, getCategoryProduct]);
+  }, [queries, getCategoryProduct, setFilters, resetProduct]);
 
   useEffect(() => {
     getFilters(queries.product_name);
@@ -63,29 +56,26 @@ function Categories() {
     };
   }, [lastScrollTop]);
 
-  useEffect(() => {
-    updatePagination(currentPage, totalPages, categoryProducts?.length);
-  }, [updatePagination, categoryProducts?.length, currentPage, totalPages]);
-
-  if (error && !CategoryLoading) {
+  if (error && !productLoading) {
     return (
       <div className="flex justify-center items-center w-full h-[80vh]">
         <h1 className="text-gray-400 font-semibold text-2xl">
-          {error === "Unable to fetch the Product data: 'results'"
-            ? error.replace("results", queries.product_name)
+          {error === "Unable to fetch the Product data:url"
+            ? error.replace("url", queries.product_name)
             : error}
         </h1>
       </div>
     );
   }
 
-  if (CategoryLoading) {
+  if (productLoading) {
     return (
       <div className="flex justify-center items-center w-full h-screen">
         <MultiStageLoader />
       </div>
     );
   }
+
   return (
     <div className="flex flex-col w-full bg-[#FAFAFA] pt-[60px] mobile:pt-[70px]">
       <div
@@ -128,20 +118,18 @@ function Categories() {
             <GridView
               products={categoryProducts}
               error={error}
-              loading={CategoryLoading}
-              currentPage={currentPage}
-              totalPages={totalPages}
-              fetchCallback={getCategoryProduct}
+              loading={productLoading}
+              callbackFn={fetchMore}
+              params={queries}
             />
           )}
           {view === "list" && (
             <ListView
               products={categoryProducts}
               error={error}
-              loading={CategoryLoading}
-              currentPage={currentPage}
-              totalPages={totalPages}
-              fetchCallback={getCategoryProduct}
+              loading={productLoading}
+              callbackFn={fetchMore}
+              params={queries}
             />
           )}
         </div>

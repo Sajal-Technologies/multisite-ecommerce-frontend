@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useCallback, useContext, useReducer } from "react";
 import { useAuth } from "./AuthContext";
 import productFetch from "../Axios Instance/productAxios";
 
@@ -43,23 +43,26 @@ function SaveForLaterProvider({ children }) {
     useReducer(reducer, initialState);
 
   // Get Saved Items
-  async function getSavedItems() {
-    dispatch({ type: "loading", payload: true });
-    try {
-      const response = await productFetch.get("/get-all-savelateritem/", {
-        headers: {
-          Authorization: `Bearer ${user?.token?.access}`,
-        },
-      });
-      dispatch({
-        type: "SavedItems/loaded",
-        payload: response.data.savelater_data,
-      });
-    } catch (error) {
-      console.log(error);
-      dispatch({ type: "rejected", payload: error.message });
-    }
-  }
+  const getSavedItems = useCallback(
+    async function getSavedItems() {
+      dispatch({ type: "loading", payload: true });
+      try {
+        const response = await productFetch.get("/get-all-savelateritem/", {
+          headers: {
+            Authorization: `Bearer ${user?.token?.access}`,
+          },
+        });
+        dispatch({
+          type: "SavedItems/loaded",
+          payload: response.data.savelater_data,
+        });
+      } catch (error) {
+        console.log(error);
+        dispatch({ type: "rejected", payload: error.message });
+      }
+    },
+    [user?.token?.access]
+  );
 
   //Add to Cart
   async function addToSaveForLater(data, setIsSaved) {

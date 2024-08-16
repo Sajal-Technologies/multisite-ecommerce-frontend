@@ -1,6 +1,6 @@
 // import { FiPackage, FiRadio, FiShoppingBag, FiZap } from "react-icons/fi";
 
-import { MdDevices, MdViewList } from "react-icons/md";
+import { MdDevices } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { AiOutlineChrome } from "react-icons/ai";
 import { GiGamepad, GiShoppingCart } from "react-icons/gi";
@@ -9,52 +9,44 @@ import { FaRegDotCircle, FaRegSmile, FaTshirt } from "react-icons/fa";
 const CategoryList = () => {
   const categories = [
     {
-      title: "All",
-      link: "/Categories",
-      icon: (
-        <MdViewList className="text-[#005F85] text-3xl row-span-2 tablet:row-span-1" />
-      ),
-      description: "Explore our entire collection.",
-    },
-    {
       title: "Home Appliances",
-      link: "/Categories",
+      link: "/Home appliances",
       icon: <AiOutlineChrome className="text-[#005F85] text-3xl row-span-2" />,
       description: "Essentials for every household.",
     },
     {
       title: "Groceries",
-      link: "/Categories",
+      link: "/Groceries",
       icon: <GiShoppingCart className="text-[#005F85] text-3xl row-span-2" />,
       description: "Fresh produce and pantry staples.",
     },
     {
       title: "Gaming Gears",
-      link: "/Categories",
+      link: "/Gaming Gears",
       icon: <GiGamepad className="text-[#005F85] text-3xl row-span-2" />,
       description: "Latest gear for gamers.",
     },
     {
       title: "Electronics",
-      link: "/Categories",
+      link: "/Electronics",
       icon: <MdDevices className="text-[#005F85] text-3xl row-span-2" />,
       description: "Cutting-edge tech and gadgets.",
     },
     {
       title: "Accessories",
-      link: "/Categories",
+      link: "/Apparel & Accessories",
       icon: <FaRegDotCircle className="text-[#005F85] text-3xl row-span-2" />,
       description: "Stylish accessories for any look.",
     },
     {
       title: "Fashion",
-      link: "/Categories",
+      link: "/Fashion",
       icon: <FaTshirt className="text-[#005F85] text-3xl row-span-2" />,
       description: "Trendy clothing and accessories.",
     },
     {
       title: "Beauty & Cosmetics",
-      link: "/Categories",
+      link: "/Beauty & Cosmetics",
       icon: <FaRegSmile className="text-[#005F85] text-3xl row-span-2" />,
       description: "Enhance your beauty routine.",
     },

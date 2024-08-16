@@ -19,7 +19,7 @@ const ProductPage = () => {
     return () => {
       document.title = "The Shopping AI";
     };
-  }, [user, productDetails]);
+  }, [user, productDetails, getSavedItems]);
   [];
   return (
     <div className="pt-[60px] mobile:pt-[70px] mb-12">
@@ -31,7 +31,7 @@ const ProductPage = () => {
       )}
       {error && (
         <div className="flex justify-center items-center w-full h-[50vh]">
-          <h1 className="text-[#5C5C5C] font-semibold text-2xl">{error}</h1>
+          <h1 className="text-gray-400 font-semibold text-2xl">{error}</h1>
         </div>
       )}
       {!isLoading && !error && <ListingProductDets />}

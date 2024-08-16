@@ -10,12 +10,16 @@ import Seperator from "./Seperator";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Contexts/AuthContext";
 import { useSearch } from "../Contexts/SearchContext";
+import { CiLogout } from "react-icons/ci";
 
 const Topheader = ({ toggleCartPopup }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  const { user } = useAuth();
   const { setQuery, clearFilters } = useSearch();
+  const [search, setSearch] = useState(
+    new URLSearchParams(window.location.search).get("q") || ""
+  );
+  const { user, handleLogout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,13 +42,11 @@ const Topheader = ({ toggleCartPopup }) => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const query = formData.get("search").trim();
-    setQuery(query);
 
-    if (query === "") return;
+    if (search === "") return;
+    setQuery(search);
     clearFilters();
-    navigate(`/Search?q=${query}`);
+    navigate(`/Search?q=${search}`);
   };
 
   return (
@@ -66,7 +68,12 @@ const Topheader = ({ toggleCartPopup }) => {
           <div className="signin flex items-center gap-2">
             <FiUser className="text-lg" />
             {user && user?.["user name"] ? (
-              <p>{user?.["user name"]}</p>
+              <>
+                <p>{user?.["user name"]}</p>
+                <button onClick={handleLogout}>
+                  <CiLogout className="text-lg text-black" />
+                </button>
+              </>
             ) : (
               <div className="">
                 <Link to="/SignUp">Sign Up/</Link>
@@ -107,6 +114,8 @@ const Topheader = ({ toggleCartPopup }) => {
               type="text"
               placeholder="Search essentials, groceries and more..."
               name="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </form>
           <div className="flex items-center">

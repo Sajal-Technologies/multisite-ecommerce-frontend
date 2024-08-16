@@ -66,12 +66,12 @@ const Banner = () => {
                   Get best online deals for mobile phones
                 </h3>
                 <h1 className="font-bold mt-[-.8vw] md:text-[38px] text-white xl:text-[64px] mobile:text-xl">
-                  New Mobiles Phones
+                  New Smartphones
                 </h1>
                 <h2 className="font-bold mt-[-.8vw] mb-[1.8vw] md:text-[28px] uppercase text-white xl:text-[32px] mobile:text-xl">
                   UP to 60% OFF
                 </h2>
-                <Link to="Categories/mobiles">
+                <Link to="/Smartphones">
                   <Button />
                 </Link>
               </div>
@@ -96,7 +96,9 @@ const Banner = () => {
                 <h2 className="font-bold mt-[-.8vw] mb-[1.8vw] md:text-[28px] uppercase text-white xl:text-[32px] mobile:text-xl">
                   UP to 60% OFF
                 </h2>
-                <Button2 className="bg-[#005F85]" />
+                <Link to="/smart watch">
+                  <Button2 className="bg-[#005F85]" />
+                </Link>
               </div>
               <div className="br mr-[3vw] mobile:mr-[-7vw]">
                 <div className="w-full flex h-full">
@@ -121,7 +123,9 @@ const Banner = () => {
                 <h2 className="font-bold mt-[-.8vw] mb-[1.8vw] uppercase md:text-[28px] text-white xl:text-[32px] mobile:text-xl">
                   UP to 60% OFF
                 </h2>
-                <Button />
+                <Link to="/Home appliances">
+                  <Button />
+                </Link>
               </div>
               <div className="br mr-[3vw] mobile:mr-[-13vw] scaledown">
                 <img
@@ -144,7 +148,9 @@ const Banner = () => {
                 <h2 className="font-bold mt-[-.8vw] mb-[1.8vw] uppercase md:text-[28px] text-white xl:text-[32px] mobile:text-xl">
                   UP to 60% OFF
                 </h2>
-                <Button2 />
+                <Link to="/Smart TV">
+                  <Button2 />
+                </Link>
               </div>
               <div className="br mr-[3vw] mobile:mr-[-5vw] mobile:mt-[1vw]">
                 <div className="w-full flex h-full">
@@ -165,7 +171,9 @@ const Banner = () => {
                 <h2 className="font-bold mt-[-.8vw] mb-[1.8vw] uppercase text-white md:text-[28px] xl:text-[32px] mobile:text-xl">
                   UP to 60% OFF
                 </h2>
-                <Button2 />
+                <Link to="/Furniture">
+                  <Button2 />
+                </Link>
               </div>
               <div className="br mr-[3vw] mobile:mr-[-8vw]">
                 <div className="w-full flex h-full">
@@ -190,7 +198,9 @@ const Banner = () => {
                 <h2 className="font-bold mt-[-.8vw] mb-[1.8vw] uppercase text-white md:text-[28px] xl:text-[32px] mobile:text-xl">
                   UP to 60% OFF
                 </h2>
-                <Button />
+                <Link to="/Headphones">
+                  <Button2 />
+                </Link>
               </div>
               <div className="br mr-[3vw] mobile:mr-[-8vw]">
                 <div className="w-full flex h-full">

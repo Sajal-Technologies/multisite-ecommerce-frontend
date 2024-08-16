@@ -3,7 +3,7 @@ import {
   useCallback,
   useContext,
   useReducer,
-  useState,
+  useRef,
 } from "react";
 import productFetch from "../Axios Instance/productAxios";
 import useURL from "../hooks/useURL";
@@ -30,8 +30,16 @@ function reducer(state, action) {
     case "product/loaded":
       return {
         ...state,
-        searchProducts: action.payload["Product_data"],
+        searchProducts: [
+          ...state.searchProducts,
+          ...action.payload["Product_data"],
+        ],
         isLoading: false,
+      };
+    case "product/reset":
+      return {
+        ...state,
+        searchProducts: [],
       };
     case "filters/loaded":
       return {
@@ -43,7 +51,7 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
-        error: formateError(action.payload),
+        error: formatError(action.payload),
       };
     case "query/set":
       return { ...state, query: action.payload };
@@ -55,17 +63,12 @@ function reducer(state, action) {
     case "abort/set":
       return { ...state, searchProducts: [] };
     case "selectedFilters/set":
-      if (Array.isArray(action.payload)) {
-        return {
-          ...state,
-          selectedFilters: action.payload,
-        };
-      } else {
-        return {
-          ...state,
-          selectedFilters: [...state.selectedFilters, action.payload],
-        };
-      }
+      return {
+        ...state,
+        selectedFilters: Array.isArray(action.payload)
+          ? action.payload
+          : [...state.selectedFilters, action.payload],
+      };
     case "selectedFilters/remove":
       return {
         ...state,
@@ -80,7 +83,7 @@ function reducer(state, action) {
   }
 }
 
-function formateError(error) {
+function formatError(error) {
   return (
     error?.response?.data?.Message ||
     error?.response?.statusText ||
@@ -91,15 +94,19 @@ function formateError(error) {
 
 function SearchProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [controller, setController] = useState(null);
+  const controllerRef = useRef(null);
   const [queries, setURLQuery] = useURL();
 
   const { selectedFilters } = state;
 
   // Fetch Functions
   const getSearchProduct = useCallback(async function getSearchProduct(data) {
-    const newController = new AbortController();
-    setController(newController);
+    if (controllerRef.current) {
+      controllerRef.current.abort();
+      controllerRef.current = null;
+    }
+
+    controllerRef.current = new AbortController();
 
     dispatch({ type: "loading", payload: true });
 
@@ -111,9 +118,10 @@ function SearchProvider({ children }) {
           headers: {
             "Content-Type": "application/json",
           },
-          signal: newController.signal,
+          signal: controllerRef.current.signal,
         }
       );
+      console.log(data);
       console.log(response.data);
       dispatch({
         type: "product/loaded",
@@ -132,20 +140,49 @@ function SearchProvider({ children }) {
     }
   }, []);
 
-  const getFilters = useCallback(async (product_name) => {
+  const fetchMore = useCallback(async function fetchMore(data) {
+    if (controllerRef.current) {
+      controllerRef.current.abort();
+      controllerRef.current = null;
+    }
+
+    controllerRef.current = new AbortController();
+
     const response = await productFetch.post(
-      "/get-filter/",
-      { product_name, page_number: 1 },
+      "/oxy-page-search-product/",
+      data,
       {
         headers: {
           "Content-Type": "application/json",
         },
+        signal: controllerRef.current.signal,
       }
     );
+
     dispatch({
-      type: "filters/loaded",
-      payload: response.data.filters,
+      type: "product/loaded",
+      payload: response.data,
     });
+  }, []);
+
+  const getFilters = useCallback(async (product_name) => {
+    try {
+      const response = await productFetch.post(
+        "/get-filter/",
+        { product_name, page_number: 1 },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      dispatch({
+        type: "filters/loaded",
+        payload: response.data.filters,
+      });
+    } catch (error) {
+      getFilters(product_name);
+    }
   }, []);
 
   // Setter Functions
@@ -157,26 +194,22 @@ function SearchProvider({ children }) {
     dispatch({ type: "searchError/set", payload: err });
   }
 
-  function setQuery(str) {
+  const setQuery = useCallback(function setQuery(str) {
     dispatch({ type: "query/set", payload: str });
-  }
+  }, []);
 
-  //Cancel Request
-  function cancelRequest() {
-    if (controller) {
-      controller.abort();
-      setController(null);
-    }
-  }
+  const resetProduct = useCallback(function resetProduct() {
+    dispatch({ type: "product/reset" });
+  }, []);
 
   //Filters Handler
-  function setFilters(filters) {
+  const setFilters = useCallback(function setFilters(filters) {
     filters &&
       dispatch({
         type: "selectedFilters/set",
         payload: filters,
       });
-  }
+  }, []);
 
   function filterChange(e) {
     const { value, checked } = e.target;
@@ -185,13 +218,13 @@ function SearchProvider({ children }) {
       : dispatch({ type: "selectedFilters/remove", payload: value });
   }
 
-  function clearFilters() {
+  const clearFilters = useCallback(() => {
     const newParams = new URLSearchParams(location.search);
     newParams.delete("filters");
 
     setURLQuery(newParams);
-    dispatch({ type: "filters/clear", payload: [] });
-  }
+    dispatch({ type: "filters/clear" });
+  }, [setURLQuery]);
 
   return (
     <SearchContext.Provider
@@ -202,11 +235,12 @@ function SearchProvider({ children }) {
         setSearchError,
         selectedFilters,
         getSearchProduct,
-        cancelRequest,
         filterChange,
         clearFilters,
         setFilters,
         getFilters,
+        resetProduct,
+        fetchMore,
       }}
     >
       {children}

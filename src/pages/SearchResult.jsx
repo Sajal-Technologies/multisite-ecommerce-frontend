@@ -8,23 +8,20 @@ import pageInfo from "../images/FilterCapsule/page-info.svg";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { useSearch } from "../Contexts/SearchContext";
 import useURL from "../hooks/useURL";
-import { useLocation } from "react-router-dom";
 import MultiStageLoader from "../Components/MultiStageLoader";
-import usePagination from "../hooks/usePagination";
 
 function SearchResult() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  const { currentPage, setCurrentPage, updatePagination, totalPages } =
-    usePagination();
   const {
     view,
     getSearchProduct,
     searchProducts,
-    cancelRequest,
+    resetProduct,
     getFilters,
     error,
     setQuery,
+    fetchMore,
     setView,
     setFilters,
     selectedFilters,
@@ -34,20 +31,14 @@ function SearchResult() {
     isLoading: searchLoading,
   } = useSearch();
   const [queries, setURLQuery] = useURL();
-  const location = useLocation();
-
-  useEffect(() => {
-    const page = parseInt(new URLSearchParams(location.search).get("page"));
-    setCurrentPage(page || 1);
-  }, [location.search, setCurrentPage]);
 
   useEffect(() => {
     if (!queries.product_name) return;
-    cancelRequest();
+    resetProduct();
     getSearchProduct(queries);
     setQuery(queries.product_name);
     setFilters(queries.filter_all?.split(","));
-  }, [queries, getSearchProduct]);
+  }, [queries, getSearchProduct, setQuery, setFilters, resetProduct]);
 
   useEffect(() => {
     getFilters(queries.product_name);
@@ -67,15 +58,11 @@ function SearchResult() {
     };
   }, [lastScrollTop]);
 
-  useEffect(() => {
-    updatePagination(currentPage, totalPages, searchProducts.length);
-  }, [updatePagination, searchProducts.length, currentPage, totalPages]);
-
   if (error && !searchLoading) {
     return (
       <div className="flex justify-center items-center w-full h-[80vh]">
         <h1 className="text-gray-400 font-semibold text-2xl">
-          {error === "Unable to fetch the Product data:  'url'"
+          {error === "Unable to fetch the Product data:url"
             ? error.replace("url", queries.product_name)
             : error}
         </h1>
@@ -134,10 +121,8 @@ function SearchResult() {
               products={searchProducts}
               error={error}
               loading={searchLoading}
-              currentPage={currentPage}
-              s
-              totalPages={totalPages}
-              fetchCallback={getSearchProduct}
+              callbackFn={fetchMore}
+              params={queries}
             />
           )}
           {view === "list" && (
@@ -145,9 +130,8 @@ function SearchResult() {
               products={searchProducts}
               error={error}
               loading={searchLoading}
-              currentPage={currentPage}
-              totalPages={totalPages}
-              fetchCallback={getSearchProduct}
+              callbackFn={fetchMore}
+              params={queries}
             />
           )}
         </div>

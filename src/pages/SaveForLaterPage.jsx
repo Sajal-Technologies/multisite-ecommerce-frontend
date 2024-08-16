@@ -16,10 +16,19 @@ function SaveForLaterPage() {
 
   if (!user) {
     return (
-      <div className="pt-[15rem]  mobile:pt-[7rem] flex justify-center flex-col items-center">
-        <h1>Missing Cart items?</h1>
-        <p>Login to see the items you added previously</p>
-        <Link to={"/SignIn"}>SignIn</Link>
+      <div className="flex items-center justify-center h-[100vh] bg-gray-100">
+        <div className="text-center p-6 w-[85%] bg-white shadow-md rounded-lg">
+          <h1 className="text-[#121212] text-xl font-bold">
+            Missing Cart items?
+          </h1>
+          <p className="mb-4">Sign-in to see the items you added previously</p>
+          <Link
+            to={"/SignIn"}
+            className="bg-[#005F85] text-white px-2 py-1 text-lg font-semibold rounded-md"
+          >
+            Sign In
+          </Link>
+        </div>
       </div>
     );
   }
