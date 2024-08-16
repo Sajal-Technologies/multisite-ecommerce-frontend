@@ -1,23 +1,26 @@
-const Subcatcard = ({ img, productName, price }) => {
+import { Link } from "react-router-dom";
+
+const Subcatcard = ({ product }) => {
+  const { thumbnail, title, price, product_id } = product;
   return (
-    <>
-      <div className="subcatcard mobile:flex-shrink-0  xl:basis-[286px] xl:flex-1 tablet:w-[49%] mobile:w-full mobile:px-4 mobile:h-[108px] text-[#262626] h-[105px] bg-white flex justify-between p-4 rounded-xl border-[1px] border-[#DEDEDE]">
-        <div className="">
-          <p className="text-[19px] font-medium">{productName}</p>
-          <p className=" text-[#7A7A7A] mobile:leading-none py-1 leading-none">
-            From <br />
-            <span className="text-[#3D3D3D] text-xl">&#8377;{price}</span>
+    <Link to={`/product/${product_id}`}>
+      <div className="subcatcard w-full flex items-center shadow-sm justify-between gap-4 text-[#262626] h-[105px] bg-white  p-4 rounded-xl border-[1px] border-[#DEDEDE]">
+        <div className="w-full">
+          <p className="text-base mb-2 font-medium break-words line-clamp-2 overflow-hidden cursor-pointer">
+            {title}
           </p>
+          <span className="text-[#0B8500] font-bold text-xl">
+            &#8377;{price}
+          </span>
         </div>
-        <div className="scale-[1.45] overflow-hidden px-4">
-          <img
-            className="h-full w-full object-cover scale-x-[-1]"
-            src={img}
-            alt=""
-          />
-        </div>
+
+        <img
+          className="h-[100px] w-[100px] object-center block object-cover"
+          src={thumbnail}
+          alt=""
+        />
       </div>
-    </>
+    </Link>
   );
 };
 
