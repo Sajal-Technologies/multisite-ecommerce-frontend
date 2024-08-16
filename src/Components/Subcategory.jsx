@@ -59,9 +59,15 @@ const Subcategory = ({ title, type = "normal" }) => {
       </div>
 
       <div className="xl:hidden mobile:px-4 mobile:flex-wrap md:flex-row md:flex-wrap md:px-7 w-full h-fit py-4 xl:px-4 flex xl:flex-col gap-3">
-        {products.map((product, i) => {
-          if (i < 6) return <Subcatcard key={i} product={product} />;
-        })}
+        {isLoading ? (
+          <div className="subcatcard w-full flex items-center shadow-sm justify-between gap-4 text-[#262626] h-[105px] bg-white  p-4 rounded-xl border-[1px] animate-pulse border-[#DEDEDE]">
+            <div className="h-6 w-3/4 bg-gray-300 rounded-md"></div>
+          </div>
+        ) : (
+          products.map((product, i) => {
+            if (i < 6) return <Subcatcard key={i} product={product} />;
+          })
+        )}
       </div>
 
       {/* Big Screen  */}
@@ -89,9 +95,24 @@ const Subcategory = ({ title, type = "normal" }) => {
             </Link>
           </div>
           <div className=" p-6 grid grid-cols-3 gap-4 w-full">
-            {products.map((product, i) => {
-              if (i < 6) return <Subcatcard key={i} product={product} />;
-            })}
+            {isLoading
+              ? Array.from({ length: 6 }).map((_, i) => {
+                  return (
+                    <div
+                      key={i}
+                      className="subcatcard w-full flex items-center shadow-sm justify-between gap-2 text-[#262626] h-[105px] bg-white  p-4 rounded-xl border-[1px] animate-pulse border-[#DEDEDE]"
+                    >
+                      <div className="w-full">
+                        <div className="h-6 w-full bg-gray-300 rounded-md mb-4"></div>
+                        <div className="h-6 w-3/4 bg-gray-300 rounded-md"></div>
+                      </div>
+                      <div className="h-[80px] w-[100px] bg-gray-300 rounded-md"></div>
+                    </div>
+                  );
+                })
+              : products.map((product, i) => {
+                  if (i < 6) return <Subcatcard key={i} product={product} />;
+                })}
           </div>
         </div>
       </div>

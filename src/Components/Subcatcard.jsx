@@ -15,7 +15,7 @@ const Subcatcard = ({ product }) => {
         </div>
 
         <img
-          className="h-[100px] w-[100px] object-center block object-cover"
+          className="h-[80px] w-[100px] object-center block object-cover"
           src={thumbnail}
           alt=""
         />
