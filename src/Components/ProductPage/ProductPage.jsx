@@ -31,7 +31,11 @@ const ProductPage = () => {
       )}
       {error && (
         <div className="flex justify-center items-center w-full h-[50vh]">
-          <h1 className="text-gray-400 font-semibold text-2xl">{error}</h1>
+          <h1 className="text-gray-400 font-semibold text-2xl">
+            {error === "Unable to fetch the Product detail: 'pricing'"
+              ? "Unable to fetch the Product details"
+              : error}
+          </h1>
         </div>
       )}
       {!isLoading && !error && <ListingProductDets />}

@@ -1,24 +1,42 @@
-import { useState } from "react";
+import { lazy, useState, Suspense } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { ProductDetailsProvider } from "./Contexts/ProductDetailsContext";
+import MultiStageLoader from "./Components/MultiStageLoader";
 import Topheader from "./Components/Topheader";
 import Footer from "./Components/Footer";
+import Cartpopup from "./Components/CartPage/Cartpopup";
+import ScrollToTop from "./Components/Utils/ScrollToTop";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
+
 import Main from "./Components/Main";
 import ProductPage from "./Components/ProductPage/ProductPage";
-// import ProductStyle2 from "./Components/ProductPage/ProductStyle2/ProductStyle2";
 import CartPage from "./pages/CartPage";
-import Cartpopup from "./Components/CartPage/Cartpopup";
 import SignInPage from "./Components/SignIn/SignInPage";
 import SignUpPage from "./Components/SignIn/SignUpPage";
 import ForgotPsw from "./Components/ForgotPassword/ForgotPsw";
 import OTPVerification from "./Components/OTPVerification/OTPVerification";
 import ResetPassword from "./Components/ResetPassword/ResetPassword";
-import ScrollToTop from "./Components/Utils/ScrollToTop";
-import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import SearchResult from "./pages/SearchResult";
-import { ProductDetailsProvider } from "./Contexts/ProductDetailsContext";
 import PageNotFound from "./pages/PageNotFound";
 import SaveForLaterPage from "./pages/SaveForLaterPage";
 import Categories from "./pages/Categories";
+
+// const Main = lazy(() => import("./Components/Main"));
+// const ProductPage = lazy(() => import("./Components/ProductPage/ProductPage"));
+// const CartPage = lazy(() => import("./pages/CartPage"));
+// const SignInPage = lazy(() => import("./Components/SignIn/SignInPage"));
+// const SignUpPage = lazy(() => import("./Components/SignIn/SignUpPage"));
+// const ForgotPsw = lazy(() => import("./Components/ForgotPassword/ForgotPsw"));
+// const OTPVerification = lazy(() =>
+//   import("./Components/OTPVerification/OTPVerification")
+// );
+// const ResetPassword = lazy(() =>
+//   import("./Components/ResetPassword/ResetPassword")
+// );
+// const SearchResult = lazy(() => import("./pages/SearchResult"));
+// const SaveForLaterPage = lazy(() => import("./pages/SaveForLaterPage"));
+// const Categories = lazy(() => import("./pages/Categories"));
+// const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
@@ -49,6 +67,7 @@ const App = () => {
       {/*  Render Topheader only if the current path is not a credential page  */}
       {!isCredencialPage && <Topheader toggleCartPopup={toggleCartPopup} />}
 
+      {/* <Suspense fallback={<MultiStageLoader />}> */}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/:product" element={<Categories />} />
@@ -85,6 +104,7 @@ const App = () => {
         />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      {/* </Suspense> */}
 
       {/*  Render Topheader only if the current path is not a credential page  */}
       {!isCredencialPage && <Footer />}

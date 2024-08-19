@@ -5,13 +5,23 @@ import productFetch from "../Axios Instance/productAxios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+const MAX_RETRIES = 3;
+
 const Subcategory = ({ title, type = "normal" }) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     setIsLoading(true);
     async function getProducts() {
+      console.log(sessionStorage.getItem(title));
+      if (sessionStorage.getItem(title)) {
+        setProducts(JSON.parse(sessionStorage.getItem(title)));
+        setIsLoading(false);
+        return;
+      }
+
       try {
         const response = await productFetch.post(
           "/oxy-sale-product/",
@@ -24,15 +34,56 @@ const Subcategory = ({ title, type = "normal" }) => {
             },
           }
         );
-        setProducts(response.data.Product_data);
+        if (response.data.Product_data.length < 6 && retryCount < MAX_RETRIES) {
+          setRetryCount((retryCount) => retryCount + 1);
+          getProducts();
+        } else {
+          setProducts(response.data.Product_data);
+          sessionStorage.setItem(
+            title,
+            JSON.stringify(response.data.Product_data.slice(0, 6))
+          );
+          setRetryCount(0);
+        }
       } catch (error) {
-        getProducts();
+        if (retryCount < MAX_RETRIES) {
+          getProducts();
+          setRetryCount((retryCount) => retryCount + 1);
+        }
       } finally {
         setIsLoading(false);
       }
     }
     getProducts();
-  }, [title]);
+  }, [title, retryCount]);
+
+  if (isLoading) {
+    return (
+      <div className="flex gap-4 justify-center rounded-2xl overflow-hidden items-center w-[85%] mx-auto  mt-[4vw]">
+        <div
+          className={`w-[30%] h-[280px] bg-gray-300 animate-pulse ${
+            type === "reverse" ? "order-2" : ""
+          }`}
+        ></div>
+        <div className="grid gap-4 grid-cols-3 w-full">
+          {Array.from({ length: 6 }).map((_, i) => {
+            return (
+              <div
+                key={i}
+                className="subcatcard w-full flex items-center shadow-sm justify-between gap-2 text-[#262626] h-[105px] bg-white  p-4 rounded-xl border-[1px] animate-pulse border-[#DEDEDE]"
+              >
+                <div className="w-full">
+                  <div className="h-6 w-full bg-gray-300 rounded-md mb-4"></div>
+                  <div className="h-6 w-3/4 bg-gray-300 rounded-md"></div>
+                </div>
+                <div className="h-[80px] w-[100px] bg-gray-300 rounded-md"></div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -95,24 +146,9 @@ const Subcategory = ({ title, type = "normal" }) => {
             </Link>
           </div>
           <div className=" p-6 grid grid-cols-3 gap-4 w-full">
-            {isLoading
-              ? Array.from({ length: 6 }).map((_, i) => {
-                  return (
-                    <div
-                      key={i}
-                      className="subcatcard w-full flex items-center shadow-sm justify-between gap-2 text-[#262626] h-[105px] bg-white  p-4 rounded-xl border-[1px] animate-pulse border-[#DEDEDE]"
-                    >
-                      <div className="w-full">
-                        <div className="h-6 w-full bg-gray-300 rounded-md mb-4"></div>
-                        <div className="h-6 w-3/4 bg-gray-300 rounded-md"></div>
-                      </div>
-                      <div className="h-[80px] w-[100px] bg-gray-300 rounded-md"></div>
-                    </div>
-                  );
-                })
-              : products.map((product, i) => {
-                  if (i < 6) return <Subcatcard key={i} product={product} />;
-                })}
+            {products.map((product, i) => {
+              if (i < 6) return <Subcatcard key={i} product={product} />;
+            })}
           </div>
         </div>
       </div>

@@ -210,7 +210,7 @@ const ListingProductDets = () => {
             </p>
             <div className="grid grid-cols-[1fr_1fr_auto] items-center gap-2 mobile:gap-1 mb-4 *:rounded-full">
               <a
-                href={productDetails.pricing?.online?.[0]["seller_link"]}
+                href={productDetails.pricing?.online?.[0]?.["seller_link"]}
                 className="bg-[#005F85] text-white hover:bg-transparent hover:text-[#005F85] transition-all  tablet:text-base font-semibold text-lg mobile:text-sm self-stretch shadow-[inset_0_0_0_1px_#005F85] flex items-center gap-2 justify-center "
                 target="_blank"
               >

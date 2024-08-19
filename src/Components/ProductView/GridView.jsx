@@ -16,7 +16,7 @@ function GridView({ products, error, loading, params, callbackFn }) {
       const scrollPercentage =
         (scrollTop / (scrollHeight - clientHeight)) * 100;
 
-      if (scrollTop > 2000) {
+      if (scrollTop > clientHeight) {
         setIsBtnToTopVisible(true);
       } else {
         setIsBtnToTopVisible(false);

@@ -12,9 +12,9 @@ const Main = () => {
       <Banner />
       <CategoryList />
       <Suspense fallback={null}>
-        <Fproduct Category={"Electronics"} />
-        <Categories />
         <Fproduct Category={"HomeDecor"} />
+        <Categories />
+        <Fproduct Category={"Electronics"} />
         <Subcategory title={"Home appliances"} />
         <Fproduct Category={"Furniture"} />
         <Subcategory title={"Electronics and Gadgets"} type={"reverse"} />
