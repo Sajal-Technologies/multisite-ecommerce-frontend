@@ -57,12 +57,12 @@ function ProductDetailsProvider({ children }) {
           payload: response.data.Product_detail,
         });
       } catch (error) {
-        console.log(error);
         dispatch({ type: "rejected", payload: error });
       }
     }
     getProductDetails();
   }, [id]);
+
   return (
     <ProductDetailsContext.Provider
       value={{ isLoading, productDetails, error }}

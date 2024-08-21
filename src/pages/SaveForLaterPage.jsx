@@ -3,6 +3,7 @@ import { useAuth } from "../Contexts/AuthContext";
 import Breadcrump from "../Components/Cat-components/Breadcrump";
 import { useEffect } from "react";
 import { useSaveForLater } from "../Contexts/SaveForLaterContext";
+import SaveForLaterItem from "../Components/SaveForLaterItem";
 
 function SaveForLaterPage() {
   const { getSavedItems, savedItems, isSavedLoading, savedError } =
@@ -77,10 +78,9 @@ function SaveForLaterPage() {
           )}
           {savedItems.length !== 0 && (
             <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] justify-items-center mobile:grid-cols-1 mobile:justify-items-stretch gap-4 mobile:gap-4 mobile:w-full">
-              {/* {savedItems.map(
-                (item, i) =>
-
-              )} */}
+              {savedItems.map((item, i) => (
+                <SaveForLaterItem key={i} item={item} />
+              ))}
             </div>
           )}
         </div>

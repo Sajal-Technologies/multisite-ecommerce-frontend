@@ -15,7 +15,6 @@ const Subcategory = ({ title, type = "normal" }) => {
   useEffect(() => {
     setIsLoading(true);
     async function getProducts() {
-      console.log(sessionStorage.getItem(title));
       if (sessionStorage.getItem(title)) {
         setProducts(JSON.parse(sessionStorage.getItem(title)));
         setIsLoading(false);

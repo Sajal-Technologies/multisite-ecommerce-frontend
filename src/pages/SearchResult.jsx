@@ -98,7 +98,12 @@ function SearchResult() {
           </div>
         </div>
       </div>
-      <Breadcrump />
+      <Breadcrump
+        pageItem={queries?.product_name.replace(
+          queries.product_name[0],
+          queries.product_name[0].toUpperCase()
+        )}
+      />
       <Sort
         title={queries.product_name}
         setView={setView}

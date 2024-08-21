@@ -13,16 +13,15 @@ function ListView({ products, error, loading, params, callbackFn }) {
       const clientHeight = document.documentElement.clientHeight;
       const scrollTop = window.scrollY || window.pageYOffset;
 
-      const scrollPercentage =
-        (scrollTop / (scrollHeight - clientHeight)) * 100;
+      const scrollPercentage = (scrollTop / scrollHeight) * 100;
 
-      if (scrollTop > 2000) {
+      if (scrollTop > clientHeight) {
         setIsBtnToTopVisible(true);
       } else {
         setIsBtnToTopVisible(false);
       }
 
-      if (scrollPercentage >= 50 && !isLoading) {
+      if (scrollPercentage >= 60 && !isLoading) {
         setIsLoading(true);
 
         await callbackFn({

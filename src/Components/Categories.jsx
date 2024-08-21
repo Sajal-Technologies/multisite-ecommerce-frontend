@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Categories = () => {
   return (
-    <div className="w-[85%] mt-12  mx-auto">
+    <div className="xl:w-[85%] lg:w-full lg:px-0 px-2  mt-12  mx-auto">
       <div className="flex justify-between">
         <h2 className="text-3xl font-bold mb-8">Categories</h2>
       </div>

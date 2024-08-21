@@ -166,9 +166,9 @@ function AuthProvider({ children }) {
   };
 
   const handleLogout = () => {
+    navigate("/");
     setUser(null);
     removeUser("user");
-    navigate("/");
   };
 
   return (

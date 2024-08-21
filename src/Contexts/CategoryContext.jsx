@@ -26,15 +26,27 @@ function reducer(state, action) {
         isLoading: action.payload,
         error: null,
       };
-    case "product/loaded":
-      return {
-        ...state,
-        categoryProducts: [
-          ...state.categoryProducts,
-          ...action.payload["Product_data"],
-        ],
-        isLoading: false,
-      };
+    case "product/loaded": {
+      const reminderItem = action.payload.length % 3;
+
+      if (reminderItem > 0) {
+        return {
+          ...state,
+          categoryProducts: [
+            ...state.categoryProducts,
+            ...action.payload.slice(0, -reminderItem),
+          ],
+          isLoading: false,
+        };
+      } else {
+        return {
+          ...state,
+          categoryProducts: [...state.categoryProducts, ...action.payload],
+          isLoading: false,
+        };
+      }
+    }
+
     case "product/reset":
       return {
         ...state,
@@ -119,11 +131,9 @@ function CategoryProvider({ children }) {
           signal: controllerRef.current.signal,
         }
       );
-      console.log(data);
-      console.log(response.data);
       dispatch({
         type: "product/loaded",
-        payload: response.data,
+        payload: response.data.Product_data,
       });
     } catch (error) {
       if (error.name === "CanceledError") {
@@ -159,7 +169,7 @@ function CategoryProvider({ children }) {
 
     dispatch({
       type: "product/loaded",
-      payload: response.data,
+      payload: response.data.Product_data,
     });
   }, []);
 

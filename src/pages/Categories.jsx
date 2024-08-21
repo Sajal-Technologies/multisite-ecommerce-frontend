@@ -104,7 +104,7 @@ function Categories() {
         setURLQuery={setURLQuery}
       />
       <div className=" w-full my-4  ">
-        <div className="grid mobile:grid-cols-1 grid-cols-[280px_1fr] xl:w-[85%] mx-auto gap-4">
+        <div className="grid mobile:grid-cols-1 grid-cols-[280px_1fr] xl:w-[85%] min-h-[100vh] mx-auto gap-4">
           <Filteration
             filters={filters}
             selectedFilters={selectedFilters}

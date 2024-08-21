@@ -57,10 +57,12 @@ const Fproduct = ({ Category }) => {
 
   if (isLoading) {
     return (
-      <div className="flex gap-4 justify-center items-center w-[85%] mx-auto  mt-[4vw]">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <SkeletonCard key={i} />
-        ))}
+      <div className=" xl:w-[85%] w-full mx-auto   mt-[4vw] px-2 xl:px-0">
+        <div className="flex overflow-auto gap-4 hideScroll  ">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
       </div>
     );
   }

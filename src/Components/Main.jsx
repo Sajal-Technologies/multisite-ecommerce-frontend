@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
-import Banner from "./Banner";
-import CategoryList from "./Category-Section";
 
+const Banner = lazy(() => import("./Banner"));
+const CategoryList = lazy(() => import("./CategoryList"));
 const Fproduct = lazy(() => import("./Feature-Product"));
 const Categories = lazy(() => import("./Categories"));
 const Subcategory = lazy(() => import("./Subcategory"));
@@ -9,9 +9,9 @@ const Subcategory = lazy(() => import("./Subcategory"));
 const Main = () => {
   return (
     <div className="bg-[#FAFAFA] pb-16 pt-[60px] mobile:pt-[70px]">
-      <Banner />
-      <CategoryList />
       <Suspense fallback={null}>
+        <Banner />
+        <CategoryList />
         <Fproduct Category={"HomeDecor"} />
         <Categories />
         <Fproduct Category={"Electronics"} />

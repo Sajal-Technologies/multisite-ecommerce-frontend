@@ -122,6 +122,7 @@ const OTPVerification = () => {
             </p>
           </div>
           <ResendOTP setOtpResendMessage={setOtpResendMessage} />
+
           <div className="otpboxs flex gap-2 tablet:justify-between tablet:items-center tablet:w-full mobile:justify-center">
             {otp.map((data, index) => (
               <input
@@ -139,8 +140,9 @@ const OTPVerification = () => {
               />
             ))}
           </div>
+
           {error && typeof error === "string" && (
-            <p className="text-red-600 font-bold text-center text-lg xl:-mb-4">
+            <p className="text-red-600 font-bold text-center border-[2px] border-gray-600 text-lg xl:-mb-4">
               {error}
             </p>
           )}

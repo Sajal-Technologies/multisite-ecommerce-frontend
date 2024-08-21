@@ -1,34 +1,72 @@
-import Logo from "../images/MainPage/FooterLogos/Logo.svg";
-import Flag from "../images/MainPage/FooterLogos/Flag.png";
-import { FaFacebookF } from "react-icons/fa";
-import { FiInstagram } from "react-icons/fi";
-import { FiTwitter } from "react-icons/fi";
+import Logo from "../images/Brand Logo/LogoName.png";
 import { FiChevronRight } from "react-icons/fi";
 import { BiLogoPlayStore } from "react-icons/bi";
-import { FiChevronUp } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { useAuth } from "../Contexts/AuthContext";
 
 const Footer = () => {
+  const { handleLogout, user } = useAuth();
+  const TopCategoryNavLinks1 = [
+    {
+      name: "Electronics",
+      link: "/Electronics",
+    },
+    {
+      name: "Beauty & Cosmetics",
+      link: "/Beauty & Cosmetics",
+    },
+    {
+      name: "Apparel & Accessories",
+      link: "/Apparel & Accessories",
+    },
+    {
+      name: "Shoes",
+      link: "/Shoes",
+    },
+  ];
+
+  const TopCategoryNavLinks2 = [
+    {
+      name: "Terms & Conditions",
+      link: "/Terms & Conditions",
+    },
+    {
+      name: "Privacy Policy",
+      link: "/privacypolicy",
+    },
+  ];
+
   return (
     <footer className="bg-white w-full flex flex-col items-center justify-center mobile:w-full overflow-x-hidden tablet:w-full">
       <div className="h-full w-[85%] mt-6 mobile:w-full px-4 m-0 tablet:w-full tablet:px-6">
         <div className="flex mobile:flex-col tablet:mt-6 justify-between mobile:mt-8 mt-[2vw]">
-          <div className="w-[25%] mobile:w-full">
-            <img className="mb-2" src={Logo} alt="" />
-            <p className="text-[#52525B] mobile:w-full">
-              We ara a lorem ipsum dolor sit amet, consectetur adipiscing elit ,
-              consectetur adipiscing elit, sed do eiusmod
-            </p>
-            <div className="flex gap-2 mt-6 mobile:mt-4">
-              <div className="h-[30px] w-[30px] flex justify-center items-center bg-[#2563EB] rounded-full">
-                <FaFacebookF className="text-white fill-white" />
-              </div>
-              <div className="h-[30px] w-[30px] peer flex justify-center items-center bg-white border-[1px] border-[#DEDEDE] rounded-full">
-                <FiInstagram className="text-[#EC0A75]" />
-              </div>
-              <div className="h-[30px] w-[30px] peer flex justify-center items-center bg-white border-[1px] border-[#DEDEDE] rounded-full">
-                <FiTwitter className="fill-[#2563EB] text-[#2563EB]" />
-              </div>
+          <div className="flex flex-col justify-between w-[25%] mobile:w-full ">
+            <div className="">
+              <Link to="/">
+                <img className="mb-2 h-[2.5rem]" src={Logo} alt="" />
+              </Link>
+              <p className="text-[#52525B] mobile:w-full">
+                The Shopping AI is a cutting-edge unified search platform that
+                revolutionizes the online shopping experience.
+              </p>
             </div>
+
+            <address className="not-italic text-[#52525B] font-semibold">
+              <a
+                href="mailto:contact@theshoppingai.com"
+                className="hover:underline"
+              >
+                contact@theshoppingai.com
+              </a>{" "}
+              <br />
+              <a href="tel:+91-8138-821123" className="hover:underline">
+                +91 8138 821123
+              </a>
+              <span className="mx-1">/</span>
+              <a href="tel:+1-718-344-7421" className="hover:underline">
+                +1 (718) 344 7421
+              </a>
+            </address>
           </div>
           <div className="relative hidden mobile:block">
             <h1 className="uppercase text-[#005F85] font-semibold text-sm mobile:text-lg mt-4">
@@ -55,7 +93,7 @@ const Footer = () => {
                 </svg>
                 <span className="button-text group-hover:text-black flex flex-col items-start justify-center text-white transition-all duration-300 ">
                   <span className="top-text leading-none text-[7px] btn-font font-semibold">
-                    Download on the
+                    Coming soon to
                   </span>
                   <span className="bottom-text text-[15px] btn-font font-semibold">
                     App Store
@@ -66,7 +104,7 @@ const Footer = () => {
                 <BiLogoPlayStore className="text-white text-[35px] transition-all group-hover:text-black" />
                 <span className="button-text group-hover:text-black flex flex-col items-start justify-center text-white transition-all duration-300 ">
                   <span className="top-text uppercase leading-none text-[7px] btn-font font-semibold">
-                    Get it On
+                    Coming soon to
                   </span>
                   <span className="bottom-text capitalize text-[15px] btn-font font-semibold">
                     google play
@@ -75,39 +113,63 @@ const Footer = () => {
               </button>
             </div>
           </div>
-          <div className="mobile:flex mobile:mt-4 mobile:gap-[70px] flex gap-[150px] tablet:gap-[50px]">
+
+          <nav className="mobile:flex mobile:mt-4 mobile:gap-[70px] flex gap-[150px] tablet:gap-[50px]">
             <div className="">
-              <h1 className="text-[#005F85] font-semibold text-lg">
+              <h1 className="text-[#005F85] uppercase font-semibold text-lg">
                 Top Categories
               </h1>
-              <div className="mt-4 flex flex-col gap-4">
-                {[
-                  "Watches",
-                  "Home Appliances",
-                  "Mobile Phone",
-                  "Fashion",
-                  "Laptops",
-                  "Tvs",
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-1">
-                    <FiChevronRight className="text-[#5C5C5C]" />
-                    <p className="text-[#5C5C5C] text-nowrap">{item}</p>
-                  </div>
+              <ul className="mt-4 flex flex-col gap-4">
+                {TopCategoryNavLinks1.map((item, index) => (
+                  <li key={index}>
+                    <Link to={item.link} className="flex items-center gap-1 ">
+                      <FiChevronRight className="text-[#5C5C5C]" />
+                      <p className="text-[#5C5C5C] text-nowrap cursor-pointer">
+                        {item.name}
+                      </p>
+                    </Link>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
             <div className="">
-              <h1 className="text-[#005F85] font-semibold text-lg">Help</h1>
-              <div className="mt-4 flex flex-col gap-4">
-                {["Terms & Conditions", "Privacy Policy"].map((item, index) => (
-                  <div key={index} className="flex items-center gap-1">
-                    <FiChevronRight className="text-[#5C5C5C]" />
-                    <p className="text-[#5C5C5C] text-nowrap">{item}</p>
-                  </div>
+              <h1 className="text-[#005F85] font-semibold uppercase text-lg">
+                Help
+              </h1>
+              <ul className="mt-4 flex flex-col gap-4">
+                {TopCategoryNavLinks2.map((item, index) => (
+                  <li key={index}>
+                    <Link to={item.link} className="flex items-center gap-1">
+                      <FiChevronRight className="text-[#5C5C5C]" />
+                      <p className="text-[#5C5C5C] text-nowrap cursor-pointer">
+                        {item.name}
+                      </p>
+                    </Link>
+                  </li>
                 ))}
-              </div>
+                <li>
+                  {user?.token.access ? (
+                    <button
+                      className={`flex items-center gap-1 text-[#5C5C5C]`}
+                      onClick={handleLogout}
+                    >
+                      <FiChevronRight className="text-[#5C5C5C]" />
+                      Log out
+                    </button>
+                  ) : (
+                    <Link
+                      to="/SignIn"
+                      className="flex items-center gap-1 text-[#5C5C5C]"
+                    >
+                      <FiChevronRight className="text-[#5C5C5C]" />
+                      Log in
+                    </Link>
+                  )}
+                </li>
+              </ul>
             </div>
-          </div>
+          </nav>
+
           <div className="relative mobile:hidden">
             <h1 className="uppercase text-[#005F85] font-semibold text-sm">
               Get App
@@ -132,8 +194,8 @@ const Footer = () => {
                   </g>
                 </svg>
                 <span className="button-text group-hover:text-black flex flex-col items-start justify-center text-white transition-all duration-300 ">
-                  <span className="top-text leading-none text-[7px] btn-font font-semibold">
-                    Download on the
+                  <span className="top-text leading-none text-[8px]  btn-font font-semibold">
+                    Coming soon to
                   </span>
                   <span className="bottom-text text-[15px] btn-font font-semibold">
                     App Store
@@ -143,8 +205,8 @@ const Footer = () => {
               <button className="playstore-button flex items-center justify-center py-[10px] px-3 border-[2px] border-[#bdbdbd] bg-[#0f0f0f] rounded-2xl gap-[2px] cursor-pointer transition-all duration-200 @apply shadow-[0px_0px_100px_-30px_rgb(255,255,255)] hover:bg-[#ffffff] hover:border-[2px] hover:border-[#8a8a8a] group">
                 <BiLogoPlayStore className="text-white text-[35px] transition-all group-hover:text-black" />
                 <span className="button-text group-hover:text-black flex flex-col items-start justify-center text-white transition-all duration-300 ">
-                  <span className="top-text uppercase leading-none text-[7px] btn-font font-semibold">
-                    Get it On
+                  <span className="top-text  leading-none text-[8px] btn-font font-semibold">
+                    Coming soon to
                   </span>
                   <span className="bottom-text capitalize text-[15px] btn-font font-semibold">
                     google play
@@ -156,15 +218,11 @@ const Footer = () => {
         </div>
       </div>
       <div className="w-full h-[45px] bg-[#F2F2F2] mt-8 flex items-center justify-center mobile:justify-between mobile:w-full tablet:w-full tablet:justify-between ">
-        <div className="w-[85%] h-full text-[#3D3D3D] text-sm flex items-center justify-between mobile:w-full mobile:justify-between mobile:px-4 tablet:w-full px-6">
+        <div className="w-[85%] h-full text-[#3D3D3D] text-sm flex items-center justify-center mobile:w-full mobile:justify-between mobile:px-4 tablet:w-full px-6">
           <p className="mobile:text-sm">
-            © 2024 Saad Mahfouz. All rights reserved.
+            &copy; {new Date().getFullYear()} The Shopping AI, All rights
+            reserved.
           </p>
-          <div className="flex items-center gap-1">
-            <img className="w-6 h-4" src={Flag} alt="" />
-            <p className="">English</p>
-            <FiChevronUp />
-          </div>
         </div>
       </div>
     </footer>

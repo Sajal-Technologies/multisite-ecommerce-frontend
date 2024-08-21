@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-// import ProductItem from "./ProductItem/ProductItem.jsx";
 import { useProductDetails } from "../../Contexts/ProductDetailsContext.jsx";
 import Separator from "../Seperator.jsx";
 import DynamicLogo from "../DynamicLogo.jsx";
@@ -8,7 +7,6 @@ import AddToCart from "../AddToCart.jsx";
 import { FaRocket, FaStar } from "react-icons/fa";
 import RelatedProduct from "./RelatedProduct.jsx";
 import SaveForLater from "../SaveForLater.jsx";
-// import { MdPlayArrow } from "react-icons/md";
 
 const ListingProductDets = () => {
   const { productDetails } = useProductDetails();

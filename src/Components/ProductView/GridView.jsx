@@ -13,8 +13,7 @@ function GridView({ products, error, loading, params, callbackFn }) {
       const clientHeight = document.documentElement.clientHeight;
       const scrollTop = window.scrollY || window.pageYOffset;
 
-      const scrollPercentage =
-        (scrollTop / (scrollHeight - clientHeight)) * 100;
+      const scrollPercentage = (scrollTop / scrollHeight) * 100;
 
       if (scrollTop > clientHeight) {
         setIsBtnToTopVisible(true);
@@ -22,9 +21,8 @@ function GridView({ products, error, loading, params, callbackFn }) {
         setIsBtnToTopVisible(false);
       }
 
-      if (scrollPercentage >= 50 && !isLoading) {
+      if (scrollPercentage >= 60 && !isLoading) {
         setIsLoading(true);
-
         await callbackFn({
           ...params,
           page_number: params.page_number + 1,

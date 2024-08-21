@@ -21,9 +21,10 @@ const ProductPage = () => {
     };
   }, [user, productDetails, getSavedItems]);
   [];
+
   return (
     <div className="pt-[60px] mobile:pt-[70px] mb-12">
-      <Breadcrump />
+      <Breadcrump pageItem={productDetails.title} />
       {isLoading && (
         <div className="h-[50svh] grid place-items-center">
           <MultiStageLoader />

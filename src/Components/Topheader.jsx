@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import Apple from "../images/MainPage/Headerlogos/Apple.svg";
-import Logo from "../images/MainPage/Headerlogos/Logo.svg";
-import FlashDeals from "../images/MainPage/Headerlogos/FlashDeals.gif";
+import Logo from "../images/Brand Logo/LogoName.png";
+import Favicon from "../images/Brand Logo/favicon.png";
 import { FiGlobe } from "react-icons/fi";
 import { FiUser } from "react-icons/fi";
 import { FiSearch } from "react-icons/fi";
@@ -12,7 +11,10 @@ import { useAuth } from "../Contexts/AuthContext";
 import { useSearch } from "../Contexts/SearchContext";
 import { CiLogout } from "react-icons/ci";
 
-const Topheader = ({ toggleCartPopup }) => {
+// import FlashDeals from "../images/MainPage/Headerlogos/FlashDeals.gif";
+// { toggleCartPopup }
+
+const Topheader = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const { setQuery, clearFilters } = useSearch();
@@ -41,24 +43,26 @@ const Topheader = ({ toggleCartPopup }) => {
   }, [lastScrollTop]);
 
   const handleSearchSubmit = (e) => {
-    e.preventDefault();
+    if (e.code === "Enter") {
+      e.preventDefault();
 
-    if (search === "") return;
-    setQuery(search);
-    clearFilters();
-    navigate(`/Search?q=${search}`);
+      if (search === "") return;
+      setQuery(search);
+      clearFilters();
+      navigate(`/Search?q=${search}`);
+    }
   };
 
   return (
-    <nav
-      className={`transition-transform mobile:h-[72px] duration-300 ${
+    <header
+      className={`transition-transform bg-[#FCFCFC] mobile:h-[72px] duration-300 ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       } fixed top-0 left-0 right-0 z-50`}
     >
-      <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm px-2 text-right items-center justify-between py-1 md:px-4  xl:px-12 mobile:hidden">
+      <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm px-2 text-right items-center justify-between py-1  xl:px-12 mobile:hidden">
         <div className="left flex text-center items-center gap-2 ">
-          <p>Welcome to worldwide Chak De</p>
-          <img src={Apple} alt="" />
+          <p>Welcome to The Shopping AI</p>
+          <div id="google_translate_element"></div>
         </div>
         <div className="right flex items-center gap-4">
           <div className="flex items-center gap-2">
@@ -83,89 +87,73 @@ const Topheader = ({ toggleCartPopup }) => {
           </div>
         </div>
       </div>
-      <div className="logo-search md:w-full md:px-4 md:ml-0 xl:ml-0 md:border-none px-2 xl:px-12 py-0 flex justify-between items-center border-[1px] bg-[#FCFCFC] mobile:gap-0 mobile:justify-start mobile:items-center mobile:px-4 mobile:py-3 mobile:flex-row mobile:w-screen">
-        <div className="mobile:h-6 mobile:w-6 mobile:flex mobile:flex-col mobile:gap-1 hidden mobile:px-0 mobile:justify-center">
-          <div className="mobile:h-[2.5px] mobile:bg-[#005F85] mobile:w-[18px] mobile:rounded-lg"></div>
-          <div className="mobile:h-[2.5px] mobile:bg-[#005F85] mobile:w-[18px] mobile:rounded-lg"></div>
-          <div className="mobile:h-[2.5px] mobile:bg-[#005F85] mobile:w-[18px] mobile:rounded-lg"></div>
-        </div>
-        <img
-          className="mobile:h-11 md:hidden mobile:px-4 lg:hidden "
-          src={Logo}
-          alt=""
-        />
-        <Link to="/">
-          <div className="logo hidden md:block xl:flex xl:items-center pl-5">
+      <div className="flex justify-between bg-[#FCFCFC] items-center gap-2 py-1 px-2 max-w-[80rem] mx-auto">
+        <Link to="/" className=" mobile:hidden block">
+          <div className="logo">
             <img
-              className="md:h-full md:w-full md:object-cover h-[30%] py-1"
+              className="h-[3.2rem] flex-shrink-0 object-contain"
               src={Logo}
-              alt=""
+              alt="Brand Logo"
             />
           </div>
         </Link>
-        <div className="right flex items-center gap-14 pl-[100px] mobile:pl-[30px] md:ml-[-250px]">
-          <form
-            className="search flex items-center relative"
-            onSubmit={handleSearchSubmit}
-          >
-            <FiSearch className="left-3 absolute text-[#5C5C5C] text-xl mobile:left-[-25px]" />
-            <input
-              className="bg-[#FAFAFA] border-[1px] border-[#DEDEDE] px-4 py-2 pl-10 md:w-[40vw]  xl:w-[45vw] mobile:ml-[-35px] rounded-lg mobile:px-2 mobile:py-[10px] mobile:pl-10 mobile:w-[220px] mobile:placeholder:text-xs"
-              type="text"
-              placeholder="Search essentials, groceries and more..."
-              name="search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+        <Link to="/" className=" hidden mobile:block">
+          <div className="logo">
+            <img
+              className="h-[3.2rem] flex-shrink-0 object-contain"
+              src={Favicon}
+              alt="Brand Logo"
             />
-          </form>
-          <div className="flex items-center">
-            <div className="flex items-center gap-2 mobile:gap-0 mobile:absolute mobile:right-0 mobile:px-4 ">
-              <Link
-                to={"/SaveForLater"}
-                className="flex items-center justify-center mobile:hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="#00A8EB"
-                  className={`w-7 h-7 `}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
-                  />
-                </svg>
-              </Link>
-              <div className="mobile:hidden">
-                <Seperator />
-              </div>
-              <Link to="/Cart">
-                <FiShoppingCart className="text-[#00A8EB] text-2xl mobile:text-[#005F85]" />{" "}
-              </Link>
-              <Link className="xl:text-2xl mobile:hidden md:text-xl" to="/Cart">
-                Cart
-              </Link>
-            </div>
-            <div className="mobile:hidden">
-              <Seperator />
-            </div>
-            <div className="flex items-center gap-2 mobile:hidden">
-              <img className="w-14 h-6" src={FlashDeals} alt="" />
-              <a
-                onClick={toggleCartPopup}
-                className="xl:text-2xl xl:pr-0 md:text-nowrap md:text-xl"
-                href=""
-              >
-                Flash Deals
-              </a>
-            </div>
           </div>
+        </Link>
+        <div className="search flex items-center relative w-[60%]">
+          <input
+            className="bg-[#FAFAFA] border-[1px] border-[#DEDEDE] px-4 py-2 pr-10 w-full  rounded-lg mobile:pr-10  mobile:placeholder:text-xs"
+            type="text"
+            placeholder="Search essentials, groceries and more..."
+            name="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={(e) => {
+              handleSearchSubmit(e);
+            }}
+          />
+          <button className="right-3 absolute" onClick={handleSearchSubmit}>
+            <FiSearch className=" text-[#5C5C5C] text-xl" />
+          </button>
+        </div>
+        <div className="flex justify-center items-center">
+          <Link
+            to={"/SaveForLater"}
+            className="flex items-center justify-center mobile:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="#00A8EB"
+              className={`w-7 h-7 `}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+              />
+            </svg>
+          </Link>
+          <div className="mobile:hidden">
+            <Seperator />
+          </div>
+          <Link to="/Cart">
+            <FiShoppingCart className="text-[#00A8EB] text-2xl mr-2" />{" "}
+          </Link>
+          <Link className="lg:text-2xl mobile:hidden tablet:text-xl" to="/Cart">
+            Cart
+          </Link>
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
 
