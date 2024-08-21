@@ -1,4 +1,4 @@
-import { lazy, useState, Suspense } from "react";
+import { lazy, useState, Suspense, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ProductDetailsProvider } from "./Contexts/ProductDetailsContext";
 import Cartpopup from "./Components/CartPage/Cartpopup";
@@ -32,6 +32,7 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
   const { pathname } = useLocation();
+  const location = useLocation();
 
   const toggleCartPopup = () => {
     setIsCartPopupVisible(!isCartPopupVisible);
@@ -40,6 +41,12 @@ const App = () => {
   const closeCartPopup = () => {
     setIsCartPopupVisible(false);
   };
+
+  useEffect(() => {
+    if (window.google && window.google.translate) {
+      window.googleTranslateElementInit();
+    }
+  }, [location]);
 
   // Check if the current path is related to credential page
   const isCredencialPage = [

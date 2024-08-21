@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Logo from "../images/Brand Logo/LogoName.png";
 import Favicon from "../images/Brand Logo/favicon.png";
-import { FiGlobe } from "react-icons/fi";
 import { FiUser } from "react-icons/fi";
 import { FiSearch } from "react-icons/fi";
 import { FiShoppingCart } from "react-icons/fi";
@@ -62,12 +61,10 @@ const Topheader = () => {
       <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm px-2 text-right items-center justify-between py-1  xl:px-12 mobile:hidden">
         <div className="left flex text-center items-center gap-2 ">
           <p>Welcome to The Shopping AI</p>
-          <div id="google_translate_element"></div>
         </div>
         <div className="right flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <FiGlobe className="text-lg" />
-            <p>Language</p>
+            <div id="google_translate_element" className="w-32 h-5"></div>
           </div>
           <div className="signin flex items-center gap-2">
             <FiUser className="text-lg" />
@@ -146,7 +143,7 @@ const Topheader = () => {
             <Seperator />
           </div>
           <Link to="/Cart">
-            <FiShoppingCart className="text-[#00A8EB] text-2xl mr-2" />{" "}
+            <FiShoppingCart className="text-[#00A8EB] text-2xl mr-2" />
           </Link>
           <Link className="lg:text-2xl mobile:hidden tablet:text-xl" to="/Cart">
             Cart

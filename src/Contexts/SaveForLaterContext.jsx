@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useReducer } from "react";
 import { useAuth } from "./AuthContext";
 import productFetch from "../Axios Instance/productAxios";
+import { useNavigate } from "react-router-dom";
 
 const SaveForLaterContext = createContext();
 
@@ -41,6 +42,7 @@ function SaveForLaterProvider({ children }) {
   const { user } = useAuth();
   const [{ savedItems, isSaveLoading, saveError, saveMessage }, dispatch] =
     useReducer(reducer, initialState);
+  const navigate = useNavigate();
 
   // Get Saved Items
   const getSavedItems = useCallback(
@@ -80,7 +82,7 @@ function SaveForLaterProvider({ children }) {
   }
 
   // Delete Cart Items
-  async function deleteSavedItem(data, setIsSaved) {
+  async function deleteSavedItem(data, setIsSaved = () => {}) {
     try {
       await productFetch.post(`/delete-from-saveforlater/`, data, {
         headers: {
@@ -104,6 +106,7 @@ function SaveForLaterProvider({ children }) {
         },
       });
       getSavedItems();
+      navigate("/Cart");
     } catch (error) {
       console.log(error);
     }

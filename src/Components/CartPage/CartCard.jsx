@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { useCart } from "../../Contexts/CartContext";
-import Flipkart from "../../images/CartPage/Flipkart.png";
-import Meesho from "../../images/CartPage/Meesho.png";
-import { FiTrendingDown } from "react-icons/fi";
 import { FiShoppingBag } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Loader from "../Loader";
 import SaveForLater from "../SaveForLater";
+import { FaRocket } from "react-icons/fa";
 
 const CartCard = ({ item }) => {
-  const { product_name, product_image, price, product_id, id } = item;
+  const { product_name, product_image, price, product_id, id, seller_name } =
+    item;
   const { deleteCartItem } = useCart();
   const [isLoading, setIsLoading] = useState(false);
   const [setError] = useState(null);
@@ -44,49 +43,23 @@ const CartCard = ({ item }) => {
       <div className="w-full mobile:w-full py-4 flex flex-col gap-4 mobile:gap-2 mobile:py-3 mobile:px-4">
         <Link to={`/Product/${product_id}`}>
           <div className="sellers mobile:hidden flex justify-between px-4 ">
-            <div className="flex items-center gap-2">
-              <div className="h-8">
-                <img
-                  className=" h-full w-full object-cover"
-                  src={Flipkart}
-                  alt=""
-                />
-              </div>
-              <div className="h-8">
-                <img
-                  className="h-full w-full object-cover"
-                  src={Meesho}
-                  alt=""
-                />
-              </div>
-            </div>
-            <div className="flex items-center gap-2 justify-center bg-[#F2F2F2] rounded-md px-2">
-              <p className="text-[#0B8500] text-lg font-medium">-11%</p>
-              <FiTrendingDown className="text-[#0B8500]" />
-            </div>
+            <p className="line-clamp-1 break-words text-sm font-bold uppercase tracking-wider text-[#005F85]">
+              {seller_name}
+            </p>
           </div>
         </Link>
         <div className="px-4 mobile:px-0">
           <Link
             to={`/Product/${product_id}`}
-            className="text-[19px] leading-snug text-[#3D3D3D] font-medium line-clamp-2 overflow-hidden mobile:font-semibold mobile:text-sm"
+            className="text-[19px] h-[52px] leading-snug text-[#3D3D3D] font-medium line-clamp-2 overflow-hidden mobile:font-semibold mobile:text-sm"
           >
             {product_name}
           </Link>
         </div>
         <div className="sellers lg:hidden tablet:hidden mobile:block">
-          <div className="flex items-center gap-2 my-[-8px]">
-            <div className="h-8">
-              <img
-                className="h-full w-full object-cover"
-                src={Flipkart}
-                alt=""
-              />
-            </div>
-            <div className="h-6">
-              <img className="h-full w-full object-cover" src={Meesho} alt="" />
-            </div>
-          </div>
+          <p className="line-clamp-1 break-words text-sm font-bold uppercase tracking-wider text-[#005F85]">
+            {seller_name}
+          </p>
         </div>
         <div className="flex justify-between items-center">
           <Link to={`/Product/${product_id}`}>
@@ -121,12 +94,12 @@ const CartCard = ({ item }) => {
         </div>
         <div className="px-4 mobile:px-0">
           <div className="w-full h-12 mobile:h-10 flex items-center justify-between">
-            <div className="h-full w-[75%] mobile:w-[70%] bg-[#005F85] flex items-center justify-center gap-2 rounded-md">
-              <FiShoppingBag className="text-white text-xl" />
-              <p className="text-white text-lg font-semibold mobile:text-sm">
+            <button className="h-full w-[75%] mobile:w-[70%] bg-[#005F85] flex items-center justify-center gap-2 rounded-md">
+              <FaRocket className="text-white" />
+              <p className="text-white text-lg font-semibold mobile:text-sm cursor-pointer">
                 Buy Now
               </p>
-            </div>
+            </button>
             <div className="border border-[#005F85] rounded-full">
               <SaveForLater id={product_id} />
             </div>

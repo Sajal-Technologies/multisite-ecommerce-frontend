@@ -4,16 +4,18 @@ import Breadcrump from "../Components/Cat-components/Breadcrump";
 import { useEffect } from "react";
 import { useSaveForLater } from "../Contexts/SaveForLaterContext";
 import SaveForLaterItem from "../Components/SaveForLaterItem";
+import Loader from "../Components/Loader";
 
 function SaveForLaterPage() {
-  const { getSavedItems, savedItems, isSavedLoading, savedError } =
+  const { getSavedItems, savedItems, isSaveLoading, savedError } =
     useSaveForLater();
   const { user } = useAuth();
+  console.log(isSaveLoading);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user?.token?.access) return;
     getSavedItems();
-  }, [user]);
+  }, [user?.token?.access, getSavedItems]);
 
   if (!user) {
     return (
@@ -37,11 +39,11 @@ function SaveForLaterPage() {
   return (
     <div className="pt-[60px] mobile:pt-[70px]">
       <Breadcrump />
-      {isSavedLoading && <div>Loading...</div>}
+      {isSaveLoading && <Loader type="lg" />}
       {savedError && <div>{savedError}</div>}
-      {!isSavedLoading && !savedError && (
+      {!isSaveLoading && !savedError && (
         <div className="w-[85%] mobile:w-full mx-auto mt-8 px-4">
-          <div className="flex gap-4 items-center mb-10 mobile:gap-2 mobile:mb-4">
+          <div className="flex gap-4 items-center mb-10  mobile:gap-2 mobile:mb-4">
             <h1 className="text-[#121212] font-semibold text-2xl mobile:text-lg tablet:text-xl">
               Save For Later
             </h1>
@@ -49,7 +51,7 @@ function SaveForLaterPage() {
               {savedItems.length} items
             </span>
           </div>
-          {!isSavedLoading && savedItems.length <= 0 && (
+          {!isSaveLoading && savedItems.length <= 0 && (
             <div className="flex items-center justify-center h-[60vh] bg-gray-100">
               <div className="text-center p-6 bg-white shadow-md rounded-lg">
                 <svg
@@ -77,7 +79,7 @@ function SaveForLaterPage() {
             </div>
           )}
           {savedItems.length !== 0 && (
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] justify-items-center mobile:grid-cols-1 mobile:justify-items-stretch gap-4 mobile:gap-4 mobile:w-full">
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] justify-items-center mb-8  mobile:grid-cols-1 mobile:justify-items-stretch gap-4 mobile:gap-4 mobile:w-full">
               {savedItems.map((item, i) => (
                 <SaveForLaterItem key={i} item={item} />
               ))}

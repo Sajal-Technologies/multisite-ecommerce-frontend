@@ -1,24 +1,42 @@
 import { useState } from "react";
-import { FiShoppingBag, FiTrendingDown } from "react-icons/fi";
+import { FiShoppingBag } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
+import { useSaveForLater } from "../Contexts/SaveForLaterContext";
+import { FaRocket } from "react-icons/fa";
+import { MdOutlineDeleteOutline } from "react-icons/md";
 
 function SaveForLaterItem({ item }) {
-  const { product_name, product_image, price, product_id, id } = item;
+  const { product_name, product_image, price, product_id, id, seller_name } =
+    item;
+  const { moveToCart, deleteSavedItem } = useSaveForLater();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isMoving, setIsMoving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [setError] = useState(null);
 
   async function handleMoveToCart(id) {
-    setIsLoading(true);
+    setIsMoving(true);
     try {
-      await deleteCartItem({ cart_id: id });
+      await moveToCart({ savelater_id: id });
     } catch (error) {
       setError(error.message);
     } finally {
-      setIsLoading(false);
+      setIsMoving(false);
     }
   }
+
+  async function handleRemove(id) {
+    setIsDeleting(true);
+    try {
+      await deleteSavedItem({ savelater_id: id });
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsDeleting(false);
+    }
+  }
+
   return (
     <div className="card xl:max-w-[350px]  mobile:flex w-full h-fit rounded-2xl mobile:rounded-lg overflow-hidden border-[1px] border-[#F2F2F2]">
       <Link to={`/Product/${product_id}`}>
@@ -38,49 +56,23 @@ function SaveForLaterItem({ item }) {
       <div className="w-full mobile:w-full py-4 flex flex-col gap-4 mobile:gap-2 mobile:py-3 mobile:px-4">
         <Link to={`/Product/${product_id}`}>
           <div className="sellers mobile:hidden flex justify-between px-4 ">
-            {/* <div className="flex items-center gap-2">
-              <div className="h-8">
-                <img
-                  className=" h-full w-full object-cover"
-                  src={Flipkart}
-                  alt=""
-                />
-              </div>
-              <div className="h-8">
-                <img
-                  className="h-full w-full object-cover"
-                  src={Meesho}
-                  alt=""
-                />
-              </div>
-            </div> */}
-            <div className="flex items-center gap-2 justify-center bg-[#F2F2F2] rounded-md px-2">
-              <p className="text-[#0B8500] text-lg font-medium">-11%</p>
-              <FiTrendingDown className="text-[#0B8500]" />
-            </div>
+            <p className="line-clamp-1 break-words text-sm font-bold uppercase tracking-wider text-[#005F85]">
+              {seller_name}
+            </p>
           </div>
         </Link>
         <div className="px-4 mobile:px-0">
           <Link
             to={`/Product/${product_id}`}
-            className="text-[19px] leading-snug text-[#3D3D3D] font-medium line-clamp-2 overflow-hidden mobile:font-semibold mobile:text-sm"
+            className="text-[19px] h-[52px] leading-snug text-[#3D3D3D] font-medium line-clamp-2 overflow-hidden mobile:font-semibold mobile:text-sm"
           >
             {product_name}
           </Link>
         </div>
         <div className="sellers lg:hidden tablet:hidden mobile:block">
-          {/* <div className="flex items-center gap-2 my-[-8px]">
-            <div className="h-8">
-              <img
-                className="h-full w-full object-cover"
-                src={Flipkart}
-                alt=""
-              />
-            </div>
-            <div className="h-6">
-              <img className="h-full w-full object-cover" src={Meesho} alt="" />
-            </div>
-          </div> */}
+          <p className="line-clamp-1 break-words text-sm font-bold uppercase tracking-wider text-[#005F85]">
+            {seller_name}
+          </p>
         </div>
         <div className="flex justify-between items-center">
           <Link to={`/Product/${product_id}`}>
@@ -96,32 +88,41 @@ function SaveForLaterItem({ item }) {
 
           <button
             className={`flex gap-2 items-center px-3 border  border-[#005F85] rounded-3xl py-1 tablet:mr-4 lg:mr-4 ${
-              isLoading
+              isMoving
                 ? "opacity-50 text-[#5C5C5C] cursor-not-allowed"
                 : "text-[#005F85]"
             }`}
             onClick={() => handleMoveToCart(id)}
-            disabled={isLoading}
+            disabled={isMoving}
           >
-            {isLoading ? (
+            {isMoving ? (
               <Loader />
             ) : (
               <FiShoppingBag className=" text-xl mobile:text-base" />
             )}
             <span className=" text-lg mobile:text-sm">
-              {isLoading ? "Moving..." : "Move To Cart"}
+              {isMoving ? "Moving..." : "Move To Cart"}
             </span>
           </button>
         </div>
         <div className="px-4 mobile:px-0">
           <div className="w-full h-12 mobile:h-10 flex items-center justify-between">
-            <div className="h-full w-[75%] mobile:w-[70%] bg-[#005F85] flex items-center justify-center gap-2 rounded-md">
-              <FiShoppingBag className="text-white text-xl" />
-              <p className="text-white text-lg font-semibold mobile:text-sm">
+            <button className="h-full w-[75%] mobile:w-[70%] bg-[#005F85] flex items-center justify-center gap-2 rounded-md">
+              <FaRocket className="text-white" />
+              <p className="text-white text-lg font-semibold mobile:text-sm cursor-pointer">
                 Buy Now
               </p>
-            </div>
-            <button className="">Re</button>
+            </button>
+            <button
+              className="border-[1px] border-red-600 rounded-full p-1"
+              onClick={() => handleRemove(id)}
+            >
+              {isDeleting ? (
+                <Loader />
+              ) : (
+                <MdOutlineDeleteOutline className="text-red-600 text-2xl" />
+              )}
+            </button>
           </div>
         </div>
       </div>

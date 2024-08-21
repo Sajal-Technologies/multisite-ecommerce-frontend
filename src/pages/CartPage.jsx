@@ -13,9 +13,9 @@ const CartPage = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (!user) return;
+    if (!user?.token?.access) return;
     getCartItems();
-  }, [user]);
+  }, [user?.token?.access, getCartItems]);
 
   if (!user) {
     return (

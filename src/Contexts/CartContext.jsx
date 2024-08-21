@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useCallback, useContext, useReducer } from "react";
 import { useAuth } from "./AuthContext";
 import productFetch from "../Axios Instance/productAxios";
 import { useNavigate } from "react-router-dom";
@@ -48,23 +48,26 @@ function CartProvider({ children }) {
   const navigate = useNavigate();
 
   // Get Cart Items
-  async function getCartItems() {
-    dispatch({ type: "loading", payload: true });
-    try {
-      const response = await productFetch.get("/get-all-cartitem/", {
-        headers: {
-          Authorization: `Bearer ${user.token.access}`,
-        },
-      });
-      dispatch({
-        type: "cartItems/loaded",
-        payload: response.data.cart_data,
-      });
-    } catch (error) {
-      console.log(error);
-      dispatch({ type: "rejected", payload: error.message });
-    }
-  }
+  const getCartItems = useCallback(
+    async function getCartItems() {
+      dispatch({ type: "loading", payload: true });
+      try {
+        const response = await productFetch.get("/get-all-cartitem/", {
+          headers: {
+            Authorization: `Bearer ${user.token.access}`,
+          },
+        });
+        dispatch({
+          type: "cartItems/loaded",
+          payload: response.data.cart_data,
+        });
+      } catch (error) {
+        console.log(error);
+        dispatch({ type: "rejected", payload: error.message });
+      }
+    },
+    [user?.token?.access]
+  );
 
   //Add to Cart
   async function addToCart(data) {
