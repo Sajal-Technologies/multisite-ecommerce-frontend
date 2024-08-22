@@ -57,7 +57,7 @@ const App = () => {
     if (widget) {
       console.log(widget);
     }
-  });
+  }, []);
 
   // Check if the current path is related to credential page
   const isCredencialPage = [
