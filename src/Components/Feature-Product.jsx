@@ -10,11 +10,10 @@ const MAX_RETRIES = 3;
 const Fproduct = ({ Category }) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     setIsLoading(true);
-    async function getProducts() {
+    async function getProducts(retryCount = 0) {
       if (sessionStorage.getItem(Category)) {
         setProducts(JSON.parse(sessionStorage.getItem(Category)));
         setIsLoading(false);
@@ -33,27 +32,24 @@ const Fproduct = ({ Category }) => {
           }
         );
         if (response.data.Product_data.length < 4 && retryCount < MAX_RETRIES) {
-          setRetryCount((retryCount) => retryCount + 1);
-          getProducts();
+          getProducts(retryCount + 1);
         } else {
           setProducts(response.data.Product_data);
           sessionStorage.setItem(
             Category,
             JSON.stringify(response.data.Product_data.slice(0, 8))
           );
-          setRetryCount(0);
         }
       } catch (error) {
         if (retryCount < MAX_RETRIES) {
-          getProducts();
-          setRetryCount((retryCount) => retryCount + 1);
+          getProducts(retryCount + 1);
         }
       } finally {
         setIsLoading(false);
       }
     }
     getProducts();
-  }, [Category, retryCount]);
+  }, [Category]);
 
   if (isLoading) {
     return (
