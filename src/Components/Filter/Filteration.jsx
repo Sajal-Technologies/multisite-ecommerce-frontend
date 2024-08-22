@@ -88,7 +88,7 @@ const Filteration = ({
   }
 
   return (
-    <div className="filteration mobile:hidden block w-full bg-[#FAFAFA] border-[1px] border-[#F2F2F2] py-2 rounded-2xl self-start">
+    <div className="filteration z-10 sticky top-0 mobile:hidden block w-full bg-[#FAFAFA] border-[1px] border-[#F2F2F2] py-2 rounded-2xl self-start">
       <h2 className="font-bold text-[#121212] text-lg  uppercase px-3">
         Filters
       </h2>

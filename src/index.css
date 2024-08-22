@@ -136,6 +136,23 @@ h1 {
 
 .skiptranslate iframe {
   visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+#goog-gt-tt + div {
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+select.goog-te-combo {
+  background: linear-gradient(to right, #f3f9fb, #e0f4f9) !important;
+  border: none;
+  font-size: 16px;
+
+  outline: none;
+  text-align: center;
 }
 
 @media (max-width: 600px) {

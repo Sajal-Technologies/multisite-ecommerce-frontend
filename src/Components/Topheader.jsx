@@ -71,14 +71,6 @@ const Topheader = () => {
 
   useEffect(() => {
     translatePage();
-
-    const select = document.querySelector("select.goog-te-combo");
-    if (select) {
-      select.setAttribute(
-        "style",
-        "width: 5.5rem ; height: 20px ; background-color: transparent ; font-family: inherit; font-size: 16px; outline: none; border: none; color: #262626;"
-      );
-    }
   }, []);
 
   return (
