@@ -32,7 +32,6 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const App = () => {
   const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
   const { pathname } = useLocation();
-  const location = useLocation();
 
   const toggleCartPopup = () => {
     setIsCartPopupVisible(!isCartPopupVisible);
@@ -43,10 +42,22 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (window.google && window.google.translate) {
-      window.googleTranslateElementInit();
+    const select = document.querySelector("select.goog-te-combo");
+    if (select) {
+      select.setAttribute(
+        "style",
+        "width:5rem ; height: 20px ; background-color: transparent ;"
+      );
+      // Set the value of the select element to "en"
+      select.value = "en";
+      select.dispatchEvent(new Event("change"));
     }
-  }, [location]);
+
+    const widget = document.querySelector(".skiptranslate.goog-te-gadget");
+    if (widget) {
+      console.log(widget);
+    }
+  });
 
   // Check if the current path is related to credential page
   const isCredencialPage = [

@@ -54,27 +54,33 @@ const Subcategory = ({ title, type = "normal" }) => {
 
   if (isLoading) {
     return (
-      <div className="flex gap-4 justify-center rounded-2xl overflow-hidden items-center w-[85%] mx-auto  mt-[4vw]">
+      <div className="mx-2 xl:mx-0">
         <div
-          className={`w-[30%] h-[280px] bg-gray-300 animate-pulse ${
-            type === "reverse" ? "order-2" : ""
+          className={`lg:flex gap-4 justify-center lg:rounded-2xl lg:border-[1px]  overflow-hidden items-center w-full xl:w-[85%] xl:mx-auto  mt-[4vw] ${
+            type === "reverse" ? "lg:pl-4" : "lg:pr-4"
           }`}
-        ></div>
-        <div className="grid gap-4 grid-cols-3 w-full">
-          {Array.from({ length: 6 }).map((_, i) => {
-            return (
-              <div
-                key={i}
-                className="subcatcard w-full flex items-center shadow-sm justify-between gap-2 text-[#262626] h-[105px] bg-white  p-4 rounded-xl border-[1px] animate-pulse border-[#DEDEDE]"
-              >
-                <div className="w-full">
-                  <div className="h-6 w-full bg-gray-300 rounded-md mb-4"></div>
-                  <div className="h-6 w-3/4 bg-gray-300 rounded-md"></div>
+        >
+          <div
+            className={`lg:w-[30%] tablet:w-full mb-4 lg:mb-0 mobile:w-full h-[280px] bg-gray-300 animate-pulse ${
+              type === "reverse" ? "order-2" : ""
+            }`}
+          ></div>
+          <div className="grid gap-4 lg:grid-cols-3 tablet:grid-cols-2 mobile:grid-cols-1 w-full">
+            {Array.from({ length: 6 }).map((_, i) => {
+              return (
+                <div
+                  key={i}
+                  className="subcatcard w-full flex items-center shadow-sm justify-between gap-2 text-[#262626] h-[105px] bg-white  p-4 rounded-xl border-[1px] animate-pulse border-[#DEDEDE]"
+                >
+                  <div className="w-full">
+                    <div className="h-6 w-full bg-gray-300 rounded-md mb-4"></div>
+                    <div className="h-6 w-3/4 bg-gray-300 rounded-md"></div>
+                  </div>
+                  <div className="h-[80px] w-[100px] bg-gray-300 rounded-md"></div>
                 </div>
-                <div className="h-[80px] w-[100px] bg-gray-300 rounded-md"></div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     );
@@ -84,7 +90,7 @@ const Subcategory = ({ title, type = "normal" }) => {
     <>
       {!isLoading && products.length !== 0 && (
         <>
-          <div className="hidden mobile:block mobile:relative mobile:w-full mobile:h-[152px] mobile:mt-8 mobile:overflow-hidden">
+          <div className="hidden tablet:block mobile:block mobile:relative tablet:relative mt-10 mobile:w-full mobile:h-[152px] tablet:h-[180px] mobile:mt-8 mobile:overflow-hidden">
             <div className="overlay absolute h-full w-full bg-black opacity-40 "></div>
             <div className="text-white z-40 absolute px-6 pt-8">
               <h1 className="font-bold text-2xl mb-4">{title}</h1>
@@ -106,7 +112,7 @@ const Subcategory = ({ title, type = "normal" }) => {
             />
           </div>
 
-          <div className="xl:hidden mobile:px-4 mobile:flex-wrap md:flex-row md:flex-wrap md:px-7 w-full h-fit py-4 xl:px-4 flex xl:flex-col gap-3">
+          <div className="lg:hidden mobile:px-4 px-7 w-full h-fit py-4  grid grid-cols-2 mobile:grid-cols-1 gap-3">
             {isLoading ? (
               <div className="subcatcard w-full flex items-center shadow-sm justify-between gap-4 text-[#262626] h-[105px] bg-white  p-4 rounded-xl border-[1px] animate-pulse border-[#DEDEDE]">
                 <div className="h-6 w-3/4 bg-gray-300 rounded-md"></div>
@@ -119,10 +125,10 @@ const Subcategory = ({ title, type = "normal" }) => {
           </div>
 
           {/* Big Screen  */}
-          <div className="w-full xl:w-full tablet:w-full md:hidden h-[280px] sm:hidden mobile:hidden flex xl:items-center xl:flex items-center justify-center mt-[4vw]">
-            <div className="bg-[#F2F2F2] mobile:bg-transparent mobile:border-none w-[85%] mobile:h-full mobile:w-full mobile:shadow-none h-full flex overflow-hidden rounded-2xl border-[1px] border-white box ">
+          <div className="w-full xl:w-[85%] mx-auto tablet:w-full tablet:hidden h-[280px]  mobile:hidden flex xl:items-center xl:flex items-center justify-center mt-[4vw]">
+            <div className="bg-[#F2F2F2] mobile:bg-transparent mobile:border-none w-[85%] lg:w-full lg:mx-2  mobile:h-full mobile:w-full mobile:shadow-none h-full flex overflow-hidden rounded-2xl border-[1px] border-white box ">
               <div
-                className={`imgcontainer xl:block md:hidden mobile:hidden w-[30%] relative h-full ${
+                className={`imgcontainer xl:block tablet:hidden mobile:hidden w-[30%] relative h-full ${
                   type === "reverse" ? "order-2" : ""
                 }`}
               >

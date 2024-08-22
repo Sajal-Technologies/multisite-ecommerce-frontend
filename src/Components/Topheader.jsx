@@ -63,9 +63,8 @@ const Topheader = () => {
           <p>Welcome to The Shopping AI</p>
         </div>
         <div className="right flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <div id="google_translate_element" className="w-32 h-5"></div>
-          </div>
+          <div id="google_translate_element"></div>
+
           <div className="signin flex items-center gap-2">
             <FiUser className="text-lg" />
             {user && user?.["user name"] ? (
@@ -84,7 +83,7 @@ const Topheader = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-between bg-[#FCFCFC] items-center gap-2 py-1 px-2 max-w-[80rem] mx-auto">
+      <div className="flex justify-between bg-[#FCFCFC] items-center gap-2 py-1 px-2 xl:w-[85%]  mx-auto">
         <Link to="/" className=" mobile:hidden block">
           <div className="logo">
             <img

@@ -134,6 +134,10 @@ h1 {
   display: none;
 }
 
+.skiptranslate {
+  z-index: -50 !important;
+}
+
 @media (max-width: 600px) {
   .cards-container::-webkit-scrollbar {
     display: none;

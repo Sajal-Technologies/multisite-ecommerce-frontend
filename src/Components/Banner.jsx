@@ -61,7 +61,7 @@ const Banner = () => {
         <SwiperSlide>
           <div className="h-[25vw] mobile:h-[36vw] w-[100%] md:w-full flex items-center justify-center bg-gradient-to-br from-[#015F85] via-[#016A94] to-[#0187BD] rounded-2xl mobile:rounded-none">
             <div className="h-[90%] w-[80%] flex relative justify-between">
-              <div className="banner1 mobile:ml-[-5vw]">
+              <div className="banner1 mobile:ml-[-5vw] mobile:self-center tablet:self-start">
                 <h3 className="xl:mt-[3vw] md:mt-4 md:text-lg mb-0 text-white xl:text-2xl mobile:text-xs mobile:my-1  tablet:mb-0">
                   Get best online deals for mobile phones
                 </h3>
@@ -87,8 +87,8 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div className="h-[25vw] mobile:h-[36vw] w-[100%] md:w-full flex items-center justify-center bg-gradient-to-br from-[#FF8001] via-[#FF8001] to-[#FFC892] rounded-2xl mobile:rounded-none">
-            <div className="h-[90%] w-[80%] flex justify-between">
-              <div className="bl mobile:ml-[-5vw]">
+            <div className="h-[90%] w-[80%] flex justify-between ">
+              <div className="bl mobile:ml-[-5vw] mobile:self-center tablet:self-start">
                 <h3 className="xl:mt-[3vw] md:mt-4 md:text-lg mb-0 text-white xl:text-2xl mobile:text-xs mobile:my-1  tablet:mb-0">
                   Get best online deals for smart watches
                 </h3>
@@ -103,7 +103,7 @@ const Banner = () => {
                 </Link>
               </div>
               <div className="br mr-[3vw] mobile:mr-[-7vw]">
-                <div className="w-full flex h-full">
+                <div className="w-full flex h-full ">
                   <img
                     src={Watch}
                     className="mt-[.8vw] scale-[.85] mobile:mt-[5vw] mobile:scale-[1]"
@@ -116,8 +116,8 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div className="h-[25vw] w-[100%] mobile:h-[36vw] flex items-center justify-center bg-[#192030] rounded-2xl mobile:rounded-none">
-            <div className="h-[90%] w-[80%] flex justify-between">
-              <div className="bl mobile:ml-[-5vw]">
+            <div className="h-[90%] w-[80%] flex justify-between ">
+              <div className="bl mobile:ml-[-5vw] mobile:self-center tablet:self-start">
                 <h3 className="xl:mt-[3vw] md:mt-4 md:text-lg mb-0 text-white xl:text-2xl mobile:text-xs mobile:text-nowrap mobile:my-1  tablet:mb-0">
                   Get best online deals for home appliances
                 </h3>
@@ -144,7 +144,7 @@ const Banner = () => {
         <SwiperSlide>
           <div className="h-[25vw] mobile:h-[36vw] w-[100%] flex items-center justify-center bg-[#E6425E] rounded-2xl mobile:rounded-none">
             <div className="h-[90%] w-[80%] flex justify-between">
-              <div className="bl mobile:ml-[-5vw]">
+              <div className="bl mobile:ml-[-5vw] mobile:self-center tablet:self-start">
                 <h3 className="xl:mt-[3vw] md:mt-4 md:text-lg mb-0 text-white text-2xl mobile:text-xs mobile:my-1  tablet:mb-0">
                   Get best online deals for home TVs
                 </h3>
@@ -169,7 +169,7 @@ const Banner = () => {
         <SwiperSlide>
           <div className="h-[25vw] mobile:h-[36vw] w-[100%] flex items-center justify-center bg-[#F7C59F] rounded-2xl mobile:rounded-none">
             <div className="h-[90%] w-[80%] flex justify-between">
-              <div className="bl mobile:ml-[-5vw]">
+              <div className="bl mobile:ml-[-5vw] mobile:self-center tablet:self-start">
                 <h3 className="xl:mt-[3vw] md:mt-4 mb-0 text-white md:text-lg xl:text-2xl mobile:text-xs mobile:my-1  tablet:mb-0">
                   Get best online deals for furniture
                 </h3>
@@ -198,7 +198,7 @@ const Banner = () => {
         <SwiperSlide>
           <div className="h-[25vw] mobile:h-[36vw] w-[100%] flex items-center justify-center bg-gradient-to-br from-[#292B2A] via-[#212322] to-[#757678] rounded-2xl mobile:rounded-none">
             <div className="h-[90%] w-[80%] flex justify-between">
-              <div className="bl mobile:ml-[-5vw]">
+              <div className="bl mobile:ml-[-5vw] mobile:self-center tablet:self-start">
                 <h3 className="xl:mt-[3vw] md:mt-4 mb-0 text-white md:text-lg xl:text-2xl mobile:text-xs mobile:my-1  tablet:mb-0">
                   Get best online deals for gears
                 </h3>
