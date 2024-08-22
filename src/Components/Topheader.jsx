@@ -52,6 +52,35 @@ const Topheader = () => {
     }
   };
 
+  function translatePage() {
+    function googleTranslateElementInit() {
+      /* global google */
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          autoDisplay: true,
+          multilanguagePage: true,
+          includedLanguages: "en,hi,as,bn,gu,kn,kok,ml,mr,ne,or,pa,sa,ta,te,ur",
+        },
+        "google_translate_element"
+      );
+    }
+
+    googleTranslateElementInit();
+  }
+
+  useEffect(() => {
+    translatePage();
+
+    const select = document.querySelector("select.goog-te-combo");
+    if (select) {
+      select.setAttribute(
+        "style",
+        "width: 5.5rem ; height: 20px ; background-color: transparent ; font-family: inherit; font-size: 16px; outline: none; border: none; color: #262626;"
+      );
+    }
+  }, []);
+
   return (
     <header
       className={`transition-transform bg-[#FCFCFC] mobile:h-[72px] duration-300 ${
@@ -63,7 +92,17 @@ const Topheader = () => {
           <p>Welcome to The Shopping AI</p>
         </div>
         <div className="right flex items-center gap-4">
-          <div id="google_translate_element"></div>
+          {/* <div id="google_translate_element"></div> */}
+          <div className="language has-n-select d-inline-block ">
+            <div
+              id="google_translate_element"
+              style={{
+                display: "flex",
+                height: "30px",
+                overflow: "hidden",
+              }}
+            ></div>
+          </div>
 
           <div className="signin flex items-center gap-2">
             <FiUser className="text-lg" />

@@ -41,23 +41,23 @@ const App = () => {
     setIsCartPopupVisible(false);
   };
 
-  useEffect(() => {
-    const select = document.querySelector("select.goog-te-combo");
-    if (select) {
-      select.setAttribute(
-        "style",
-        "width:5rem ; height: 20px ; background-color: transparent ;"
-      );
-      // Set the value of the select element to "en"
-      select.value = "en";
-      select.dispatchEvent(new Event("change"));
-    }
+  // useEffect(() => {
+  //   const select = document.querySelector("select.goog-te-combo");
+  //   if (select) {
+  //     select.setAttribute(
+  //       "style",
+  //       "width:5rem ; height: 20px ; background-color: transparent ;"
+  //     );
+  //     // Set the value of the select element to "en"
+  //     select.value = "en";
+  //     select.dispatchEvent(new Event("change"));
+  //   }
 
-    const widget = document.querySelector(".skiptranslate.goog-te-gadget");
-    if (widget) {
-      console.log(widget);
-    }
-  }, []);
+  //   const widget = document.querySelector(".skiptranslate.goog-te-gadget");
+  //   if (widget) {
+  //     console.log(widget);
+  //   }
+  // }, []);.
 
   // Check if the current path is related to credential page
   const isCredencialPage = [

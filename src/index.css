@@ -134,8 +134,8 @@ h1 {
   display: none;
 }
 
-.skiptranslate {
-  z-index: -50 !important;
+.skiptranslate iframe {
+  visibility: hidden !important;
 }
 
 @media (max-width: 600px) {
