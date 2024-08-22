@@ -45,7 +45,7 @@ const Footer = () => {
               <Link to="/">
                 <img className="mb-2 h-[2.5rem]" src={Logo} alt="" />
               </Link>
-              <p className="text-[#52525B] mobile:w-full">
+              <p className="text-[#52525B] mobile:w-full mobile:mb-4">
                 The Shopping AI is a cutting-edge unified search platform that
                 revolutionizes the online shopping experience.
               </p>

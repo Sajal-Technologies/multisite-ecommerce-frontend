@@ -138,12 +138,12 @@ const Subcategory = ({ title, type = "normal" }) => {
                   src={SubCategoryImg}
                   alt=""
                 />
-                <h1 className="absolute top-0 text-white px-[24px] py-[32px] font-bold text-4xl leading-[43px] z-30">
+                <h1 className="absolute top-0 text-white px-[24px] py-[32px] h-[120px] font-bold text-4xl leading-[43px] z-30 line-clamp-2 overflow-hidden break-words">
                   {title}
                 </h1>
                 <Link
                   to={`/${title}?filters=sales%3A1`}
-                  className=" absolute z-40 bottom-[35%] ml-[24px] bg-white px-4 py-2 rounded-md text-lg font-semibold text-[#005F85] hover:bg-[#005F85] hover:text-white transition-all duration-200"
+                  className=" absolute z-40 bottom-[35%]  ml-[24px] bg-white px-4 py-2 rounded-md text-lg font-semibold text-[#005F85] hover:bg-[#005F85] hover:text-white transition-all duration-200"
                 >
                   Explore Now
                 </Link>
