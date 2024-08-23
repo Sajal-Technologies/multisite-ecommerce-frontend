@@ -8,7 +8,7 @@ const Subcategory = lazy(() => import("./Subcategory"));
 
 const Main = () => {
   return (
-    <div className="bg-[#FAFAFA] pb-16 pt-[60px] mobile:pt-[70px]">
+    <div className="bg-[#FAFAFA] pb-16 pt-[100px]">
       <Suspense fallback={null}>
         <Banner />
         <CategoryList />
