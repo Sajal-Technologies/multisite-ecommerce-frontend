@@ -52,25 +52,55 @@ const Topheader = () => {
     }
   };
 
-  function translatePage() {
-    function googleTranslateElementInit() {
-      /* global google */
-      new google.translate.TranslateElement(
-        {
-          pageLanguage: "en",
-          autoDisplay: true,
-          multilanguagePage: true,
-          includedLanguages: "en,hi,as,bn,gu,kn,kok,ml,mr,ne,or,pa,sa,ta,te,ur",
-        },
-        "google_translate_element"
-      );
-    }
+  // function translatePage() {
+  //   function googleTranslateElementInit() {
+  //     /* global google */
+  //     new google.translate.TranslateElement(
+  //       {
+  //         pageLanguage: "en",
+  //         autoDisplay: true,
+  //         multilanguagePage: true,
+  //         includedLanguages: "en,hi,as,bn,gu,kn,kok,ml,mr,ne,or,pa,sa,ta,te,ur",
+  //       },
+  //       "google_translate_element"
+  //     );
+  //   }
 
-    googleTranslateElementInit();
-  }
+  //   googleTranslateElementInit();
+  // }
 
   useEffect(() => {
-    translatePage();
+    function loadGoogleTranslate() {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src =
+        "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      document.body.appendChild(script);
+      window.googleTranslateElementInit =
+        function googleTranslateElementInit() {
+          /* global google */
+          new google.translate.TranslateElement(
+            {
+              pageLanguage: "en",
+              autoDisplay: true,
+              multilanguagePage: true,
+              includedLanguages:
+                "en,hi,as,bn,gu,kn,kok,ml,mr,ne,or,pa,sa,ta,te,ur",
+            },
+            "google_translate_element"
+          );
+        };
+    }
+    loadGoogleTranslate();
+
+    return () => {
+      const script = document.querySelector(
+        "script[src='https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit']"
+      );
+      if (script) {
+        document.body.removeChild(script);
+      }
+    };
   }, []);
 
   return (
