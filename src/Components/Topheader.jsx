@@ -52,29 +52,13 @@ const Topheader = () => {
     }
   };
 
-  // function translatePage() {
-  //   function googleTranslateElementInit() {
-  //     /* global google */
-  //     new google.translate.TranslateElement(
-  //       {
-  //         pageLanguage: "en",
-  //         autoDisplay: true,
-  //         multilanguagePage: true,
-  //         includedLanguages: "en,hi,as,bn,gu,kn,kok,ml,mr,ne,or,pa,sa,ta,te,ur",
-  //       },
-  //       "google_translate_element"
-  //     );
-  //   }
-
-  //   googleTranslateElementInit();
-  // }
-
   useEffect(() => {
     function loadGoogleTranslate() {
       const script = document.createElement("script");
       script.type = "text/javascript";
       script.src =
         "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
       document.body.appendChild(script);
       window.googleTranslateElementInit =
         function googleTranslateElementInit() {
@@ -109,12 +93,12 @@ const Topheader = () => {
         isVisible ? "translate-y-0" : "-translate-y-full"
       } fixed top-0 left-0 right-0 z-50`}
     >
-      <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm px-2 text-right items-center justify-between py-1  xl:px-12 mobile:hidden">
-        <div className="left flex text-center items-center gap-2 ">
+      <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm px-2 text-right items-center justify-between mobile:block py-1  xl:px-12 ">
+        <div className="left flex text-center items-center gap-2  mobile:hidden">
           <p>Welcome to The Shopping AI</p>
         </div>
-        <div className="right flex items-center gap-4">
-          <div className="language has-n-select d-inline-block ">
+        <div className="right flex items-center gap-4 mobile:justify-between ">
+          <div className="language has-n-select d-inline-block">
             <div
               id="google_translate_element"
               style={{

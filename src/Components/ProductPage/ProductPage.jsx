@@ -23,7 +23,7 @@ const ProductPage = () => {
   [];
 
   return (
-    <div className="pt-[60px] mobile:pt-[70px] mb-12">
+    <div className="pt-[100px]  mb-12">
       <Breadcrump pageItem={productDetails.title} />
       {isLoading && (
         <div className="h-[50svh] grid place-items-center">

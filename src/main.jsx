@@ -10,19 +10,19 @@ import { SearchProvider } from "./Contexts/SearchContext.jsx";
 import { CategoryProvider } from "./Contexts/CategoryContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <SearchProvider>
-          <CategoryProvider>
-            <CartProvider>
-              <SaveForLaterProvider>
-                <App />
-              </SaveForLaterProvider>
-            </CartProvider>
-          </CategoryProvider>
-        </SearchProvider>
-      </AuthProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <AuthProvider>
+      <SearchProvider>
+        <CategoryProvider>
+          <CartProvider>
+            <SaveForLaterProvider>
+              <App />
+            </SaveForLaterProvider>
+          </CartProvider>
+        </CategoryProvider>
+      </SearchProvider>
+    </AuthProvider>
+  </BrowserRouter>
+  // </React.StrictMode>
 );

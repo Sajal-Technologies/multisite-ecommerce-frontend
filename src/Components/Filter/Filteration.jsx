@@ -88,7 +88,7 @@ const Filteration = ({
   }
 
   return (
-    <div className="filteration z-10 sticky top-0 mobile:hidden block w-full bg-[#FAFAFA] border-[1px] border-[#F2F2F2] py-2 rounded-2xl self-start">
+    <div className="filteration sticky top-0 mobile:hidden block w-full bg-[#FAFAFA] border-[1px] border-[#F2F2F2] py-2 rounded-2xl self-start">
       <h2 className="font-bold text-[#121212] text-lg  uppercase px-3">
         Filters
       </h2>
@@ -148,7 +148,7 @@ const Filteration = ({
         </div>
       </section>
       {filters.length !== 0 ? (
-        <>
+        <div className="h-[70vh] overflow-auto hideScroll">
           <button
             className="bg-[#ff7f00] text-nowrap shadow-md font-bold text-white w-full py-2 my-2 rounded-md"
             onClick={applyFilters}
@@ -186,7 +186,7 @@ const Filteration = ({
               Apply Changes
             </button>
           )}
-        </>
+        </div>
       ) : (
         <button
           className="text-nowrap shadow-md font-bold  w-full py-2 my-2 flex items-center justify-center gap-2 rounded-md"

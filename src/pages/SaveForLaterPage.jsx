@@ -37,7 +37,7 @@ function SaveForLaterPage() {
   }
 
   return (
-    <div className="pt-[60px] mobile:pt-[70px]">
+    <div className="pt-[100px] ">
       <Breadcrump />
       {isSaveLoading && <Loader type="lg" />}
       {savedError && <div>{savedError}</div>}

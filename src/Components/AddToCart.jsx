@@ -5,10 +5,9 @@ import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import { useState } from "react";
 
-function AddToCart({ type = "small", id, sellerLink }) {
+function AddToCart({ type = "small", id, setError }) {
   const { addToCart } = useCart();
   const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(null);
 
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -20,14 +19,9 @@ function AddToCart({ type = "small", id, sellerLink }) {
     }
     try {
       setIsLoading(true);
-      const data = id
-        ? { product_id: id, quantity: 1 }
-        : { seller_link: sellerLink, quantity: 1 };
-      // setError(null);
-      await addToCart(data);
+      await addToCart({ product_id: id, quantity: 1 });
     } catch (error) {
-      console.log(error);
-      // setError(null);
+      setError("Somthing went wrong, try again!");
     } finally {
       setIsLoading(false);
     }
