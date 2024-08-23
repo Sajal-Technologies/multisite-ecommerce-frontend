@@ -84,7 +84,6 @@ const Topheader = () => {
           <p>Welcome to The Shopping AI</p>
         </div>
         <div className="right flex items-center gap-4">
-          {/* <div id="google_translate_element"></div> */}
           <div className="language has-n-select d-inline-block ">
             <div
               id="google_translate_element"
