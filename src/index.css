@@ -10,6 +10,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html,
 body {
   box-sizing: border-box;
@@ -24,17 +25,6 @@ body {
 
 .box {
   box-shadow: 4px 4px 10px 0px #0000000d;
-}
-
-.newsletter::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: -50px;
-  width: 100px;
-  height: 100%;
-  background-color: #005f85;
-  transform: skewX(25deg);
 }
 
 p,
@@ -152,6 +142,10 @@ select.goog-te-combo {
   font-size: 16px;
   outline: none;
   text-align: center;
+}
+
+#goog-gt-vt {
+  display: none !important;
 }
 
 @media (max-width: 600px) {

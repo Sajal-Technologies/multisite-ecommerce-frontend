@@ -79,7 +79,7 @@ function SearchResult() {
   }
 
   return (
-    <div className="flex flex-col w-full bg-[#FAFAFA] pt-[60px] mobile:pt-[70px]">
+    <div className="flex flex-col w-full bg-[#FAFAFA] pt-[100px]">
       <div
         className={` hidden mobile:fixed mobile:top-[72%] z-30 mobile:w-full mobile:flex mobile:items-center mobile:justify-center overflow-hidden`}
       >
@@ -110,8 +110,8 @@ function SearchResult() {
         product={searchProducts}
         setURLQuery={setURLQuery}
       />
-      <div className=" w-full my-4  ">
-        <div className="grid mobile:grid-cols-1 grid-cols-[280px_1fr] xl:w-[85%] mx-auto gap-4">
+      <div className=" w-full my-4">
+        <div className="grid mobile:grid-cols-1 grid-cols-[280px_1fr]  xl:w-[85%] mx-auto gap-4">
           <Filteration
             filters={filters}
             selectedFilters={selectedFilters}

@@ -77,7 +77,7 @@ function Categories() {
   }
 
   return (
-    <div className="flex flex-col w-full bg-[#FAFAFA] pt-[60px] mobile:pt-[70px]">
+    <div className="flex flex-col w-full bg-[#FAFAFA] pt-[100px]">
       <div
         className={` hidden mobile:fixed mobile:top-[72%] z-30 mobile:w-full mobile:flex mobile:items-center mobile:justify-center overflow-hidden`}
       >

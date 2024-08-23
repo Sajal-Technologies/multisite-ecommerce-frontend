@@ -1,12 +1,32 @@
 import { Link } from "react-router-dom";
 import AddToCart from "../AddToCart";
+import { useEffect, useState } from "react";
 // import { FiTrendingDown } from "react-icons/fi";
 
 function ProductCard({ product }) {
   const { price, thumbnail, title, merchant, product_id, rating } = product;
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+  }, [error]);
 
   return (
-    <div className="card md:ml-0 lg:max-w-[320px] flex-0  mobile:basis-[180px] md:h-[380px] md:m-0 mobile:h-[274px] mobile:flex-shrink-0 flex-shrink-0 inline-block mobile:inline-block flex-1 xl:basis-[280px] lg:basis-[256px] tablet:basis-[220px] h-[400px] rounded-2xl overflow-hidden border-[1px] border-[#F2F2F2]">
+    <div className="card relative md:ml-0 lg:max-w-[320px] flex-0  mobile:basis-[180px] md:h-[380px] md:m-0 mobile:h-[274px] mobile:flex-shrink-0 flex-shrink-0 inline-block mobile:inline-block flex-1 xl:basis-[280px] lg:basis-[256px] tablet:basis-[220px] h-[400px] rounded-2xl overflow-hidden border-[1px] border-[#F2F2F2]">
+      <span
+        className={`bg-white w-[calc(80%-4px)] ${
+          error
+            ? "opacity-100 visible pointer-events-auto translate-y-[-150%]"
+            : "opacity-0 invisible pointer-events-none translate-y-0"
+        } text-[12px] text-center p-2 bottom-[-40px] absolute left-[50%] translate-x-[-50%] shadow-lg leading-tight rounded-lg transition-all duration-300`}
+      >
+        {error}
+      </span>
+
       <Link to={`/product/${product_id}`}>
         <div className="imgcontainer w-full h-1/2 flex items-center justify-center bg-[#FAFEFF]">
           <img
@@ -49,7 +69,7 @@ function ProductCard({ product }) {
             </div>
           </Link>
           <div className="mx-4 rounded-full border-[1px] border-[#005F85]">
-            <AddToCart id={product_id} />
+            <AddToCart id={product_id} setError={setError} />
           </div>
         </div>
       </div>
