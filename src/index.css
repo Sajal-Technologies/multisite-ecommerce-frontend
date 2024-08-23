@@ -183,7 +183,7 @@ select.goog-te-combo {
     height: 30vw !important;
   }
 
-  .banner1 h3,
+  /* .banner1 h3,
   .bl h3 {
     margin-top: 1.2vw;
     font-size: 1rem;
@@ -204,15 +204,15 @@ select.goog-te-combo {
     margin-top: 0.4vw;
     margin-bottom: 1vw;
     line-height: 1.8rem;
-  }
+  } */
 
-  .br img,
+  /* .br img,
   .bl img {
     margin-top: 1vw;
     transform: scale(1.1);
-  }
+  } */
 
-  .banner1,
+  /* .banner1,
   .bl {
     margin-left: -2vw;
   }
@@ -229,7 +229,7 @@ select.goog-te-combo {
   .bl .text-xs {
     font-size: 0.75rem;
     line-height: 0.875rem;
-  }
+  } */
   .scaledown {
     position: relative;
     transform: scale(0.6);
