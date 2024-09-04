@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Breadcrump from "../Components/Cat-components/Breadcrump";
 import CartCard from "../Components/CartPage/CartCard";
 import { useCart } from "../Contexts/CartContext";
@@ -9,13 +8,8 @@ import emptyCart from "../images/CartPage/emptyCart.png";
 // import Cartpopup from "./Cartpopup";
 
 const CartPage = () => {
-  const { getCartItems, cartItems, isCartLoading, cartError } = useCart();
+  const { cartItems, isCartLoading, cartError } = useCart();
   const { user } = useAuth();
-
-  useEffect(() => {
-    if (!user?.token?.access) return;
-    getCartItems();
-  }, [user?.token?.access, getCartItems]);
 
   if (!user) {
     return (

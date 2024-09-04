@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import AddToCart from "../AddToCart";
 import { useEffect, useState } from "react";
+import { useCart } from "../../Contexts/CartContext";
+import GoToCart from "../GoToCart";
 // import { FiTrendingDown } from "react-icons/fi";
 
 function ProductCard({ product }) {
   const { price, thumbnail, title, merchant, product_id, rating } = product;
   const [error, setError] = useState(null);
+  const { cartItems } = useCart();
 
   useEffect(() => {
     if (error) {
@@ -69,7 +72,11 @@ function ProductCard({ product }) {
             </div>
           </Link>
           <div className="mx-4 rounded-full border-[1px] border-[#005F85]">
-            <AddToCart id={product_id} setError={setError} />
+            {cartItems.some((item) => item.product_id === product_id) ? (
+              <GoToCart />
+            ) : (
+              <AddToCart id={product_id} setError={setError} />
+            )}
           </div>
         </div>
       </div>

@@ -1,4 +1,10 @@
-import { createContext, useCallback, useContext, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 import { useAuth } from "./AuthContext";
 import productFetch from "../Axios Instance/productAxios";
 import { useNavigate } from "react-router-dom";
@@ -47,6 +53,7 @@ function SaveForLaterProvider({ children }) {
   // Get Saved Items
   const getSavedItems = useCallback(
     async function getSavedItems() {
+      if (!user?.token?.access) return;
       dispatch({ type: "loading", payload: true });
       try {
         const response = await productFetch.get("/get-all-savelateritem/", {
@@ -65,6 +72,10 @@ function SaveForLaterProvider({ children }) {
     },
     [user?.token?.access]
   );
+
+  useEffect(() => {
+    getSavedItems();
+  }, [getSavedItems]);
 
   //Add to Cart
   async function addToSaveForLater(data, setIsSaved) {

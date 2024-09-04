@@ -46,7 +46,7 @@ function GridView({ products, error, loading, params, callbackFn }) {
           <h1 className="text-gray-400 font-bold text-2xl mb-1">
             Sorry, no result found!
           </h1>
-          <p className="text-gray-400 text-lg">
+          <p className="text-gray-400 text-lg text-center">
             Please check the spelling or try searching for something else
           </p>
         </div>

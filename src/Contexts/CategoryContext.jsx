@@ -174,19 +174,23 @@ function CategoryProvider({ children }) {
   }, []);
 
   const getFilters = useCallback(async (product_name) => {
-    const response = await productFetch.post(
-      "/get-filter/",
-      { product_name, page_number: 1 },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    dispatch({
-      type: "filters/loaded",
-      payload: response.data.filters,
-    });
+    try {
+      const response = await productFetch.post(
+        "/get-filter/",
+        { product_name, page_number: 1 },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      dispatch({
+        type: "filters/loaded",
+        payload: response.data.filters,
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
   }, []);
 
   // Setter Functions

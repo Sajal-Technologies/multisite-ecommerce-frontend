@@ -1,21 +1,13 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../Contexts/AuthContext";
 import Breadcrump from "../Components/Cat-components/Breadcrump";
-import { useEffect } from "react";
 import { useSaveForLater } from "../Contexts/SaveForLaterContext";
 import SaveForLaterItem from "../Components/SaveForLaterItem";
 import Loader from "../Components/Loader";
 
 function SaveForLaterPage() {
-  const { getSavedItems, savedItems, isSaveLoading, savedError } =
-    useSaveForLater();
+  const { savedItems, isSaveLoading, savedError } = useSaveForLater();
   const { user } = useAuth();
-  console.log(isSaveLoading);
-
-  useEffect(() => {
-    if (!user?.token?.access) return;
-    getSavedItems();
-  }, [user?.token?.access, getSavedItems]);
 
   if (!user) {
     return (

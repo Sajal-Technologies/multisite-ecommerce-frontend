@@ -3,6 +3,7 @@ import productFetch from "../Axios Instance/productAxios";
 import { useParams } from "react-router-dom";
 
 const ProductDetailsContext = createContext();
+
 const initialState = {
   isLoading: false,
   error: null,
