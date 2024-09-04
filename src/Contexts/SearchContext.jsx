@@ -190,7 +190,7 @@ function SearchProvider({ children }) {
         payload: response.data.filters,
       });
     } catch (error) {
-      getFilters(product_name);
+      throw new Error(error);
     }
   }, []);
 

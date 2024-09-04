@@ -12,7 +12,6 @@ import { useCategory } from "../Contexts/CategoryContext";
 
 function Categories() {
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
   const {
     view,
     getCategoryProduct,
@@ -41,20 +40,24 @@ function Categories() {
   useEffect(() => {
     getFilters(queries.product_name);
   }, [queries.product_name, getFilters]);
-
   useEffect(() => {
     const handleScroll = () => {
-      const st = window.pageYOffset || document.documentElement.scrollTop;
-      setIsVisible(!st > lastScrollTop);
-      setLastScrollTop(st <= 0 ? 0 : st);
+      setIsVisible(false);
     };
 
     window.addEventListener("scroll", handleScroll);
 
+    if (!isVisible) {
+      const Timeout = setTimeout(() => {
+        setIsVisible(true);
+        clearTimeout(Timeout);
+      }, 1000);
+    }
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollTop]);
+  }, [isVisible]);
 
   if (error && !productLoading) {
     return (
@@ -79,7 +82,7 @@ function Categories() {
   return (
     <div className="flex flex-col w-full bg-[#FAFAFA] pt-[100px]">
       <div
-        className={` hidden mobile:fixed mobile:top-[72%] z-30 mobile:w-full mobile:flex mobile:items-center mobile:justify-center overflow-hidden`}
+        className={` hidden mobile:fixed mobile:bottom-[10%] z-30 mobile:w-full mobile:flex mobile:items-center mobile:justify-center overflow-hidden`}
       >
         <div
           className={`w-[175px] text-white h-9 flex items-center gap-[2px] rounded-full transition-all duration-200 ${

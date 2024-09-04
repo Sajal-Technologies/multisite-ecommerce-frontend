@@ -24,7 +24,7 @@ function useURL() {
       ppr_min,
       ppr_max,
       page_number,
-      filter_all: filters && filters.split("|").join(","),
+      filter_all: filters && filters.split("$").join(","),
     };
   }, [sort_by, ppr_min, ppr_max, page_number, filters, product, query]);
 

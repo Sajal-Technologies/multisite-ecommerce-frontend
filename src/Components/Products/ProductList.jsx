@@ -6,9 +6,12 @@
 import { Link } from "react-router-dom";
 import AddToCart from "../AddToCart";
 import DynamicLogo from "../DynamicLogo";
+import GoToCart from "../GoToCart";
+import { useCart } from "../../Contexts/CartContext";
 
 function ProductList({ product }) {
   const { price, thumbnail, title, product_id, merchant, delivery } = product;
+  const { cartItems } = useCart();
 
   return (
     <div className="w-full relative mobile:h-[139px] tablet:h-[150px] xl:h-[200px] items-center flex mobile:gap-4 overflow-hidden tablet:gap-4 lg:gap-4 xl:gap-1 border-[1px] border-[#F2F2F2] rounded-2xl ">
@@ -37,7 +40,11 @@ function ProductList({ product }) {
             </div>
           </Link>
           <div className="mx-4 border-[1px] border-[#005F85] rounded-full">
-            <AddToCart id={product_id} />
+            {cartItems.some((item) => item.product_id === product_id) ? (
+              <GoToCart />
+            ) : (
+              <AddToCart id={product_id} />
+            )}
           </div>
         </div>
       </div>
@@ -71,7 +78,11 @@ function ProductList({ product }) {
             </div>
           </Link>
           <div className="mx-4 border-[1px] border-[#005F85] rounded-full">
-            <AddToCart id={product_id} />
+            {cartItems.some((item) => item.product_id === product_id) ? (
+              <GoToCart />
+            ) : (
+              <AddToCart id={product_id} />
+            )}
           </div>
         </div>
       </div>

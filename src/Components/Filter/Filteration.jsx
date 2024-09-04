@@ -77,8 +77,8 @@ const Filteration = ({
 
     if (selectedFilters.length !== 0) {
       newParams.has("filters")
-        ? newParams.set("filters", selectedFilters.join("|"))
-        : newParams.append("filters", selectedFilters.join("|"));
+        ? newParams.set("filters", selectedFilters.join("$"))
+        : newParams.append("filters", selectedFilters.join("$"));
 
       newParams.has("page") && newParams.set("page", 1);
     } else newParams.delete("filters");
@@ -188,18 +188,27 @@ const Filteration = ({
           )}
         </div>
       ) : (
-        <button
-          className="text-nowrap shadow-md font-bold  w-full py-2 my-2 flex items-center justify-center gap-2 rounded-md"
-          onClick={() => {
-            reloadIcon.current.classList.add("animate-spin");
-            getFilters(queries.product_name);
-          }}
-        >
-          <span className="" ref={reloadIcon}>
-            <TfiReload strokeWidth={1} />
-          </span>
-          Reload Filters
-        </button>
+        <>
+          <button
+            className="text-nowrap shadow-md font-bold  w-full py-2 my-2 flex items-center justify-center gap-2 rounded-md"
+            onClick={async () => {
+              reloadIcon.current.classList.add("animate-spin");
+              try {
+                await getFilters(queries.product_name);
+              } finally {
+                reloadIcon.current.classList.remove("animate-spin");
+              }
+            }}
+          >
+            <span className="" ref={reloadIcon}>
+              <TfiReload strokeWidth={1} />
+            </span>
+            Reload Filters
+          </button>
+          <p className="text-center text-gray-400">
+            Something went Wrong, Please Reload Again!
+          </p>
+        </>
       )}
     </div>
   );

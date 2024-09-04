@@ -7,12 +7,15 @@ import AddToCart from "../AddToCart.jsx";
 import { FaRocket, FaStar } from "react-icons/fa";
 import RelatedProduct from "./RelatedProduct.jsx";
 import SaveForLater from "../SaveForLater.jsx";
+import GoToCart from "../GoToCart.jsx";
+import { useCart } from "../../Contexts/CartContext.jsx";
 
 const ListingProductDets = () => {
   const { productDetails } = useProductDetails();
   const { id } = useParams();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("description");
+  const { cartItems } = useCart();
 
   const details = useRef();
 
@@ -215,7 +218,11 @@ const ListingProductDets = () => {
                 <FaRocket />
                 Buy Now
               </a>
-              <AddToCart type="large" id={id} />
+              {cartItems.some((item) => item.product_id === id) ? (
+                <GoToCart type="large" />
+              ) : (
+                <AddToCart type="large" id={id} />
+              )}
 
               <div className="border border-[#005F85] rounded-full">
                 <SaveForLater id={id} />
@@ -224,7 +231,7 @@ const ListingProductDets = () => {
 
             {productDetails.pricing?.online.length > 1 && (
               <div className="grid grid-cols-2 mb-4">
-                <div className=" bg-[#FAFEFF] border border-[#DEDEDE]  rounded-sm">
+                <div className=" bg-[#FAFEFF] border border-[#0c0b0b]  rounded-sm">
                   <p className="text-[#5C5C5C] text-center text-lg font-bold ">
                     Lowest Price
                   </p>
