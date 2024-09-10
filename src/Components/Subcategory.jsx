@@ -22,9 +22,9 @@ const Subcategory = ({ title, type = "normal" }) => {
 
       try {
         const response = await productFetch.post(
-          "/oxy-sale-product/",
+          "/oxy-category-with-productid/",
           {
-            product_name: { title },
+            product_name: title,
           },
           {
             headers: {

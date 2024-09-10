@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Logo from "../images/Brand Logo/LogoName.png";
 import Favicon from "../images/Brand Logo/favicon.png";
 import { FiUser } from "react-icons/fi";
@@ -16,18 +16,21 @@ import { CiLogout } from "react-icons/ci";
 const Topheader = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const { setQuery, clearFilters } = useSearch();
   const [search, setSearch] = useState(
     new URLSearchParams(window.location.search).get("q") || ""
   );
   const { user, handleLogout } = useAuth();
   const navigate = useNavigate();
+  const searchRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
       const st = window.pageYOffset || document.documentElement.scrollTop;
       if (st > lastScrollTop) {
         setIsVisible(false);
+        setIsInputFocused(false);
       } else {
         setIsVisible(true);
       }
@@ -50,6 +53,13 @@ const Topheader = () => {
       clearFilters();
       navigate(`/Search?q=${search}`);
     }
+  };
+
+  const handleSubmitOnCLick = () => {
+    if (search === "") return;
+    setQuery(search);
+    clearFilters();
+    navigate(`/Search?q=${search}`);
   };
 
   useEffect(() => {
@@ -146,21 +156,41 @@ const Topheader = () => {
             />
           </div>
         </Link>
-        <div className="search flex items-center relative w-[60%]">
+        <div
+          className={`search flex border-[1px]  border-[#DEDEDE] items-center relative w-[60%] ${
+            isInputFocused ? " rounded-t-lg" : "rounded-lg"
+          }`}
+        >
           <input
-            className="bg-[#FAFAFA] border-[1px] border-[#DEDEDE] px-4 py-2 pr-10 w-full  rounded-lg mobile:pr-10  mobile:placeholder:text-xs"
+            className={`bg-[#FAFAFA]  px-4 py-2 pr-10 w-full focus:outline-none ${
+              isInputFocused ? " rounded-t-lg" : "rounded-lg"
+            }  mobile:pr-10  mobile:placeholder:text-xs`}
             type="text"
             placeholder="Search essentials, groceries and more..."
             name="search"
             value={search}
+            ref={searchRef}
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => {
               handleSearchSubmit(e);
             }}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            aria-label="Search Products"
+            onFocus={() => setIsInputFocused(true)}
+            onBlur={() => setIsInputFocused(false)}
           />
-          <button className="right-3 absolute" onClick={handleSearchSubmit}>
+          <button className="right-3 absolute" onClick={handleSubmitOnCLick}>
             <FiSearch className=" text-[#5C5C5C] text-xl" />
           </button>
+          {isInputFocused && (
+            <div className="bg-[#FAFAFA] p-2 border-[1px] rounded-b-lg border-t-0 border-[#DEDEDE] h-64 w-full absolute top-[100%] left-0 shadow-lg">
+              <h3 className="text-gray-400 text-sm font-semibold">
+                Popular Searches
+              </h3>
+            </div>
+          )}
         </div>
         <div className="flex justify-center items-center">
           <Link
