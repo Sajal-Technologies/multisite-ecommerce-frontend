@@ -21,9 +21,9 @@ const Fproduct = ({ Category }) => {
       }
       try {
         const response = await productFetch.post(
-          "/oxy-sale-product/",
+          "/oxy-category-with-productid/",
           {
-            product_name: { Category },
+            product_name: Category,
           },
           {
             headers: {

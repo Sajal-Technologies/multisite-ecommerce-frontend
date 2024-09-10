@@ -231,7 +231,7 @@ const ListingProductDets = () => {
 
             {productDetails.pricing?.online.length > 1 && (
               <div className="grid grid-cols-2 mb-4">
-                <div className=" bg-[#FAFEFF] border border-[#0c0b0b]  rounded-sm">
+                <div className=" bg-[#FAFEFF] border border-[#DEDEDE]  rounded-sm">
                   <p className="text-[#5C5C5C] text-center text-lg font-bold ">
                     Lowest Price
                   </p>

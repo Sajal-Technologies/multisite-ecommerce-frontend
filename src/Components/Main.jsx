@@ -17,7 +17,7 @@ const Main = () => {
         <Fproduct Category={"Electronics"} />
         <Subcategory title={"Home appliances"} />
         <Fproduct Category={"Furniture"} />
-        <Subcategory title={"Electronics and Gadgets"} type={"reverse"} />
+        <Subcategory title={"Electronics & Gadgets"} type={"reverse"} />
       </Suspense>
     </div>
   );
