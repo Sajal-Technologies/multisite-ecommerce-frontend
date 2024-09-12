@@ -6,19 +6,6 @@ import GridItem5 from "./CatGridBannerList/GridItem5";
 import GridItem6 from "./CatGridBannerList/GridItem6";
 
 const Categories = () => {
-  // if (isLoading) {
-  //   return (
-  //     <div className="xl:w-[85%] tablet:h-[600px] h-screen  lg:w-full lg:px-0 px-2  mt-12  mx-auto grid  tablet:grid-cols-4 lg:grid-cols-4 grid-rows-[repeat(3,1fr)] mobile:grid-rows-[repeat(6,1fr)] md:grid-cols-3 mobile:gap-2 tablet:gap-2  lg:gap-4 *:rounded-3xl animate-pulse">
-  //       <div className="w-full h-full bg-gray-300  overflow-hidden"></div>
-  //       <div className="w-full h-full bg-gray-300 overflow-hidden"></div>
-  //       <div className="w-full row-span-3 h-full bg-gray-300 overflow-hidden"></div>
-  //       <div className="w-full  row-span-2  h-full bg-gray-300 overflow-hidden"></div>
-  //       <div className="w-full  mobile:row-start-1 row-span-2 col-span-2   h-full bg-gray-300 overflow-hidden"></div>
-  //       <div className="w-full h-full bg-gray-300 overflow-hidden"></div>
-  //     </div>
-  //   );
-  // }
-
   return (
     <div className="xl:w-[85%] lg:w-full lg:px-0 px-2  mt-12  mx-auto">
       <div className="flex justify-between">
