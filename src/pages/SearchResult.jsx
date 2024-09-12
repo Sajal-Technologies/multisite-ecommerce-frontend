@@ -1,5 +1,5 @@
 import Breadcrump from "../Components/Cat-components/Breadcrump";
-import Sort from "../Components/Cat-components/Sort";
+import Sort from "../Components/Sort/Sort";
 import Filteration from "../Components/Filter/Filteration";
 import ListView from "../Components/ProductView/ListView";
 import GridView from "../Components/ProductView/GridView";
@@ -9,9 +9,13 @@ import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { useSearch } from "../Contexts/SearchContext";
 import useURL from "../hooks/useURL";
 import MultiStageLoader from "../Components/MultiStageLoader";
+import FilterMobile from "../Components/Filter/FilterMobile";
+import SortMobile from "../Components/Sort/SortMobile";
 
 function SearchResult() {
   const [isVisible, setIsVisible] = useState(true);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isSortOpen, setIsSortOpen] = useState(false);
   const {
     view,
     getSearchProduct,
@@ -92,15 +96,42 @@ function SearchResult() {
             isVisible ? "opacity-1" : " opacity-0"
           }`}
         >
-          <div className="h-full w-1/2 flex items-center gap-2 justify-center bg-[#005F85] rounded-s-full">
+          <div
+            className="h-full w-1/2 flex items-center gap-2 justify-center bg-[#005F85] rounded-s-full"
+            onClick={() => setIsFilterOpen(true)}
+          >
             <img src={pageInfo} alt="" />
             <p className="text-lg">Filter</p>
           </div>
-          <div className="h-full w-1/2 flex items-center gap-2 justify-center bg-[#005F85] rounded-e-full">
+          <div
+            className="h-full w-1/2 flex items-center gap-2 justify-center bg-[#005F85] rounded-e-full"
+            onClick={() => setIsSortOpen(true)}
+          >
             <SwapVertIcon />
             <p className="text-lg">Sort</p>
           </div>
         </div>
+        {isFilterOpen && (
+          <FilterMobile
+            filters={filters}
+            selectedFilters={selectedFilters}
+            clearFilters={clearFilters}
+            getFilters={getFilters}
+            queries={queries}
+            setURLQuery={setURLQuery}
+            filterChange={filterChange}
+            setIsFilterOpen={setIsFilterOpen}
+          />
+        )}
+        {isSortOpen && (
+          <SortMobile
+            setView={setView}
+            setURLQuery={setURLQuery}
+            setIsSortOpen={setIsSortOpen}
+            view={view}
+            queries={queries}
+          />
+        )}
       </div>
       <Breadcrump
         pageItem={queries?.product_name.replace(
@@ -111,8 +142,8 @@ function SearchResult() {
       <Sort
         title={queries.product_name}
         setView={setView}
-        product={searchProducts}
         setURLQuery={setURLQuery}
+        view={view}
       />
       <div className=" w-full my-4">
         <div className="grid mobile:grid-cols-1 grid-cols-[280px_1fr]  xl:w-[85%] mx-auto gap-4">

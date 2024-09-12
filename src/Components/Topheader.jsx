@@ -71,7 +71,9 @@ const Topheader = () => {
   return (
     <header
       className={`transition-transform bg-[#FCFCFC] mobile:h-[72px] duration-300 ${
-        isVisible ? "translate-y-0" : "-translate-y-full"
+        isVisible
+          ? "translate-y-0"
+          : "tablet:-translate-y-full lg:-translate-y-full mobile:-translate-y-[140%]"
       } fixed top-0 left-0 right-0 z-50`}
     >
       <div className="upper flex bg-[#F3F9FB] text-[#262626] text-sm px-2 text-right items-center justify-between mobile:block py-1  xl:px-12 ">

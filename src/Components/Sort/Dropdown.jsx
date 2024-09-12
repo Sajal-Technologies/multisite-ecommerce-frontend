@@ -2,7 +2,7 @@ import Select from "react-select";
 import { useLocation } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 
-const Dropdown = ({ setURLQuery }) => {
+const Dropdown = ({ setURLQuery, setIsSortOpen }) => {
   const [defaultValue, setDefaultValue] = useState();
   const location = useLocation();
 
@@ -22,6 +22,8 @@ const Dropdown = ({ setURLQuery }) => {
       : newParams.append("sortby", e.value);
 
     setURLQuery(newParams);
+    setIsSortOpen(false);
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {
@@ -36,7 +38,7 @@ const Dropdown = ({ setURLQuery }) => {
       options={options}
       value={defaultValue}
       placeholder="Relevancy"
-      className="w-[230px] mobile:hidden"
+      className=" mobile:w-full tablet:w-[230px] lg:w-[230px]"
       noOptionsMessage={() => "No data found.."}
       onChange={handleSort}
       styles={{

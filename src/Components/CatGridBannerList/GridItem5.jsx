@@ -60,11 +60,11 @@ function GridItem5() {
         href="#"
         className="absolute top-0 left-0 right-0 bottom-0 z-10 px-4 py-8"
       >
-        <div className="cursor-pointer w-full">
-          <h3 className="xl:text-5xl w-[65%] lg:text-4xl tablet:text-2xl mobile:text-xl mobile:leading-[1.1] mobile:mb-2  font-extrabold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1.1] lg:mb-4 tablet:mb-2">
+        <div className="cursor-pointer  w-[65%]">
+          <h3 className="xl:text-5xl lg:text-4xl tablet:text-2xl mobile:text-xl mobile:leading-[1.1] mobile:mb-2  font-extrabold xl:leading-[1.1] lg:leading-[1.1] tablet:leading-[1.1] lg:mb-4 tablet:mb-2">
             {data?.text1}
           </h3>
-          <p className="xl:text-xl lg:text-base tablet:text-sm font-semibold xl:leading-snug mobile:mb-2 lg:leading-tight tracking-wider lg:mb-5 tablet:mb-3 xl:mb-6 text-[#5C5C5C] lg:w-[50%] tablet:w-[80%] ">
+          <p className="xl:text-xl  lg:text-base tablet:text-sm font-semibold xl:leading-snug mobile:mb-4 lg:leading-tight tracking-wider lg:mb-5 tablet:mb-3 xl:mb-6 text-[#5C5C5C] lg:w-[50%] tablet:w-[80%] ">
             {data?.text2}
           </p>
           <Link
