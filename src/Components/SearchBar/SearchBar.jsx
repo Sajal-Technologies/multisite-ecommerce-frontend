@@ -3,7 +3,7 @@ import { useSearch } from "../../Contexts/SearchContext";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import productFetch from "../../Axios Instance/productAxios";
-import { IoSearchOutline } from "react-icons/io5";
+import { IoClose, IoSearchOutline } from "react-icons/io5";
 function SearchBar({ isVisible }) {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const { setQuery, clearFilters } = useSearch();
@@ -100,6 +100,23 @@ function SearchBar({ isVisible }) {
     setIsInputFocused(false);
   };
 
+  const handleRemoveRecentSearch = (ClickedItem) => {
+    const NewRecentSearch = userRecentSearch.filter(
+      (item) => item !== ClickedItem
+    );
+
+    localStorage.setItem(
+      "recentSearch",
+      JSON.stringify([...new Set([...NewRecentSearch])])
+    );
+    setUserRecentSearch(NewRecentSearch);
+  };
+
+  const handleClearRecentSearch = () => {
+    localStorage.removeItem("recentSearch");
+    setUserRecentSearch([]);
+  };
+
   return (
     <div
       className={`search flex border-[1px]  border-[#DEDEDE] items-center relative w-[60%] ${
@@ -149,17 +166,35 @@ function SearchBar({ isVisible }) {
               ))}
             </ul>
             <ul>
-              <h3 className="text-gray-400 text-sm font-semibold">
-                Recent Search
-              </h3>
+              <div className="flex justify-between items-center">
+                <h3 className="text-gray-400 text-sm font-semibold">
+                  Recent Search
+                </h3>
+                <button
+                  className="text-sm font-bold text-[#005F85]"
+                  onClick={handleClearRecentSearch}
+                >
+                  Clear all
+                </button>
+              </div>
               {userRecentSearch.map((recentSearch, index) => (
                 <li
-                  className="text-sm hover:bg-[#F3F9FB] p-2 border-t-[1px] border-gray-100 rounded flex items-center gap-2 cursor-pointer"
+                  className="text-sm hover:bg-[#F3F9FB] p-2 border-t-[1px] border-gray-100 rounded flex gap-2  cursor-pointer"
                   key={index}
-                  onClick={() => handleSuggestionClick(recentSearch)}
                 >
-                  <IoSearchOutline className="text-lg" />
-                  <span>{recentSearch}</span>
+                  <div
+                    className="flex gap-2 items-center w-full"
+                    onClick={() => handleSuggestionClick(recentSearch)}
+                  >
+                    <IoSearchOutline className="text-lg" />
+                    <span>{recentSearch}</span>
+                  </div>
+                  <button
+                    className="text-lg ml-auto"
+                    onClick={() => handleRemoveRecentSearch(recentSearch)}
+                  >
+                    <IoClose />
+                  </button>
                 </li>
               ))}
             </ul>
